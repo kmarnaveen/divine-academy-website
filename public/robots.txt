@@ -1,0 +1,27 @@
+# Robots.txt for Divine International Academy
+# https://divineacademy.edu.in/robots.txt
+
+User-agent: *
+Allow: /
+
+# Disallow admin and private areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+
+# Allow specific bots
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Sitemap location
+Sitemap: https://divineacademy.edu.in/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1

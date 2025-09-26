@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Offline - Divine International Academy</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, sans-serif;
+        background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+        color: white;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 600px;
+      }
+
+      .logo {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 30px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 36px;
+        font-weight: bold;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        font-weight: 700;
+      }
+
+      p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        opacity: 0.9;
+        line-height: 1.6;
+      }
+
+      .features {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        padding: 30px;
+        margin: 30px 0;
+        backdrop-filter: blur(10px);
+      }
+
+      .features h2 {
+        margin-bottom: 20px;
+        font-size: 1.5rem;
+      }
+
+      .features ul {
+        list-style: none;
+        text-align: left;
+      }
+
+      .features li {
+        margin: 15px 0;
+        padding-left: 30px;
+        position: relative;
+        font-size: 1.1rem;
+      }
+
+      .features li:before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: #facc15;
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+
+      .retry-btn {
+        background: #facc15;
+        color: #1e3a8a;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 50px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+        margin: 10px;
+      }
+
+      .retry-btn:hover {
+        background: #f59e0b;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .status {
+        margin-top: 30px;
+        padding: 15px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        font-size: 0.9rem;
+      }
+
+      .animate-pulse {
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.7;
+        }
+      }
+
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 2rem;
+        }
+
+        p {
+          font-size: 1.1rem;
+        }
+
+        .features {
+          padding: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="logo">
+        <span>🏫</span>
+      </div>
+
+      <h1>You're Offline</h1>
+      <p>
+        Divine International Academy is currently unavailable, but don't worry!
+        The app is working in offline mode.
+      </p>
+
+      <div class="features">
+        <h2>Available Offline Features:</h2>
+        <ul>
+          <li>Browse cached school information</li>
+          <li>View admission details</li>
+          <li>Access academic curriculum</li>
+          <li>Check facilities information</li>
+          <li>Explore student life content</li>
+        </ul>
+      </div>
+
+      <button class="retry-btn" onclick="checkConnection()">Try Again</button>
+      <a href="/" class="retry-btn">Go Home</a>
+
+      <div class="status">
+        <div id="connection-status" class="animate-pulse">
+          ⚡ Checking connection...
+        </div>
+      </div>
+
+      <!-- PWA Install Prompt -->
+      <div
+        id="pwa-install-section"
+        class="features"
+        style="display: none; margin-top: 30px"
+      >
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+          "
+        >
+          <div style="font-size: 2rem">📱</div>
+          <div>
+            <h2 style="margin: 0; font-size: 1.3rem">
+              Install Divine Academy App
+            </h2>
+            <p style="margin: 5px 0 0 0; font-size: 1rem; opacity: 0.8">
+              Get quick access and offline features
+            </p>
+          </div>
+        </div>
+        <button
+          id="pwa-install-btn"
+          class="retry-btn"
+          style="background: #10b981; margin: 0"
+        >
+          📥 Install App
+        </button>
+      </div>
+    </div>
+
+    <script>
+      // PWA Install functionality
+      let deferredPrompt;
+
+      // Listen for install prompt
+      window.addEventListener("beforeinstallprompt", (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        showInstallPrompt();
+      });
+
+      // Check if app is already installed
+      window.addEventListener("appinstalled", (e) => {
+        hideInstallPrompt();
+      });
+
+      // Show install prompt
+      function showInstallPrompt() {
+        // Check if not already installed
+        const isInstalled =
+          window.matchMedia("(display-mode: standalone)").matches ||
+          window.navigator.standalone === true;
+
+        if (!isInstalled && deferredPrompt) {
+          document.getElementById("pwa-install-section").style.display =
+            "block";
+        }
+      }
+
+      // Hide install prompt
+      function hideInstallPrompt() {
+        document.getElementById("pwa-install-section").style.display = "none";
+      }
+
+      // Handle install button click
+      document
+        .getElementById("pwa-install-btn")
+        .addEventListener("click", async () => {
+          if (!deferredPrompt) return;
+
+          deferredPrompt.prompt();
+          const { outcome } = await deferredPrompt.userChoice;
+
+          if (outcome === "accepted") {
+            hideInstallPrompt();
+          }
+
+          deferredPrompt = null;
+        });
+
+      // Check connection status
+      function updateConnectionStatus() {
+        const status = document.getElementById("connection-status");
+        if (navigator.onLine) {
+          status.innerHTML =
+            "🟢 Connection restored! You can now access all features.";
+          status.classList.remove("animate-pulse");
+
+          // Show reload suggestion
+          setTimeout(() => {
+            if (
+              confirm("Connection restored! Would you like to reload the page?")
+            ) {
+              window.location.reload();
+            }
+          }, 1000);
+        } else {
+          status.innerHTML = "🔴 Still offline. Some features may be limited.";
+          status.classList.add("animate-pulse");
+        }
+      }
+
+      function checkConnection() {
+        updateConnectionStatus();
+
+        // Try to reload if online
+        if (navigator.onLine) {
+          window.location.reload();
+        }
+      }
+
+      // Listen for connection changes
+      window.addEventListener("online", () => {
+        updateConnectionStatus();
+      });
+
+      window.addEventListener("offline", () => {
+        updateConnectionStatus();
+      });
+
+      // Initial check
+      updateConnectionStatus();
+
+      // Check if PWA is already installed on load
+      const isInstalled =
+        window.matchMedia("(display-mode: standalone)").matches ||
+        window.navigator.standalone === true;
+      if (!isInstalled) {
+        // Show install prompt after a delay if not installed
+        setTimeout(() => {
+          if (deferredPrompt) {
+            showInstallPrompt();
+          }
+        }, 3000);
+      }
+
+      // Periodic connection check
+      setInterval(checkConnection, 30000); // Check every 30 seconds
+
+      // Auto-reload when back online
+      window.addEventListener("online", () => {
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+      });
+    </script>
+  </body>
+</html>
