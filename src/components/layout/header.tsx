@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 
 const navigation = [
   { name: "Home", href: "/" },
+  { name: "Why DIA?", href: "/why-dia" },
   {
     name: "About Us",
     href: "/about",

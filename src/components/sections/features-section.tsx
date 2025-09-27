@@ -6,65 +6,79 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import {
   GraduationCap,
-  Microscope,
   Palette,
   Trophy,
-  Bus,
+  Globe,
   Heart,
   Users,
   BookOpen,
   ArrowRight,
+  Lightbulb,
+  Target,
+  Star,
 } from "lucide-react";
 import { motion } from "framer-motion";
 
-const features = [
+const signaturePrograms = [
   {
-    icon: GraduationCap,
-    title: "CBSE Excellence",
+    icon: Lightbulb,
+    title: "STEAM Innovation Lab",
     description:
-      "Comprehensive CBSE curriculum from Nursery to Class 12 with experienced faculty and proven results.",
-    color: "bg-blue-100 text-blue-600",
-    href: "/academics",
+      "Integrated Science, Technology, Engineering, Arts & Mathematics program fostering innovation, critical thinking, and creative problem-solving through hands-on projects.",
+    highlight: "Award-Winning Program",
+    color: "bg-red-100 text-primary border-red-200",
+    href: "/academics/streams",
+    badge: "New",
   },
   {
-    icon: Microscope,
-    title: "Modern Labs",
+    icon: Globe,
+    title: "Global Citizenship Program",
     description:
-      "State-of-the-art science labs, computer labs, and digital classrooms for hands-on learning.",
-    color: "bg-emerald-100 text-emerald-600",
-    href: "/facilities/labs",
+      "Model UN, international collaborations, and cross-cultural learning preparing students for global leadership and understanding diverse perspectives.",
+    highlight: "International Recognition",
+    color: "bg-yellow-100 text-accent border-yellow-200",
+    href: "/academics/curriculum",
+    badge: "Featured",
+  },
+  {
+    icon: Target,
+    title: "Life Skills Mastery",
+    description:
+      "Financial literacy, emotional intelligence, communication skills, and leadership development through real-world scenarios and practical applications.",
+    highlight: "Industry Partnerships",
+    color: "bg-red-50 text-primary border-red-100",
+    href: "/academics",
+    badge: "Essential",
   },
   {
     icon: Palette,
-    title: "Creative Arts",
+    title: "Creative Excellence Studio",
     description:
-      "Music, dance, art, and craft programs to nurture creativity and artistic expression.",
-    color: "bg-purple-100 text-purple-600",
+      "Professional-grade music, dance, drama, and visual arts programs with performance opportunities and competitions at state and national levels.",
+    highlight: "State Champions",
+    color: "bg-yellow-50 text-accent border-yellow-100",
     href: "/student-life/clubs",
+    badge: "Elite",
   },
   {
     icon: Trophy,
-    title: "Sports Excellence",
+    title: "Sports & Wellness Academy",
     description:
-      "Professional sports facilities and coaching for physical fitness and competitive excellence.",
-    color: "bg-orange-100 text-orange-600",
+      "Olympic-standard training facilities with certified coaches, sports psychology, and nutrition guidance for aspiring athletes and fitness enthusiasts.",
+    highlight: "District Champions",
+    color: "bg-red-100 text-primary border-red-200",
     href: "/facilities/sports",
-  },
-  {
-    icon: Bus,
-    title: "Safe Transport",
-    description:
-      "GPS-enabled school buses with trained drivers ensuring safe commute for all students.",
-    color: "bg-cyan-100 text-cyan-600",
-    href: "/facilities/transport",
+    badge: "Champions",
   },
   {
     icon: Heart,
-    title: "Values Education",
+    title: "Character Leadership Initiative",
     description:
-      "Character building through moral values, ethics, and life skills development programs.",
-    color: "bg-rose-100 text-rose-600",
+      "Service learning, ethics workshops, and community engagement developing compassionate leaders who make positive impact in society.",
+    highlight: "Community Impact",
+    color: "bg-red-50 text-primary border-red-100",
     href: "/about/vision",
+    badge: "Values",
   },
 ];
 
@@ -87,20 +101,20 @@ export function FeaturesSection() {
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
         >
-          <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/10">
-            Why Choose Divine International Academy
+          <Badge className="mb-4 bg-accent/10 text-primary hover:bg-accent/10 border border-accent/20">
+            🌟 Signature Programs at Divine Academy
           </Badge>
           <h2 className="text-3xl md:text-4xl font-bold font-heading text-primary mb-4">
-            Nurturing Excellence in Every Child
+            Beyond Traditional Learning
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            From academics to character development, we provide a comprehensive
-            educational experience that prepares students for success in the
-            21st century.
+            Our distinctive programs combine academic excellence with real-world skills, 
+            preparing students not just for exams, but for life. Each program is designed 
+            to unlock potential and ignite passion.
           </p>
         </motion.div>
 
-        {/* Features Grid */}
+        {/* Signature Programs Grid */}
         <motion.div
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
           initial={{ opacity: 0, y: 30 }}
@@ -108,40 +122,51 @@ export function FeaturesSection() {
           transition={{ duration: 0.7, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          {features.map((feature, index) => {
-            const Icon = feature.icon;
+          {signaturePrograms.map((program, index) => {
+            const Icon = program.icon;
             return (
               <motion.div
-                key={feature.title}
+                key={program.title}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <Card className="h-full hover:shadow-lg transition-all duration-300 group cursor-pointer border-0 shadow-md">
+                <Card className="h-full hover:shadow-2xl transition-all duration-300 group cursor-pointer border-0 shadow-md hover:-translate-y-2 relative overflow-hidden">
+                  <div className="absolute top-4 right-4">
+                    <Badge className="bg-accent/10 text-accent font-semibold">
+                      {program.badge}
+                    </Badge>
+                  </div>
                   <CardContent className="p-6">
                     <div className="space-y-4">
                       <div
-                        className={`w-12 h-12 rounded-lg ${feature.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}
+                        className={`w-14 h-14 rounded-xl ${program.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg`}
                       >
-                        <Icon className="h-6 w-6" />
+                        <Icon className="h-7 w-7" />
                       </div>
                       <div>
-                        <h3 className="text-xl font-semibold font-heading text-gray-900 mb-2">
-                          {feature.title}
+                        <h3 className="text-xl font-bold font-heading text-gray-900 mb-2">
+                          {program.title}
                         </h3>
-                        <p className="text-gray-600 leading-relaxed">
-                          {feature.description}
+                        <div className="flex items-center gap-2 mb-3">
+                          <Star className="h-4 w-4 text-accent" />
+                          <span className="text-sm font-semibold text-accent">
+                            {program.highlight}
+                          </span>
+                        </div>
+                        <p className="text-gray-600 leading-relaxed text-sm">
+                          {program.description}
                         </p>
                       </div>
                       <Button
                         asChild
                         variant="ghost"
-                        className="p-0 h-auto text-primary hover:text-primary/80 font-medium group/btn"
+                        className="p-0 h-auto text-primary hover:text-primary/80 font-semibold group/btn"
                       >
-                        <Link href={feature.href} className="flex items-center">
-                          Learn More
-                          <ArrowRight className="ml-1 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
+                        <Link href={program.href} className="flex items-center">
+                          Explore Program
+                          <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
                         </Link>
                       </Button>
                     </div>
@@ -154,7 +179,7 @@ export function FeaturesSection() {
 
         {/* Stats Section */}
         <motion.div
-          className="bg-white rounded-2xl p-8 shadow-lg"
+          className="bg-gradient-to-r from-red-50 to-yellow-50 rounded-2xl p-8 shadow-lg border border-red-100"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.4 }}
@@ -172,13 +197,13 @@ export function FeaturesSection() {
                   transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <div className="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="w-16 h-16 bg-white shadow-lg rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-accent/20">
                     <Icon className="h-8 w-8 text-accent" />
                   </div>
                   <div className="text-3xl font-bold font-heading text-primary mb-2">
                     {stat.value}
                   </div>
-                  <div className="text-gray-600 font-medium">{stat.label}</div>
+                  <div className="text-charcoal font-medium">{stat.label}</div>
                 </motion.div>
               );
             })}
