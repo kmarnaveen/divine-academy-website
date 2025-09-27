@@ -127,7 +127,7 @@ export default function AdmissionProcessPage() {
 
   return (
     <MainLayout>
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-yellow-50">
+      <div className="min-h-screen bg-white">
         {/* Hero Section */}
         <section className="relative pt-20 pb-16 overflow-hidden">
           <div className="absolute inset-0 bg-blue-900/5"></div>
@@ -285,7 +285,7 @@ export default function AdmissionProcessPage() {
                 >
                   <Card className="h-full hover:shadow-lg transition-shadow duration-300">
                     <CardHeader className="text-center">
-                      <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center text-white font-bold text-lg mx-auto mb-3">
+                      <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white font-bold text-lg mx-auto mb-3">
                         {index + 1}
                       </div>
                       <CardTitle className="text-blue-900">
@@ -382,7 +382,7 @@ export default function AdmissionProcessPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 bg-gradient-to-r from-blue-600 to-blue-700">
+        <section className="py-16 bg-primary">
           <div className="container mx-auto px-4 text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}

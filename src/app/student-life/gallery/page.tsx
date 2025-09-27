@@ -364,7 +364,7 @@ const photoStats = [
 export default function GalleryPage() {
   return (
     <MainLayout>
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-yellow-50">
+      <div className="min-h-screen bg-white">
         {/* Hero Section */}
         <section className="relative pt-20 pb-16 overflow-hidden">
           <div className="absolute inset-0 bg-blue-900/5"></div>
@@ -516,7 +516,7 @@ export default function GalleryPage() {
                   <Card className="hover:shadow-lg transition-shadow duration-300">
                     <CardContent className="p-0">
                       {/* Photo Placeholder */}
-                      <div className="h-64 bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center">
+                      <div className="h-64 bg-gray-100 flex items-center justify-center">
                         <div className="text-center">
                           <Camera className="w-12 h-12 text-blue-600 mx-auto mb-2" />
                           <p className="text-gray-600 font-medium">
@@ -660,7 +660,7 @@ export default function GalleryPage() {
                             <Card className="hover:shadow-lg transition-shadow duration-300">
                               <CardContent className="p-0">
                                 {/* Collection Cover */}
-                                <div className="h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+                                <div className="h-48 bg-gray-100 flex items-center justify-center">
                                   <div className="text-center">
                                     <Camera className="w-10 h-10 text-gray-600 mx-auto mb-2" />
                                     <div className="text-2xl font-bold text-gray-700">
@@ -731,7 +731,7 @@ export default function GalleryPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 bg-gradient-to-r from-blue-600 to-blue-700">
+        <section className="py-16 bg-primary">
           <div className="container mx-auto px-4 text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}

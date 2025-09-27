@@ -174,7 +174,7 @@ const scholarships = [
 export default function AdmissionFeesPage() {
   return (
     <MainLayout>
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-yellow-50">
+      <div className="min-h-screen bg-white">
         {/* Hero Section */}
         <section className="relative pt-20 pb-16 overflow-hidden">
           <div className="absolute inset-0 bg-blue-900/5"></div>
@@ -449,7 +449,7 @@ export default function AdmissionFeesPage() {
         </section>
 
         {/* Scholarships */}
-        <section className="py-16 bg-gradient-to-br from-yellow-50 to-blue-50">
+        <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -516,7 +516,7 @@ export default function AdmissionFeesPage() {
         </section>
 
         {/* Fee Calculator CTA */}
-        <section className="py-16 bg-gradient-to-r from-blue-600 to-blue-700">
+        <section className="py-16 bg-primary">
           <div className="container mx-auto px-4 text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}

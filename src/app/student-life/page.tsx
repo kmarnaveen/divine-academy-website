@@ -28,7 +28,7 @@ const clubs = [
     description:
       "Explore the wonders of science through experiments and projects",
     icon: Microscope,
-    color: "bg-blue-100 text-blue-600",
+    color: "bg-accent-100 text-accent-600",
     activities: [
       "Science Fair",
       "Lab Experiments",
@@ -152,7 +152,7 @@ export default function StudentLifePage() {
   return (
     <MainLayout>
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-primary to-blue-800 text-white">
+      <section className="py-20 bg-primary text-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <Badge className="mb-6 bg-accent text-primary">
@@ -161,7 +161,7 @@ export default function StudentLifePage() {
             <h1 className="text-4xl md:text-5xl font-bold font-heading mb-6">
               Vibrant Student Life
             </h1>
-            <p className="text-xl text-blue-100 leading-relaxed">
+            <p className="text-xl text-primary-100 leading-relaxed">
               At Divine International Academy, learning extends beyond
               textbooks. We provide a rich ecosystem of clubs, events, and
               activities that nurture creativity, leadership, and personal
@@ -264,7 +264,7 @@ export default function StudentLifePage() {
                 >
                   <CardContent className="p-0">
                     {/* Event Image Placeholder */}
-                    <div className="aspect-video bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+                    <div className="aspect-video bg-gray-100 flex items-center justify-center">
                       <div className="text-center text-gray-500">
                         <Icon className="h-12 w-12 mx-auto mb-2" />
                         <p className="text-sm px-4">
@@ -330,7 +330,7 @@ export default function StudentLifePage() {
                   className="border-0 shadow-md hover:shadow-lg transition-shadow group cursor-pointer"
                 >
                   <CardContent className="p-0">
-                    <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center group-hover:from-primary/5 group-hover:to-accent/5 transition-all duration-300">
+                    <div className="aspect-square bg-gray-100 flex items-center justify-center group-hover:bg-primary/5 transition-all duration-300">
                       <div className="text-center">
                         <Icon className="h-12 w-12 text-gray-400 group-hover:text-primary mx-auto mb-3 transition-colors" />
                         <h3 className="font-semibold text-gray-700 group-hover:text-primary transition-colors">
@@ -424,7 +424,7 @@ export default function StudentLifePage() {
             <h2 className="text-3xl md:text-4xl font-bold font-heading mb-4">
               Upcoming Events
             </h2>
-            <p className="text-blue-100 text-lg">
+            <p className="text-primary-100 text-lg">
               Mark your calendars for these exciting upcoming events
             </p>
           </div>
@@ -439,7 +439,7 @@ export default function StudentLifePage() {
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold">Winter Carnival</h3>
-                      <p className="text-blue-100 text-sm">
+                      <p className="text-primary-100 text-sm">
                         Fun-filled winter activities and competitions
                       </p>
                     </div>
@@ -449,7 +449,7 @@ export default function StudentLifePage() {
                       <Clock className="h-4 w-4" />
                       <span className="font-medium">Dec 20, 2024</span>
                     </div>
-                    <div className="flex items-center space-x-2 text-blue-100 text-sm">
+                    <div className="flex items-center space-x-2 text-primary-100 text-sm">
                       <MapPin className="h-4 w-4" />
                       <span>School Campus</span>
                     </div>
@@ -469,7 +469,7 @@ export default function StudentLifePage() {
                       <h3 className="text-lg font-semibold">
                         Annual Prize Distribution
                       </h3>
-                      <p className="text-blue-100 text-sm">
+                      <p className="text-primary-100 text-sm">
                         Celebrating academic and co-curricular achievements
                       </p>
                     </div>
@@ -479,7 +479,7 @@ export default function StudentLifePage() {
                       <Clock className="h-4 w-4" />
                       <span className="font-medium">Jan 15, 2025</span>
                     </div>
-                    <div className="flex items-center space-x-2 text-blue-100 text-sm">
+                    <div className="flex items-center space-x-2 text-primary-100 text-sm">
                       <MapPin className="h-4 w-4" />
                       <span>School Auditorium</span>
                     </div>

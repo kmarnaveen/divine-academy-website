@@ -29,7 +29,7 @@ const streams = [
     description:
       "Comprehensive science education with PCM/PCB combinations for engineering and medical aspirants",
     icon: <Microscope className="w-8 h-8" />,
-    color: "from-blue-500 to-purple-600",
+    color: "bg-primary",
     combinations: [
       {
         name: "Physics, Chemistry, Mathematics (PCM)",
@@ -91,7 +91,7 @@ const streams = [
     description:
       "Business-focused education preparing students for management, finance, and entrepreneurship",
     icon: <TrendingUp className="w-8 h-8" />,
-    color: "from-green-500 to-blue-500",
+    color: "bg-primary",
     combinations: [
       {
         name: "Business Studies, Accountancy, Economics",
@@ -138,7 +138,7 @@ const streams = [
     description:
       "Liberal arts education focusing on social sciences, literature, and human development",
     icon: <BookOpen className="w-8 h-8" />,
-    color: "from-orange-500 to-red-500",
+    color: "bg-primary",
     combinations: [
       {
         name: "History, Political Science, Psychology",
@@ -298,7 +298,7 @@ const successStories = [
 export default function StreamsPage() {
   return (
     <MainLayout>
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-yellow-50">
+      <div className="min-h-screen bg-white">
         {/* Hero Section */}
         <section className="relative pt-20 pb-16 overflow-hidden">
           <div className="absolute inset-0 bg-blue-900/5"></div>
@@ -352,9 +352,7 @@ export default function StreamsPage() {
                 >
                   <Card className="h-full hover:shadow-lg transition-all duration-300 group">
                     <CardHeader className="text-center">
-                      <div
-                        className={`mx-auto p-4 rounded-full w-fit bg-gradient-to-br ${stream.color} text-white group-hover:scale-110 transition-transform duration-300`}
-                      >
+                      <div className="mx-auto p-4 rounded-full w-fit bg-primary text-white group-hover:scale-110 transition-transform duration-300">
                         {stream.icon}
                       </div>
                       <CardTitle className="text-blue-900">
@@ -457,9 +455,7 @@ export default function StreamsPage() {
                                     {combo.suitableFor}
                                   </p>
                                 </div>
-                                <Badge
-                                  className={`bg-gradient-to-r ${stream.color} text-white`}
-                                >
+                                <Badge className="bg-primary text-white">
                                   {combo.code}
                                 </Badge>
                               </div>
@@ -677,7 +673,7 @@ export default function StreamsPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 bg-gradient-to-r from-blue-600 to-blue-700">
+        <section className="py-16 bg-primary">
           <div className="container mx-auto px-4 text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}

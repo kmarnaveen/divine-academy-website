@@ -108,9 +108,9 @@ export function FeaturesSection() {
             Beyond Traditional Learning
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Our distinctive programs combine academic excellence with real-world skills, 
-            preparing students not just for exams, but for life. Each program is designed 
-            to unlock potential and ignite passion.
+            Our distinctive programs combine academic excellence with real-world
+            skills, preparing students not just for exams, but for life. Each
+            program is designed to unlock potential and ignite passion.
           </p>
         </motion.div>
 
@@ -179,7 +179,7 @@ export function FeaturesSection() {
 
         {/* Stats Section */}
         <motion.div
-          className="bg-gradient-to-r from-red-50 to-yellow-50 rounded-2xl p-8 shadow-lg border border-red-100"
+          className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.4 }}

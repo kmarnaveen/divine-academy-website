@@ -11,31 +11,33 @@ import { MainLayout } from '@/components/layout/main-layout'
 const visionMission = {
   vision: {
     title: "Our Vision",
-    description: "To be a leading educational institution that nurtures global citizens with strong moral values, innovative thinking, and a lifelong passion for learning and service to humanity.",
+    description:
+      "To be a leading educational institution that nurtures global citizens with strong moral values, innovative thinking, and a lifelong passion for learning and service to humanity.",
     icon: <Eye className="w-12 h-12" />,
-    color: "from-blue-500 to-blue-700",
+    color: "bg-primary",
     details: [
       "Becoming a globally recognized center of educational excellence",
       "Developing future leaders with strong ethical foundations",
       "Creating an inclusive learning environment for all students",
       "Fostering innovation and critical thinking skills",
-      "Building a sustainable and environmentally conscious community"
-    ]
+      "Building a sustainable and environmentally conscious community",
+    ],
   },
   mission: {
     title: "Our Mission",
-    description: "To provide holistic education that develops intellectual curiosity, character building, and practical skills while fostering creativity, collaboration, and compassionate leadership in a nurturing environment.",
+    description:
+      "To provide holistic education that develops intellectual curiosity, character building, and practical skills while fostering creativity, collaboration, and compassionate leadership in a nurturing environment.",
     icon: <Target className="w-12 h-12" />,
-    color: "from-green-500 to-green-700",
+    color: "bg-primary",
     details: [
       "Delivering quality education aligned with global standards",
       "Cultivating critical thinking and problem-solving abilities",
       "Promoting cultural diversity and global awareness",
       "Encouraging active participation in community service",
-      "Supporting individual talents and interests of every student"
-    ]
-  }
-}
+      "Supporting individual talents and interests of every student",
+    ],
+  },
+};
 
 const coreValues = [
   {
@@ -206,7 +208,7 @@ const achievements = [
 export default function VisionPage() {
   return (
     <MainLayout>
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-yellow-50">
+      <div className="min-h-screen bg-white">
         {/* Hero Section */}
         <section className="relative pt-20 pb-16 overflow-hidden">
           <div className="absolute inset-0 bg-blue-900/5"></div>
@@ -221,11 +223,16 @@ export default function VisionPage() {
                 Our Vision & Mission
               </h1>
               <p className="text-xl text-gray-700 mb-8 leading-relaxed">
-                Guided by our core values and educational philosophy, we are committed to 
-                nurturing tomorrow's leaders with integrity, innovation, and excellence.
+                Guided by our core values and educational philosophy, we are
+                committed to nurturing tomorrow's leaders with integrity,
+                innovation, and excellence.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" asChild className="bg-blue-600 hover:bg-blue-700">
+                <Button
+                  size="lg"
+                  asChild
+                  className="bg-blue-600 hover:bg-blue-700"
+                >
                   <Link href="#vision-mission">
                     <Target className="mr-2 h-5 w-5" />
                     Our Purpose
@@ -255,22 +262,28 @@ export default function VisionPage() {
                 >
                   <Card className="h-full">
                     <CardHeader>
-                      <div className={`mx-auto p-4 bg-gradient-to-r ${content.color} rounded-full text-white w-fit mb-4`}>
+                      <div className="mx-auto p-4 bg-primary rounded-full text-white w-fit mb-4">
                         {content.icon}
                       </div>
-                      <CardTitle className="text-2xl text-blue-900 text-center">{content.title}</CardTitle>
+                      <CardTitle className="text-2xl text-blue-900 text-center">
+                        {content.title}
+                      </CardTitle>
                     </CardHeader>
                     <CardContent>
                       <p className="text-gray-700 text-center mb-6 leading-relaxed text-lg">
                         {content.description}
                       </p>
                       <div className="space-y-3">
-                        <h4 className="font-semibold text-gray-800">Key Focus Areas:</h4>
+                        <h4 className="font-semibold text-gray-800">
+                          Key Focus Areas:
+                        </h4>
                         <ul className="space-y-2">
                           {content.details.map((detail, idx) => (
                             <li key={idx} className="flex items-start gap-2">
                               <div className="w-2 h-2 bg-blue-600 rounded-full mt-2 flex-shrink-0"></div>
-                              <span className="text-gray-600 text-sm">{detail}</span>
+                              <span className="text-gray-600 text-sm">
+                                {detail}
+                              </span>
                             </li>
                           ))}
                         </ul>
@@ -296,8 +309,9 @@ export default function VisionPage() {
                 Our Core Values
               </h2>
               <p className="text-gray-600 max-w-2xl mx-auto">
-                These fundamental principles guide every aspect of our educational approach 
-                and shape the character of our school community
+                These fundamental principles guide every aspect of our
+                educational approach and shape the character of our school
+                community
               </p>
             </motion.div>
 
@@ -311,18 +325,32 @@ export default function VisionPage() {
                 >
                   <Card className="h-full hover:shadow-lg transition-shadow duration-300">
                     <CardHeader>
-                      <div className={`mx-auto p-3 ${value.color} rounded-full text-white w-fit mb-3`}>
+                      <div
+                        className={`mx-auto p-3 ${value.color} rounded-full text-white w-fit mb-3`}
+                      >
                         {value.icon}
                       </div>
-                      <CardTitle className="text-center text-blue-900">{value.value}</CardTitle>
+                      <CardTitle className="text-center text-blue-900">
+                        {value.value}
+                      </CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-gray-600 text-sm text-center mb-4">{value.description}</p>
+                      <p className="text-gray-600 text-sm text-center mb-4">
+                        {value.description}
+                      </p>
                       <div className="space-y-2">
-                        <h4 className="font-semibold text-gray-800 text-sm">Demonstrated Through:</h4>
+                        <h4 className="font-semibold text-gray-800 text-sm">
+                          Demonstrated Through:
+                        </h4>
                         <div className="flex flex-wrap gap-1">
                           {value.examples.map((example, idx) => (
-                            <Badge key={idx} variant="outline" className="text-xs">{example}</Badge>
+                            <Badge
+                              key={idx}
+                              variant="outline"
+                              className="text-xs"
+                            >
+                              {example}
+                            </Badge>
                           ))}
                         </div>
                       </div>
@@ -347,8 +375,9 @@ export default function VisionPage() {
                 Our Educational Philosophy
               </h2>
               <p className="text-gray-600 max-w-2xl mx-auto">
-                Our teaching and learning approach is built on proven educational principles 
-                that ensure comprehensive development of every student
+                Our teaching and learning approach is built on proven
+                educational principles that ensure comprehensive development of
+                every student
               </p>
             </motion.div>
 
@@ -366,16 +395,25 @@ export default function VisionPage() {
                         <div className="p-2 bg-blue-100 rounded-full text-blue-600">
                           {principle.icon}
                         </div>
-                        <CardTitle className="text-blue-900">{principle.principle}</CardTitle>
+                        <CardTitle className="text-blue-900">
+                          {principle.principle}
+                        </CardTitle>
                       </div>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-gray-700 mb-4">{principle.description}</p>
+                      <p className="text-gray-700 mb-4">
+                        {principle.description}
+                      </p>
                       <div className="space-y-2">
-                        <h4 className="font-semibold text-gray-800 text-sm">Implementation:</h4>
+                        <h4 className="font-semibold text-gray-800 text-sm">
+                          Implementation:
+                        </h4>
                         <ul className="space-y-1">
                           {principle.implementation.map((item, idx) => (
-                            <li key={idx} className="flex items-center gap-2 text-sm text-gray-600">
+                            <li
+                              key={idx}
+                              className="flex items-center gap-2 text-sm text-gray-600"
+                            >
                               <div className="w-1.5 h-1.5 bg-blue-500 rounded-full"></div>
                               {item}
                             </li>
@@ -403,7 +441,8 @@ export default function VisionPage() {
                 Strategic Goals & Future Vision
               </h2>
               <p className="text-gray-600 max-w-2xl mx-auto">
-                Our roadmap for continuous improvement and excellence in education
+                Our roadmap for continuous improvement and excellence in
+                education
               </p>
             </motion.div>
 
@@ -419,19 +458,26 @@ export default function VisionPage() {
                     <CardHeader>
                       <div className="flex items-start justify-between">
                         <div className="flex-grow">
-                          <CardTitle className="text-blue-900 mb-2">{goal.goal}</CardTitle>
+                          <CardTitle className="text-blue-900 mb-2">
+                            {goal.goal}
+                          </CardTitle>
                           <div className="flex items-center gap-2 mb-2">
-                            <Badge 
+                            <Badge
                               className={`text-xs ${
-                                goal.status === 'In Progress' ? 'bg-blue-100 text-blue-800' :
-                                goal.status === 'Planned' ? 'bg-orange-100 text-orange-800' :
-                                goal.status === 'Planning' ? 'bg-purple-100 text-purple-800' :
-                                'bg-green-100 text-green-800'
+                                goal.status === "In Progress"
+                                  ? "bg-blue-100 text-blue-800"
+                                  : goal.status === "Planned"
+                                  ? "bg-orange-100 text-orange-800"
+                                  : goal.status === "Planning"
+                                  ? "bg-purple-100 text-purple-800"
+                                  : "bg-green-100 text-green-800"
                               }`}
                             >
                               {goal.status}
                             </Badge>
-                            <Badge variant="outline" className="text-xs">{goal.timeline}</Badge>
+                            <Badge variant="outline" className="text-xs">
+                              {goal.timeline}
+                            </Badge>
                           </div>
                         </div>
                       </div>
@@ -439,12 +485,19 @@ export default function VisionPage() {
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-3">
-                        <h4 className="font-semibold text-gray-800">Key Milestones:</h4>
+                        <h4 className="font-semibold text-gray-800">
+                          Key Milestones:
+                        </h4>
                         <div className="grid grid-cols-1 gap-2">
                           {goal.milestones.map((milestone, idx) => (
-                            <div key={idx} className="flex items-center gap-2 p-2 bg-gray-50 rounded-lg">
+                            <div
+                              key={idx}
+                              className="flex items-center gap-2 p-2 bg-gray-50 rounded-lg"
+                            >
                               <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                              <span className="text-sm text-gray-700">{milestone}</span>
+                              <span className="text-sm text-gray-700">
+                                {milestone}
+                              </span>
                             </div>
                           ))}
                         </div>
@@ -470,7 +523,8 @@ export default function VisionPage() {
                 Recent Achievements
               </h2>
               <p className="text-gray-600">
-                Recognitions and milestones that reflect our commitment to excellence
+                Recognitions and milestones that reflect our commitment to
+                excellence
               </p>
             </motion.div>
 
@@ -491,9 +545,13 @@ export default function VisionPage() {
                           </div>
                           <div className="flex-grow">
                             <div className="flex items-center gap-3 mb-2">
-                              <Badge className="bg-blue-600 text-white">{achievement.year}</Badge>
+                              <Badge className="bg-blue-600 text-white">
+                                {achievement.year}
+                              </Badge>
                             </div>
-                            <p className="text-gray-700">{achievement.achievement}</p>
+                            <p className="text-gray-700">
+                              {achievement.achievement}
+                            </p>
                           </div>
                         </div>
                       </CardContent>
@@ -506,7 +564,7 @@ export default function VisionPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 bg-gradient-to-r from-blue-600 to-blue-700">
+        <section className="py-16 bg-primary">
           <div className="container mx-auto px-4 text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -518,8 +576,8 @@ export default function VisionPage() {
                 Join Our Vision of Excellence
               </h2>
               <p className="text-blue-100 mb-8 text-lg">
-                Be part of a school community committed to nurturing future leaders 
-                with strong values and academic excellence.
+                Be part of a school community committed to nurturing future
+                leaders with strong values and academic excellence.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" variant="secondary" asChild>
@@ -528,13 +586,23 @@ export default function VisionPage() {
                     Meet Our Team
                   </Link>
                 </Button>
-                <Button size="lg" variant="outline" className="bg-white text-blue-600 hover:bg-blue-50" asChild>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="bg-white text-blue-600 hover:bg-blue-50"
+                  asChild
+                >
                   <Link href="/admissions">
                     <BookOpen className="mr-2 h-5 w-5" />
                     Admissions
                   </Link>
                 </Button>
-                <Button size="lg" variant="ghost" className="text-white hover:bg-blue-600" asChild>
+                <Button
+                  size="lg"
+                  variant="ghost"
+                  className="text-white hover:bg-blue-600"
+                  asChild
+                >
                   <Link href="/apply">
                     <Target className="mr-2 h-5 w-5" />
                     Apply Now
@@ -546,5 +614,5 @@ export default function VisionPage() {
         </section>
       </div>
     </MainLayout>
-  )
+  );
 }

@@ -184,7 +184,7 @@ const safetyFeatures = [
       "Child-safe equipment",
     ],
     icon: <Users className="w-8 h-8" />,
-    color: "bg-blue-500",
+    color: "bg-primary",
   },
   {
     feature: "Digital Monitoring",
@@ -277,10 +277,10 @@ const sustainabilityInitiatives = [
 export default function CampusPage() {
   return (
     <MainLayout>
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-yellow-50">
+      <div className="min-h-screen bg-white">
         {/* Hero Section */}
         <section className="relative pt-20 pb-16 overflow-hidden">
-          <div className="absolute inset-0 bg-blue-900/5"></div>
+          <div className="absolute inset-0 bg-primary-900/5"></div>
           <div className="container mx-auto px-4 relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -288,7 +288,7 @@ export default function CampusPage() {
               transition={{ duration: 0.6 }}
               className="text-center max-w-4xl mx-auto"
             >
-              <h1 className="text-4xl md:text-5xl font-bold text-blue-900 mb-6">
+              <h1 className="text-4xl md:text-5xl font-bold text-primary-900 mb-6">
                 World-Class Campus
               </h1>
               <p className="text-xl text-gray-700 mb-8 leading-relaxed">
@@ -300,7 +300,7 @@ export default function CampusPage() {
                 <Button
                   size="lg"
                   asChild
-                  className="bg-blue-600 hover:bg-blue-700"
+                  className="bg-primary hover:bg-primary-700"
                 >
                   <Link href="/facilities/labs">
                     <BookOpen className="mr-2 h-5 w-5" />
@@ -597,7 +597,7 @@ export default function CampusPage() {
         </section>
 
         {/* Virtual Tour CTA */}
-        <section className="py-16 bg-gradient-to-r from-blue-600 to-blue-700">
+        <section className="py-16 bg-primary">
           <div className="container mx-auto px-4 text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}

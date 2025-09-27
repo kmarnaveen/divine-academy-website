@@ -220,7 +220,7 @@ const teamStats = [
 export default function LeadershipPage() {
   return (
     <MainLayout>
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-yellow-50">
+      <div className="min-h-screen bg-white">
         {/* Hero Section */}
         <section className="relative pt-20 pb-16 overflow-hidden">
           <div className="absolute inset-0 bg-blue-900/5"></div>
@@ -235,11 +235,16 @@ export default function LeadershipPage() {
                 Leadership Team
               </h1>
               <p className="text-xl text-gray-700 mb-8 leading-relaxed">
-                Meet the dedicated professionals who guide our school's mission of 
-                academic excellence, character development, and holistic education.
+                Meet the dedicated professionals who guide our school's mission
+                of academic excellence, character development, and holistic
+                education.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" asChild className="bg-blue-600 hover:bg-blue-700">
+                <Button
+                  size="lg"
+                  asChild
+                  className="bg-blue-600 hover:bg-blue-700"
+                >
                   <Link href="#principal">
                     <Users className="mr-2 h-5 w-5" />
                     Principal's Message
@@ -269,10 +274,14 @@ export default function LeadershipPage() {
                 >
                   <Card className="text-center hover:shadow-lg transition-shadow duration-300">
                     <CardContent className="p-6">
-                      <div className={`mx-auto p-3 bg-gray-100 rounded-full w-fit mb-4 ${stat.color}`}>
+                      <div
+                        className={`mx-auto p-3 bg-gray-100 rounded-full w-fit mb-4 ${stat.color}`}
+                      >
                         {stat.icon}
                       </div>
-                      <div className="text-3xl font-bold text-blue-900 mb-2">{stat.number}</div>
+                      <div className="text-3xl font-bold text-blue-900 mb-2">
+                        {stat.number}
+                      </div>
                       <div className="text-sm text-gray-600">{stat.label}</div>
                     </CardContent>
                   </Card>
@@ -311,49 +320,78 @@ export default function LeadershipPage() {
                     <div className="lg:col-span-1">
                       <div className="text-center">
                         {/* Photo Placeholder */}
-                        <div className="w-40 h-40 mx-auto mb-6 bg-gradient-to-br from-blue-100 to-gray-200 rounded-full flex items-center justify-center">
+                        <div className="w-40 h-40 mx-auto mb-6 bg-gray-100 rounded-full flex items-center justify-center">
                           <Users className="w-20 h-20 text-blue-600" />
                         </div>
-                        <h3 className="text-xl font-bold text-blue-900 mb-2">{principalMessage.name}</h3>
-                        <p className="text-blue-600 font-semibold mb-1">{principalMessage.position}</p>
-                        <p className="text-gray-600 text-sm mb-4">{principalMessage.qualification}</p>
-                        <Badge className="mb-4">{principalMessage.experience}</Badge>
-                        
+                        <h3 className="text-xl font-bold text-blue-900 mb-2">
+                          {principalMessage.name}
+                        </h3>
+                        <p className="text-blue-600 font-semibold mb-1">
+                          {principalMessage.position}
+                        </p>
+                        <p className="text-gray-600 text-sm mb-4">
+                          {principalMessage.qualification}
+                        </p>
+                        <Badge className="mb-4">
+                          {principalMessage.experience}
+                        </Badge>
+
                         <div className="space-y-2 text-sm">
                           <div className="flex items-center justify-center gap-2">
                             <Mail className="w-4 h-4 text-blue-600" />
-                            <span className="text-gray-600">{principalMessage.email}</span>
+                            <span className="text-gray-600">
+                              {principalMessage.email}
+                            </span>
                           </div>
                           <div className="flex items-center justify-center gap-2">
                             <Phone className="w-4 h-4 text-green-600" />
-                            <span className="text-gray-600">{principalMessage.phone}</span>
+                            <span className="text-gray-600">
+                              {principalMessage.phone}
+                            </span>
                           </div>
                         </div>
                       </div>
                     </div>
-                    
+
                     {/* Message Content */}
                     <div className="lg:col-span-2">
                       <div className="space-y-6">
                         <div>
-                          <h4 className="text-lg font-semibold text-blue-900 mb-3">Welcome Message</h4>
-                          <p className="text-gray-700 leading-relaxed">{principalMessage.message}</p>
+                          <h4 className="text-lg font-semibold text-blue-900 mb-3">
+                            Welcome Message
+                          </h4>
+                          <p className="text-gray-700 leading-relaxed">
+                            {principalMessage.message}
+                          </p>
                         </div>
-                        
+
                         <div>
-                          <h4 className="text-lg font-semibold text-blue-900 mb-3">Educational Philosophy</h4>
-                          <p className="text-gray-700 italic leading-relaxed">{principalMessage.philosophy}</p>
+                          <h4 className="text-lg font-semibold text-blue-900 mb-3">
+                            Educational Philosophy
+                          </h4>
+                          <p className="text-gray-700 italic leading-relaxed">
+                            {principalMessage.philosophy}
+                          </p>
                         </div>
-                        
+
                         <div>
-                          <h4 className="text-lg font-semibold text-blue-900 mb-3">Key Achievements</h4>
+                          <h4 className="text-lg font-semibold text-blue-900 mb-3">
+                            Key Achievements
+                          </h4>
                           <ul className="space-y-2">
-                            {principalMessage.achievements.map((achievement, idx) => (
-                              <li key={idx} className="flex items-center gap-2">
-                                <Award className="w-4 h-4 text-yellow-500 flex-shrink-0" />
-                                <span className="text-gray-700 text-sm">{achievement}</span>
-                              </li>
-                            ))}
+                            {principalMessage.achievements.map(
+                              (achievement, idx) => (
+                                <li
+                                  key={idx}
+                                  className="flex items-center gap-2"
+                                >
+                                  <Award className="w-4 h-4 text-yellow-500 flex-shrink-0" />
+                                  <span className="text-gray-700 text-sm">
+                                    {achievement}
+                                  </span>
+                                </li>
+                              )
+                            )}
                           </ul>
                         </div>
                       </div>
@@ -393,43 +431,69 @@ export default function LeadershipPage() {
                   <Card className="h-full hover:shadow-lg transition-shadow duration-300">
                     <CardHeader>
                       <div className="text-center mb-4">
-                        <div className="w-24 h-24 mx-auto mb-4 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full flex items-center justify-center">
+                        <div className="w-24 h-24 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
                           <Users className="w-12 h-12 text-blue-600" />
                         </div>
-                        <CardTitle className="text-blue-900">{member.name}</CardTitle>
-                        <p className="text-blue-600 font-medium text-sm">{member.position}</p>
-                        <Badge variant="outline" className="text-xs mt-1">{member.department}</Badge>
+                        <CardTitle className="text-blue-900">
+                          {member.name}
+                        </CardTitle>
+                        <p className="text-blue-600 font-medium text-sm">
+                          {member.position}
+                        </p>
+                        <Badge variant="outline" className="text-xs mt-1">
+                          {member.department}
+                        </Badge>
                       </div>
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-4">
                         <div className="text-center space-y-1 text-sm">
-                          <p><strong>Qualification:</strong> {member.qualification}</p>
-                          <p><strong>Experience:</strong> {member.experience}</p>
-                          <p><strong>Specialization:</strong> {member.specialization}</p>
+                          <p>
+                            <strong>Qualification:</strong>{" "}
+                            {member.qualification}
+                          </p>
+                          <p>
+                            <strong>Experience:</strong> {member.experience}
+                          </p>
+                          <p>
+                            <strong>Specialization:</strong>{" "}
+                            {member.specialization}
+                          </p>
                         </div>
-                        
+
                         <div>
-                          <h4 className="font-semibold text-gray-800 mb-2 text-sm">Key Achievements:</h4>
+                          <h4 className="font-semibold text-gray-800 mb-2 text-sm">
+                            Key Achievements:
+                          </h4>
                           <ul className="space-y-1">
                             {member.achievements.map((achievement, idx) => (
                               <li key={idx} className="flex items-start gap-1">
                                 <Star className="w-3 h-3 text-yellow-500 mt-0.5 flex-shrink-0" />
-                                <span className="text-xs text-gray-600">{achievement}</span>
+                                <span className="text-xs text-gray-600">
+                                  {achievement}
+                                </span>
                               </li>
                             ))}
                           </ul>
                         </div>
-                        
+
                         <div>
-                          <h4 className="font-semibold text-gray-800 mb-2 text-sm">Responsibilities:</h4>
+                          <h4 className="font-semibold text-gray-800 mb-2 text-sm">
+                            Responsibilities:
+                          </h4>
                           <div className="flex flex-wrap gap-1">
                             {member.responsibilities.map((resp, idx) => (
-                              <Badge key={idx} variant="secondary" className="text-xs">{resp}</Badge>
+                              <Badge
+                                key={idx}
+                                variant="secondary"
+                                className="text-xs"
+                              >
+                                {resp}
+                              </Badge>
                             ))}
                           </div>
                         </div>
-                        
+
                         <div className="pt-2 border-t border-gray-100">
                           <div className="flex items-center gap-2 text-xs text-gray-500">
                             <Mail className="w-3 h-3" />
@@ -473,30 +537,49 @@ export default function LeadershipPage() {
                   <Card className="h-full hover:shadow-md transition-shadow duration-300">
                     <CardHeader>
                       <div className="text-center">
-                        <div className="w-16 h-16 mx-auto mb-3 bg-gradient-to-br from-gray-100 to-blue-100 rounded-full flex items-center justify-center">
+                        <div className="w-16 h-16 mx-auto mb-3 bg-gray-100 rounded-full flex items-center justify-center">
                           <GraduationCap className="w-8 h-8 text-blue-600" />
                         </div>
-                        <CardTitle className="text-blue-900 text-sm">{head.name}</CardTitle>
-                        <p className="text-blue-600 font-medium text-xs">{head.position}</p>
-                        <Badge variant="outline" className="text-xs mt-1">{head.experience}</Badge>
+                        <CardTitle className="text-blue-900 text-sm">
+                          {head.name}
+                        </CardTitle>
+                        <p className="text-blue-600 font-medium text-xs">
+                          {head.position}
+                        </p>
+                        <Badge variant="outline" className="text-xs mt-1">
+                          {head.experience}
+                        </Badge>
                       </div>
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-3">
                         <div className="text-xs space-y-1">
-                          <p><strong>Department:</strong> {head.department}</p>
-                          <p><strong>Qualification:</strong> {head.qualification}</p>
-                          <p><strong>Specialization:</strong> {head.specialization}</p>
-                          <p><strong>Students:</strong> {head.students}</p>
+                          <p>
+                            <strong>Department:</strong> {head.department}
+                          </p>
+                          <p>
+                            <strong>Qualification:</strong> {head.qualification}
+                          </p>
+                          <p>
+                            <strong>Specialization:</strong>{" "}
+                            {head.specialization}
+                          </p>
+                          <p>
+                            <strong>Students:</strong> {head.students}
+                          </p>
                         </div>
-                        
+
                         <div>
-                          <h4 className="font-semibold text-gray-800 mb-2 text-xs">Key Achievements:</h4>
+                          <h4 className="font-semibold text-gray-800 mb-2 text-xs">
+                            Key Achievements:
+                          </h4>
                           <ul className="space-y-1">
                             {head.achievements.map((achievement, idx) => (
                               <li key={idx} className="flex items-start gap-1">
                                 <Award className="w-2.5 h-2.5 text-yellow-500 mt-0.5 flex-shrink-0" />
-                                <span className="text-xs text-gray-600">{achievement}</span>
+                                <span className="text-xs text-gray-600">
+                                  {achievement}
+                                </span>
                               </li>
                             ))}
                           </ul>
@@ -537,17 +620,28 @@ export default function LeadershipPage() {
                 >
                   <Card className="h-full text-center hover:shadow-md transition-shadow duration-300">
                     <CardHeader>
-                      <div className="w-14 h-14 mx-auto mb-3 bg-gradient-to-br from-green-100 to-blue-100 rounded-full flex items-center justify-center">
+                      <div className="w-14 h-14 mx-auto mb-3 bg-gray-100 rounded-full flex items-center justify-center">
                         <Heart className="w-7 h-7 text-green-600" />
                       </div>
-                      <CardTitle className="text-blue-900 text-sm">{staff.name}</CardTitle>
-                      <p className="text-blue-600 font-medium text-xs">{staff.position}</p>
-                      <Badge variant="outline" className="text-xs mt-1">{staff.department}</Badge>
+                      <CardTitle className="text-blue-900 text-sm">
+                        {staff.name}
+                      </CardTitle>
+                      <p className="text-blue-600 font-medium text-xs">
+                        {staff.position}
+                      </p>
+                      <Badge variant="outline" className="text-xs mt-1">
+                        {staff.department}
+                      </Badge>
                     </CardHeader>
                     <CardContent>
                       <div className="text-xs space-y-2">
-                        <p><strong>Qualification:</strong> {staff.qualification}</p>
-                        <p><strong>Specialization:</strong> {staff.specialization}</p>
+                        <p>
+                          <strong>Qualification:</strong> {staff.qualification}
+                        </p>
+                        <p>
+                          <strong>Specialization:</strong>{" "}
+                          {staff.specialization}
+                        </p>
                       </div>
                     </CardContent>
                   </Card>
@@ -587,10 +681,14 @@ export default function LeadershipPage() {
                       <div className="mx-auto p-3 bg-blue-100 rounded-full text-blue-600 w-fit">
                         {value.icon}
                       </div>
-                      <CardTitle className="text-blue-900">{value.title}</CardTitle>
+                      <CardTitle className="text-blue-900">
+                        {value.title}
+                      </CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-gray-600 text-sm">{value.description}</p>
+                      <p className="text-gray-600 text-sm">
+                        {value.description}
+                      </p>
                     </CardContent>
                   </Card>
                 </motion.div>
@@ -600,7 +698,7 @@ export default function LeadershipPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 bg-gradient-to-r from-blue-600 to-blue-700">
+        <section className="py-16 bg-primary">
           <div className="container mx-auto px-4 text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -612,7 +710,7 @@ export default function LeadershipPage() {
                 Join Our Educational Community
               </h2>
               <p className="text-blue-100 mb-8 text-lg">
-                Experience the difference of learning under visionary leadership 
+                Experience the difference of learning under visionary leadership
                 committed to your child's holistic development and success.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -622,13 +720,23 @@ export default function LeadershipPage() {
                     Our Vision
                   </Link>
                 </Button>
-                <Button size="lg" variant="outline" className="bg-white text-blue-600 hover:bg-blue-50" asChild>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="bg-white text-blue-600 hover:bg-blue-50"
+                  asChild
+                >
                   <Link href="/admissions">
                     <BookOpen className="mr-2 h-5 w-5" />
                     Admissions Info
                   </Link>
                 </Button>
-                <Button size="lg" variant="ghost" className="text-white hover:bg-blue-600" asChild>
+                <Button
+                  size="lg"
+                  variant="ghost"
+                  className="text-white hover:bg-blue-600"
+                  asChild
+                >
                   <Link href="/apply">
                     <MessageCircle className="mr-2 h-5 w-5" />
                     Contact Us
@@ -640,5 +748,5 @@ export default function LeadershipPage() {
         </section>
       </div>
     </MainLayout>
-  )
+  );
 }

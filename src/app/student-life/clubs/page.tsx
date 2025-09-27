@@ -27,7 +27,7 @@ const clubCategories = [
     description:
       "Subject-focused clubs for deeper learning and academic excellence",
     icon: <BookOpen className="w-8 h-8" />,
-    color: "from-blue-500 to-purple-600",
+    color: "bg-primary",
     clubs: [
       {
         name: "Science Club",
@@ -111,7 +111,7 @@ const clubCategories = [
     description:
       "Creative expression through various art forms and cultural activities",
     icon: <Palette className="w-8 h-8" />,
-    color: "from-pink-500 to-orange-500",
+    color: "bg-primary",
     clubs: [
       {
         name: "Art & Craft Club",
@@ -176,7 +176,7 @@ const clubCategories = [
     description:
       "Community service, leadership development, and social awareness",
     icon: <Heart className="w-8 h-8" />,
-    color: "from-green-500 to-teal-500",
+    color: "bg-primary",
     clubs: [
       {
         name: "Student Council",
@@ -239,7 +239,7 @@ const clubCategories = [
     description:
       "Physical fitness, competitive sports, and athletic development",
     icon: <Trophy className="w-8 h-8" />,
-    color: "from-orange-500 to-red-500",
+    color: "bg-primary",
     clubs: [
       {
         name: "Athletics Club",
@@ -344,7 +344,7 @@ const membershipProcess = [
 export default function ClubsPage() {
   return (
     <MainLayout>
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-yellow-50">
+      <div className="min-h-screen bg-white">
         {/* Hero Section */}
         <section className="relative pt-20 pb-16 overflow-hidden">
           <div className="absolute inset-0 bg-blue-900/5"></div>
@@ -480,9 +480,7 @@ export default function ClubsPage() {
                 >
                   <div className="mb-8">
                     <div className="flex items-center gap-4 mb-4">
-                      <div
-                        className={`p-3 rounded-full bg-gradient-to-br ${category.color} text-white`}
-                      >
+                      <div className="p-3 rounded-full bg-primary text-white">
                         {category.icon}
                       </div>
                       <div>
@@ -679,7 +677,7 @@ export default function ClubsPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 bg-gradient-to-r from-blue-600 to-blue-700">
+        <section className="py-16 bg-primary">
           <div className="container mx-auto px-4 text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}

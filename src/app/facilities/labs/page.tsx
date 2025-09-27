@@ -26,7 +26,7 @@ const labCategories = [
     name: "Science Laboratories",
     description: "State-of-the-art labs for Physics, Chemistry, and Biology",
     icon: <Microscope className="w-8 h-8" />,
-    color: "from-blue-500 to-purple-600",
+    color: "bg-primary",
     labs: [
       {
         name: "Physics Laboratory",
@@ -107,7 +107,7 @@ const labCategories = [
     description:
       "Modern computing facilities with latest hardware and software",
     icon: <Computer className="w-8 h-8" />,
-    color: "from-green-500 to-blue-500",
+    color: "bg-primary",
     labs: [
       {
         name: "Primary Computer Lab",
@@ -185,7 +185,7 @@ const labCategories = [
     name: "Language Laboratory",
     description: "Digital language learning with audio-visual technology",
     icon: <Globe className="w-8 h-8" />,
-    color: "from-orange-500 to-red-500",
+    color: "bg-primary",
     labs: [
       {
         name: "English Language Lab",
@@ -239,7 +239,7 @@ const labCategories = [
     name: "Specialized Labs",
     description: "Dedicated spaces for advanced learning and research",
     icon: <Zap className="w-8 h-8" />,
-    color: "from-purple-500 to-pink-500",
+    color: "bg-primary",
     labs: [
       {
         name: "Mathematics Lab",
@@ -294,7 +294,7 @@ const labCategories = [
 export default function LabsPage() {
   return (
     <MainLayout>
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-yellow-50">
+      <div className="min-h-screen bg-white">
         {/* Hero Section */}
         <section className="relative pt-20 pb-16 overflow-hidden">
           <div className="absolute inset-0 bg-blue-900/5"></div>
@@ -348,9 +348,7 @@ export default function LabsPage() {
                 >
                   <Card className="h-full text-center hover:shadow-lg transition-all duration-300 group">
                     <CardHeader>
-                      <div
-                        className={`mx-auto p-4 rounded-full w-fit bg-gradient-to-br ${category.color} text-white group-hover:scale-110 transition-transform duration-300`}
-                      >
+                      <div className="mx-auto p-4 rounded-full w-fit bg-primary text-white group-hover:scale-110 transition-transform duration-300">
                         {category.icon}
                       </div>
                       <CardTitle className="text-blue-900">
@@ -507,7 +505,7 @@ export default function LabsPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 bg-gradient-to-r from-blue-600 to-blue-700">
+        <section className="py-16 bg-primary">
           <div className="container mx-auto px-4 text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}

@@ -72,7 +72,7 @@ export function PWAStatus() {
   return (
     <div className="space-y-4">
       {/* Connection Status */}
-      <Card className="border-l-4 border-l-blue-500">
+      <Card className="border-l-4 border-l-primary">
         <CardContent className="p-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">

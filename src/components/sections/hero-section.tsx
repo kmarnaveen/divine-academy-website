@@ -18,9 +18,9 @@ import { motion } from "framer-motion";
 
 export function HeroSection() {
   return (
-    <section className="relative bg-gradient-to-br from-red-50 via-white to-yellow-50 pt-16 pb-32 overflow-hidden">
+    <section className="relative bg-white pt-16 pb-32 overflow-hidden">
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-grid-red-100/30 bg-[size:20px_20px] opacity-20" />
+      <div className="absolute inset-0 bg-grid-crimson-100/20 bg-[size:20px_20px] opacity-10" />
 
       <div className="container mx-auto px-4 relative">
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
@@ -37,7 +37,7 @@ export function HeroSection() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
             >
-              <Badge className="bg-emerald-100 text-emerald-800 hover:bg-emerald-100 px-4 py-2 text-sm font-medium">
+              <Badge className="bg-crimson-100 text-primary hover:bg-crimson-200 px-4 py-2 text-sm font-medium border border-primary/20">
                 🎓 Admissions Open 2025 | CBSE Affiliated
               </Badge>
             </motion.div>
@@ -45,7 +45,7 @@ export function HeroSection() {
             {/* Hero Statement */}
             <div className="space-y-6">
               <motion.h1
-                className="text-5xl sm:text-6xl lg:text-7xl font-bold font-heading text-primary leading-tight"
+                className="text-5xl sm:text-6xl lg:text-7xl font-bold font-heading text-black leading-tight"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.7 }}
@@ -64,11 +64,12 @@ export function HeroSection() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.7 }}
               >
-                At Divine International Academy, students don't just learn — they{" "}
-                <span className="font-bold text-primary">explore</span>,{" "}
+                At Divine International Academy, students don't just learn —
+                they <span className="font-bold text-primary">explore</span>,{" "}
                 <span className="font-bold text-primary">build</span>, and{" "}
-                <span className="font-bold text-primary">flourish</span> through 
-                activity-based education that prepares them for tomorrow's world.
+                <span className="font-bold text-primary">flourish</span> through
+                activity-based education that prepares them for tomorrow's
+                world.
               </motion.p>
             </div>
 
@@ -97,11 +98,12 @@ export function HeroSection() {
                   <div className="text-sm text-gray-600">Expert Faculty</div>
                 </div>
               </div>
-              
+
               <div className="border-t border-gray-200 pt-4">
-                <blockquote className="text-sm italic text-charcoal text-center">
-                  "Divine Academy transformed my child's learning journey. The focus on 
-                  practical learning and character development is exceptional."
+                <blockquote className="text-sm italic text-gray-700 text-center">
+                  "Divine Academy transformed my child's learning journey. The
+                  focus on practical learning and character development is
+                  exceptional."
                 </blockquote>
                 <p className="text-xs text-gray-600 text-center mt-2">
                   — Mrs. Priya Sharma, Parent of Class 10 Student
@@ -119,7 +121,7 @@ export function HeroSection() {
               <Button
                 asChild
                 size="lg"
-                className="bg-accent hover:bg-accent/90 text-primary font-semibold text-lg px-8 py-4 shadow-xl"
+                className="bg-primary hover:bg-crimson-700 text-white font-semibold text-lg px-8 py-4 shadow-xl"
               >
                 <Link href="/admissions" className="flex items-center">
                   Visit Campus <ArrowRight className="ml-2 h-5 w-5" />
@@ -129,7 +131,7 @@ export function HeroSection() {
                 asChild
                 variant="outline"
                 size="lg"
-                className="border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold text-lg px-8 py-4"
+                className="border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold text-lg px-8 py-4 bg-white"
               >
                 <Link href="/prospectus.pdf" className="flex items-center">
                   <Download className="mr-2 h-5 w-5" />
@@ -146,7 +148,7 @@ export function HeroSection() {
               transition={{ delay: 0.7, duration: 0.7 }}
             >
               <div className="flex items-center space-x-2 text-sm text-gray-600">
-                <Award className="h-4 w-4 text-accent" />
+                <Award className="h-4 w-4 text-primary" />
                 <span>CBSE Code: 2131764</span>
               </div>
               <div className="flex items-center space-x-2 text-sm text-gray-600">
@@ -167,11 +169,11 @@ export function HeroSection() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
-            <div className="relative bg-gradient-to-br from-primary to-blue-600 rounded-2xl p-8 shadow-2xl">
+            <div className="relative bg-primary rounded-2xl p-8 shadow-2xl">
               {/* Placeholder for school image */}
               <div className="aspect-video bg-white/10 rounded-lg backdrop-blur-sm border border-white/20 flex items-center justify-center">
                 <div className="text-center text-white">
-                  <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
                     <Trophy className="h-8 w-8 text-primary" />
                   </div>
                   <h3 className="text-xl font-bold mb-2">Campus Excellence</h3>
@@ -182,7 +184,7 @@ export function HeroSection() {
               </div>
 
               {/* Floating Cards */}
-              <div className="absolute -top-4 -right-4 bg-accent text-primary p-4 rounded-xl shadow-lg">
+              <div className="absolute -top-4 -right-4 bg-white text-primary p-4 rounded-xl shadow-lg border border-gray-200">
                 <div className="font-bold text-lg">2131764</div>
                 <div className="text-sm">CBSE Code</div>
               </div>
@@ -196,7 +198,7 @@ export function HeroSection() {
             </div>
           </motion.div>
         </div>
-        
+
         {/* Three Pillars Section */}
         <motion.div
           className="grid md:grid-cols-3 gap-8 mt-20"
@@ -212,10 +214,13 @@ export function HeroSection() {
             <div className="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
               <BookOpen className="h-8 w-8 text-primary" />
             </div>
-            <h3 className="text-2xl font-bold text-primary mb-4">Academic Rigor</h3>
+            <h3 className="text-2xl font-bold text-primary mb-4">
+              Academic Rigor
+            </h3>
             <p className="text-charcoal leading-relaxed">
-              Comprehensive CBSE curriculum enhanced with innovative teaching methods, 
-              critical thinking development, and personalized learning approaches.
+              Comprehensive CBSE curriculum enhanced with innovative teaching
+              methods, critical thinking development, and personalized learning
+              approaches.
             </p>
           </motion.div>
 
@@ -227,10 +232,13 @@ export function HeroSection() {
             <div className="w-16 h-16 bg-yellow-100 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
               <Heart className="h-8 w-8 text-accent" />
             </div>
-            <h3 className="text-2xl font-bold text-primary mb-4">Holistic Growth</h3>
+            <h3 className="text-2xl font-bold text-primary mb-4">
+              Holistic Growth
+            </h3>
             <p className="text-charcoal leading-relaxed">
-              Character development through sports, arts, cultural activities, and 
-              community service, nurturing confident and compassionate leaders.
+              Character development through sports, arts, cultural activities,
+              and community service, nurturing confident and compassionate
+              leaders.
             </p>
           </motion.div>
 
@@ -242,26 +250,31 @@ export function HeroSection() {
             <div className="w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg border-2 border-accent">
               <Rocket className="h-8 w-8 text-primary" />
             </div>
-            <h3 className="text-2xl font-bold text-primary mb-4">Future Readiness</h3>
+            <h3 className="text-2xl font-bold text-primary mb-4">
+              Future Readiness
+            </h3>
             <p className="text-charcoal leading-relaxed">
-              21st-century skills through technology integration, life skills training, 
-              and career guidance preparing students for tomorrow's challenges.
+              21st-century skills through technology integration, life skills
+              training, and career guidance preparing students for tomorrow's
+              challenges.
             </p>
           </motion.div>
         </motion.div>
 
         {/* Audience Pathways */}
         <motion.div
-          className="mt-20 bg-gradient-to-r from-red-50 to-yellow-50 rounded-3xl p-8 border border-red-100"
+          className="mt-20 bg-gray-50 rounded-3xl p-8 border border-gray-200"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.0, duration: 0.8 }}
         >
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold text-primary mb-4">Find Your Path at Divine Academy</h2>
+            <h2 className="text-3xl font-bold text-primary mb-4">
+              Find Your Path at Divine Academy
+            </h2>
             <p className="text-gray-600 text-lg">Choose your journey with us</p>
           </div>
-          
+
           <div className="grid md:grid-cols-3 gap-6">
             {/* For Parents */}
             <Link href="/admissions" className="group block">
@@ -269,8 +282,13 @@ export function HeroSection() {
                 <div className="w-12 h-12 bg-accent/20 rounded-xl flex items-center justify-center mb-4 shadow-sm">
                   <Users className="h-6 w-6 text-accent" />
                 </div>
-                <h3 className="text-xl font-bold text-primary mb-3">For Parents</h3>
-                <p className="text-charcoal mb-4">Discover our admission process, fees, and what makes DIA special for your child's future.</p>
+                <h3 className="text-xl font-bold text-primary mb-3">
+                  For Parents
+                </h3>
+                <p className="text-charcoal mb-4">
+                  Discover our admission process, fees, and what makes DIA
+                  special for your child's future.
+                </p>
                 <div className="flex items-center text-accent font-semibold">
                   Learn More <ArrowRight className="ml-2 h-4 w-4" />
                 </div>
@@ -283,8 +301,13 @@ export function HeroSection() {
                 <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center mb-4 shadow-sm">
                   <Trophy className="h-6 w-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-primary mb-3">For Students</h3>
-                <p className="text-charcoal mb-4">Explore clubs, sports, events, and the vibrant student life that awaits you at DIA.</p>
+                <h3 className="text-xl font-bold text-primary mb-3">
+                  For Students
+                </h3>
+                <p className="text-charcoal mb-4">
+                  Explore clubs, sports, events, and the vibrant student life
+                  that awaits you at DIA.
+                </p>
                 <div className="flex items-center text-primary font-semibold">
                   Explore Life <ArrowRight className="ml-2 h-4 w-4" />
                 </div>
@@ -297,8 +320,13 @@ export function HeroSection() {
                 <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-4 shadow-sm">
                   <Award className="h-6 w-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-primary mb-3">Alumni Network</h3>
-                <p className="text-charcoal mb-4">Stay connected with your alma mater and fellow graduates. Share your success stories.</p>
+                <h3 className="text-xl font-bold text-primary mb-3">
+                  Alumni Network
+                </h3>
+                <p className="text-charcoal mb-4">
+                  Stay connected with your alma mater and fellow graduates.
+                  Share your success stories.
+                </p>
                 <div className="flex items-center text-accent font-semibold">
                   Connect <ArrowRight className="ml-2 h-4 w-4" />
                 </div>

@@ -27,7 +27,7 @@ const facilities = [
     description:
       "Interactive digital boards and multimedia learning environment in every classroom",
     icon: Monitor,
-    color: "bg-blue-100 text-blue-600",
+    color: "bg-accent-100 text-accent-600",
     features: [
       "Digital Projectors",
       "Interactive Whiteboards",
@@ -128,7 +128,7 @@ export default function FacilitiesPage() {
   return (
     <MainLayout>
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-primary to-blue-800 text-white">
+      <section className="py-20 bg-primary text-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <Badge className="mb-6 bg-accent text-primary">
@@ -137,7 +137,7 @@ export default function FacilitiesPage() {
             <h1 className="text-4xl md:text-5xl font-bold font-heading mb-6">
               State-of-the-Art Facilities
             </h1>
-            <p className="text-xl text-blue-100 leading-relaxed">
+            <p className="text-xl text-primary-100 leading-relaxed">
               Our modern campus provides the perfect environment for learning,
               growth, and development with facilities designed for holistic
               education.
@@ -214,7 +214,7 @@ export default function FacilitiesPage() {
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-16 items-center mb-16">
             <div>
-              <Badge className="mb-4 bg-blue-100 text-blue-600">
+              <Badge className="mb-4 bg-accent-100 text-accent-600">
                 Academic Infrastructure
               </Badge>
               <h3 className="text-3xl font-bold font-heading text-primary mb-6">
@@ -255,12 +255,12 @@ export default function FacilitiesPage() {
               </Button>
             </div>
 
-            <div className="bg-gradient-to-br from-blue-500 to-primary rounded-2xl p-8 text-white">
+            <div className="bg-primary rounded-2xl p-8 text-white">
               <div className="aspect-video bg-white/10 rounded-lg backdrop-blur-sm border border-white/20 flex items-center justify-center mb-6">
                 <Building className="h-16 w-16 text-white/80" />
               </div>
               <h4 className="text-xl font-bold mb-2">Campus Virtual Tour</h4>
-              <p className="text-blue-100 text-sm">
+              <p className="text-primary-100 text-sm">
                 Take a virtual walk through our modern campus and explore our
                 world-class facilities
               </p>
@@ -268,7 +268,7 @@ export default function FacilitiesPage() {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="bg-gradient-to-br from-emerald-500 to-green-600 rounded-2xl p-8 text-white order-2 lg:order-1">
+            <div className="bg-primary rounded-2xl p-8 text-white order-2 lg:order-1">
               <div className="aspect-video bg-white/10 rounded-lg backdrop-blur-sm border border-white/20 flex items-center justify-center mb-6">
                 <Trophy className="h-16 w-16 text-white/80" />
               </div>
@@ -427,7 +427,7 @@ export default function FacilitiesPage() {
               </Button>
             </div>
 
-            <div className="bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl p-8 text-white">
+            <div className="bg-primary rounded-2xl p-8 text-white">
               <div className="aspect-video bg-white/10 rounded-lg backdrop-blur-sm border border-white/20 flex items-center justify-center mb-6">
                 <Bus className="h-16 w-16 text-white/80" />
               </div>
@@ -449,12 +449,12 @@ export default function FacilitiesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-primary to-blue-700 text-white">
+      <section className="py-20 bg-primary text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold font-heading mb-4">
             Experience Our Campus
           </h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
             Schedule a campus visit to see our world-class facilities in person
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -147,7 +147,7 @@ function createInstallBanner() {
       bottom: 20px;
       left: 20px;
       right: 20px;
-      background: linear-gradient(135deg, #1E3A8A, #3B82F6);
+      background: #A51C30;
       color: white;
       padding: 16px 20px;
       z-index: 9999;

@@ -44,34 +44,43 @@
 }
 
 :root {
-  --radius: 0.625rem;
-  /* Divine International Academy Professional Brand Colors */
-  --background: #FFFFFF; /* Clean White Base */
-  --foreground: #333333; /* Charcoal Gray Text */
+  --radius: 0.5rem;
+  /* Harvard-Inspired Professional Color Scheme for Divine International Academy */
+  --background: #FFFFFF; /* Pure White Base - Harvard Standard */
+  --foreground: #000000; /* Pure Black Text - Maximum Readability */
   --card: #FFFFFF;
-  --card-foreground: #333333;
+  --card-foreground: #000000;
   --popover: #FFFFFF;
-  --popover-foreground: #333333;
-  --primary: #8B1A1A; /* Professional Maroon */
+  --popover-foreground: #000000;
+  --primary: #A51C30; /* Harvard Crimson - Signature Color */
   --primary-foreground: #FFFFFF;
-  --secondary: #F5F5F5; /* Light Gray Background */
-  --secondary-foreground: #333333;
+  --secondary: #F5F5F5; /* Light Gray - Subtle Backgrounds */
+  --secondary-foreground: #000000;
   --muted: #F5F5F5;
-  --muted-foreground: #6B7280;
-  --accent: #D4AF37; /* Prestigious Gold */
-  --accent-foreground: #8B1A1A;
-  --destructive: #EF4444;
+  --muted-foreground: #4E4E4E; /* Harvard Dark Gray */
+  --accent: #A51C30; /* Crimson Accent - Consistent Branding */
+  --accent-foreground: #FFFFFF;
+  --destructive: #DC2626; /* Error Red - Accessible */
   --border: #E5E7EB;
   --input: #F9FAFB;
-  --ring: #8B1A1A;
-  /* Professional brand palette */
-  --maroon: #8B1A1A; /* Primary Maroon */
-  --gold: #D4AF37; /* Prestigious Gold */
-  --charcoal: #333333; /* Professional Text */
-  --light-gray: #F5F5F5; /* Neutral Background */
-  /* Optional cultural accent colors */
-  --saffron: #FF9933; /* For special events */
-  --cultural-green: #138808; /* Complements saffron */
+  --ring: #A51C30; /* Crimson Focus Ring */
+  /* Harvard Professional Palette */
+  --harvard-crimson: #A51C30; /* Signature Harvard Crimson */
+  --harvard-black: #000000; /* Pure Black Typography */
+  --harvard-dark-gray: #4E4E4E; /* Secondary Text & Footer */
+  --harvard-light-gray: #F5F5F5; /* Backgrounds & Cards */
+  --harvard-white: #FFFFFF; /* Clean Negative Space */
+  /* Accessible Variants */
+  --crimson-50: #FDF2F4; /* Lightest Crimson Tint */
+  --crimson-100: #FCE7E9; /* Very Light Crimson */
+  --crimson-200: #F8C8CE; /* Light Crimson */
+  --crimson-300: #F39CA6; /* Medium Light Crimson */
+  --crimson-400: #E85D75; /* Medium Crimson */
+  --crimson-500: #A51C30; /* Main Harvard Crimson */
+  --crimson-600: #8E1829; /* Darker Crimson */
+  --crimson-700: #771422; /* Dark Crimson */
+  --crimson-800: #5F111C; /* Very Dark Crimson */
+  --crimson-900: #4A0D15; /* Darkest Crimson */
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -88,24 +97,24 @@
 }
 
 .dark {
-  --background: #1A1A1A; /* Dark background */
-  --foreground: #F5F5F5; /* Light text on dark */
-  --card: #2D2D2D;
-  --card-foreground: #F5F5F5;
-  --popover: #2D2D2D;
-  --popover-foreground: #F5F5F5;
-  --primary: #B22222; /* Lighter maroon for dark mode */
-  --primary-foreground: #FFFFFF;
-  --secondary: #404040;
-  --secondary-foreground: #F5F5F5;
-  --muted: #404040;
+  --background: #000000; /* Pure Black Harvard Style */
+  --foreground: #FFFFFF; /* Pure White Text */
+  --card: #1A1A1A; /* Dark Card Background */
+  --card-foreground: #FFFFFF;
+  --popover: #1A1A1A;
+  --popover-foreground: #FFFFFF;
+  --primary: #E85D75; /* Lighter Crimson for Dark Mode */
+  --primary-foreground: #000000;
+  --secondary: #4E4E4E; /* Harvard Dark Gray */
+  --secondary-foreground: #FFFFFF;
+  --muted: #4E4E4E;
   --muted-foreground: #A0A0A0;
-  --accent: #FFD700; /* Brighter gold for dark mode */
-  --accent-foreground: #1A1A1A;
-  --destructive: #FF6B6B;
-  --border: #404040;
-  --input: #333333;
-  --ring: #B22222;
+  --accent: #E85D75; /* Consistent Crimson Accent */
+  --accent-foreground: #000000;
+  --destructive: #EF4444;
+  --border: #4E4E4E;
+  --input: #2A2A2A;
+  --ring: #E85D75;
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
@@ -138,44 +147,158 @@
   .text-maroon {
     color: var(--maroon);
   }
-  .border-maroon {
-    border-color: var(--maroon);
+  /* Harvard-Inspired Utility Classes */
+  
+  /* Harvard Crimson Utilities */
+  .bg-harvard-crimson {
+    background-color: var(--harvard-crimson);
   }
-  .bg-gold {
-    background-color: var(--gold);
+  .text-harvard-crimson {
+    color: var(--harvard-crimson);
   }
-  .text-gold {
-    color: var(--gold);
-  }
-  .border-gold {
-    border-color: var(--gold);
-  }
-  .bg-charcoal {
-    background-color: var(--charcoal);
-  }
-  .text-charcoal {
-    color: var(--charcoal);
-  }
-  .bg-light-gray {
-    background-color: var(--light-gray);
+  .border-harvard-crimson {
+    border-color: var(--harvard-crimson);
   }
   
-  /* Professional gradients */
-  .gradient-maroon {
-    background: linear-gradient(135deg, var(--maroon), #A52A2A);
+  /* Harvard Typography */
+  .bg-harvard-black {
+    background-color: var(--harvard-black);
   }
-  .gradient-gold {
-    background: linear-gradient(135deg, var(--gold), #FFD700);
+  .text-harvard-black {
+    color: var(--harvard-black);
   }
-  .gradient-professional {
-    background: linear-gradient(135deg, var(--maroon), var(--gold));
+  .bg-harvard-white {
+    background-color: var(--harvard-white);
+  }
+  .text-harvard-white {
+    color: var(--harvard-white);
   }
   
-  /* Special event colors (optional) */
-  .bg-saffron {
-    background-color: var(--saffron);
+  /* Harvard Gray Scale */
+  .bg-harvard-dark-gray {
+    background-color: var(--harvard-dark-gray);
   }
-  .bg-cultural-green {
-    background-color: var(--cultural-green);
+  .text-harvard-dark-gray {
+    color: var(--harvard-dark-gray);
+  }
+  .bg-harvard-light-gray {
+    background-color: var(--harvard-light-gray);
+  }
+  .text-harvard-light-gray {
+    color: var(--harvard-light-gray);
+  }
+  
+  /* Crimson Variants */
+  .bg-crimson-50 { background-color: var(--crimson-50); }
+  .bg-crimson-100 { background-color: var(--crimson-100); }
+  .bg-crimson-200 { background-color: var(--crimson-200); }
+  .bg-crimson-300 { background-color: var(--crimson-300); }
+  .bg-crimson-400 { background-color: var(--crimson-400); }
+  .bg-crimson-500 { background-color: var(--crimson-500); }
+  .bg-crimson-600 { background-color: var(--crimson-600); }
+  .bg-crimson-700 { background-color: var(--crimson-700); }
+  .bg-crimson-800 { background-color: var(--crimson-800); }
+  .bg-crimson-900 { background-color: var(--crimson-900); }
+  
+  .text-crimson-50 { color: var(--crimson-50); }
+  .text-crimson-100 { color: var(--crimson-100); }
+  .text-crimson-200 { color: var(--crimson-200); }
+  .text-crimson-300 { color: var(--crimson-300); }
+  .text-crimson-400 { color: var(--crimson-400); }
+  .text-crimson-500 { color: var(--crimson-500); }
+  .text-crimson-600 { color: var(--crimson-600); }
+  .text-crimson-700 { color: var(--crimson-700); }
+  .text-crimson-800 { color: var(--crimson-800); }
+  .text-crimson-900 { color: var(--crimson-900); }
+  
+  /* Harvard Solid Color Utilities */
+  .bg-harvard-crimson { background-color: var(--harvard-crimson); }
+  .bg-harvard-black { background-color: var(--harvard-black); }
+  .bg-harvard-white { background-color: var(--harvard-white); }
+  
+  /* Harvard Card Styles */
+  .card-harvard {
+    background: var(--harvard-white);
+    border: 1px solid var(--harvard-light-gray);
+    box-shadow: 0 1px 3px rgba(165, 28, 48, 0.1);
+  }
+  .card-harvard:hover {
+    box-shadow: 0 4px 6px rgba(165, 28, 48, 0.15);
+    border-color: var(--harvard-crimson);
+  }
+  
+  /* Harvard Button Styles */
+  .btn-harvard-primary {
+    background-color: var(--harvard-crimson);
+    color: var(--harvard-white);
+    border: 2px solid var(--harvard-crimson);
+  }
+  .btn-harvard-primary:hover {
+    background-color: var(--crimson-700);
+    border-color: var(--crimson-700);
+  }
+  
+  .btn-harvard-outline {
+    background-color: transparent;
+    color: var(--harvard-crimson);
+    border: 2px solid var(--harvard-crimson);
+  }
+  .btn-harvard-outline:hover {
+    background-color: var(--harvard-crimson);
+    color: var(--harvard-white);
+  }
+  
+  /* Mobile Sidebar Optimizations */
+  .mobile-sidebar-enter {
+    transform: translateX(100%);
+  }
+  .mobile-sidebar-enter-active {
+    transform: translateX(0);
+    transition: transform 300ms ease-out;
+  }
+  .mobile-sidebar-exit {
+    transform: translateX(0);
+  }
+  .mobile-sidebar-exit-active {
+    transform: translateX(100%);
+    transition: transform 300ms ease-in;
+  }
+  
+  /* Smooth scrolling for mobile menu */
+  .mobile-menu-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: var(--crimson-200) transparent;
+  }
+  .mobile-menu-scroll::-webkit-scrollbar {
+    width: 4px;
+  }
+  .mobile-menu-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .mobile-menu-scroll::-webkit-scrollbar-thumb {
+    background-color: var(--crimson-200);
+    border-radius: 2px;
+  }
+  .mobile-menu-scroll::-webkit-scrollbar-thumb:hover {
+    background-color: var(--crimson-300);
+  }
+  
+  /* Enhanced Accordion Animations */
+  .accordion-content {
+    will-change: max-height, opacity;
+    transition-property: max-height, opacity;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .accordion-content[class*="max-h-0"] {
+    max-height: 0 !important;
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .accordion-content[class*="max-h-screen"] {
+    max-height: 100vh;
+    opacity: 1;
+    pointer-events: auto;
   }
 }

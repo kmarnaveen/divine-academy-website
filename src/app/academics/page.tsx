@@ -108,7 +108,7 @@ export default function AcademicsPage() {
   return (
     <MainLayout>
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-primary to-blue-800 text-white">
+      <section className="py-20 bg-primary text-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <Badge className="mb-6 bg-accent text-primary">
@@ -394,7 +394,7 @@ export default function AcademicsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-primary to-blue-700 text-white">
+      <section className="py-20 bg-primary text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold font-heading mb-4">
             Ready to Join Our Academic Excellence?

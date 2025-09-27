@@ -89,7 +89,7 @@ const competitiveExams = [
           "Government seat allotments: 28",
         ],
         icon: <Medal className="w-6 h-6" />,
-        color: "bg-blue-500",
+        color: "bg-primary",
       },
     ],
   },
@@ -158,7 +158,7 @@ const olympiads = [
       },
     ],
     icon: <Trophy className="w-8 h-8" />,
-    color: "from-yellow-400 to-orange-500",
+    color: "bg-primary",
   },
   {
     subject: "Science",
@@ -172,7 +172,7 @@ const olympiads = [
       },
     ],
     icon: <Zap className="w-8 h-8" />,
-    color: "from-blue-400 to-purple-500",
+    color: "bg-primary",
   },
   {
     subject: "English",
@@ -181,7 +181,7 @@ const olympiads = [
       { level: "Regional", count: 18, awards: "Gold: 8, Silver: 6, Bronze: 4" },
     ],
     icon: <BookOpen className="w-8 h-8" />,
-    color: "from-green-400 to-teal-500",
+    color: "bg-primary",
   },
 ];
 
@@ -281,10 +281,10 @@ const yearlyProgress = [
 export default function AchievementsPage() {
   return (
     <MainLayout>
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-yellow-50">
+      <div className="min-h-screen bg-white">
         {/* Hero Section */}
         <section className="relative pt-20 pb-16 overflow-hidden">
-          <div className="absolute inset-0 bg-blue-900/5"></div>
+          <div className="absolute inset-0 bg-primary-900/5"></div>
           <div className="container mx-auto px-4 relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -292,7 +292,7 @@ export default function AchievementsPage() {
               transition={{ duration: 0.6 }}
               className="text-center max-w-4xl mx-auto"
             >
-              <h1 className="text-4xl md:text-5xl font-bold text-blue-900 mb-6">
+              <h1 className="text-4xl md:text-5xl font-bold text-primary-900 mb-6">
                 Academic Excellence
               </h1>
               <p className="text-xl text-gray-700 mb-8 leading-relaxed">
@@ -304,7 +304,7 @@ export default function AchievementsPage() {
                 <Button
                   size="lg"
                   asChild
-                  className="bg-blue-600 hover:bg-blue-700"
+                  className="bg-primary hover:bg-primary-700"
                 >
                   <Link href="/academics/curriculum">
                     <BookOpen className="mr-2 h-5 w-5" />
@@ -333,7 +333,7 @@ export default function AchievementsPage() {
               >
                 <Card className="text-center hover:shadow-lg transition-shadow duration-300">
                   <CardContent className="p-6">
-                    <div className="text-4xl font-bold text-blue-600 mb-2">
+                    <div className="text-4xl font-bold text-primary mb-2">
                       98.8%
                     </div>
                     <div className="text-sm text-gray-600">
@@ -406,7 +406,7 @@ export default function AchievementsPage() {
               transition={{ duration: 0.6 }}
               className="text-center mb-12"
             >
-              <h2 className="text-3xl font-bold text-blue-900 mb-4">
+              <h2 className="text-3xl font-bold text-primary-900 mb-4">
                 CBSE Board Results 2024
               </h2>
               <p className="text-gray-600">
@@ -425,14 +425,14 @@ export default function AchievementsPage() {
                   <Card className="h-full">
                     <CardHeader>
                       <div className="flex items-center justify-between">
-                        <CardTitle className="text-blue-900">
+                        <CardTitle className="text-primary-900">
                           {result.grade} Results
                         </CardTitle>
                         <Badge className="bg-green-600">{result.year}</Badge>
                       </div>
                       <div className="grid grid-cols-2 gap-4 mt-4">
-                        <div className="text-center p-3 bg-blue-50 rounded-lg">
-                          <div className="text-2xl font-bold text-blue-600">
+                        <div className="text-center p-3 bg-primary-50 rounded-lg">
+                          <div className="text-2xl font-bold text-primary">
                             {result.passPercentage}%
                           </div>
                           <div className="text-sm text-gray-600">Pass Rate</div>
@@ -509,7 +509,7 @@ export default function AchievementsPage() {
               transition={{ duration: 0.6 }}
               className="text-center mb-12"
             >
-              <h2 className="text-3xl font-bold text-blue-900 mb-4">
+              <h2 className="text-3xl font-bold text-primary-900 mb-4">
                 Competitive Exam Success
               </h2>
               <p className="text-gray-600">
@@ -527,7 +527,7 @@ export default function AchievementsPage() {
                 >
                   <Card>
                     <CardHeader>
-                      <CardTitle className="text-blue-900">
+                      <CardTitle className="text-primary-900">
                         {category.category}
                       </CardTitle>
                     </CardHeader>
@@ -568,7 +568,7 @@ export default function AchievementsPage() {
               transition={{ duration: 0.6 }}
               className="text-center mb-12"
             >
-              <h2 className="text-3xl font-bold text-blue-900 mb-4">
+              <h2 className="text-3xl font-bold text-primary-900 mb-4">
                 Olympiad Achievements
               </h2>
               <p className="text-gray-600">
@@ -586,12 +586,10 @@ export default function AchievementsPage() {
                 >
                   <Card className="h-full">
                     <CardHeader className="text-center">
-                      <div
-                        className={`mx-auto p-4 rounded-full w-fit bg-gradient-to-br ${olympiad.color} text-white`}
-                      >
+                      <div className="mx-auto p-4 rounded-full w-fit bg-primary text-white">
                         {olympiad.icon}
                       </div>
-                      <CardTitle className="text-blue-900">
+                      <CardTitle className="text-primary-900">
                         {olympiad.subject} Olympiad
                       </CardTitle>
                     </CardHeader>
@@ -652,7 +650,7 @@ export default function AchievementsPage() {
                           <div className="flex items-center gap-3">
                             <span className="text-2xl">{sport.icon}</span>
                             <div>
-                              <CardTitle className="text-blue-900">
+                              <CardTitle className="text-primary-900">
                                 {sport.sport}
                               </CardTitle>
                               <p className="text-sm text-gray-600">
@@ -690,7 +688,7 @@ export default function AchievementsPage() {
                       <Card key={activity.activity}>
                         <CardHeader>
                           <div className="flex items-center justify-between">
-                            <CardTitle className="text-blue-900">
+                            <CardTitle className="text-primary-900">
                               {activity.activity}
                             </CardTitle>
                             <Badge variant="outline">
@@ -729,7 +727,7 @@ export default function AchievementsPage() {
               transition={{ duration: 0.6 }}
               className="text-center mb-12"
             >
-              <h2 className="text-3xl font-bold text-blue-900 mb-4">
+              <h2 className="text-3xl font-bold text-primary-900 mb-4">
                 Consistent Growth
               </h2>
               <p className="text-gray-600">
@@ -742,21 +740,21 @@ export default function AchievementsPage() {
                 <CardContent className="p-6">
                   <div className="overflow-x-auto">
                     <table className="w-full">
-                      <thead className="bg-blue-50">
+                      <thead className="bg-primary-50">
                         <tr>
-                          <th className="px-4 py-3 text-left font-semibold text-blue-900">
+                          <th className="px-4 py-3 text-left font-semibold text-primary-900">
                             Year
                           </th>
-                          <th className="px-4 py-3 text-center font-semibold text-blue-900">
+                          <th className="px-4 py-3 text-center font-semibold text-primary-900">
                             Pass Rate
                           </th>
-                          <th className="px-4 py-3 text-center font-semibold text-blue-900">
+                          <th className="px-4 py-3 text-center font-semibold text-primary-900">
                             Distinction %
                           </th>
-                          <th className="px-4 py-3 text-center font-semibold text-blue-900">
+                          <th className="px-4 py-3 text-center font-semibold text-primary-900">
                             Avg Score
                           </th>
-                          <th className="px-4 py-3 text-center font-semibold text-blue-900">
+                          <th className="px-4 py-3 text-center font-semibold text-primary-900">
                             Olympiad Winners
                           </th>
                         </tr>
@@ -772,7 +770,7 @@ export default function AchievementsPage() {
                               index % 2 === 0 ? "bg-gray-50" : "bg-white"
                             }
                           >
-                            <td className="px-4 py-3 font-medium text-blue-900">
+                            <td className="px-4 py-3 font-medium text-primary-900">
                               {year.year}
                             </td>
                             <td className="px-4 py-3 text-center">
@@ -805,7 +803,7 @@ export default function AchievementsPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 bg-gradient-to-r from-blue-600 to-blue-700">
+        <section className="py-16 bg-primary">
           <div className="container mx-auto px-4 text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -816,7 +814,7 @@ export default function AchievementsPage() {
               <h2 className="text-3xl font-bold text-white mb-4">
                 Be Part of Our Success Story
               </h2>
-              <p className="text-blue-100 mb-8 text-lg">
+              <p className="text-primary-100 mb-8 text-lg">
                 Join Divine International Academy and unlock your potential for
                 excellence in academics, sports, and personal development. Your
                 success story starts here.
@@ -831,7 +829,7 @@ export default function AchievementsPage() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="bg-white text-blue-600 hover:bg-blue-50"
+                  className="bg-white text-primary hover:bg-primary-50"
                   asChild
                 >
                   <Link href="/admissions/process">
@@ -842,7 +840,7 @@ export default function AchievementsPage() {
                 <Button
                   size="lg"
                   variant="ghost"
-                  className="text-white hover:bg-blue-600"
+                  className="text-white hover:bg-primary-600"
                   asChild
                 >
                   <Link href="/apply">
