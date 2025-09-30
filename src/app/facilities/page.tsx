@@ -27,7 +27,7 @@ const facilities = [
     description:
       "Interactive digital boards and multimedia learning environment in every classroom",
     icon: Monitor,
-    color: "bg-accent-100 text-accent-600",
+    color: "bg-primary/10 text-primary",
     features: [
       "Digital Projectors",
       "Interactive Whiteboards",
@@ -40,7 +40,7 @@ const facilities = [
     description:
       "Well-equipped Physics, Chemistry, and Biology labs with modern equipment",
     icon: Microscope,
-    color: "bg-emerald-100 text-emerald-600",
+    color: "bg-primary/10 text-primary",
     features: [
       "Physics Lab",
       "Chemistry Lab",
@@ -53,7 +53,7 @@ const facilities = [
     description:
       "State-of-the-art computer labs with latest hardware and software",
     icon: Monitor,
-    color: "bg-purple-100 text-purple-600",
+    color: "bg-primary/10 text-primary",
     features: [
       "Latest Computers",
       "High-Speed Internet",
@@ -66,7 +66,7 @@ const facilities = [
     description:
       "Extensive collection of books, journals, and digital resources",
     icon: BookOpen,
-    color: "bg-orange-100 text-orange-600",
+    color: "bg-primary/10 text-primary",
     features: [
       "10,000+ Books",
       "Digital Library",
@@ -79,7 +79,7 @@ const facilities = [
     description:
       "Comprehensive sports facilities for various indoor and outdoor games",
     icon: Trophy,
-    color: "bg-red-100 text-red-600",
+    color: "bg-primary/10 text-primary",
     features: [
       "Football Ground",
       "Basketball Court",
@@ -91,7 +91,7 @@ const facilities = [
     title: "Transportation",
     description: "Safe and reliable school bus service covering major areas",
     icon: Bus,
-    color: "bg-cyan-100 text-cyan-600",
+    color: "bg-primary/10 text-primary",
     features: [
       "GPS Tracking",
       "Trained Drivers",

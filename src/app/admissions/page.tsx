@@ -252,7 +252,6 @@ export default function AdmissionsPage() {
           </div>
         </div>
       </section>
-
       {/* Why Choose DIA - Quick Highlights */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
@@ -302,7 +301,6 @@ export default function AdmissionsPage() {
           </div>
         </div>
       </section>
-
       {/* Admission Process */}
       <section className="py-20 bg-gray-50" id="process">
         <div className="container mx-auto px-4">
@@ -379,11 +377,8 @@ export default function AdmissionsPage() {
             </Button>
           </div>
         </div>
-      </section>;
-
-      {
-        /* Required Documents */
-      }
+      </section>
+      ;{/* Required Documents */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
@@ -483,9 +478,8 @@ export default function AdmissionsPage() {
             </div>
           </div>
         </div>
-      </section>;
-
-      {/* Fee Structure */}
+      </section>
+      ;{/* Fee Structure */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
@@ -579,7 +573,6 @@ export default function AdmissionsPage() {
           </div>
         </div>
       </section>
-
       {/* CTA Section */}
       <section className="py-20 bg-primary text-white" id="admission-form">
         <div className="container mx-auto px-4 text-center">

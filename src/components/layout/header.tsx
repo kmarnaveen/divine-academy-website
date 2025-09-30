@@ -16,6 +16,7 @@ import {
   Building,
   BookOpen,
   Heart,
+  User,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -123,6 +124,9 @@ export function Header() {
   const [expandedMobileMenu, setExpandedMobileMenu] = React.useState<
     string | null
   >(null);
+  const submenuRefs = React.useRef<{ [key: string]: HTMLDivElement | null }>(
+    {}
+  );
 
   // Enhanced mobile menu management
   const toggleMobileSubmenu = (itemName: string) => {
@@ -133,6 +137,17 @@ export function Header() {
   const closeMobileMenu = () => {
     setMobileMenuOpen(false);
     setExpandedMobileMenu(null);
+  };
+
+  // Handle submenu click (open/close)
+  const handleSubmenuClick = (itemName: string, event: React.MouseEvent) => {
+    event.preventDefault();
+    setActiveSubmenu(activeSubmenu === itemName ? null : itemName);
+  };
+
+  // Close submenu
+  const closeSubmenu = () => {
+    setActiveSubmenu(null);
   };
 
   // Prevent body scroll when menu is open
@@ -155,11 +170,46 @@ export function Header() {
       if (event.key === "Escape" && mobileMenuOpen) {
         closeMobileMenu();
       }
+      if (event.key === "Escape" && activeSubmenu) {
+        closeSubmenu();
+      }
     };
 
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [mobileMenuOpen]);
+  }, [mobileMenuOpen, activeSubmenu]);
+
+  // Click-outside detection for submenus
+  React.useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (!activeSubmenu) return;
+
+      // Check if click is outside all submenu containers
+      let clickedOutside = true;
+      Object.values(submenuRefs.current).forEach((ref) => {
+        if (ref && ref.contains(event.target as Node)) {
+          clickedOutside = false;
+        }
+      });
+
+      // Also check if click is on a navigation item with submenu
+      const clickedElement = event.target as Element;
+      const navItem = clickedElement.closest("[data-nav-item]");
+      if (navItem) {
+        clickedOutside = false;
+      }
+
+      if (clickedOutside) {
+        closeSubmenu();
+      }
+    };
+
+    if (activeSubmenu) {
+      document.addEventListener("mousedown", handleClickOutside);
+      return () =>
+        document.removeEventListener("mousedown", handleClickOutside);
+    }
+  }, [activeSubmenu]);
 
   // Click-to-call functionality
   const handlePhoneClick = () => {
@@ -234,7 +284,7 @@ export function Header() {
               />
             </div>
             <div className="hidden sm:block">
-              <h1 className="text-2xl font-bold font-heading text-gray-900 leading-tight">
+              <h1 className="text-lg font-bold font-heading text-gray-900 leading-tight">
                 {" "}
                 {/* Increased from text-xl */}
                 Divine International Academy
@@ -242,7 +292,7 @@ export function Header() {
               <p className="text-sm text-gray-600 font-medium">
                 {" "}
                 {/* Increased from text-xs */}
-                Excellence in Education Since 2011
+                Excellence in Education Since 2012
               </p>
             </div>
             {/* Mobile Logo Text */}
@@ -252,7 +302,7 @@ export function Header() {
               </h1>
             </div>
           </Link>
-          {/* Desktop Navigation - Professional Implementation */}
+          {/* Desktop Navigation - Enhanced Professional Implementation */}
           <nav
             className="hidden lg:flex items-center space-x-2"
             role="navigation"
@@ -262,73 +312,139 @@ export function Header() {
               <div
                 key={item.name}
                 className="relative group"
-                onMouseEnter={() => item.submenu && setActiveSubmenu(item.name)}
-                onMouseLeave={() => setActiveSubmenu(null)}
+                data-nav-item={item.name}
               >
-                <Link
-                  href={item.href}
-                  className={cn(
-                    "flex items-center px-4 py-3 font-semibold transition-all duration-200 rounded-lg",
-                    item.featured
-                      ? "text-primary hover:bg-primary/5"
-                      : item.cta
-                      ? "text-primary hover:text-primary/80"
-                      : "text-gray-700 hover:text-primary hover:bg-gray-50"
-                  )}
-                  aria-haspopup={item.submenu ? "true" : "false"}
-                  aria-expanded={activeSubmenu === item.name ? "true" : "false"}
-                >
-                  {item.name}
-                  {item.submenu && (
+                {item.submenu ? (
+                  <button
+                    onClick={(e) => handleSubmenuClick(item.name, e)}
+                    className={cn(
+                      "relative flex items-center px-4 py-3 font-semibold text-base transition-all duration-300 rounded-xl hover:scale-[1.02] active:scale-[0.98] group w-full text-left",
+                      // Enhanced hover effects with subtle animations
+                      "before:absolute before:bottom-0 before:left-1/2 before:h-0.5 before:w-0 before:bg-current before:transition-all before:duration-300 before:-translate-x-1/2",
+                      "hover:before:w-3/4",
+                      // Consistent styling with subtle differentiation for special items
+                      item.cta
+                        ? "text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-primary hover:to-primary/90 hover:shadow-xl shadow-primary/25 border border-primary/20 hover:border-primary backdrop-blur-sm"
+                        : item.featured
+                        ? "text-gray-700 hover:text-primary hover:bg-gradient-to-br hover:from-primary/8 hover:to-primary/4 hover:shadow-lg shadow-primary/15 border border-transparent hover:border-primary/25"
+                        : "text-gray-700 hover:text-primary hover:bg-gradient-to-br hover:from-gray-50 hover:to-primary/5 hover:shadow-md border border-transparent hover:border-gray-200/50"
+                    )}
+                    aria-haspopup="true"
+                    aria-expanded={
+                      activeSubmenu === item.name ? "true" : "false"
+                    }
+                  >
+                    <span className="relative z-10 transition-transform duration-200 group-hover:translate-x-0.5">
+                      {item.name}
+                    </span>
                     <ChevronDown
                       className={cn(
-                        "ml-1 h-4 w-4 transition-transform duration-200",
-                        activeSubmenu === item.name ? "rotate-180" : ""
+                        "ml-2 h-4 w-4 transition-all duration-300 ease-out",
+                        activeSubmenu === item.name
+                          ? "rotate-180 text-primary scale-110"
+                          : "rotate-0 group-hover:text-primary group-hover:scale-110 group-hover:translate-y-0.5"
                       )}
                     />
-                  )}
-                </Link>
+                    {/* Subtle glow effect for interactive elements */}
+                    <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-transparent via-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
+                  </button>
+                ) : (
+                  <Link
+                    href={item.href}
+                    className={cn(
+                      "relative flex items-center px-4 py-3 font-semibold text-base transition-all duration-300 rounded-xl hover:scale-[1.02] active:scale-[0.98] group",
+                      // Enhanced hover effects with subtle animations
+                      "before:absolute before:bottom-0 before:left-1/2 before:h-0.5 before:w-0 before:bg-current before:transition-all before:duration-300 before:-translate-x-1/2",
+                      "hover:before:w-3/4",
+                      // Consistent styling with subtle differentiation for special items
+                      item.cta
+                        ? "text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-primary hover:to-primary/90 hover:shadow-xl shadow-primary/25 border border-primary/20 hover:border-primary backdrop-blur-sm"
+                        : item.featured
+                        ? "text-gray-700 hover:text-primary hover:bg-gradient-to-br hover:from-primary/8 hover:to-primary/4 hover:shadow-lg shadow-primary/15 border border-transparent hover:border-primary/25"
+                        : "text-gray-700 hover:text-primary hover:bg-gradient-to-br hover:from-gray-50 hover:to-primary/5 hover:shadow-md border border-transparent hover:border-gray-200/50"
+                    )}
+                  >
+                    <span className="relative z-10 transition-transform duration-200 group-hover:translate-x-0.5">
+                      {item.name}
+                    </span>
+                    {/* Subtle glow effect for interactive elements */}
+                    <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-transparent via-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
+                  </Link>
+                )}
 
-                {/* Enhanced Submenu with Rich Content */}
+                {/* Enhanced Submenu with Rich Content & Sophisticated Design */}
                 {item.submenu && (
                   <div
+                    ref={(el) => {
+                      submenuRefs.current[item.name] = el;
+                    }}
                     className={cn(
-                      "absolute top-full left-0 mt-2 w-80 bg-white shadow-xl rounded-xl border border-gray-100 transition-all duration-300 transform",
+                      "absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[28rem] max-w-md bg-white/95 backdrop-blur-xl shadow-2xl rounded-2xl border border-gray-200/50 overflow-hidden transition-all duration-300 transform",
+                      // Enhanced animation states with scale
                       activeSubmenu === item.name
-                        ? "opacity-100 visible translate-y-0"
-                        : "opacity-0 invisible translate-y-2 pointer-events-none"
+                        ? "opacity-100 visible translate-y-0 scale-100"
+                        : "opacity-0 invisible translate-y-6 scale-95 pointer-events-none"
                     )}
                     role="menu"
                   >
-                    <div className="p-4">
-                      <div className="space-y-1">
-                        {item.submenu.map((subitem) => (
+                    {/* Submenu header with gradient and better typography */}
+                    <div className="bg-gradient-to-r from-primary/8 to-primary/12 px-6 py-4 border-b border-gray-100/60">
+                      <h3 className="font-bold text-gray-900 text-lg tracking-tight">
+                        {item.name}
+                      </h3>
+                      <p className="text-sm text-gray-600 mt-1 font-medium">
+                        Explore our {item.name.toLowerCase()} offerings
+                      </p>
+                    </div>
+
+                    <div className="p-5">
+                      <div className="grid gap-2">
+                        {item.submenu.map((subitem, index) => (
                           <Link
                             key={subitem.name}
                             href={subitem.href}
-                            className="flex items-start space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200 group"
+                            className="flex items-start space-x-4 p-4 rounded-xl hover:bg-gradient-to-r hover:from-primary/8 hover:to-primary/12 transition-all duration-300 group border border-transparent hover:border-primary/15 hover:shadow-lg hover:shadow-primary/10"
                             role="menuitem"
+                            style={{
+                              animationDelay: `${index * 75}ms`,
+                            }}
                           >
                             {"icon" in subitem && subitem.icon && (
-                              <div className="text-primary mt-0.5 group-hover:scale-110 transition-transform">
+                              <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-gradient-to-br from-primary/15 to-primary/20 flex items-center justify-center text-primary group-hover:bg-gradient-to-br group-hover:from-primary group-hover:to-primary/90 group-hover:text-white group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
                                 {subitem.icon}
                               </div>
                             )}
-                            <div>
-                              <div className="font-semibold text-gray-900 group-hover:text-primary">
+                            <div className="flex-1 min-w-0">
+                              <div className="font-semibold text-gray-900 group-hover:text-primary transition-colors duration-300 text-base mb-1 group-hover:translate-x-1">
                                 {subitem.name}
                               </div>
                               {"description" in subitem &&
                                 subitem.description && (
-                                  <div className="text-sm text-gray-500 mt-1">
+                                  <div className="text-sm text-gray-600 group-hover:text-gray-700 line-clamp-2 leading-relaxed">
                                     {subitem.description}
                                   </div>
                                 )}
+                            </div>
+                            <div className="flex-shrink-0 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1">
+                              <ChevronDown className="h-4 w-4 text-primary rotate-[-90deg]" />
                             </div>
                           </Link>
                         ))}
                       </div>
                     </div>
+
+                    {/* Enhanced call-to-action footer for featured sections */}
+                    {(item.featured || item.cta) && (
+                      <div className="bg-gradient-to-r from-gray-50/80 to-gray-100/50 px-6 py-4 border-t border-gray-100/60">
+                        <Link
+                          href={item.href}
+                          className="flex items-center justify-center space-x-2 text-sm font-semibold text-primary hover:text-primary/80 transition-all duration-300 hover:scale-105 group"
+                        >
+                          <span>View All {item.name}</span>
+                          <ChevronDown className="h-3 w-3 rotate-[-90deg] group-hover:translate-x-1 transition-transform duration-300" />
+                        </Link>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
@@ -336,6 +452,17 @@ export function Header() {
           </nav>
           {/* Conversion-Optimized CTA */}
           <div className="hidden lg:flex items-center space-x-3">
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold px-6 py-3 transition-all duration-200 transform hover:scale-105"
+            >
+              <Link href="/login" className="flex items-center space-x-2">
+                <User className="h-5 w-5" />
+                <span>Login</span>
+              </Link>
+            </Button>
             <Button
               asChild
               size="lg"
@@ -391,7 +518,7 @@ export function Header() {
               <div className="flex-1 overflow-y-auto mobile-menu-scroll">
                 {/* Quick Actions */}
                 <div className="p-4 bg-primary/5">
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className="grid grid-cols-3 gap-2">
                     <Button
                       onClick={(e) => {
                         e.preventDefault();
@@ -402,8 +529,19 @@ export function Header() {
                       variant="outline"
                       className="justify-center border-primary/20 hover:bg-primary/10"
                     >
-                      <Phone className="h-4 w-4 mr-1.5" />
-                      <span className="text-xs">Call Now</span>
+                      <Phone className="h-4 w-4 mr-1" />
+                      <span className="text-xs">Call</span>
+                    </Button>
+                    <Button
+                      asChild
+                      size="sm"
+                      variant="outline"
+                      className="justify-center border-primary/20 hover:bg-primary/10 text-primary"
+                    >
+                      <Link href="/login" onClick={closeMobileMenu}>
+                        <User className="h-4 w-4 mr-1" />
+                        <span className="text-xs">Login</span>
+                      </Link>
                     </Button>
                     <Button
                       asChild
@@ -411,8 +549,8 @@ export function Header() {
                       className="justify-center bg-primary hover:bg-primary/90 text-white"
                     >
                       <Link href="/apply" onClick={closeMobileMenu}>
-                        <GraduationCap className="h-4 w-4 mr-1.5" />
-                        <span className="text-xs">Apply Now</span>
+                        <GraduationCap className="h-4 w-4 mr-1" />
+                        <span className="text-xs">Apply</span>
                       </Link>
                     </Button>
                   </div>
@@ -429,7 +567,9 @@ export function Header() {
                       <div className="px-4">
                         {item.submenu ? (
                           <button
-                            id={`button-${item.name.toLowerCase().replace(/\s+/g, '-')}`}
+                            id={`button-${item.name
+                              .toLowerCase()
+                              .replace(/\s+/g, "-")}`}
                             onClick={() => toggleMobileSubmenu(item.name)}
                             className={cn(
                               "flex items-center justify-between w-full py-4 font-semibold transition-all duration-200 touch-manipulation rounded-lg hover:bg-gray-50/80 active:bg-gray-100",
@@ -441,9 +581,13 @@ export function Header() {
                             )}
                             style={{ minHeight: "56px" }}
                             aria-expanded={expandedMobileMenu === item.name}
-                            aria-controls={`submenu-${item.name.toLowerCase().replace(/\s+/g, '-')}`}
+                            aria-controls={`submenu-${item.name
+                              .toLowerCase()
+                              .replace(/\s+/g, "-")}`}
                           >
-                            <span className="text-left font-semibold">{item.name}</span>
+                            <span className="text-left font-semibold">
+                              {item.name}
+                            </span>
                             <ChevronDown
                               className={cn(
                                 "h-4 w-4 transition-all duration-300 ease-in-out flex-shrink-0",
@@ -473,7 +617,9 @@ export function Header() {
                       {/* Submenu Items with Smooth Accordion Animation */}
                       {item.submenu && (
                         <div
-                          id={`submenu-${item.name.toLowerCase().replace(/\s+/g, '-')}`}
+                          id={`submenu-${item.name
+                            .toLowerCase()
+                            .replace(/\s+/g, "-")}`}
                           className={cn(
                             "accordion-content overflow-hidden transition-all duration-300 ease-in-out",
                             expandedMobileMenu === item.name
@@ -481,7 +627,9 @@ export function Header() {
                               : "max-h-0 opacity-0"
                           )}
                           role="region"
-                          aria-labelledby={`button-${item.name.toLowerCase().replace(/\s+/g, '-')}`}
+                          aria-labelledby={`button-${item.name
+                            .toLowerCase()
+                            .replace(/\s+/g, "-")}`}
                         >
                           <div className="bg-gray-50/50 border-t border-gray-100">
                             {item.submenu.map((subitem, subIndex) => (
@@ -491,7 +639,8 @@ export function Header() {
                                 onClick={closeMobileMenu}
                                 className={cn(
                                   "flex items-start space-x-3 px-6 py-4 text-gray-700 hover:text-primary hover:bg-white/70 transition-all duration-200 touch-manipulation border-b border-gray-100/50",
-                                  subIndex === item.submenu!.length - 1 && "border-b-0"
+                                  subIndex === item.submenu!.length - 1 &&
+                                    "border-b-0"
                                 )}
                                 style={{ minHeight: "56px" }}
                               >

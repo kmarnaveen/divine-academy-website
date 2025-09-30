@@ -32,7 +32,7 @@ const differentiators = [
     icon: Lightbulb,
     title: "Innovation-First Learning",
     description:
-      "Our STEAM Innovation Lab isn't just a classroom—it's a laboratory for future inventors. Students design robots, conduct scientific experiments, and solve real-world problems using cutting-edge technology.",
+      "Our STEM Innovation Lab isn't just a classroom—it's a laboratory for future inventors. Students design robots, conduct scientific experiments, and solve real-world problems using cutting-edge technology.",
     comparison: "While others teach theory, we build inventors",
     stats: "95% of our Grade 10 students create working prototypes annually",
     color: "bg-accent-100 text-accent-600 border-accent-200",
@@ -109,26 +109,29 @@ const parentConcerns = [
 
 const testimonials = [
   {
-    quote: "DIA transformed my daughter from a shy introvert to a confident leader. The personalized attention and innovative programs made all the difference.",
+    quote:
+      "DIA transformed my daughter from a shy introvert to a confident leader. The personalized attention and innovative programs made all the difference.",
     parent: "Mrs. Priya Sharma",
     student: "Ananya Sharma, Class 10",
     achievement: "School Captain & State-level Science Olympiad Winner",
-    image: "/testimonials/parent-1.jpg"
+    image: "/testimonials/parent-1.jpg",
   },
   {
-    quote: "The STEAM Innovation Lab ignited my son's passion for robotics. He's now designing solutions for real-world problems at just 15!",
+    quote:
+      "The STEM Innovation Lab ignited my son's passion for robotics. He's now designing solutions for real-world problems at just 15!",
     parent: "Mr. Rajesh Kumar",
-    student: "Arjun Kumar, Class 9", 
+    student: "Arjun Kumar, Class 9",
     achievement: "National Robotics Competition Finalist",
-    image: "/testimonials/parent-2.jpg"
+    image: "/testimonials/parent-2.jpg",
   },
   {
-    quote: "DIA's global perspective program opened doors we never imagined. Our daughter is now part of an international youth leadership forum.",
+    quote:
+      "DIA's global perspective program opened doors we never imagined. Our daughter is now part of an international youth leadership forum.",
     parent: "Dr. Meena Gupta",
     student: "Kavya Gupta, Class 11",
     achievement: "Youth Ambassador, UN Model Program",
-    image: "/testimonials/parent-3.jpg"
-  }
+    image: "/testimonials/parent-3.jpg",
+  },
 ];
 
 export function WhyDIASection() {

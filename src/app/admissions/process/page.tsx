@@ -15,6 +15,11 @@ import {
   ArrowRight,
   Phone,
   Mail,
+  GraduationCap,
+  Award,
+  Sparkles,
+  Target,
+  BookOpen,
 } from "lucide-react";
 import Link from "next/link";
 import { MainLayout } from "@/components/layout/main-layout";
@@ -128,38 +133,107 @@ export default function AdmissionProcessPage() {
   return (
     <MainLayout>
       <div className="min-h-screen bg-white">
-        {/* Hero Section */}
-        <section className="relative pt-20 pb-16 overflow-hidden">
-          <div className="absolute inset-0 bg-blue-900/5"></div>
+        {/* Enhanced Hero Section - Harvard Theme */}
+        <section className="relative pt-24 pb-20 overflow-hidden">
+          {/* Background Pattern */}
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-white to-primary/3"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(165,28,48,0.1),transparent_50%)]"></div>
+
           <div className="container mx-auto px-4 relative z-10">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center max-w-4xl mx-auto"
+              transition={{ duration: 0.8 }}
+              className="text-center max-w-5xl mx-auto"
             >
-              <h1 className="text-4xl md:text-5xl font-bold text-blue-900 mb-6">
-                Admission Process
+              {/* Admission Badge */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm border border-primary/20 rounded-full px-6 py-3 mb-8 shadow-lg"
+              >
+                <Award className="h-5 w-5 text-primary" />
+                <span className="font-semibold text-gray-900">
+                  Admissions Open 2025-26
+                </span>
+                <Sparkles className="h-4 w-4 text-primary animate-pulse" />
+              </motion.div>
+
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold font-heading text-gray-900 mb-8 leading-tight">
+                <span className="bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+                  Admission
+                </span>
+                <br />
+                <span className="text-gray-700">Process</span>
               </h1>
-              <p className="text-xl text-gray-700 mb-8 leading-relaxed">
-                Join the Divine International Academy family through our simple,
-                transparent admission process. We're here to guide you every
-                step of the way.
+
+              <p className="text-xl md:text-2xl text-gray-600 mb-12 leading-relaxed max-w-4xl mx-auto font-medium">
+                Join the Divine International Academy family through our
+                <span className="text-primary font-semibold"> simple</span>,
+                <span className="text-primary font-semibold"> transparent</span>{" "}
+                admission process. We're here to guide you every step of the
+                way.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+
+              {/* Enhanced Stats */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="grid grid-cols-3 gap-8 max-w-2xl mx-auto mb-12"
+              >
+                {[
+                  {
+                    number: "7",
+                    label: "Simple Steps",
+                    icon: <Target className="h-6 w-6" />,
+                  },
+                  {
+                    number: "48hrs",
+                    label: "Quick Process",
+                    icon: <Clock className="h-6 w-6" />,
+                  },
+                  {
+                    number: "100%",
+                    label: "Transparency",
+                    icon: <CheckCircle className="h-6 w-6" />,
+                  },
+                ].map((stat, idx) => (
+                  <div key={idx} className="text-center group">
+                    <div className="text-primary group-hover:scale-110 transition-transform duration-300 mb-2 flex justify-center">
+                      {stat.icon}
+                    </div>
+                    <div className="text-3xl font-bold text-gray-900 mb-1">
+                      {stat.number}
+                    </div>
+                    <div className="text-sm text-gray-600 font-medium">
+                      {stat.label}
+                    </div>
+                  </div>
+                ))}
+              </motion.div>
+
+              <div className="flex flex-col sm:flex-row gap-6 justify-center">
                 <Button
                   size="lg"
                   asChild
-                  className="bg-blue-600 hover:bg-blue-700"
+                  className="bg-primary hover:bg-primary/90 text-white font-semibold px-8 py-4 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
                 >
-                  <Link href="/apply">
-                    <FileText className="mr-2 h-5 w-5" />
-                    Apply Now
+                  <Link href="/apply" className="flex items-center">
+                    <GraduationCap className="mr-3 h-5 w-5" />
+                    Start Application
+                    <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
-                <Button variant="outline" size="lg" asChild>
-                  <Link href="/contact">
-                    <Phone className="mr-2 h-5 w-5" />
+                <Button
+                  variant="outline"
+                  size="lg"
+                  asChild
+                  className="border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                >
+                  <Link href="/contact" className="flex items-center">
+                    <Phone className="mr-3 h-5 w-5" />
                     Schedule Campus Visit
                   </Link>
                 </Button>

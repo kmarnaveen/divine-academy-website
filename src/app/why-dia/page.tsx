@@ -11,6 +11,8 @@ export default function WhyDIAPage() {
 
 export const metadata = {
   title: "Why Choose Divine International Academy? | DIA Firozabad",
-  description: "Discover what makes Divine International Academy unique. From innovative STEAM programs to character development, see why families choose DIA for their children's future.",
-  keywords: "why choose DIA, best CBSE school Firozabad, Divine International Academy benefits, school comparison, educational excellence",
+  description:
+    "Discover what makes Divine International Academy unique. From innovative STEM programs to character development, see why families choose DIA for their children's future.",
+  keywords:
+    "why choose DIA, best CBSE school Firozabad, Divine International Academy benefits, school comparison, educational excellence",
 };

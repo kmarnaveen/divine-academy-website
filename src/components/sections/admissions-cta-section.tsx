@@ -57,7 +57,7 @@ export function AdmissionsCTASection() {
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
         >
-          <Badge className="mb-4 bg-accent text-primary font-medium">
+          <Badge className="mb-4 bg-accent text-white font-medium">
             🎓 Admissions Open for 2025-26
           </Badge>
           <h2 className="text-3xl md:text-4xl font-bold font-heading mb-4">
@@ -121,7 +121,7 @@ export function AdmissionsCTASection() {
                 <Button
                   asChild
                   size="lg"
-                  className="bg-accent hover:bg-accent/90 text-primary font-semibold flex-1"
+                  className="bg-white text-primary font-semibold flex-1"
                 >
                   <Link
                     href="/apply"
@@ -134,7 +134,7 @@ export function AdmissionsCTASection() {
                   asChild
                   variant="outline"
                   size="lg"
-                  className="border-white text-white hover:bg-white hover:text-primary flex-1"
+                  className="border-white text-primary hover:bg-white hover:text-primary flex-1"
                 >
                   <Link
                     href="/prospectus.pdf"
@@ -172,7 +172,9 @@ export function AdmissionsCTASection() {
               <CardContent className="p-6">
                 <div className="flex items-center space-x-2 mb-4">
                   <CalendarDays className="h-5 w-5 text-accent" />
-                  <h4 className="text-lg font-semibold">Important Dates</h4>
+                  <h4 className="text-lg text-white font-semibold">
+                    Important Dates
+                  </h4>
                 </div>
                 <div className="space-y-3">
                   {importantDates.map((item, index) => (
@@ -185,7 +187,7 @@ export function AdmissionsCTASection() {
                       viewport={{ once: true }}
                     >
                       <span className="text-blue-100">{item.event}</span>
-                      <span className="font-semibold text-accent">
+                      <span className="font-semibold text-white">
                         {item.date}
                       </span>
                     </motion.div>
@@ -197,10 +199,10 @@ export function AdmissionsCTASection() {
             {/* Quick Info */}
             <Card className="bg-white/10 backdrop-blur-sm border-white/20">
               <CardContent className="p-6">
-                <h4 className="text-lg font-semibold mb-4">
+                <h4 className="text-lg font-semibold mb-4 text-white">
                   Admission Highlights
                 </h4>
-                <div className="space-y-3 text-sm">
+                <div className="space-y-3 text-sm text-white">
                   <div className="flex items-center space-x-2">
                     <CheckCircle className="h-4 w-4 text-accent" />
                     <span>

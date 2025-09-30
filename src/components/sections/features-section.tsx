@@ -22,7 +22,7 @@ import { motion } from "framer-motion";
 const signaturePrograms = [
   {
     icon: Lightbulb,
-    title: "STEAM Innovation Lab",
+    title: "STEM Innovation Lab",
     description:
       "Integrated Science, Technology, Engineering, Arts & Mathematics program fostering innovation, critical thinking, and creative problem-solving through hands-on projects.",
     highlight: "Award-Winning Program",
