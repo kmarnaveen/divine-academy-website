@@ -19,6 +19,7 @@ import { MainLayout } from "@/components/layout/main-layout";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { schoolContact } from "@/lib/school-contact";
 
 const admissionCycle = "2026-27";
 
@@ -643,7 +644,7 @@ export default function AdmissionsPage() {
                   Admissions phone
                 </p>
                 <p className="mt-2 text-lg font-semibold text-white">
-                  +91 9876543211
+                  {schoolContact.phoneDisplay}
                 </p>
               </div>
 
@@ -655,7 +656,7 @@ export default function AdmissionsPage() {
                   Admissions email
                 </p>
                 <p className="mt-2 text-lg font-semibold text-white break-all">
-                  admissions@divineacademy.edu.in
+                  {schoolContact.emailDisplay}
                 </p>
               </div>
 
@@ -667,10 +668,10 @@ export default function AdmissionsPage() {
                   Office hours
                 </p>
                 <p className="mt-2 text-lg font-semibold text-white">
-                  Monday to Friday, 8 AM to 4 PM
+                  {schoolContact.officeHoursDays}
                 </p>
                 <p className="mt-1 text-sm text-white/70">
-                  Saturday, 8 AM to 12 PM
+                  {schoolContact.officeHoursTime}
                 </p>
               </div>
 
@@ -682,7 +683,7 @@ export default function AdmissionsPage() {
                   Campus location
                 </p>
                 <p className="mt-2 text-lg font-semibold text-white">
-                  Sirsaganj, Firozabad, Uttar Pradesh - 283203
+                  {schoolContact.fullAddress}
                 </p>
               </div>
             </div>
@@ -707,8 +708,8 @@ export default function AdmissionsPage() {
                 <div className="flex items-start gap-3 rounded-2xl border border-white/12 bg-white/6 px-4 py-3.5">
                   <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-white" />
                   <span>
-                    Main school office support is also available at +91
-                    9876543210.
+                    School office support is available on the same verified
+                    number during office hours.
                   </span>
                 </div>
               </div>

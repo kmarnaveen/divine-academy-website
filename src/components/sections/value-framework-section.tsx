@@ -113,6 +113,67 @@ const pillarStyleMap = Object.fromEntries(
   frameworkPillars.map((pillar) => [pillar.key, pillar]),
 );
 
+function ReducedValueFrameworkDiagram() {
+  return (
+    <div className="relative mx-auto h-[360px] max-w-[380px] sm:h-[420px]">
+      <div className="absolute left-1/2 top-0 h-[420px] w-[380px] origin-top -translate-x-1/2 scale-[0.84] sm:scale-100">
+        {orbitItems.map((item) => {
+          const pillar = pillarStyleMap[item.pillar];
+
+          return (
+            <div
+              key={`mobile-home-${item.label}`}
+              className={`absolute flex h-[68px] w-[68px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border bg-white px-1.5 text-center shadow-[0_12px_28px_-24px_rgba(15,23,42,0.16)] ${pillar.orbitClassName}`}
+              style={{ left: item.left, top: item.top }}
+            >
+              <span className="max-w-[48px] text-[9px] font-medium leading-[1.1] text-slate-700 [overflow-wrap:anywhere]">
+                {item.label}
+              </span>
+            </div>
+          );
+        })}
+
+        {frameworkPillars.map((pillar) => (
+          <div
+            key={`mobile-home-${pillar.key}`}
+            className={`absolute flex h-[124px] w-[124px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border bg-white/96 shadow-[0_16px_42px_-30px_rgba(15,23,42,0.16)] ${pillar.circleClassName}`}
+            style={{
+              left: pillar.diagramPosition.left,
+              top: pillar.diagramPosition.top,
+            }}
+          >
+            <div className="max-w-[86px] px-2 text-center">
+              <p
+                className={`text-[0.82rem] font-bold font-heading uppercase leading-[1.05] tracking-[0.04em] [overflow-wrap:anywhere] ${pillar.titleClassName}`}
+              >
+                {pillar.title}
+              </p>
+              <p className="mt-1 text-[9px] font-medium leading-tight text-slate-700">
+                {pillar.subtitle}
+              </p>
+            </div>
+          </div>
+        ))}
+
+        <div
+          className="absolute z-10 flex h-[72px] w-[72px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-[4px] border-white bg-[radial-gradient(circle_at_top,#ffffff_0%,#f8fafc_78%,#e2e8f0_100%)] shadow-[0_14px_38px_-22px_rgba(15,23,42,0.18)]"
+          style={{ left: "50%", top: "50%" }}
+        >
+          <div className="relative h-12 w-12">
+            <Image
+              src="/3%20Gurukul%20Brochure.png"
+              alt="DIA student symbol"
+              fill
+              sizes="48px"
+              className="object-contain"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function ValueFrameworkHomeSection() {
   return (
     <section className="relative overflow-hidden bg-[linear-gradient(180deg,#ffffff_0%,#fcfcfc_46%,#ffffff_100%)] py-18 sm:py-22">
@@ -138,28 +199,12 @@ export function ValueFrameworkHomeSection() {
               Knowledge is that which liberates.
             </p>
             <p className="mt-5 max-w-2xl text-sm leading-[1.75] text-slate-600 sm:text-base">
-              At Divine, children grow through three connected strengths:
-              strong learning, good conduct, and inner values.
+              At Divine, children grow through three connected strengths: strong
+              learning, good conduct, and inner values.
             </p>
 
-            <div className="mt-8 grid gap-3 sm:grid-cols-3">
-              {frameworkPillars.map((pillar) => (
-                <Card
-                  key={pillar.key}
-                  className={`rounded-[24px] border bg-white/96 shadow-[0_16px_48px_-40px_rgba(15,23,42,0.1)] ${pillar.cardClassName}`}
-                >
-                  <CardContent className="p-5">
-                    <p
-                      className={`text-sm font-bold font-heading uppercase tracking-[0.04em] ${pillar.titleClassName}`}
-                    >
-                      {pillar.title}
-                    </p>
-                    <p className="mt-1 text-xs font-medium uppercase tracking-[0.08em] text-slate-500">
-                      {pillar.homeSummary}
-                    </p>
-                  </CardContent>
-                </Card>
-              ))}
+            <div className="mt-8 lg:hidden">
+              <ReducedValueFrameworkDiagram />
             </div>
 
             <div className="mt-8">
@@ -263,8 +308,8 @@ export function ValueFrameworkSection() {
           </p>
           <p className="mx-auto mt-5 max-w-3xl text-sm leading-7 text-slate-600 sm:text-base">
             At Divine, children grow through three connected strengths: strong
-            learning, good conduct, and inner values. That is the spirit
-            behind Vidya, Sadvidya, and Brahmavidya.
+            learning, good conduct, and inner values. That is the spirit behind
+            Vidya, Sadvidya, and Brahmavidya.
           </p>
         </div>
 
@@ -326,6 +371,10 @@ export function ValueFrameworkSection() {
               </div>
             </div>
           </div>
+        </div>
+
+        <div className="mt-12 lg:hidden">
+          <ReducedValueFrameworkDiagram />
         </div>
 
         <div className="mt-10 grid gap-6 lg:grid-cols-3">

@@ -16,6 +16,7 @@ import { MainLayout } from "@/components/layout/main-layout";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { schoolContact } from "@/lib/school-contact";
 
 const admissionCycle = "2026-27";
 
@@ -140,23 +141,23 @@ const paymentChecks = [
 const officeSupport = [
   {
     label: "Admissions desk",
-    value: "+91 9876543211",
+    value: schoolContact.phoneDisplay,
     detail:
       "Class-wise fee guidance, transport clarification, and admission support",
-    href: "tel:+919876543211",
+    href: schoolContact.phoneHref,
     icon: Phone,
   },
   {
     label: "Admissions email",
-    value: "admissions@divineacademy.edu.in",
+    value: schoolContact.emailDisplay,
     detail: "Share class, session, and fee questions by email",
-    href: "mailto:admissions@divineacademy.edu.in?subject=Fee%20Structure%20Enquiry",
+    href: schoolContact.feeStructureEnquiryHref,
     icon: Mail,
   },
   {
     label: "Office hours",
-    value: "Monday to Friday, 8 AM to 4 PM",
-    detail: "Saturday, 8 AM to 12 PM",
+    value: schoolContact.officeHoursDays,
+    detail: schoolContact.officeHoursTime,
     icon: Clock,
   },
 ] as const;

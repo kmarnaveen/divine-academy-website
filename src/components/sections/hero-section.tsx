@@ -25,7 +25,7 @@ import { cn } from "@/lib/utils";
 
 const admissionCycle = "2026-27";
 const heroStats = [
-  { value: "14+", label: "Years Serving Families" },
+  { value: "14+", label: "Years Serving Students" },
   { value: "1200+", label: "Students on Campus" },
   { value: "100%", label: "Board Pass Rate" },
   { value: "50+", label: "Faculty Members" },
@@ -98,7 +98,7 @@ const familySignals = [
   {
     title: "Progress stays visible through the term",
     description:
-      "Classwork, assessments, and teacher follow-up help families see how a child is progressing.",
+      "Classwork, assessments, and teacher follow-up help parents see how a child is progressing.",
     icon: Award,
   },
   {
@@ -534,14 +534,10 @@ export function HeroSection() {
                 transition={{ delay: 0.3, duration: 0.7 }}
               >
                 <span className="block sm:inline">
-                  A CBSE school in Sirsaganj where{" "}
+                  Where academic depth meets
                 </span>
                 <span className="text-primary block w-fit rounded-[18px] border border-primary/10 bg-primary/[0.05] px-2.5 py-1 shadow-none sm:inline-block sm:px-4 sm:py-1.5">
-                  academics and discipline
-                </span>
-                <span className="block sm:inline text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl mt-2 sm:mt-0">
-                  {" "}
-                  grow together
+                  character and confidence
                 </span>
               </motion.h1>
 
@@ -553,7 +549,7 @@ export function HeroSection() {
               >
                 From Nursery to Class XII, your child learns in a school with
                 strong teaching, steady board support, active student life, and
-                routines families can trust.
+                routines parents can trust.
               </motion.p>
             </div>
           </div>

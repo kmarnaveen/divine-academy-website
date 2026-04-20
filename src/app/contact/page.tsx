@@ -16,34 +16,34 @@ import { MainLayout } from "@/components/layout/main-layout";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { schoolContact } from "@/lib/school-contact";
 
 const quickContacts = [
   {
     label: "Admissions desk",
-    value: "+91 9876543211",
+    value: schoolContact.phoneDisplay,
     detail: "Class entry, fees, documents, and seat guidance",
-    href: "tel:+919876543211",
+    href: schoolContact.phoneHref,
     icon: Phone,
   },
   {
-    label: "School office",
-    value: "+91 9876543210",
-    detail: "General enquiries, timings, and visit coordination",
-    href: "tel:+919876543210",
-    icon: Shield,
-  },
-  {
-    label: "Admissions email",
-    value: "admissions@divineacademy.edu.in",
-    detail: "Share class, age, and admission questions by email",
-    href: "mailto:admissions@divineacademy.edu.in?subject=Admissions%20Enquiry",
+    label: "School email",
+    value: schoolContact.emailDisplay,
+    detail: "General enquiries, admissions support, and visit coordination",
+    href: schoolContact.generalEnquiryHref,
     icon: Mail,
   },
   {
     label: "Office hours",
-    value: "Monday to Friday, 8 AM to 4 PM",
-    detail: "Saturday, 8 AM to 12 PM",
+    value: schoolContact.officeHoursDays,
+    detail: schoolContact.officeHoursTime,
     icon: Clock,
+  },
+  {
+    label: "Campus address",
+    value: schoolContact.addressLine1,
+    detail: schoolContact.addressLine2,
+    icon: MapPin,
   },
 ] as const;
 
@@ -59,11 +59,11 @@ const contactRoutes = [
     ],
     primaryAction: {
       label: "Call admissions desk",
-      href: "tel:+919876543211",
+      href: schoolContact.phoneHref,
     },
     secondaryAction: {
       label: "Email admissions team",
-      href: "mailto:admissions@divineacademy.edu.in?subject=Admissions%20Enquiry",
+      href: schoolContact.admissionsEnquiryHref,
     },
     icon: GraduationCap,
   },
@@ -77,12 +77,12 @@ const contactRoutes = [
       "Parent guidance before reaching campus",
     ],
     primaryAction: {
-      label: "Call main office",
-      href: "tel:+919876543210",
+      label: "Call school office",
+      href: schoolContact.phoneHref,
     },
     secondaryAction: {
       label: "Email school office",
-      href: "mailto:info@divineacademy.edu.in?subject=General%20Enquiry",
+      href: schoolContact.generalEnquiryHref,
     },
     icon: Shield,
   },
@@ -97,11 +97,11 @@ const contactRoutes = [
     ],
     primaryAction: {
       label: "Request a visit",
-      href: "mailto:info@divineacademy.edu.in?subject=Campus%20Visit%20Request",
+      href: schoolContact.campusVisitHref,
     },
     secondaryAction: {
       label: "Call before travelling",
-      href: "tel:+919876543211",
+      href: schoolContact.phoneHref,
     },
     icon: CalendarDays,
   },
@@ -199,7 +199,7 @@ export default function ContactPage() {
                   className="bg-primary text-white hover:bg-primary/90"
                 >
                   <Link
-                    href="tel:+919876543211"
+                    href={schoolContact.phoneHref}
                     className="flex items-center justify-center"
                   >
                     Call Admissions Desk
@@ -213,7 +213,7 @@ export default function ContactPage() {
                   className="border-primary/20 bg-white text-primary hover:bg-primary hover:text-white"
                 >
                   <Link
-                    href="mailto:info@divineacademy.edu.in?subject=General%20Enquiry"
+                    href={schoolContact.generalEnquiryHref}
                     className="flex items-center justify-center"
                   >
                     Email School Office
@@ -398,10 +398,10 @@ export default function ContactPage() {
 
                 <div className="mt-6 rounded-[24px] border border-slate-200 bg-slate-50 px-4 py-4">
                   <p className="text-sm font-semibold text-slate-950">
-                    Monday to Friday: 8 AM to 4 PM
+                    {schoolContact.officeHoursDays}
                   </p>
                   <p className="mt-1 text-sm text-slate-600">
-                    Saturday: 8 AM to 12 PM
+                    {schoolContact.officeHoursTime}
                   </p>
                 </div>
 
@@ -458,9 +458,9 @@ export default function ContactPage() {
                   <p className="mt-2 leading-6">
                     Divine International Academy
                     <br />
-                    Sirsaganj, Firozabad
+                    {schoolContact.addressLine1}
                     <br />
-                    Uttar Pradesh, India - 283203
+                    {schoolContact.addressLine2}
                   </p>
                 </div>
                 <div className="rounded-2xl border border-slate-200 bg-white px-4 py-3.5">
@@ -480,7 +480,7 @@ export default function ContactPage() {
                   className="bg-primary text-white hover:bg-primary/90"
                 >
                   <Link
-                    href="https://www.google.com/maps/search/?api=1&query=Divine%20International%20Academy%20Sirsaganj%20Firozabad"
+                    href={schoolContact.mapsSearchHref}
                     target="_blank"
                     rel="noreferrer"
                     className="flex items-center justify-center"
@@ -495,10 +495,10 @@ export default function ContactPage() {
                   className="border-primary/20 text-primary hover:bg-primary hover:text-white"
                 >
                   <Link
-                    href="tel:+919876543210"
+                    href={schoolContact.phoneHref}
                     className="flex items-center justify-center"
                   >
-                    Call Main Office
+                    Call School Office
                   </Link>
                 </Button>
               </div>
@@ -513,7 +513,7 @@ export default function ContactPage() {
               <div className="aspect-[16/10] bg-slate-100">
                 <iframe
                   title="Divine International Academy campus map"
-                  src="https://www.google.com/maps?q=Divine%20International%20Academy%20Sirsaganj%20Firozabad&output=embed"
+                  src={schoolContact.mapsEmbedSrc}
                   className="h-full w-full border-0"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
@@ -543,7 +543,7 @@ export default function ContactPage() {
                 className="bg-white text-primary hover:bg-white/95"
               >
                 <Link
-                  href="tel:+919876543211"
+                  href={schoolContact.phoneHref}
                   className="flex items-center justify-center"
                 >
                   Call Admissions Desk
@@ -557,7 +557,7 @@ export default function ContactPage() {
                 className="border-white/20 bg-white/8 text-white hover:bg-white hover:text-primary"
               >
                 <Link
-                  href="mailto:info@divineacademy.edu.in?subject=General%20Enquiry"
+                  href={schoolContact.generalEnquiryHref}
                   className="flex items-center justify-center"
                 >
                   Email School Office
@@ -568,15 +568,15 @@ export default function ContactPage() {
             <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm text-white/72">
               <div className="flex items-center gap-2">
                 <Phone className="h-4 w-4" />
-                <span>+91 9876543211</span>
+                <span>{schoolContact.phoneDisplay}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="h-4 w-4" />
-                <span>info@divineacademy.edu.in</span>
+                <span>{schoolContact.emailDisplay}</span>
               </div>
               <div className="flex items-center gap-2">
                 <MapPin className="h-4 w-4" />
-                <span>Sirsaganj, Firozabad, Uttar Pradesh</span>
+                <span>{schoolContact.addressLine1}</span>
               </div>
             </div>
           </div>

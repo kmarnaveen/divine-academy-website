@@ -67,7 +67,7 @@ const parentQuestions = [
   {
     question: "What makes DIA stand out among local schools?",
     answer:
-      "Families usually compare academics, safety, board outcomes, facilities, and how the school feels day to day. DIA stands out when those pieces work together.",
+      "Parents usually compare academics, safety, board outcomes, facilities, and how the school feels day to day. DIA stands out when those pieces work together.",
   },
   {
     question: "What should you check during a campus visit?",
@@ -117,10 +117,10 @@ export function WhyDIASection() {
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-3xl text-center">
             <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
-              Why Families Choose DIA
+              Why Parents Choose DIA
             </Badge>
             <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
-              Why families shortlist DIA
+              Why parents shortlist DIA
             </h2>
           </div>
 
@@ -170,7 +170,7 @@ export function WhyDIASection() {
                 Family Questions
               </Badge>
               <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl">
-                Questions families ask before a visit
+                Questions parents ask before a visit
               </h2>
 
               <div className="mt-8 grid gap-4">

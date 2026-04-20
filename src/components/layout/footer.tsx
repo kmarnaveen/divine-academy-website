@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { schoolContact } from "@/lib/school-contact";
 
 const footerProofs = [
   {
@@ -213,64 +214,43 @@ export function Footer() {
                   <p className="font-medium text-white">
                     Divine International Academy
                   </p>
-                  <p>Sirsaganj, Firozabad</p>
-                  <p>Uttar Pradesh, India - 283203</p>
+                  <p>{schoolContact.addressLine1}</p>
+                  <p>{schoolContact.addressLine2}</p>
                 </div>
               </div>
 
               <Link
-                href="tel:+919876543210"
+                href={schoolContact.phoneHref}
                 className="flex items-center gap-3 rounded-2xl border border-white/10 bg-black/10 px-4 py-3 transition-colors hover:bg-white/10"
               >
                 <Phone className="h-4 w-4 text-white" />
                 <div>
-                  <div className="font-medium text-white">+91 9876543210</div>
-                  <div className="text-xs text-white/60">Main office</div>
+                  <div className="font-medium text-white">
+                    {schoolContact.phoneDisplay}
+                  </div>
+                  <div className="text-xs text-white/60">
+                    School office and admissions
+                  </div>
                 </div>
               </Link>
 
               <Link
-                href="tel:+919876543211"
-                className="flex items-center gap-3 rounded-2xl border border-white/10 bg-black/10 px-4 py-3 transition-colors hover:bg-white/10"
-              >
-                <Phone className="h-4 w-4 text-white" />
-                <div>
-                  <div className="font-medium text-white">+91 9876543211</div>
-                  <div className="text-xs text-white/60">Admissions office</div>
-                </div>
-              </Link>
-
-              <Link
-                href="mailto:info@divineacademy.edu.in"
+                href={schoolContact.generalEnquiryHref}
                 className="flex items-center gap-3 rounded-2xl border border-white/10 bg-black/10 px-4 py-3 transition-colors hover:bg-white/10"
               >
                 <Mail className="h-4 w-4 text-white" />
                 <div>
                   <div className="font-medium text-white">
-                    info@divineacademy.edu.in
+                    {schoolContact.emailDisplay}
                   </div>
                   <div className="text-xs text-white/60">General enquiries</div>
-                </div>
-              </Link>
-
-              <Link
-                href="mailto:admissions@divineacademy.edu.in"
-                className="flex items-center gap-3 rounded-2xl border border-white/10 bg-black/10 px-4 py-3 transition-colors hover:bg-white/10"
-              >
-                <Mail className="h-4 w-4 text-white" />
-                <div>
-                  <div className="font-medium text-white">
-                    admissions@divineacademy.edu.in
-                  </div>
-                  <div className="text-xs text-white/60">Admissions desk</div>
                 </div>
               </Link>
 
               <div className="flex items-start gap-3 rounded-2xl border border-white/10 bg-black/10 px-4 py-3">
                 <Clock className="mt-1 h-4 w-4 flex-shrink-0 text-white" />
                 <div>
-                  <p>Monday to Friday: 8:00 AM - 4:00 PM</p>
-                  <p>Saturday: 8:00 AM - 12:00 PM</p>
+                  <p>{schoolContact.officeHoursDisplay}</p>
                 </div>
               </div>
             </div>

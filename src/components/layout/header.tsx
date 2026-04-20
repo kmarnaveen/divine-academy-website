@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { schoolContact } from "@/lib/school-contact";
 import { cn } from "@/lib/utils";
 
 // TypeScript interfaces for world-class type safety
@@ -325,11 +326,11 @@ export function Header() {
 
   // Click-to-call functionality
   const handlePhoneClick = () => {
-    window.open("tel:+919876543210", "_self");
+    window.open(schoolContact.phoneHref, "_self");
   };
 
   const handleEmailClick = () => {
-    window.open("mailto:info@divineacademy.edu.in", "_self");
+    window.open(schoolContact.emailHref, "_self");
   };
 
   return (
@@ -346,7 +347,9 @@ export function Header() {
                 aria-label="Call Divine International Academy"
               >
                 <Phone className="h-4 w-4 group-hover:scale-110 transition-transform" />
-                <span className="hidden sm:inline">+91 9876543210</span>
+                <span className="hidden sm:inline">
+                  {schoolContact.phoneDisplay}
+                </span>
                 <span className="sm:hidden">Call Now</span>
               </button>
 
@@ -356,7 +359,7 @@ export function Header() {
                 aria-label="Email Divine International Academy"
               >
                 <Mail className="h-4 w-4 group-hover:scale-110 transition-transform" />
-                <span>info@divineacademy.edu.in</span>
+                <span>{schoolContact.emailDisplay}</span>
               </button>
             </div>
 
@@ -1039,7 +1042,7 @@ export function Header() {
                         className="mt-4 flex w-full items-center justify-center gap-2 rounded-[20px] border border-white/10 bg-white/6 px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-white/10"
                       >
                         <Mail className="h-4 w-4 text-accent" />
-                        <span>info@divineacademy.edu.in</span>
+                        <span>{schoolContact.emailDisplay}</span>
                       </button>
 
                       <div className="mt-3 flex items-center justify-center gap-2 text-xs text-white/55">

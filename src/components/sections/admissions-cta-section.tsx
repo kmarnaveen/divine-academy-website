@@ -1,27 +1,40 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import useEmblaCarousel from "embla-carousel-react";
+import { motion, useReducedMotion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
 import {
   ArrowRight,
   CalendarDays,
+  ChevronLeft,
+  ChevronRight,
   CheckCircle,
   Clock,
   FileText,
   Mail,
+  MapPin,
   Phone,
+  Quote,
   Users,
 } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { schoolContact } from "@/lib/school-contact";
 
 type AdmissionStep = {
   title: string;
   description: string;
   icon: LucideIcon;
+};
+
+type ParentTestimonial = {
+  quote: string;
+  parentName: string;
+  studentContext: string;
 };
 
 const admissionCycle = "2026-27";
@@ -66,7 +79,131 @@ const admissionSignals = [
   "Fee and document guidance",
 ];
 
+const parentTestimonials: ParentTestimonial[] = [
+  {
+    quote:
+      "Divine International Academy has transformed my child's life. The teachers are dedicated and the facilities are excellent. I'm proud to see my daughter excel in both academics and extracurriculars.",
+    parentName: "Rajesh Kumar",
+    studentContext: "Parent of a Class X Student",
+  },
+  {
+    quote:
+      "The school provides a perfect balance of education and values. My son has become more confident and disciplined since joining DIA. The CBSE curriculum is well-implemented.",
+    parentName: "Priya Sharma",
+    studentContext: "Parent of a Class VII Student",
+  },
+  {
+    quote:
+      "As a parent, I feel assured that my child is in safe hands. The caring staff, modern infrastructure, and focus on holistic development make DIA the best school in our area.",
+    parentName: "Amit Verma",
+    studentContext: "Parent of a Class III Student",
+  },
+  {
+    quote:
+      "My daughter has blossomed since joining DIA. The teachers genuinely care about each child's growth. The school environment is safe, nurturing, and truly world-class.",
+    parentName: "Mrs. Sunita Agarwal",
+    studentContext: "Parent of a Class VIII Student",
+  },
+  {
+    quote:
+      "The smart classrooms and dedicated faculty have made a huge difference in my son's learning. He actually enjoys going to school every day!",
+    parentName: "Mr. Rakesh Gupta",
+    studentContext: "Parent of a Class V Student",
+  },
+  {
+    quote:
+      "DIA prepared my child exceptionally well for board exams. The 100% pass rate speaks for itself. The discipline and values they instill are remarkable.",
+    parentName: "Mrs. Pooja Singhal",
+    studentContext: "Parent of a Class X Student",
+  },
+  {
+    quote:
+      "The co-curricular activities - dance, sports, art - give children a complete education. Truly holistic development!",
+    parentName: "Mr. Vivek Sharma",
+    studentContext: "Parent of a Class III Student",
+  },
+  {
+    quote:
+      "From the cafeteria to the labs, everything is well-maintained. The organic farming initiative teaches children real-world skills.",
+    parentName: "Mrs. Neha Jain",
+    studentContext: "Parent of a Class VII Student",
+  },
+  {
+    quote:
+      "We are thrilled with the academic standards at Divine International Academy. The fact that they achieved a 100% board pass rate in 2024 shows their commitment to education. Under the guidance of Dr. Garima Gupta and the expert faculty, my child is getting the personalized attention they need to succeed in their CBSE exams.",
+    parentName: "Mrs. Kavita Tiwari",
+    studentContext: "Academic excellence and board results",
+  },
+  {
+    quote:
+      "DIA is not just about academics; their sports infrastructure is fantastic. My son is part of the sports program and participating in the inter-school DPL Cricket Championship was a proud moment for us. The school truly believes in creating champions on and off the field.",
+    parentName: "Mr. Sandeep Yadav",
+    studentContext: "Sports and DPL Cricket Championship",
+  },
+  {
+    quote:
+      "I highly recommend this school for parents who want holistic growth for their kids. The opportunities here are amazing-from the Art Club exhibitions to participating in the district-wide Kr8ivity League. It's wonderful to see the school encouraging so much creativity and teamwork.",
+    parentName: "Mrs. Ritu Agarwal",
+    studentContext: "Extracurriculars and innovation",
+  },
+  {
+    quote:
+      "As a parent, safety and a good learning environment are my top priorities. Divine International Academy provides a fully CCTV-monitored campus, a dedicated medical room, and smart classrooms. Knowing my child is in a safe, nurturing, and modern environment gives me complete peace of mind.",
+    parentName: "Mrs. Meena Bansal",
+    studentContext: "Safety and infrastructure",
+  },
+  {
+    quote:
+      "The school goes above and beyond traditional learning. I was so impressed to see the students win first prize at the state-level organic farming competition! Teaching children these kinds of practical, real-world skills proves that DIA is focused on building well-rounded citizens for the future.",
+    parentName: "Mr. Anil Chauhan",
+    studentContext: "Real-world skills and organic farming",
+  },
+];
+
 export function AdmissionsCTASection() {
+  const shouldReduceMotion = useReducedMotion();
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    align: "start",
+    loop: parentTestimonials.length > 1,
+    skipSnaps: false,
+  });
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
+
+  useEffect(() => {
+    if (!emblaApi) {
+      return;
+    }
+
+    const syncEmblaState = () => {
+      setSelectedIndex(emblaApi.selectedScrollSnap());
+      setScrollSnaps(emblaApi.scrollSnapList());
+    };
+
+    syncEmblaState();
+    emblaApi.on("select", syncEmblaState);
+    emblaApi.on("reInit", syncEmblaState);
+
+    return () => {
+      emblaApi.off("select", syncEmblaState);
+      emblaApi.off("reInit", syncEmblaState);
+    };
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi || shouldReduceMotion || parentTestimonials.length <= 1) {
+      return;
+    }
+
+    const autoplayInterval = window.setInterval(() => {
+      emblaApi.scrollNext();
+    }, 4800);
+
+    return () => {
+      window.clearInterval(autoplayInterval);
+    };
+  }, [emblaApi, shouldReduceMotion]);
+
   return (
     <section className="relative overflow-hidden bg-[linear-gradient(180deg,#ffffff_0%,#fcfcfc_46%,#ffffff_100%)] py-20 sm:py-24">
       <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-primary/3 to-transparent" />
@@ -89,6 +226,93 @@ export function AdmissionsCTASection() {
             See the steps, current status, and admissions contacts before you
             visit.
           </p>
+        </motion.div>
+
+        <motion.div
+          className="mx-auto mt-8 max-w-6xl"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.1 }}
+          viewport={{ once: true }}
+        >
+          <div className="mb-4 flex items-center justify-between gap-3 px-1">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">
+                Testimonials & Parent Reviews
+              </p>
+            </div>
+
+            <div className="hidden items-center gap-2 sm:flex">
+              <button
+                type="button"
+                onClick={() => emblaApi?.scrollPrev()}
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition-colors hover:border-primary/20 hover:text-primary"
+                aria-label="Previous testimonial"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+              <button
+                type="button"
+                onClick={() => emblaApi?.scrollNext()}
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition-colors hover:border-primary/20 hover:text-primary"
+                aria-label="Next testimonial"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
+            </div>
+          </div>
+
+          <div className="overflow-hidden" ref={emblaRef}>
+            <div className="-ml-4 flex pb-2">
+              {parentTestimonials.map((testimonial, index) => (
+                <div
+                  key={`${testimonial.parentName}-${testimonial.studentContext}-${index}`}
+                  className="min-w-0 shrink-0 basis-full pl-4 md:basis-1/2 xl:basis-1/3"
+                >
+                  <article className="flex min-h-[280px] h-full flex-col justify-between rounded-[28px] border border-slate-200/80 bg-white/96 p-6 shadow-[0_18px_50px_-42px_rgba(15,23,42,0.16)]">
+                    <div>
+                      <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/6 text-primary shadow-sm">
+                        <Quote className="h-5 w-5" />
+                      </div>
+                      <p className="mt-5 text-sm leading-7 text-slate-700 sm:text-base">
+                        {testimonial.quote}
+                      </p>
+                    </div>
+
+                    <div className="mt-5 border-t border-slate-200/80 pt-4">
+                      <p className="text-base font-semibold text-slate-950">
+                        {testimonial.parentName}
+                      </p>
+                      <p className="mt-1 text-sm text-slate-500">
+                        {testimonial.studentContext}
+                      </p>
+                    </div>
+                  </article>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-5 flex items-center justify-center gap-2">
+            {scrollSnaps.map((_, index) => {
+              const isActive = selectedIndex === index;
+
+              return (
+                <button
+                  key={`testimonial-dot-${index}`}
+                  type="button"
+                  onClick={() => emblaApi?.scrollTo(index)}
+                  className={`h-2.5 rounded-full transition-all ${
+                    isActive
+                      ? "w-8 bg-primary"
+                      : "w-2.5 bg-slate-300 hover:bg-slate-400"
+                  }`}
+                  aria-label={`Go to testimonial ${index + 1}`}
+                  aria-current={isActive}
+                />
+              );
+            })}
+          </div>
         </motion.div>
 
         <div className="mt-12 grid gap-6 xl:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)] xl:items-start">
@@ -185,24 +409,26 @@ export function AdmissionsCTASection() {
 
                   <div className="mt-5 space-y-3.5 text-sm text-slate-700">
                     <Link
-                      href="tel:+919876543211"
+                      href={schoolContact.phoneHref}
                       className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-3 transition-colors hover:border-primary/20"
                     >
                       <Phone className="h-4 w-4 text-primary" />
-                      <span>+91 9876543211</span>
+                      <span>{schoolContact.phoneDisplay}</span>
                     </Link>
                     <Link
-                      href="mailto:admissions@divineacademy.edu.in"
+                      href={schoolContact.admissionsEnquiryHref}
                       className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-3 transition-colors hover:border-primary/20"
                     >
                       <Mail className="h-4 w-4 text-primary" />
-                      <span>admissions@divineacademy.edu.in</span>
+                      <span>{schoolContact.emailDisplay}</span>
                     </Link>
                     <div className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-3">
                       <Clock className="h-4 w-4 text-primary" />
-                      <span>
-                        Monday to Friday, 8 AM to 4 PM | Saturday, 8 AM to 12 PM
-                      </span>
+                      <span>{schoolContact.officeHoursDisplay}</span>
+                    </div>
+                    <div className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-3">
+                      <MapPin className="mt-0.5 h-4 w-4 text-primary" />
+                      <span>{schoolContact.fullAddress}</span>
                     </div>
                   </div>
                 </div>

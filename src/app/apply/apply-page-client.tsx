@@ -1,19 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
   CheckCircle2,
-  ClipboardCheck,
   FileText,
-  GraduationCap,
   Mail,
   MapPin,
   Phone,
   Shield,
-  UserRound,
 } from "lucide-react";
 
 import { MainLayout } from "../../components/layout/main-layout";
@@ -22,57 +18,31 @@ import { Button } from "../../components/ui/button";
 import { Card, CardContent } from "../../components/ui/card";
 import { Input } from "../../components/ui/input";
 import { Textarea } from "../../components/ui/textarea";
+import { schoolContact } from "@/lib/school-contact";
 
 const admissionCycle = "2026-27";
 const draftStorageKey = "dia-application-draft-v1";
 const submittedStorageKey = "dia-application-submission-v1";
 
-const applySignals = [
-  "Nursery to Class XII application draft",
-  "Student and parent details in one flow",
-  "Saved on this device while you complete the form",
-] as const;
-
-const quickGuidance = [
-  {
-    title: "Class and date of birth",
-    description:
-      "Keep the preferred class and the child’s date of birth ready before you begin.",
-    icon: GraduationCap,
-  },
-  {
-    title: "Parent contact details",
-    description:
-      "Use an active phone number and email address so the admissions office can follow up.",
-    icon: UserRound,
-  },
-  {
-    title: "Documents and transport",
-    description:
-      "You can flag document readiness and whether route guidance is needed during the application stage.",
-    icon: ClipboardCheck,
-  },
-] as const;
-
 const officeSupport = [
   {
     label: "Admissions desk",
-    value: "+91 9876543211",
+    value: schoolContact.phoneDisplay,
     detail: "Call for class entry, process, and form guidance",
-    href: "tel:+919876543211",
+    href: schoolContact.phoneHref,
     icon: Phone,
   },
   {
     label: "Admissions email",
-    value: "admissions@divineacademy.edu.in",
+    value: schoolContact.emailDisplay,
     detail: "Share questions on class entry, documents, or fee review",
-    href: "mailto:admissions@divineacademy.edu.in?subject=Online%20Application%20Enquiry",
+    href: schoolContact.onlineApplicationEnquiryHref,
     icon: Mail,
   },
   {
     label: "Campus location",
-    value: "Sirsaganj, Firozabad",
-    detail: "Visit the campus after checking the admission process and timings",
+    value: schoolContact.addressLine1,
+    detail: schoolContact.addressLine2,
     icon: MapPin,
   },
 ] as const;

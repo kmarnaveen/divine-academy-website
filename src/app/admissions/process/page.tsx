@@ -18,6 +18,7 @@ import { MainLayout } from "../../../components/layout/main-layout";
 import { Badge } from "../../../components/ui/badge";
 import { Button } from "../../../components/ui/button";
 import { Card, CardContent } from "../../../components/ui/card";
+import { schoolContact } from "@/lib/school-contact";
 
 const admissionCycle = "2026-27";
 
@@ -153,22 +154,22 @@ const processNotes = [
 const officeSupport = [
   {
     label: "Admissions desk",
-    value: "+91 9876543211",
+    value: schoolContact.phoneDisplay,
     detail: "Class entry, documents, fee guidance, and admission support",
-    href: "tel:+919876543211",
+    href: schoolContact.phoneHref,
     icon: Phone,
   },
   {
     label: "Admissions email",
-    value: "admissions@divineacademy.edu.in",
+    value: schoolContact.emailDisplay,
     detail: "Share class, age, and admission questions by email",
-    href: "mailto:admissions@divineacademy.edu.in?subject=Admissions%20Process%20Enquiry",
+    href: schoolContact.admissionsProcessEnquiryHref,
     icon: Mail,
   },
   {
     label: "Office hours",
-    value: "Monday to Friday, 8 AM to 4 PM",
-    detail: "Saturday, 8 AM to 12 PM",
+    value: schoolContact.officeHoursDays,
+    detail: schoolContact.officeHoursTime,
     icon: Clock,
   },
 ] as const;
