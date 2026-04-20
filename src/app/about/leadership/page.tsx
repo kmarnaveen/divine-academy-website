@@ -19,8 +19,8 @@ import { Card, CardContent } from "@/components/ui/card";
 
 const leadershipSignals = [
   "Principal Dr. Garima Gupta",
-  "Om Educational Trust management",
-  "50+ faculty members across sections",
+  "Om Educational Trust stewardship",
+  "Leadership that shapes the school day",
 ] as const;
 
 const leadershipProfile = [
@@ -39,9 +39,9 @@ const leadershipProfile = [
       "Section-wise planning, teacher follow-up, and student supervision across stages",
   },
   {
-    label: "Parent communication",
+    label: "School guidance",
     value:
-      "Admissions, office guidance, and school-level interaction for routine clarification",
+      "Admissions, office support, and timely guidance when families need clarity",
   },
 ] as const;
 
@@ -49,7 +49,7 @@ const leadershipAreas = [
   {
     title: "Principal leadership",
     description:
-      "The principal office sets the academic direction, classroom expectations, discipline standards, and school priorities parents experience across the year.",
+      "The principal's office sets the academic tone, classroom expectations, and discipline standards that shape the school year.",
     points: [
       "Academic quality and school direction",
       "Student discipline and conduct standards",
@@ -80,13 +80,13 @@ const leadershipAreas = [
     icon: Shield,
   },
   {
-    title: "Parent support and communication",
+    title: "School communication and guidance",
     description:
-      "Parents need clarity on admissions, processes, expectations, and school routines. Leadership quality improves when that communication is clear and direct.",
+      "Clear communication helps the school day run smoothly for admissions, office coordination, and everyday school support.",
     points: [
       "Admissions and office guidance",
-      "Parent-facing process clarity",
-      "Support when parents need campus or academic information",
+      "Clear school process explanations",
+      "Support when families need academic or campus information",
     ],
     icon: MessageSquare,
   },
@@ -94,34 +94,34 @@ const leadershipAreas = [
 
 const leadershipSystems = [
   {
-    title: "What parents should expect",
+    title: "Clarity in school direction",
     description:
-      "A good leadership page should help parents understand who oversees academics, student routines, and campus systems before they visit or enquire.",
+      "Academic direction, student routines, and campus systems stay easier to trust when leadership responsibilities are clear.",
   },
   {
-    title: "What leadership should protect",
+    title: "Daily school responsibility",
     description:
       "Teaching quality, discipline, safety, teacher accountability, and the consistency of the school day matter more than decorative titles or long biographies.",
   },
   {
-    title: "Why this matters",
+    title: "Daily confidence on campus",
     description:
-      "Parents often decide on trust based on whether the school feels organised, responsive, and serious about both academics and supervision.",
+      "A school feels stronger when it is organised, responsive, and serious about both academics and supervision.",
   },
 ] as const;
 
 const parentTouchpoints = [
-  "Admissions and office guidance for process-related questions",
+  "Admissions and office guidance when families need the next step clarified",
   "Class-level coordination through regular teacher follow-up",
-  "Principal-led academic and discipline direction across the campus",
-  "School office support before campus visits and key school interactions",
+  "Principal-led direction on academics, conduct, and school expectations",
+  "School office support before visits and key school interactions",
 ] as const;
 
 const nextSteps = [
   {
     title: "Read the principal's message",
     description:
-      "See the academic priorities and leadership commitments shared from the principal's desk.",
+      "Hear directly from Dr. Garima Gupta about the academic and cultural priorities of the school.",
     href: "/about/principal",
     cta: "Go to principal's message",
     icon: GraduationCap,
@@ -129,7 +129,7 @@ const nextSteps = [
   {
     title: "Review school vision",
     description:
-      "See how the school's vision and mission translate into teaching, participation, and values.",
+      "See how the school's values show up in teaching, routines, and student participation.",
     href: "/about/vision",
     cta: "Go to vision and mission",
     icon: Users,
@@ -137,7 +137,7 @@ const nextSteps = [
   {
     title: "Plan a visit or enquiry",
     description:
-      "Use the contact page for school location, timings, and the next step for admissions-related questions.",
+      "Use the contact page for timings, directions, and the easiest way to speak with the school.",
     href: "/contact",
     cta: "Go to contact page",
     icon: MapPin,
@@ -147,7 +147,7 @@ const nextSteps = [
 export const metadata: Metadata = {
   title: "School Leadership | Divine International Academy Sirsaganj",
   description:
-    "Understand the leadership structure at Divine International Academy, Sirsaganj, including principal-led academic direction, campus supervision, and parent communication support.",
+    "Understand the leadership structure at Divine International Academy, Sirsaganj, including principal-led academic direction, campus supervision, and school communication support.",
   keywords: [
     "Divine International Academy leadership",
     "school principal Sirsaganj",
@@ -168,14 +168,13 @@ export default function LeadershipPage() {
               School Leadership
             </Badge>
             <h1 className="mt-5 text-4xl font-bold font-heading leading-tight text-primary sm:text-5xl lg:text-[3.35rem]">
-              Leadership matters when it makes the school day clear,
-              disciplined, and dependable
+              Leadership that shapes academics, discipline, and the school day
             </h1>
             <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
               Divine International Academy is led by Principal Dr. Garima Gupta
-              and managed under Om Educational Trust. For parents, leadership
-              matters most in how academics, supervision, communication, and
-              campus systems actually function.
+              and managed under Om Educational Trust. Leadership here shows up
+              in the rhythm of classrooms, campus supervision, school
+              communication, and the consistency students experience every day.
             </p>
           </div>
 
@@ -193,20 +192,20 @@ export default function LeadershipPage() {
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.08)_0%,rgba(15,23,42,0.18)_38%,rgba(15,23,42,0.68)_100%)]" />
                 <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6 lg:p-8">
                   <Badge className="border border-white/15 bg-white/12 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-white/12">
-                    Parent Trust Signals
+                    Everyday School Direction
                   </Badge>
                   <h2 className="mt-4 max-w-2xl text-2xl font-bold font-heading leading-tight text-white sm:text-[2rem] lg:text-[2.45rem]">
-                    Parents usually trust leadership when school systems feel
-                    organised, visible, and responsive.
+                    Calm routines, clear expectations, and dependable school
+                    systems begin with strong leadership.
                   </h2>
                 </div>
               </div>
 
               <div className="p-6 sm:p-8 lg:p-10">
                 <p className="max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
-                  This page focuses on how school leadership supports the
-                  academic environment, parent clarity, and operational
-                  stability across the year.
+                  Leadership at Divine supports the academic environment, keeps
+                  school systems steady, and helps the campus run with clarity
+                  through the year.
                 </p>
 
                 <div className="mt-5 flex flex-wrap gap-2.5">
@@ -243,7 +242,7 @@ export default function LeadershipPage() {
                     className="bg-primary text-white hover:bg-primary/90 sm:flex-1"
                   >
                     <Link href="/about/principal">
-                      Principal's Message
+                      Principal&apos;s Message
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>
@@ -269,8 +268,7 @@ export default function LeadershipPage() {
               Leadership Responsibilities
             </Badge>
             <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
-              The leadership page should answer what the school leadership
-              actually oversees
+              What leadership protects every day inside the school
             </h2>
           </div>
 
@@ -320,8 +318,8 @@ export default function LeadershipPage() {
                 Leadership Standards
               </Badge>
               <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl">
-                Parents do not need long biographies first. They need clarity on
-                how the school is run.
+                Leadership becomes real in routines, accountability, and school
+                support.
               </h2>
 
               <div className="mt-8 grid gap-4">
@@ -346,10 +344,10 @@ export default function LeadershipPage() {
             <Card className="rounded-[28px] border-slate-200/80 bg-white shadow-[0_20px_60px_-46px_rgba(15,23,42,0.22)]">
               <CardContent className="p-6 sm:p-7">
                 <Badge className="border border-primary/10 bg-primary/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary hover:bg-primary/5">
-                  Parent Touchpoints
+                  Everyday Touchpoints
                 </Badge>
                 <h3 className="mt-5 text-2xl font-bold font-heading text-slate-950">
-                  Common ways parents experience school leadership
+                  Where school leadership shows up each day
                 </h3>
 
                 <ul className="mt-6 space-y-4">
@@ -375,8 +373,8 @@ export default function LeadershipPage() {
               Next Step
             </Badge>
             <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
-              Move from leadership structure to the principal's desk, school
-              vision, or contact details
+              Continue to the principal&apos;s message, school vision, or direct
+              school contact
             </h2>
           </div>
 

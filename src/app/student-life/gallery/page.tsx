@@ -48,7 +48,7 @@ const galleryCollections: GalleryCollection[] = [
   {
     title: "Campus and learning spaces",
     description:
-      "These images help parents understand how the academic environment looks across classrooms, labs, library areas, and the wider campus.",
+      "These images show how the academic environment looks across classrooms, labs, library areas, and the wider campus.",
     images: [
       {
         src: "https://divineinternationalacademy.com/assets/campus-entrance-DiaJFwsW.avif",
@@ -85,7 +85,7 @@ const galleryCollections: GalleryCollection[] = [
   {
     title: "Celebrations and stage life",
     description:
-      "The gallery also needs to show how students participate in assemblies, celebrations, cultural programmes, and public performances during the school year.",
+      "These images show how students take part in assemblies, celebrations, cultural programmes, and public performances during the school year.",
     images: [
       {
         src: "https://divineinternationalacademy.com/assets/republic-day-flag-Dypt4hYG.jpg",
@@ -122,7 +122,7 @@ const galleryCollections: GalleryCollection[] = [
   {
     title: "Sports, achievements, and student highlights",
     description:
-      "Parents also look for visible proof of participation, achievement, and school confidence through sports, competitions, exhibitions, and student milestones.",
+      "These images bring together participation, achievement, and school confidence through sports, competitions, exhibitions, and student milestones.",
     images: [
       {
         src: "https://divineinternationalacademy.com/assets/dpl-cricket-JvSpUaK3.jpg",
@@ -159,9 +159,9 @@ const galleryCollections: GalleryCollection[] = [
 ];
 
 const parentNotes = [
-  "The gallery is most useful when it reflects academics, celebrations, sports, and campus life together instead of only one event type.",
-  "Images help parents judge activity level and school culture faster, but they do not replace a campus visit or direct admissions conversation.",
-  "For now the page uses the current DIA public image set. It can be shifted to API-based gallery data later without changing the page structure.",
+  "The gallery brings together academics, celebrations, sports, and campus life instead of narrowing the school to one event type.",
+  "Images make school activity, participation, and campus atmosphere easier to see at a glance.",
+  "A campus visit still adds the full sense of routine, supervision, and daily school energy beyond the images.",
 ] as const;
 
 const nextSteps = [
@@ -216,15 +216,14 @@ export default function StudentLifeGalleryPage() {
               participation
             </h1>
             <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
-              The gallery now uses current Divine International Academy public
-              images so parents can actually see classrooms, campus areas,
-              events, sports, and school activity moments instead of only
-              reading about them.
+              The gallery brings together classrooms, campus areas, events,
+              sports, and school activity moments so the school experience can
+              be seen directly.
             </p>
           </div>
 
           <div className="mt-10 overflow-hidden rounded-[32px] border border-slate-200/80 bg-white shadow-[0_28px_80px_-52px_rgba(15,23,42,0.24)]">
-            <div className="grid gap-4 p-4 sm:grid-cols-2 sm:p-5 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:p-6">
+            <div className="grid gap-4 p-4 sm:p-5 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:p-6">
               <div className="relative min-h-[320px] overflow-hidden rounded-[28px] border border-slate-200 bg-slate-100 sm:min-h-[420px]">
                 <Image
                   src={featuredImages[0].src}
@@ -243,8 +242,8 @@ export default function StudentLifeGalleryPage() {
                     {featuredImages[0].caption}
                   </h2>
                   <p className="mt-2 max-w-xl text-sm leading-6 text-white/80 sm:text-base">
-                    Campus images help parents read the school atmosphere faster
-                    than generic claims ever will.
+                    Campus images give a direct sense of school atmosphere,
+                    student activity, and the spaces used through the day.
                   </p>
                 </div>
               </div>
@@ -276,9 +275,8 @@ export default function StudentLifeGalleryPage() {
 
                 <div className="rounded-[28px] border border-slate-200 bg-slate-50 p-5 sm:p-6">
                   <p className="text-sm leading-7 text-slate-700 sm:text-base">
-                    For now the gallery uses the current DIA public image set.
-                    The page structure is ready to shift to API-based gallery
-                    data later without redesigning the route.
+                    The gallery brings together campus spaces, celebrations,
+                    sports, and student participation in one place.
                   </p>
 
                   <div className="mt-5 flex flex-wrap gap-2.5">
@@ -368,22 +366,21 @@ export default function StudentLifeGalleryPage() {
           <div className="grid gap-8 xl:grid-cols-[minmax(0,1fr)_360px] xl:items-start">
             <div>
               <Badge className="border border-primary/10 bg-white px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-white">
-                Why This Helps
+                Gallery Highlights
               </Badge>
               <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl">
-                Gallery images improve parent trust when they show the school
-                experience clearly and directly
+                The gallery brings the school experience into view
               </h2>
 
-              <div className="mt-8 grid gap-4 sm:grid-cols-3">
+              <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
                 <Card className="rounded-[24px] border-slate-200/80 bg-white">
                   <CardContent className="p-5">
                     <h3 className="text-base font-bold text-slate-950">
                       Campus visibility
                     </h3>
                     <p className="mt-2 text-sm leading-6 text-slate-600">
-                      Parents can now see campus spaces, classrooms, and
-                      practical learning areas instead of imagining them.
+                      Campus spaces, classrooms, and practical learning areas
+                      are visible together in one section.
                     </p>
                   </CardContent>
                 </Card>
@@ -393,20 +390,19 @@ export default function StudentLifeGalleryPage() {
                       Student participation
                     </h3>
                     <p className="mt-2 text-sm leading-6 text-slate-600">
-                      Events, celebrations, sports, and achievements are now
-                      visible instead of being described only in text.
+                      Events, celebrations, sports, and achievements appear as
+                      lived school moments instead of text alone.
                     </p>
                   </CardContent>
                 </Card>
                 <Card className="rounded-[24px] border-slate-200/80 bg-white">
                   <CardContent className="p-5">
                     <h3 className="text-base font-bold text-slate-950">
-                      Ready for later data work
+                      School life across the year
                     </h3>
                     <p className="mt-2 text-sm leading-6 text-slate-600">
-                      The page can later switch from static image arrays to
-                      API-backed gallery content without changing the layout
-                      direction.
+                      The gallery connects academic, cultural, sports, and
+                      campus moments across the school year.
                     </p>
                   </CardContent>
                 </Card>
@@ -416,10 +412,10 @@ export default function StudentLifeGalleryPage() {
             <Card className="rounded-[28px] border-slate-200/80 bg-white shadow-[0_20px_60px_-46px_rgba(15,23,42,0.22)]">
               <CardContent className="p-6 sm:p-7">
                 <Badge className="border border-primary/10 bg-primary/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary hover:bg-primary/5">
-                  Parent Notes
+                  Gallery Focus
                 </Badge>
                 <h3 className="mt-5 text-2xl font-bold font-heading text-slate-950">
-                  What parents should still keep in mind while using the gallery
+                  What the gallery brings together
                 </h3>
 
                 <ul className="mt-6 space-y-4">
@@ -437,9 +433,9 @@ export default function StudentLifeGalleryPage() {
                   <div className="flex items-start gap-3">
                     <Camera className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
                     <p className="text-sm leading-6 text-slate-700">
-                      The gallery now works as a real visual section. Admissions
-                      guidance, timings, and final visit planning should still
-                      go through the school office and admissions pages.
+                      The gallery works alongside the admissions and contact
+                      sections, while timings, guidance, and visit planning stay
+                      with the school office.
                     </p>
                   </div>
                 </div>
@@ -453,7 +449,7 @@ export default function StudentLifeGalleryPage() {
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-3xl text-center">
             <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
-              Next Step
+              Continue
             </Badge>
             <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
               Continue to events, clubs, or the wider student-life section

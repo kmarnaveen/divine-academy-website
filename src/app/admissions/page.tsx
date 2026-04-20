@@ -51,7 +51,7 @@ const processSteps = [
   },
   {
     step: "03",
-    title: "Submit documents and confirm the next step",
+    title: "Submit documents and wait for confirmation",
     description:
       "The admissions office reviews documents and confirms the seat subject to class-wise availability.",
   },
@@ -59,7 +59,7 @@ const processSteps = [
 
 const admissionStatus = [
   { label: "Enquiries and campus visits", status: "Open now" },
-  { label: "Document check and parent interaction", status: "Rolling" },
+  { label: "Document review and family interaction", status: "Rolling" },
   { label: "Seat confirmation", status: "As per availability" },
 ] as const;
 
@@ -170,9 +170,9 @@ export default function AdmissionsPage() {
               Admissions open from Nursery to Class XII for {admissionCycle}
             </h1>
             <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
-              Check the admission process, required documents, fee overview, and
-              direct school contact details before you book a campus visit or
-              submit an enquiry.
+              The admissions route includes the process, required documents, fee
+              overview, and direct school contact details for the current
+              admission cycle.
             </p>
           </div>
 
@@ -193,17 +193,17 @@ export default function AdmissionsPage() {
                     {admissionCycle} Enquiries
                   </Badge>
                   <h2 className="mt-4 max-w-2xl text-2xl font-bold font-heading leading-tight text-white sm:text-[2rem] lg:text-[2.5rem]">
-                    Start with the process, keep documents ready, and review the
-                    next step before you apply.
+                    Start with the process, document list, and school contact
+                    details for the next step.
                   </h2>
                 </div>
               </div>
 
               <div className="p-6 sm:p-8 lg:p-10">
                 <p className="max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
-                  Parents can review the admission process, required documents,
-                  school proof points, and fee bands here before they contact
-                  the admissions office.
+                  Review the admission process, required documents, key school
+                  facts, and fee bands before speaking with the admissions
+                  office.
                 </p>
 
                 <div className="mt-5 flex flex-wrap gap-2.5">
@@ -228,7 +228,7 @@ export default function AdmissionsPage() {
                   </div>
                   <div className="rounded-[24px] border border-slate-200 bg-slate-50 px-4 py-4">
                     <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
-                      Before you call
+                      Keep ready
                     </p>
                     <p className="mt-2 text-sm leading-6 text-slate-700">
                       Keep your child’s class, date of birth, and preferred
@@ -282,8 +282,8 @@ export default function AdmissionsPage() {
               A clear 3-step path from enquiry to confirmation
             </h2>
             <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
-              The school admission process is kept simple so parents can review
-              the essentials without confusion.
+              The admission process is kept simple so the next step stays clear
+              from enquiry through confirmation.
             </p>
           </div>
 
@@ -393,7 +393,7 @@ export default function AdmissionsPage() {
               Documents
             </Badge>
             <h2 className="mt-5 text-3xl font-bold font-heading text-primary sm:text-4xl">
-              Documents parents should keep ready before confirmation
+              Documents to keep ready before confirmation
             </h2>
             <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
               Keeping the main documents ready makes the review and confirmation
@@ -493,11 +493,11 @@ export default function AdmissionsPage() {
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="mt-5 text-3xl font-bold font-heading text-primary sm:text-4xl">
-              Key proof points parents should see before they shortlist DIA
+              Key school facts for the admission decision
             </h2>
             <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
-              These numbers carry more weight than brochure claims because they
-              show scale, board alignment, and academic stability at a glance.
+              These numbers show school scale, board alignment, and academic
+              stability at a glance.
             </p>
           </div>
 
@@ -531,8 +531,8 @@ export default function AdmissionsPage() {
               Fee overview for the 2026-27 admission cycle
             </h2>
             <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
-              Parents can review the annual fee band and admission fee by stage
-              before opening the detailed fee page.
+              Review the annual fee band and admission fee by stage before you
+              open the detailed fee page.
             </p>
           </div>
 
@@ -577,7 +577,7 @@ export default function AdmissionsPage() {
               <CheckCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-700" />
               <div>
                 <h3 className="text-base font-semibold text-slate-950">
-                  Before you compare fees
+                  Fee notes
                 </h3>
                 <div className="mt-3 space-y-2 text-sm leading-6 text-slate-700">
                   {feeNotes.map((note) => (
@@ -629,8 +629,8 @@ export default function AdmissionsPage() {
               Speak to the admissions desk before you visit or apply
             </h2>
             <p className="mt-4 text-base leading-7 text-white/75 sm:text-lg">
-              Call for seat availability, document checks, office timings, and
-              campus visit booking before you move to the application stage.
+              Speak with the admissions desk for seat availability, document
+              checks, office timings, and campus visit booking.
             </p>
           </div>
 
@@ -690,7 +690,7 @@ export default function AdmissionsPage() {
 
             <div className="rounded-[32px] border border-white/15 bg-white/10 p-6 backdrop-blur-sm sm:p-8">
               <h3 className="text-2xl font-bold font-heading text-white">
-                Ready for the next step?
+                Ready to move ahead?
               </h3>
               <p className="mt-3 text-sm leading-7 text-white/75 sm:text-base">
                 Start the application once your documents are ready, or book a

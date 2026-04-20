@@ -45,9 +45,9 @@ const campusProfile = [
       "The campus is designed to support teaching time, reading habits, practical learning, and safer movement through the day.",
   },
   {
-    label: "Visit focus",
+    label: "Campus visit focus",
     value:
-      "Parents can review classroom spaces, supervised movement, activity areas, and transport coordination during a campus visit.",
+      "Classroom spaces, supervised movement, activity areas, and transport coordination come into view during a campus visit.",
   },
 ] as const;
 
@@ -146,31 +146,31 @@ const dayFlow = [
   {
     title: "Dispersal and transport",
     description:
-      "The campus day closes with supervised dispersal and transport coordination for parents using school buses and pickups.",
+      "The campus day closes with supervised dispersal and transport coordination for school buses and pickups.",
     icon: Bus,
   },
 ] as const;
 
 const parentChecks = [
   {
-    title: "Review classroom condition and daily use",
+    title: "Classroom condition and daily use",
     description:
-      "During a visit, check how classrooms are arranged, how digital teaching is used, and whether the spaces feel prepared for regular school-day learning.",
+      "A campus visit shows how classrooms are arranged, how digital teaching is used, and how ready the spaces feel for the school day.",
   },
   {
-    title: "Check movement and supervision",
+    title: "Movement and supervision",
     description:
-      "Observe how the campus handles student movement between classes, activity spaces, and entry or exit areas.",
+      "Student movement between classes, activity spaces, and entry or exit areas reflects the campus routine.",
   },
   {
-    title: "See how facilities connect to the timetable",
+    title: "Facilities in the timetable",
     description:
-      "Ask how labs, library spaces, activity areas, and sports grounds are used through the week for the relevant class stage.",
+      "Labs, library spaces, activity areas, and sports grounds matter most when they are used regularly through the week.",
   },
   {
-    title: "Understand transport and dispersal flow",
+    title: "Transport and dispersal flow",
     description:
-      "If commute matters, review pickup coordination, bus support, and dispersal planning before admission is finalised.",
+      "Pickup coordination, bus support, and dispersal planning shape the end of the school day when transport is relevant.",
   },
 ] as const;
 
@@ -195,7 +195,7 @@ export default function CampusPage() {
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-3xl text-center">
             <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
-              Campus Overview
+              Campus Snapshot
             </Badge>
             <h1 className="mt-5 text-4xl font-bold font-heading leading-tight text-primary sm:text-5xl lg:text-[3.35rem]">
               A campus designed for teaching, supervised movement, and daily
@@ -396,7 +396,7 @@ export default function CampusPage() {
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-3xl text-center">
             <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
-              Visit Checklist
+              Visit Guide
             </Badge>
             <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
               What to review during a campus visit
@@ -443,9 +443,9 @@ export default function CampusPage() {
                   in person?
                 </h2>
                 <p className="mt-4 text-sm leading-7 text-white/85 sm:text-base">
-                  Parents can plan a campus visit, review the school-day
-                  environment, and understand admissions and transport support
-                  with the school office.
+                  Plan a campus visit to review the school-day environment and
+                  understand admissions and transport support with the school
+                  office.
                 </p>
               </div>
 

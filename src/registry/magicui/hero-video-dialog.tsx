@@ -9,7 +9,7 @@ import {
   DialogTrigger,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Play, Award, Users } from "lucide-react";
+import { Play, Award } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 
@@ -26,10 +26,10 @@ interface HeroVideoDialogProps {
   thumbnailAlt?: string;
   title?: string;
   description?: string;
-  duration?: string;
   videoType?: "youtube" | "local";
   thumbnailFit?: "cover" | "contain";
   previewMode?: "image" | "video";
+  showTrustBadge?: boolean;
 }
 
 export function HeroVideoDialog({
@@ -40,10 +40,10 @@ export function HeroVideoDialog({
   thumbnailAlt = "Video thumbnail",
   title,
   description,
-  duration = "2:30",
   videoType = "youtube",
   thumbnailFit = "cover",
   previewMode = "image",
+  showTrustBadge = true,
 }: HeroVideoDialogProps) {
   const [isOpen, setIsOpen] = useState(false);
   const useVideoPreview = previewMode === "video" && videoType === "local";
@@ -118,10 +118,12 @@ export function HeroVideoDialog({
             )}
 
             {/* CBSE Trust Badge */}
-            <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm text-primary px-3 py-1.5 rounded-lg text-xs font-bold shadow-lg flex items-center space-x-1">
-              <Award className="h-3 w-3" />
-              <span>CBSE Affiliated</span>
-            </div>
+            {showTrustBadge ? (
+              <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm text-primary px-3 py-1.5 rounded-lg text-xs font-bold shadow-lg flex items-center space-x-1">
+                <Award className="h-3 w-3" />
+                <span>CBSE Affiliated</span>
+              </div>
+            ) : null}
           </div>
 
           {/* Video Info Section */}

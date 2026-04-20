@@ -34,7 +34,7 @@ const academicProfile = [
     value: "Science, Commerce, and Humanities",
   },
   {
-    label: "What parents usually check",
+    label: "Academic essentials",
     value: "Teaching systems, assessments, board support, and stream fit",
   },
   {
@@ -159,13 +159,13 @@ const academicSystems = [
     icon: BookOpen,
   },
   {
-    title: "Assessment and parent visibility",
+    title: "Assessment and steady follow-up",
     description:
-      "Progress is tracked through classwork, tests, projects, practicals, and school follow-up through the year.",
+      "Progress is tracked through classwork, tests, projects, practicals, and regular follow-up through the year.",
     points: [
       "Unit tests and term assessments",
       "Notebook, project, and practical review",
-      "Parent updates through academic follow-up",
+      "Regular academic updates through school follow-up",
     ],
     icon: Shield,
   },
@@ -191,7 +191,7 @@ const academicRoutes = [
   {
     title: "Admissions and counselling",
     description:
-      "Parents can contact the school to discuss class entry, stream fit, documents, and academic expectations before confirmation.",
+      "Contact the school for class entry, stream fit, required documents, and academic expectations before admission is finalised.",
     href: "/admissions",
     cta: "Review Admissions",
     icon: Target,
@@ -200,9 +200,9 @@ const academicRoutes = [
 
 const parentQuestions = [
   {
-    question: "How early can parents understand the academic pathway?",
+    question: "How early does the academic pathway become clear?",
     answer:
-      "From the foundational years onward, parents can see how classroom expectations, assessment style, and subject depth increase at each stage. The school does not need to wait until board classes to start academic discipline.",
+      "From the foundational years onward, classroom expectations, assessment style, and subject depth become clearer at each stage. Academic discipline starts well before the board classes.",
   },
   {
     question: "What changes in the board years?",
@@ -210,9 +210,9 @@ const parentQuestions = [
       "Classes IX to XII involve stronger test cycles, revision planning, practical completion where relevant, and subject-wise follow-up so students do not rely only on last-minute preparation.",
   },
   {
-    question: "Where should parents start if they are comparing schools?",
+    question: "Where does a clear academic comparison start?",
     answer:
-      "Start with curriculum structure, teaching systems, assessment visibility, senior-secondary options, and the school’s ability to support the student consistently across multiple years.",
+      "A clear comparison starts with curriculum structure, teaching systems, assessment visibility, senior-secondary options, and the school&rsquo;s ability to support students consistently across multiple years.",
   },
 ] as const;
 
@@ -240,14 +240,13 @@ export default function AcademicsPage() {
               Academics at Divine
             </Badge>
             <h1 className="mt-5 text-4xl font-bold font-heading leading-tight text-primary sm:text-5xl lg:text-[3.35rem]">
-              CBSE academics from Pre-Primary to Class XII with clearer
-              classroom support at every stage
+              An academic journey from Pre-Primary to Class XII with stronger
+              support at every stage
             </h1>
             <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
-              Parents comparing schools usually want more than broad promises.
-              They want to know how the curriculum is structured, how teaching
-              works in real classrooms, how board years are handled, and what
-              happens when students move into senior-secondary streams.
+              Divine&rsquo;s academic profile becomes clearer through curriculum
+              structure, real classroom teaching, board-year support, and the
+              next step into senior-secondary streams.
             </p>
           </div>
 
@@ -268,8 +267,8 @@ export default function AcademicsPage() {
                     Academic Journey
                   </Badge>
                   <h2 className="mt-4 max-w-2xl text-2xl font-bold font-heading leading-tight text-white sm:text-[2rem] lg:text-[2.45rem]">
-                    A parent-facing overview of how learning progresses from the
-                    early years to board classes and stream selection.
+                    A clear look at how learning grows from the early years to
+                    board classes and stream selection.
                   </h2>
                 </div>
               </div>
@@ -360,8 +359,8 @@ export default function AcademicsPage() {
               How academics progress across the school years
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-base">
-              The academic expectation changes by stage. Parents should be able
-              to see that progression clearly before admission.
+              Academic expectations rise by stage, from early foundations to
+              board preparation and senior-secondary depth.
             </p>
           </div>
 
@@ -466,7 +465,7 @@ export default function AcademicsPage() {
               Explore Further
             </Badge>
             <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
-              The next pages parents usually open from here
+              Continue to curriculum, streams, and admissions
             </h2>
           </div>
 
@@ -512,10 +511,10 @@ export default function AcademicsPage() {
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-3xl text-center">
             <Badge className="border border-primary/10 bg-white px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-white">
-              Parent Questions
+              Common Questions
             </Badge>
             <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
-              What parents often want clarified before admission
+              Questions about the academic path and senior classes
             </h2>
           </div>
 
@@ -559,9 +558,8 @@ export default function AcademicsPage() {
                   for your child?
                 </h2>
                 <p className="mt-4 text-sm leading-7 text-white/85 sm:text-base">
-                  Parents comparing the best CBSE school options in Sirsaganj or
-                  near Firozabad can contact Divine for class-entry guidance,
-                  senior-secondary stream support, and admissions discussion.
+                  Contact Divine for class-entry guidance, senior-secondary
+                  stream support, and admissions discussion.
                 </p>
               </div>
 

@@ -44,7 +44,7 @@ const heroHighlights = [
   },
   {
     value: "Printed breakup",
-    label: "Ask before payment",
+    label: "Current fee sheet",
     detail: "Current class-wise fee sheet",
   },
 ] as const;
@@ -126,16 +126,16 @@ const separateCharges = [
   {
     title: "Payment schedule",
     description:
-      "Parents should confirm the current payment timeline, due dates, and accepted payment modes with the admissions office before deposit.",
+      "The current payment timeline, due dates, and accepted payment modes are confirmed by the admissions office before deposit.",
   },
 ] as const;
 
 const paymentChecks = [
-  "Confirm the child’s class band and the current session fee sheet.",
-  "Check whether transport is needed and whether the route is available.",
-  "Review lab, activity, and examination charges applicable to the class.",
-  "Ask the office to explain the payment schedule and receipt process.",
-  "Keep the admission process and document requirements in mind before seat confirmation.",
+  "Child’s class band and the current session fee sheet",
+  "Transport need and route availability",
+  "Lab, activity, and examination charges for the class",
+  "Payment schedule and receipt process",
+  "Admission process and document requirements before seat confirmation",
 ] as const;
 
 const officeSupport = [
@@ -171,13 +171,13 @@ const parentQuestions = [
   {
     question: "Do lab and activity charges apply to every class?",
     answer:
-      "They vary by stage. Parents should confirm the current class-wise breakup with the school before payment.",
+      "They vary by stage. The current class-wise breakup is confirmed by the school before payment.",
   },
   {
     question:
-      "Can parents review the full fee breakup before confirming admission?",
+      "Can the full fee breakup be reviewed before admission is confirmed?",
     answer:
-      "Yes. Parents can review the current session fee sheet, transport guidance, and separate annual charges during the admissions discussion.",
+      "Yes. The current session fee sheet, transport guidance, and separate annual charges are shared during the admissions discussion.",
   },
 ] as const;
 
@@ -207,14 +207,12 @@ export default function AdmissionFeesPage() {
                 Fees {admissionCycle}
               </Badge>
               <h1 className="mt-5 text-4xl font-bold font-heading leading-tight text-slate-950 sm:text-5xl lg:text-[3.6rem]">
-                A clearer fee page for parents comparing school costs in
-                Sirsaganj
+                Fee structure for the {admissionCycle} admission cycle
               </h1>
               <p className="mt-5 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
-                This page is organised around the four questions parents usually
-                ask first: the annual fee for the class band, the admission
-                charge, the transport estimate, and which costs still need
-                separate confirmation before payment.
+                This fee guide brings together the annual fee band, admission
+                charge, transport estimate, and the separate costs linked to
+                each class stage.
               </p>
 
               <div className="mt-6 flex flex-wrap gap-2.5">
@@ -231,7 +229,7 @@ export default function AdmissionFeesPage() {
               <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:max-w-2xl">
                 <div className="rounded-[28px] border border-slate-200/80 bg-white/90 p-5 shadow-[0_20px_60px_-45px_rgba(15,23,42,0.22)] backdrop-blur-sm">
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
-                    What to decide first
+                    Starting point
                   </p>
                   <p className="mt-3 text-lg font-bold text-slate-950">
                     Start with your child’s class band.
@@ -250,8 +248,9 @@ export default function AdmissionFeesPage() {
                         Before payment
                       </p>
                       <p className="mt-2 text-sm leading-6 text-amber-900">
-                        Ask for the current printed or digital fee breakup for{" "}
-                        {admissionCycle} before you make any deposit.
+                        The current printed or digital fee breakup for{" "}
+                        {admissionCycle}
+                        is shared before any deposit is made.
                       </p>
                     </div>
                   </div>
@@ -298,7 +297,8 @@ export default function AdmissionFeesPage() {
                     Quick Fee Snapshot
                   </Badge>
                   <h2 className="mt-3 text-2xl font-bold font-heading leading-tight text-white sm:text-[2rem]">
-                    See the fee range first. Confirm the full breakup second.
+                    Annual fee bands, admission charges, and separate costs at a
+                    glance.
                   </h2>
                 </div>
               </div>
@@ -325,12 +325,12 @@ export default function AdmissionFeesPage() {
 
                 <div className="mt-4 rounded-[24px] border border-primary/10 bg-primary/5 px-4 py-4">
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
-                    Parent note
+                    Fee note
                   </p>
                   <p className="mt-2 text-sm leading-6 text-slate-700">
-                    Transport, lab, activity, and exam-related costs should not
-                    be assumed from the annual band alone. The admissions office
-                    should confirm the current class-wise sheet.
+                    Transport, lab, activity, and exam-related costs sit outside
+                    the annual band alone. The admissions office shares the
+                    current class-wise sheet.
                   </p>
                 </div>
               </div>
@@ -386,7 +386,7 @@ export default function AdmissionFeesPage() {
                       </p>
                     </div>
 
-                    <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-1">
+                    <div className="grid gap-3 lg:grid-cols-2 xl:grid-cols-1">
                       <div className="rounded-[22px] border border-white/80 bg-white/80 px-4 py-4 backdrop-blur-sm">
                         <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
                           Admission fee
@@ -430,12 +430,12 @@ export default function AdmissionFeesPage() {
                 Separate Charges
               </Badge>
               <h2 className="mt-5 max-w-3xl text-3xl font-bold font-heading leading-tight text-white sm:text-4xl lg:text-[2.75rem]">
-                What parents should confirm outside the annual fee band
+                Separate charges beyond the annual fee band
               </h2>
               <p className="mt-4 max-w-2xl text-base leading-7 text-white/75 sm:text-lg">
-                Most fee confusion happens when optional or class-specific
-                charges are assumed to be included. These four areas should
-                always be checked separately.
+                Most fee confusion begins when optional or class-specific
+                charges are assumed to be included. These four areas are always
+                handled separately.
               </p>
 
               <div className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -468,10 +468,10 @@ export default function AdmissionFeesPage() {
             <Card className="rounded-[30px] border-0 bg-white shadow-[0_30px_80px_-52px_rgba(15,23,42,0.6)]">
               <CardContent className="p-6 sm:p-7">
                 <Badge className="border border-primary/10 bg-primary/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary hover:bg-primary/5">
-                  Before Payment
+                  Fee Essentials
                 </Badge>
                 <h3 className="mt-5 text-2xl font-bold font-heading text-slate-950">
-                  Confirm these points with the school office
+                  Key fee details from the school office
                 </h3>
 
                 <ul className="mt-6 space-y-4">
@@ -489,8 +489,8 @@ export default function AdmissionFeesPage() {
                   <div className="flex items-start gap-3">
                     <Shield className="mt-0.5 h-5 w-5 shrink-0 text-amber-700" />
                     <p className="text-sm leading-6 text-amber-900">
-                      The safest next step is to ask for the current fee
-                      breakup, transport note, and payment schedule in one
+                      The current fee breakup, transport note, and payment
+                      schedule are best taken together in one admissions
                       conversation before any seat payment.
                     </p>
                   </div>
@@ -510,7 +510,7 @@ export default function AdmissionFeesPage() {
                   Admissions Help
                 </p>
                 <h2 className="mt-2 text-2xl font-bold font-heading">
-                  Get fee guidance before you confirm the next step
+                  Get fee guidance before you confirm anything
                 </h2>
               </div>
               <CardContent className="p-6 sm:p-7">
@@ -578,14 +578,14 @@ export default function AdmissionFeesPage() {
 
             <div>
               <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
-                Parent Questions
+                Common Questions
               </Badge>
               <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl">
-                Fee questions parents usually ask before admission
+                Questions around fees and separate charges
               </h2>
               <p className="mt-4 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
-                These are the practical questions that usually shape enquiry
-                calls and campus discussions.
+                These are the fee questions that usually shape enquiry calls and
+                campus discussions.
               </p>
 
               <div className="mt-8 grid gap-4">
@@ -622,16 +622,16 @@ export default function AdmissionFeesPage() {
           <div className="overflow-hidden rounded-[34px] bg-[linear-gradient(135deg,#7f1322_0%,#a51c30_42%,#c33a44_100%)] px-6 py-10 text-center shadow-[0_30px_90px_-55px_rgba(127,19,34,0.55)] sm:px-10 lg:px-14 lg:py-14">
             <div className="mx-auto max-w-3xl">
               <Badge className="border border-white/15 bg-white/10 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-white hover:bg-white/10">
-                Next Step
+                Continue
               </Badge>
               <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-white sm:text-4xl lg:text-[2.8rem]">
-                Review the admission process, then ask for the current
-                class-wise breakup
+                Review the admission process, then take the current class-wise
+                breakup
               </h2>
               <p className="mt-4 text-base leading-7 text-white/80 sm:text-lg">
-                The fees page helps you shortlist the class band. The final
-                confirmation should still come from the admissions office with
-                the current fee sheet and payment guidance.
+                The fees page helps narrow the class band. Final confirmation
+                comes from the admissions office with the current fee sheet and
+                payment guidance.
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">

@@ -22,7 +22,7 @@ import { Card, CardContent } from "../../../components/ui/card";
 const achievementSignals = [
   "100% board results",
   "Recognition across academics and activities",
-  "Parent-visible academic follow-up",
+  "Steady academic follow-up through the year",
 ] as const;
 
 const achievementProfile = [
@@ -39,7 +39,7 @@ const achievementProfile = [
     value: "Pre-Primary to Class XII under the CBSE framework",
   },
   {
-    label: "What this page covers",
+    label: "Main focus",
     value:
       "Board outcomes, recognition areas, and the systems behind student progress",
   },
@@ -49,7 +49,8 @@ const achievementStats = [
   {
     value: "100%",
     label: "Board results",
-    detail: "A visible academic outcome parents notice first.",
+    detail:
+      "A clear academic outcome that reflects steady work through the year.",
   },
   {
     value: "50+",
@@ -64,7 +65,7 @@ const achievementStats = [
   {
     value: "2131764",
     label: "CBSE affiliation",
-    detail: "A clear school identifier parents often verify directly.",
+    detail: "The school&rsquo;s affiliation number under the CBSE system.",
   },
 ] as const;
 
@@ -139,13 +140,13 @@ const systemsBehindResults = [
     icon: Microscope,
   },
   {
-    title: "Academic follow-up parents can ask about",
+    title: "Academic follow-up through the year",
     description:
-      "Parents should expect a school to explain how progress is tracked before the final exam cycle arrives.",
+      "Progress stays visible through regular tracking well before the final exam cycle arrives.",
     points: [
       "Unit tests and term assessments",
       "Project, notebook, and practical review",
-      "Parent visibility through school follow-up",
+      "Visible school follow-up through the year",
     ],
     icon: Shield,
   },
@@ -155,7 +156,7 @@ const recognitionBlocks = [
   {
     title: "Academic recognition",
     description:
-      "Board results, subject progress, class performance, and steady exam-readiness remain the clearest academic indicators for parents.",
+      "Board results, subject progress, class performance, and steady exam-readiness remain the clearest academic indicators for any family reviewing the school.",
   },
   {
     title: "Competition and event participation",
@@ -176,24 +177,24 @@ const recognitionBlocks = [
 
 const parentChecks = [
   {
-    title: "Ask for the latest verified result summary",
+    title: "Latest verified board summary",
     description:
-      "If a school highlights achievements, parents should be able to ask for the current board-result summary rather than depending only on decorative claims.",
+      "Current board results remain the clearest academic proof behind the school&rsquo;s achievement profile.",
   },
   {
-    title: "Check how the school tracks progress",
+    title: "Progress tracking through the year",
     description:
-      "A reliable achievements page should connect outcomes to real academic systems such as tests, notebook review, practical work, and revision support.",
+      "Results stay more credible when they are backed by tests, notebook review, practical work, and revision support.",
   },
   {
-    title: "Look beyond toppers alone",
+    title: "Support beyond a few toppers",
     description:
-      "Parents should understand whether the school supports overall class performance, not only a few exceptional cases.",
+      "A stronger academic profile reflects wider class support, not only a few exceptional names.",
   },
   {
-    title: "Confirm the current year, not an old highlight",
+    title: "Current-year context",
     description:
-      "Achievement records change every session. Parents should ask for the latest verified updates during the admission process.",
+      "Achievement records change each session, so the current year always matters more than an old highlight.",
   },
 ] as const;
 
@@ -221,13 +222,12 @@ export default function AchievementsPage() {
               Academic Outcomes
             </Badge>
             <h1 className="mt-5 text-4xl font-bold font-heading leading-tight text-primary sm:text-5xl lg:text-[3.35rem]">
-              Student achievement parents can understand without inflated claims
+              Student achievement rooted in steady work, not inflated claims
             </h1>
             <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
-              A school achievements page should not read like a trophy wall with
-              unverified ranks. It should show what progress looks like, what is
-              actually visible in the board years, and what systems support
-              student performance at Divine.
+              Student achievement at Divine is reflected in board outcomes,
+              classroom follow-up, wider participation, and the school systems
+              that support steady progress.
             </p>
           </div>
 
@@ -245,12 +245,11 @@ export default function AchievementsPage() {
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.08)_0%,rgba(15,23,42,0.18)_38%,rgba(15,23,42,0.72)_100%)]" />
                 <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6 lg:p-8">
                   <Badge className="border border-white/15 bg-white/12 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-white/12">
-                    Parent-First View
+                    Visible Academic Proof
                   </Badge>
                   <h2 className="mt-4 max-w-2xl text-2xl font-bold font-heading leading-tight text-white sm:text-[2rem] lg:text-[2.45rem]">
-                    Results matter, but parents also need to see how a school
-                    builds those results across classrooms, assessments, and the
-                    senior years.
+                    Results matter, but so does the steady classroom work that
+                    builds them across assessments and the senior years.
                   </h2>
                 </div>
               </div>
@@ -258,9 +257,9 @@ export default function AchievementsPage() {
               <div className="p-6 sm:p-8 lg:p-10">
                 <p className="max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
                   Divine’s strongest public academic proof is its 100% board
-                  results. Around that, parents should also look at teacher
-                  support, assessment discipline, practical learning, stream
-                  guidance, and whether the school creates platforms for student
+                  results. Around that, the school profile is strengthened by
+                  teacher support, assessment discipline, practical learning,
+                  stream guidance, and visible platforms for student
                   participation and confidence.
                 </p>
 
@@ -312,8 +311,8 @@ export default function AchievementsPage() {
 
                 <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                   <Button asChild size="lg" className="sm:flex-1">
-                    <Link href="/academics/curriculum">
-                      Review Curriculum
+                    <Link href="/academics/board-results">
+                      View Board Results
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>
@@ -342,8 +341,8 @@ export default function AchievementsPage() {
               Where student achievement becomes visible at Divine
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-base">
-              This page avoids invented topper lists and focuses on the kinds of
-              outcomes parents can actually evaluate.
+              The strongest outcome signals are the ones supported by real work
+              in classrooms, activities, and board preparation.
             </p>
           </div>
 
@@ -395,8 +394,8 @@ export default function AchievementsPage() {
               Outcomes are stronger when the school systems are visible
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-base">
-              Parents should connect any achievement claim to the systems that
-              produce it.
+              Strong outcomes grow from teaching systems, practical work, and
+              steady follow-up through the school year.
             </p>
           </div>
 
@@ -473,10 +472,10 @@ export default function AchievementsPage() {
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-3xl text-center">
             <Badge className="border border-primary/10 bg-white px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-white">
-              Parent Checklist
+              Result Context
             </Badge>
             <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
-              What parents should verify before trusting any achievements page
+              What keeps an achievement profile credible
             </h2>
           </div>
 
@@ -506,9 +505,9 @@ export default function AchievementsPage() {
           </div>
 
           <div className="mx-auto mt-6 max-w-5xl rounded-[28px] border border-amber-200 bg-amber-50 px-5 py-5 text-sm leading-7 text-amber-900 sm:px-6">
-            For the latest board summary, stream-specific outcome details, or
-            current-year student recognitions, parents should contact the school
-            directly instead of relying on old website highlights alone.
+            The latest board summary, stream-specific outcome details, and
+            current-year student recognitions are best understood through the
+            school&rsquo;s latest update.
           </div>
         </div>
       </section>
@@ -526,9 +525,8 @@ export default function AchievementsPage() {
                   latest school achievement summary?
                 </h2>
                 <p className="mt-4 text-sm leading-7 text-white/85 sm:text-base">
-                  Parents comparing the best CBSE school options in Sirsaganj or
-                  near Firozabad can contact Divine for the latest verified
-                  academic details before they make an admission decision.
+                  Contact Divine for the latest verified academic details,
+                  stream-wise guidance, and the current achievement summary.
                 </p>
               </div>
 

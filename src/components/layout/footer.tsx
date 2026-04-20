@@ -58,6 +58,7 @@ const footerLinkGroups = [
       { label: "Student Life", href: "/student-life" },
       { label: "Clubs & Activities", href: "/student-life/clubs" },
       { label: "Academic Achievements", href: "/academics/achievements" },
+      { label: "Board Results", href: "/academics/board-results" },
     ],
   },
 ] as const;
@@ -101,7 +102,7 @@ export function Footer() {
       <div className="container mx-auto px-4 py-10 sm:py-12">
         <div className="grid gap-8 xl:grid-cols-[minmax(0,1.05fr)_minmax(0,0.9fr)_minmax(320px,0.95fr)] xl:gap-10">
           <div className="space-y-6">
-            <div className="flex items-center gap-4">
+            <div className="flex items-start gap-4 sm:items-center">
               <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white shadow-[0_18px_45px_-28px_rgba(255,255,255,0.8)]">
                 <Image
                   src="/images/logo.png"
@@ -111,7 +112,7 @@ export function Footer() {
                   className="h-11 w-11 object-contain"
                 />
               </div>
-              <div>
+              <div className="min-w-0">
                 <h3 className="text-xl font-bold font-heading text-white sm:text-2xl">
                   Divine International Academy
                 </h3>
@@ -210,7 +211,7 @@ export function Footer() {
             <div className="mt-6 space-y-4 text-sm text-white/82">
               <div className="flex items-start gap-3 rounded-2xl border border-white/10 bg-black/10 px-4 py-3">
                 <MapPin className="mt-1 h-4 w-4 flex-shrink-0 text-white" />
-                <div>
+                <div className="min-w-0">
                   <p className="font-medium text-white">
                     Divine International Academy
                   </p>
@@ -221,11 +222,11 @@ export function Footer() {
 
               <Link
                 href={schoolContact.phoneHref}
-                className="flex items-center gap-3 rounded-2xl border border-white/10 bg-black/10 px-4 py-3 transition-colors hover:bg-white/10"
+                className="flex items-start gap-3 rounded-2xl border border-white/10 bg-black/10 px-4 py-3 transition-colors hover:bg-white/10"
               >
-                <Phone className="h-4 w-4 text-white" />
-                <div>
-                  <div className="font-medium text-white">
+                <Phone className="mt-1 h-4 w-4 flex-shrink-0 text-white" />
+                <div className="min-w-0">
+                  <div className="break-words font-medium text-white">
                     {schoolContact.phoneDisplay}
                   </div>
                   <div className="text-xs text-white/60">
@@ -236,11 +237,11 @@ export function Footer() {
 
               <Link
                 href={schoolContact.generalEnquiryHref}
-                className="flex items-center gap-3 rounded-2xl border border-white/10 bg-black/10 px-4 py-3 transition-colors hover:bg-white/10"
+                className="flex items-start gap-3 rounded-2xl border border-white/10 bg-black/10 px-4 py-3 transition-colors hover:bg-white/10"
               >
-                <Mail className="h-4 w-4 text-white" />
-                <div>
-                  <div className="font-medium text-white">
+                <Mail className="mt-1 h-4 w-4 flex-shrink-0 text-white" />
+                <div className="min-w-0">
+                  <div className="break-words font-medium text-white">
                     {schoolContact.emailDisplay}
                   </div>
                   <div className="text-xs text-white/60">General enquiries</div>
@@ -249,8 +250,10 @@ export function Footer() {
 
               <div className="flex items-start gap-3 rounded-2xl border border-white/10 bg-black/10 px-4 py-3">
                 <Clock className="mt-1 h-4 w-4 flex-shrink-0 text-white" />
-                <div>
-                  <p>{schoolContact.officeHoursDisplay}</p>
+                <div className="min-w-0">
+                  <p className="break-words">
+                    {schoolContact.officeHoursDisplay}
+                  </p>
                 </div>
               </div>
             </div>

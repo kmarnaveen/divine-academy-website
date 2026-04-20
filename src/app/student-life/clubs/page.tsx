@@ -90,7 +90,7 @@ const clubJourney = [
 const parentNotes = [
   "Club exposure should feel organised and age-appropriate, not random or disconnected from the school routine.",
   "Not every child needs the same club path. The aim is guided participation, not forced uniformity.",
-  "Parents usually value clubs most when they see better confidence, communication, teamwork, and discipline in the child over time.",
+  "Clubs matter most when they help children build confidence, communication, teamwork, and discipline over time.",
 ] as const;
 
 const nextSteps = [
@@ -141,14 +141,12 @@ export default function StudentLifeClubsPage() {
               Student Clubs
             </Badge>
             <h1 className="mt-5 text-4xl font-bold font-heading leading-tight text-primary sm:text-5xl lg:text-[3.35rem]">
-              Clubs matter when they help students discover interests and
-              participate with purpose
+              Interest-based clubs that build confidence, teamwork, and purpose
             </h1>
             <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
-              At Divine International Academy, clubs are not meant to be filler
-              activities. They help students explore interests, build
-              confidence, work in teams, and take part in school life beyond
-              regular classroom lessons.
+              At Divine International Academy, clubs help students explore
+              interests, build confidence, work in teams, and take part in
+              school life beyond regular classroom lessons.
             </p>
           </div>
 
@@ -169,17 +167,15 @@ export default function StudentLifeClubsPage() {
                     Activity Culture
                   </Badge>
                   <h2 className="mt-4 max-w-2xl text-2xl font-bold font-heading leading-tight text-white sm:text-[2rem] lg:text-[2.45rem]">
-                    A strong clubs page should show how students grow through
-                    guided participation, not just list club names.
+                    Guided participation gives club life its real value.
                   </h2>
                 </div>
               </div>
 
               <div className="p-6 sm:p-8 lg:p-10">
                 <p className="max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
-                  This page helps parents understand how club participation
-                  supports creativity, teamwork, discipline, and school
-                  confidence across different student stages.
+                  Club participation supports creativity, teamwork, discipline,
+                  and school confidence across different student stages.
                 </p>
 
                 <div className="mt-5 flex flex-wrap gap-2.5">
@@ -234,8 +230,8 @@ export default function StudentLifeClubsPage() {
               Club Streams
             </Badge>
             <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
-              Clubs usually support academics, creativity, service, and sports
-              together
+              Club participation across academics, creativity, service, and
+              sports
             </h2>
           </div>
 
@@ -285,11 +281,11 @@ export default function StudentLifeClubsPage() {
                 Participation Journey
               </Badge>
               <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl">
-                Students usually grow through clubs in three stages: exposure,
-                guidance, and visible participation
+                Club growth moves through exposure, guidance, and visible
+                participation
               </h2>
 
-              <div className="mt-8 grid gap-4 sm:grid-cols-3">
+              <div className="mt-8 grid gap-4 lg:grid-cols-3">
                 {clubJourney.map((item) => (
                   <Card
                     key={item.title}
@@ -311,10 +307,10 @@ export default function StudentLifeClubsPage() {
             <Card className="rounded-[28px] border-slate-200/80 bg-white shadow-[0_20px_60px_-46px_rgba(15,23,42,0.22)]">
               <CardContent className="p-6 sm:p-7">
                 <Badge className="border border-primary/10 bg-primary/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary hover:bg-primary/5">
-                  Parent Notes
+                  Club Culture
                 </Badge>
                 <h3 className="mt-5 text-2xl font-bold font-heading text-slate-950">
-                  What parents should understand about clubs
+                  What strong club culture looks like
                 </h3>
 
                 <ul className="mt-6 space-y-4">
@@ -337,7 +333,7 @@ export default function StudentLifeClubsPage() {
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-3xl text-center">
             <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
-              Next Step
+              Continue
             </Badge>
             <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
               Continue to events, gallery, or the full student-life overview

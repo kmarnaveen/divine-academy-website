@@ -21,14 +21,14 @@ const transportSignals = [
   "GPS-tracked buses",
   "CCTV-supported monitoring",
   "Route confirmation through the school",
-  "Pickup and travel guidance for parents",
+  "Pickup and travel guidance",
 ] as const;
 
 const transportProfile = [
   {
     label: "Daily commute",
     value:
-      "Transport support helps students reach school with more routine, safety, and parent visibility.",
+      "Transport support helps students reach school with more routine and safety across the school week.",
   },
   {
     label: "Monitoring support",
@@ -36,14 +36,14 @@ const transportProfile = [
       "Buses are supported through GPS tracking and CCTV-based monitoring arrangements.",
   },
   {
-    label: "Parent planning",
+    label: "Commute planning",
     value:
-      "Parents can confirm route coverage, travel timing, pickup points, and transport charges with the school office.",
+      "Route coverage, travel timing, pickup points, and transport charges are confirmed with the school office.",
   },
   {
     label: "Admission relevance",
     value:
-      "Transport clarity matters before admission confirmation, especially for parents coming from nearby areas.",
+      "Transport clarity matters before admission confirmation, especially for nearby areas that depend on school commute support.",
   },
 ] as const;
 
@@ -67,8 +67,7 @@ const transportStats = [
   {
     value: "Office",
     label: "Route confirmation",
-    detail:
-      "Parents should confirm pickup details and fees with the school directly.",
+    detail: "Pickup details and fees are confirmed with the school directly.",
   },
 ] as const;
 
@@ -96,9 +95,9 @@ const transportSupport = [
     icon: Shield,
   },
   {
-    title: "Parent planning before admission",
+    title: "Commute planning before admission",
     description:
-      "Parents should review route practicality before they finalise admission, especially if commute time and daily routine are important factors.",
+      "Route practicality matters before admission is finalised, especially when commute time shapes the daily school routine.",
     points: [
       "Travel time and pickup planning",
       "Transport-charge clarification",
@@ -110,31 +109,31 @@ const transportSupport = [
 
 const parentChecks = [
   {
-    title: "Check route availability first",
+    title: "Route availability",
     description:
-      "Before admission, confirm whether the school currently serves your area and where the nearest pickup point is located.",
+      "The first transport detail is whether the school currently serves the area and where the nearest pickup point is located.",
   },
   {
-    title: "Understand the likely travel time",
+    title: "Likely travel time",
     description:
-      "Travel duration matters for younger students and for parents planning the daily school routine.",
+      "Travel duration matters for younger students and for the daily school routine.",
   },
   {
-    title: "Ask about monitoring and supervision",
+    title: "Monitoring and supervision",
     description:
-      "Parents should review how GPS tracking, camera support, and student supervision work during bus travel.",
+      "GPS tracking, camera support, and student supervision shape the confidence of the daily bus journey.",
   },
   {
-    title: "Confirm transport charges separately",
+    title: "Separate transport charges",
     description:
-      "Transport charges vary by route and should be confirmed directly with the school during the admission process.",
+      "Transport charges vary by route and are confirmed directly with the school during the admission process.",
   },
 ] as const;
 
 export const metadata: Metadata = {
   title: "Transport | Divine International Academy Sirsaganj",
   description:
-    "Review transport support at Divine International Academy, Sirsaganj, including route guidance, GPS tracking, CCTV-supported monitoring, and parent transport planning before admission.",
+    "Review transport support at Divine International Academy, Sirsaganj, including route guidance, GPS tracking, CCTV-supported monitoring, and commute planning before admission.",
   keywords: [
     "Divine International Academy transport",
     "school bus Sirsaganj",
@@ -159,9 +158,9 @@ export default function TransportPage() {
               travel
             </h1>
             <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
-              Divine's transport support helps parents plan daily commute with
-              route guidance, monitoring visibility, and school-level transport
-              confirmation before admission.
+              Divine transport support brings together route guidance,
+              monitoring visibility, and school-level confirmation before
+              admission.
             </p>
           </div>
 
@@ -182,17 +181,17 @@ export default function TransportPage() {
                     Commute Planning
                   </Badge>
                   <h2 className="mt-4 max-w-2xl text-2xl font-bold font-heading leading-tight text-white sm:text-[2rem] lg:text-[2.45rem]">
-                    Route clarity, safer monitoring, and daily timing matter as
-                    much as the classroom for many parents.
+                    Route clarity, safer monitoring, and daily timing shape the
+                    school commute.
                   </h2>
                 </div>
               </div>
 
               <div className="p-6 sm:p-8 lg:p-10">
                 <p className="max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
-                  Parents can review route support, likely travel time, pickup
-                  details, transport charges, and daily commute practicality
-                  with the school office.
+                  Route support, likely travel time, pickup details, transport
+                  charges, and daily commute practicality are reviewed with the
+                  school office.
                 </p>
 
                 <div className="mt-5 flex flex-wrap gap-2.5">
@@ -270,7 +269,7 @@ export default function TransportPage() {
               Transport Support
             </Badge>
             <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
-              What parents usually review before using school transport
+              Key details behind school transport
             </h2>
           </div>
 
@@ -315,10 +314,10 @@ export default function TransportPage() {
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-3xl text-center">
             <Badge className="border border-primary/10 bg-white px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-white">
-              Parent Checklist
+              Travel Questions
             </Badge>
             <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
-              Important transport questions before admission
+              Important transport details before admission
             </h2>
           </div>
 
@@ -361,9 +360,9 @@ export default function TransportPage() {
                   Need route, pickup, or transport-charge guidance?
                 </h2>
                 <p className="mt-4 text-sm leading-7 text-white/85 sm:text-base">
-                  Parents can contact the school to confirm transport
-                  availability, commute planning, and admissions support before
-                  finalising the next step.
+                  Contact the school to confirm transport availability, commute
+                  planning, and admissions support before finalising travel
+                  arrangements.
                 </p>
               </div>
 

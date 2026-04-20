@@ -4,12 +4,12 @@ import Link from "next/link";
 import {
   ArrowRight,
   BookOpen,
-  CalendarDays,
   CheckCircle,
   GraduationCap,
   MapPin,
   Microscope,
   Monitor,
+  Quote,
   Shield,
   Trophy,
   Users,
@@ -29,93 +29,73 @@ const schoolSignals = [
 
 const schoolProfile = [
   {
-    label: "School type",
+    label: "School journey",
     value:
-      "CBSE-affiliated co-educational English medium Senior Secondary School",
+      "A full Pre-Primary to Class XII journey under the CBSE senior secondary framework.",
   },
   {
-    label: "Classes served",
-    value: "Pre-Primary to Class XII",
+    label: "Leadership",
+    value: "Led by Principal Dr. Garima Gupta under Om Educational Trust.",
   },
   {
-    label: "Leadership and management",
-    value: "Principal Dr. Garima Gupta | Om Educational Trust",
+    label: "Where the school serves",
+    value: "Families across Sirsaganj and the wider Firozabad region.",
   },
   {
-    label: "Location and affiliation",
-    value: "Sirsaganj, Firozabad, Uttar Pradesh | CBSE affiliation 2131764",
+    label: "Affiliation",
+    value: "CBSE affiliation number 2131764.",
   },
 ] as const;
 
-const schoolStats = [
-  {
-    value: "2012",
-    label: "Established",
-    detail: "School run under Om Educational Trust.",
-    icon: CalendarDays,
-  },
-  {
-    value: "1200+",
-    label: "Students on campus",
-    detail: "Across foundational to senior secondary stages.",
-    icon: Users,
-  },
-  {
-    value: "50+",
-    label: "Faculty members",
-    detail: "Teaching, supervision, and student follow-up across sections.",
-    icon: GraduationCap,
-  },
-  {
-    value: "100%",
-    label: "Board results",
-    detail: "Senior classes supported through steady subject preparation.",
-    icon: Trophy,
-  },
-] as const;
+const principalQuote = {
+  quote:
+    "We want children to grow into thoughtful, disciplined, and confident young people. That means serious academics, strong habits, and meaningful opportunities beyond the classroom.",
+  name: "Dr. Garima Gupta",
+  role: "Principal, Divine International Academy",
+} as const;
 
 const parentReasons = [
   {
-    title: "Structured academics across the school day",
+    title: "Classrooms that stay calm, clear, and focused",
     description:
-      "Teaching is organised through planned lessons, revision, classwork, and teacher follow-up instead of loose classroom routines.",
+      "Children learn better when lessons follow a clear rhythm and teachers stay consistent in how they guide the class.",
     points: [
-      "40 smart classrooms across sections",
-      "Digital boards and classroom support",
-      "Regular follow-up from foundational years to board classes",
+      "Planned lessons and revision routines",
+      "Digital classroom support",
+      "Teacher follow-up through the term",
     ],
     icon: Monitor,
   },
   {
-    title: "Practical learning is part of the timetable",
+    title: "Practical learning begins early",
     description:
-      "Science, computer learning, and reading support are built into weekly routines so students move beyond textbook-only learning.",
+      "Science, computers, and reading support are part of the weekly routine so learning does not stay trapped inside textbooks.",
     points: [
-      "25-student science lab batches",
-      "30-system computer labs",
-      "15,000+ books and reading support",
+      "Lab exposure and computer learning",
+      "Library time and reading support",
+      "Learning that moves beyond textbook-only work",
     ],
     icon: Microscope,
   },
   {
-    title: "Safety and supervision stay visible",
+    title: "Safety is built into the routine",
     description:
-      "The campus runs with monitored routines, transport oversight, and controlled movement across the full school day.",
+      "Supervision is built into the daily routine, not added as an afterthought.",
     points: [
-      "CCTV-supported campus monitoring",
-      "Access control and supervised arrival-dispersal",
-      "GPS-tracked buses with support staff",
+      "Supervised arrival and dispersal",
+      "CCTV-supported campus oversight",
+      "Transport monitoring and staff support",
     ],
     icon: Shield,
   },
   {
-    title: "Students participate beyond textbooks",
+    title: "Confidence grows through participation",
     description:
-      "Sports, assemblies, stage events, and school activities help students build confidence, teamwork, and expression inside the regular school routine.",
+      "Children build confidence when the school gives them real opportunities to participate, perform, and work with others.",
     points: [
-      "Sports periods and house activities",
-      "Stage and assembly participation",
-      "Confidence-building through school culture",
+      "Assemblies, sports, and stage opportunities",
+      "House activities and teamwork",
+      "Expression that grows with regular participation",
     ],
     icon: Trophy,
   },
@@ -123,23 +103,23 @@ const parentReasons = [
 
 const purposeBlocks = [
   {
-    title: "Vision",
+    title: "What we want children to carry forward",
     description:
-      "Build students with strong academic habits, clear communication, responsible conduct, and readiness for higher studies and life beyond school.",
+      "Children should leave school with strong learning habits, respectful conduct, and the confidence to take on the next stage of life.",
     points: [
-      "Strong foundational learning",
-      "Confident communication and participation",
-      "Discipline, responsibility, and values-led conduct",
+      "Strong learning habits from the early years onward",
+      "Confidence in communication and participation",
+      "Discipline, responsibility, and values in daily conduct",
     ],
   },
   {
-    title: "Mission",
+    title: "How that shows up every day",
     description:
-      "Run a CBSE school day that combines structured teaching, practical exposure, reading culture, sports, digital learning, and safe campus routines.",
+      "That commitment should be visible in how lessons run, how students participate, and how the school day feels to children and parents.",
     points: [
-      "Smart classroom teaching and regular follow-up",
-      "Lab, library, activity, and sports access",
-      "Parent-facing clarity on routines, safety, and academic support",
+      "Serious classroom teaching with regular follow-up",
+      "Labs, library, sports, arts, and wider participation",
+      "Clear routines and school-day support parents can trust",
     ],
   },
 ] as const;
@@ -237,7 +217,7 @@ const nextSteps = [
 export const metadata: Metadata = {
   title: "About Divine International Academy | Sirsaganj",
   description:
-    "Learn about Divine International Academy, Sirsaganj: school profile, CBSE affiliation, Om Educational Trust, campus systems, and what parents can expect from Pre-Primary to Class XII.",
+    "Learn about Divine International Academy, Sirsaganj: school profile, CBSE affiliation, Om Educational Trust, campus systems, and the full Pre-Primary to Class XII journey.",
   keywords: [
     "About Divine International Academy",
     "CBSE school Sirsaganj",
@@ -258,14 +238,13 @@ export default function AboutPage() {
               About Divine International Academy
             </Badge>
             <h1 className="mt-5 text-4xl font-bold font-heading leading-tight text-primary sm:text-5xl lg:text-[3.35rem]">
-              A CBSE-affiliated co-educational English medium Senior Secondary
-              School in Sirsaganj since 2012
+              A school built with care, discipline, and steady growth
             </h1>
             <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
-              Managed by Om Educational Trust and led by Principal Dr. Garima
-              Gupta, Divine International Academy serves Pre-Primary to Class
-              XII with structured teaching, practical learning, student
-              participation, and campus supervision.
+              Since 2012, DIA has grown under Om Educational Trust into a full
+              Pre-Primary to Class XII school led by Principal Dr. Garima Gupta,
+              with structured teaching, practical learning, confident
+              participation, and visible campus care.
             </p>
           </div>
 
@@ -286,8 +265,8 @@ export default function AboutPage() {
                     School Overview
                   </Badge>
                   <h2 className="mt-4 max-w-2xl text-2xl font-bold font-heading leading-tight text-white sm:text-[2rem] lg:text-[2.45rem]">
-                    Teaching quality, safety, campus systems, and board outcomes
-                    are the first signals parents look for.
+                    A school families can rely on for strong teaching, calm
+                    routines, and steady growth.
                   </h2>
                 </div>
               </div>
@@ -295,10 +274,11 @@ export default function AboutPage() {
               <div className="grid gap-6 p-6 sm:p-8 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start">
                 <div>
                   <p className="max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
-                    DIA serves parents across Sirsaganj and the wider Firozabad
-                    region with CBSE academics, 50+ faculty members, 40 smart
-                    classrooms, practical learning spaces, and a complete school
-                    journey from Pre-Primary to Class XII.
+                    Families across Sirsaganj and the wider Firozabad region
+                    come here for a school day that combines structured
+                    academics, practical learning, student participation, and
+                    visible supervision from the early years to senior
+                    secondary.
                   </p>
 
                   <div className="mt-5 flex flex-wrap gap-2.5">
@@ -349,10 +329,10 @@ export default function AboutPage() {
                     </div>
                     <div>
                       <p className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-500">
-                        School profile
+                        School essentials
                       </p>
                       <p className="text-lg font-semibold text-slate-950">
-                        Core facts parents check first
+                        The foundation you can rely on
                       </p>
                     </div>
                   </div>
@@ -376,30 +356,83 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-1">
-              {schoolStats.map((stat) => {
-                const Icon = stat.icon;
+            <div className="space-y-4">
+              <Card className="rounded-[28px] border border-slate-200 shadow-[0_20px_60px_-48px_rgba(15,23,42,0.18)]">
+                <CardContent className="p-6 sm:p-7">
+                  <Badge className="border border-primary/10 bg-primary/5 px-3.5 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary hover:bg-primary/5">
+                    From the Principal
+                  </Badge>
 
-                return (
-                  <div
-                    key={stat.label}
-                    className="rounded-[26px] border border-slate-200 bg-white px-5 py-5 shadow-[0_20px_60px_-48px_rgba(15,23,42,0.18)]"
-                  >
-                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/6 text-primary shadow-sm">
-                      <Icon className="h-5 w-5" />
+                  <div className="mt-5 flex items-start gap-4">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/6 text-primary shadow-sm">
+                      <Quote className="h-5 w-5" />
                     </div>
-                    <div className="mt-4 text-3xl font-bold font-heading text-primary">
-                      {stat.value}
+                    <div>
+                      <p className="text-lg font-semibold leading-8 text-slate-950 sm:text-xl">
+                        "{principalQuote.quote}"
+                      </p>
+                      <div className="mt-4">
+                        <p className="text-sm font-semibold text-slate-950">
+                          {principalQuote.name}
+                        </p>
+                        <p className="mt-1 text-sm text-slate-600">
+                          {principalQuote.role}
+                        </p>
+                      </div>
                     </div>
-                    <div className="mt-2 text-sm font-semibold uppercase tracking-[0.16em] text-slate-500">
-                      {stat.label}
-                    </div>
-                    <p className="mt-2 text-sm leading-6 text-slate-600">
-                      {stat.detail}
-                    </p>
                   </div>
-                );
-              })}
+
+                  <div className="mt-6">
+                    <Button
+                      asChild
+                      variant="outline"
+                      className="border-primary/20 text-primary hover:bg-primary hover:text-white"
+                    >
+                      <Link href="/about/principal">
+                        Read Principal&apos;s Message
+                      </Link>
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="rounded-[28px] border border-slate-200 shadow-[0_20px_60px_-48px_rgba(15,23,42,0.16)]">
+                <CardContent className="p-6 sm:p-7">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+                    Steady Growth Since 2012
+                  </p>
+                  <h3 className="mt-3 text-2xl font-bold font-heading leading-tight text-slate-950">
+                    This school has grown step by step, not through sudden
+                    claims.
+                  </h3>
+                  <p className="mt-3 text-sm leading-7 text-slate-600 sm:text-base">
+                    Founded under Om Educational Trust, strengthened through
+                    CBSE affiliation, expanded to senior secondary, and still
+                    improving the learning experience year by year.
+                  </p>
+
+                  <div className="mt-5 space-y-3">
+                    {milestones.slice(0, 3).map((milestone) => (
+                      <div
+                        key={`preview-${milestone.year}`}
+                        className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5"
+                      >
+                        <div className="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+                          {milestone.year}
+                        </div>
+                        <div>
+                          <p className="text-sm font-semibold text-slate-950">
+                            {milestone.title}
+                          </p>
+                          <p className="mt-1 text-sm leading-6 text-slate-600">
+                            {milestone.detail}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </div>
@@ -409,15 +442,15 @@ export default function AboutPage() {
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-3xl text-center">
             <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
-              How the School Works
+              A Day in the Life at DIA
             </Badge>
             <h2 className="mt-5 text-3xl font-bold font-heading text-primary sm:text-4xl">
-              The school is built around classroom structure, daily routines,
-              and visible support systems
+              What children actually experience through lessons, activities, and
+              daily routines
             </h2>
             <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
-              These systems shape how students learn, move, participate, and
-              stay supported through the full school day.
+              This is where the school starts to feel real: focused classrooms,
+              practical learning, guided participation, and clear supervision.
             </p>
           </div>
 
@@ -464,16 +497,45 @@ export default function AboutPage() {
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-3xl text-center">
             <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
-              Vision, Mission, and Values
+              School Culture
             </Badge>
             <h2 className="mt-5 text-3xl font-bold font-heading text-primary sm:text-4xl">
-              What the school stands for and how those values show up on campus
+              The culture behind the classrooms matters just as much as the
+              infrastructure
             </h2>
             <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
-              The school vision and mission connect directly to teaching,
-              supervision, participation, and student support on campus.
+              Parents are not only choosing classrooms and facilities. They are
+              choosing the kind of environment their child will grow in every
+              day.
             </p>
           </div>
+
+          <Card className="mx-auto mt-12 max-w-5xl rounded-[32px] border border-slate-200 shadow-[0_24px_72px_-52px_rgba(15,23,42,0.2)]">
+            <CardContent className="p-6 sm:p-8">
+              <div className="flex items-start gap-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/8 text-primary shadow-sm">
+                  <Quote className="h-5 w-5" />
+                </div>
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+                    A message parents can connect with
+                  </p>
+                  <p className="mt-3 text-lg font-semibold leading-8 text-slate-950 sm:text-xl">
+                    "We want children to grow in learning, character, and
+                    confidence at the same time. That means strong academics,
+                    disciplined habits, and opportunities that help them become
+                    thoughtful young people."
+                  </p>
+                  <p className="mt-4 text-sm font-semibold text-slate-950">
+                    Dr. Garima Gupta
+                  </p>
+                  <p className="mt-1 text-sm text-slate-600">
+                    Principal, Divine International Academy
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
 
           <div className="mt-12 grid gap-6 lg:grid-cols-2">
             {purposeBlocks.map((block) => (
@@ -510,10 +572,11 @@ export default function AboutPage() {
               NEP 2020 direction
             </p>
             <p className="mt-3 max-w-4xl text-sm leading-7 text-slate-700 sm:text-base">
-              The school approach supports the direction of NEP 2020 through
-              stronger foundational learning, experiential exposure, digital
-              readiness, reading habits, communication, sports, arts, and wider
-              student participation beyond rote academics alone.
+              At DIA, that direction shows up through stronger foundational
+              learning, regular reading habits, practical lab exposure,
+              technology-supported classrooms, communication practice, sports,
+              arts, and wider student participation instead of marks-only
+              schooling.
             </p>
           </div>
 
@@ -548,36 +611,69 @@ export default function AboutPage() {
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-3xl text-center">
             <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
-              Milestones and Achievements
+              A School That Has Grown With Care
             </Badge>
             <h2 className="mt-5 text-3xl font-bold font-heading text-primary sm:text-4xl">
-              Key steps in the school journey from foundation to campus growth
+              The timeline that shows DIA is building for the long term
             </h2>
             <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
-              This timeline gives parents a clearer picture of when the school
-              expanded, strengthened academics, and upgraded learning systems.
+              Parents trust steady growth more than sudden promises. This
+              journey shows how the school has expanded, strengthened, and
+              invested over time.
             </p>
           </div>
 
-          <div className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-            {milestones.map((milestone) => (
-              <Card
-                key={`${milestone.year}-${milestone.title}`}
-                className="rounded-[28px] border border-slate-200 shadow-[0_20px_60px_-48px_rgba(15,23,42,0.14)]"
-              >
-                <CardContent className="p-6">
-                  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
-                    {milestone.year}
-                  </p>
-                  <h3 className="mt-3 text-xl font-bold text-slate-950">
-                    {milestone.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-7 text-slate-600 sm:text-base">
-                    {milestone.detail}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
+          <div className="mt-12 grid gap-8 lg:grid-cols-[320px_minmax(0,1fr)] lg:items-start">
+            <Card className="rounded-[30px] border border-slate-200 shadow-[0_20px_60px_-48px_rgba(15,23,42,0.16)]">
+              <CardContent className="p-6 sm:p-7">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+                  Why this matters to parents
+                </p>
+                <h3 className="mt-3 text-2xl font-bold font-heading leading-tight text-slate-950">
+                  A school with depth usually shows it through time, not noise.
+                </h3>
+                <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-base">
+                  Founded in 2012, strengthened through CBSE affiliation,
+                  expanded to senior secondary, and later upgraded for digital
+                  learning, DIA shows the kind of steady progress parents look
+                  for when judging whether a school is serious for the long run.
+                </p>
+              </CardContent>
+            </Card>
+
+            <div className="relative pl-8 sm:pl-10">
+              <div className="absolute left-3 top-0 h-full w-px bg-slate-200 sm:left-4" />
+
+              <div className="space-y-5">
+                {milestones.map((milestone, index) => (
+                  <div
+                    key={`${milestone.year}-${milestone.title}`}
+                    className="relative"
+                  >
+                    <div className="absolute left-[-1.6rem] top-5 h-4 w-4 rounded-full bg-primary ring-8 ring-primary/5 sm:left-[-2rem]" />
+
+                    <Card className="rounded-[28px] border border-slate-200 shadow-[0_20px_60px_-48px_rgba(15,23,42,0.14)]">
+                      <CardContent className="p-6 sm:p-7">
+                        <div className="flex flex-wrap items-center justify-between gap-3">
+                          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+                            Milestone {String(index + 1).padStart(2, "0")}
+                          </p>
+                          <div className="rounded-full border border-primary/10 bg-primary/5 px-3 py-1 text-xs font-semibold text-primary">
+                            {milestone.year}
+                          </div>
+                        </div>
+                        <h3 className="mt-4 text-xl font-bold text-slate-950">
+                          {milestone.title}
+                        </h3>
+                        <p className="mt-3 text-sm leading-7 text-slate-600 sm:text-base">
+                          {milestone.detail}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>

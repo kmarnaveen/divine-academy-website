@@ -74,7 +74,7 @@ const contactRoutes = [
     points: [
       "General school information and office support",
       "Office timings and visit coordination",
-      "Parent guidance before reaching campus",
+      "Guidance before reaching campus",
     ],
     primaryAction: {
       label: "Call school office",
@@ -146,7 +146,7 @@ export default function ContactPage() {
               Call the admissions desk, school office, or confirm a campus visit
             </h1>
             <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
-              Parents can use this page for admission questions, office timings,
+              Use these school contacts for admission questions, office timings,
               fee and document guidance, and campus directions.
             </p>
           </div>
@@ -157,14 +157,15 @@ export default function ContactPage() {
                 Verified School Contacts
               </Badge>
               <h2 className="mt-5 text-2xl font-bold font-heading leading-tight text-slate-950 sm:text-[2rem] lg:text-[2.35rem]">
-                Start with the right contact route.
+                Direct school contacts for admissions, office support, and
+                visits
               </h2>
               <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
                 Admissions questions, school-office support, and campus visits
-                move faster when parents contact the right desk first.
+                are handled more smoothly when they reach the right desk first.
               </p>
 
-              <div className="mt-6 grid gap-3 sm:grid-cols-3">
+              <div className="mt-6 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
                 <div className="rounded-[24px] border border-slate-200 bg-slate-50 px-4 py-4">
                   <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
                     Admissions queries
@@ -340,11 +341,11 @@ export default function ContactPage() {
               Before You Call or Visit
             </Badge>
             <h2 className="mt-5 text-3xl font-bold font-heading text-primary sm:text-4xl">
-              Keep these details ready before you call or visit
+              Useful details for quicker school guidance
             </h2>
             <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
-              A few details at the start save time for both parents and the
-              school office.
+              A few details at the start make school guidance quicker and more
+              accurate.
             </p>
           </div>
 
@@ -388,7 +389,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-slate-950">
-                      Check office timings before you travel
+                      Office timings and visit reminders
                     </h3>
                     <p className="mt-1 text-sm text-slate-600">
                       Useful reminders before visiting the campus.
@@ -428,7 +429,7 @@ export default function ContactPage() {
               Campus Directions
             </Badge>
             <h2 className="mt-5 text-3xl font-bold font-heading text-primary sm:text-4xl">
-              Find the school before you leave for campus
+              School location and map directions
             </h2>
             <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
               Keep the address, office timings, and direct map link ready before
@@ -465,7 +466,7 @@ export default function ContactPage() {
                 </div>
                 <div className="rounded-2xl border border-slate-200 bg-white px-4 py-3.5">
                   <p className="font-semibold text-slate-950">
-                    Before you come
+                    Visit coordination
                   </p>
                   <p className="mt-2 leading-6">
                     Call first if you want admissions guidance, document review,

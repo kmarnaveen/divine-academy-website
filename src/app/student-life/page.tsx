@@ -59,7 +59,7 @@ const lifeAreas = [
   {
     title: "School memories and visibility",
     description:
-      "The gallery and event coverage help parents understand how students participate in school life beyond classroom lessons.",
+      "The gallery and event coverage help families see how students participate in school life beyond classroom lessons.",
     points: [
       "Academic and event highlights",
       "Sports and activity moments",
@@ -105,7 +105,7 @@ const stageExperience = [
 const parentNotes = [
   "Participation is guided by age, class stage, and school schedule rather than random activity selection.",
   "Events and activities are meant to support confidence and discipline, not distract from academics.",
-  "Parents usually understand school culture faster when they review clubs, event types, and gallery highlights together.",
+  "School culture becomes clearer when you review clubs, event types, and gallery highlights together.",
 ] as const;
 
 const studentLifeRoutes = [
@@ -159,7 +159,7 @@ export default function StudentLifePage() {
               Student Life
             </Badge>
             <h1 className="mt-5 text-4xl font-bold font-heading leading-tight text-primary sm:text-5xl lg:text-[3.35rem]">
-              Student life is where school culture becomes visible beyond the
+              Clubs, events, sports, and student participation beyond the
               classroom
             </h1>
             <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
@@ -187,17 +187,17 @@ export default function StudentLifePage() {
                     School Culture
                   </Badge>
                   <h2 className="mt-4 max-w-2xl text-2xl font-bold font-heading leading-tight text-white sm:text-[2rem] lg:text-[2.45rem]">
-                    Parents often understand a school better when they see how
-                    students participate outside lessons.
+                    School culture grows through participation outside regular
+                    lessons.
                   </h2>
                 </div>
               </div>
 
               <div className="p-6 sm:p-8 lg:p-10">
                 <p className="max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
-                  This section helps parents understand how the school supports
-                  student participation through activities, events, sports, and
-                  school memories across the academic year.
+                  Student participation at Divine takes shape through
+                  activities, events, sports, and school memories across the
+                  academic year.
                 </p>
 
                 <div className="mt-5 flex flex-wrap gap-2.5">
@@ -213,10 +213,9 @@ export default function StudentLifePage() {
 
                 <div className="mt-6 rounded-[24px] border border-slate-200 bg-slate-50 px-5 py-5">
                   <p className="text-sm leading-7 text-slate-700 sm:text-base">
-                    Good student-life content should answer clear parent
-                    questions: What activities happen during the year, how
-                    students participate, how it supports growth, and where
-                    parents can see evidence of that participation.
+                    Student life at Divine includes the activities, events,
+                    sports, and school experiences that help confidence and
+                    belonging grow over time.
                   </p>
                 </div>
 
@@ -341,10 +340,10 @@ export default function StudentLifePage() {
             <Card className="rounded-[28px] border-slate-200/80 bg-white shadow-[0_20px_60px_-46px_rgba(15,23,42,0.22)]">
               <CardContent className="p-6 sm:p-7">
                 <Badge className="border border-primary/10 bg-primary/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary hover:bg-primary/5">
-                  Parent Notes
+                  Participation Culture
                 </Badge>
                 <h3 className="mt-5 text-2xl font-bold font-heading text-slate-950">
-                  What parents should understand about student participation
+                  How participation grows across the school
                 </h3>
 
                 <ul className="mt-6 space-y-4">
@@ -370,7 +369,7 @@ export default function StudentLifePage() {
               Explore This Section
             </Badge>
             <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
-              Move deeper into clubs, events, or the school gallery
+              Continue to clubs, events, or the school gallery
             </h2>
           </div>
 

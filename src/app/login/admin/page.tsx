@@ -129,17 +129,6 @@ export default function AdminLoginPage() {
                   </ul>
                 </div>
 
-                <div className="mt-6 rounded-[28px] border border-white/10 bg-white/5 p-5 backdrop-blur-sm sm:p-6">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/60">
-                    Dummy credentials for now
-                  </p>
-                  <p className="mt-4 text-sm leading-6 text-white/78">
-                    Email: {dummyCredentials.admin.email}
-                  </p>
-                  <p className="mt-1 text-sm leading-6 text-white/78">
-                    Password: {dummyCredentials.admin.password}
-                  </p>
-                </div>
               </div>
             </div>
 

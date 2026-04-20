@@ -125,7 +125,7 @@ const parentPriorityBlocks = [
   {
     title: "School transport",
     description:
-      "The school transport system supports safer daily travel for students coming from different routes. Parents can confirm route availability, travel timing, and transport charges with the school.",
+      "The school transport system supports safer daily travel for students coming from different routes, with route availability, travel timing, and transport charges confirmed through the school.",
     points: [
       "GPS-tracked buses",
       "CCTV-supported transport monitoring",
@@ -263,7 +263,7 @@ export default function FacilitiesPage() {
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.08)_0%,rgba(15,23,42,0.18)_38%,rgba(15,23,42,0.68)_100%)]" />
                 <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6 lg:p-8">
                   <Badge className="border border-white/15 bg-white/12 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-white/12">
-                    Campus Overview
+                    Campus Snapshot
                   </Badge>
                   <h2 className="mt-4 max-w-2xl text-2xl font-bold font-heading leading-tight text-white sm:text-[2rem] lg:text-[2.45rem]">
                     From classrooms to commute, each facility is planned to
@@ -410,8 +410,8 @@ export default function FacilitiesPage() {
               Transport, supervision, and daily school routine
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-base">
-              Along with academics, parents usually review commute support,
-              campus safety, and how facilities are used through the school day.
+              Along with academics, commute support, campus safety, and daily
+              facility use shape the school routine.
             </p>
           </div>
 
@@ -506,14 +506,14 @@ export default function FacilitiesPage() {
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-3xl text-center">
             <Badge className="border border-primary/10 bg-white px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-white">
-              Campus Visit Checklist
+              Visit Guide
             </Badge>
             <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
-              What to review during a campus visit
+              What becomes clear during a campus visit
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-base">
-              A campus visit helps parents understand how these spaces are used
-              during the school week.
+              A campus visit shows how these spaces are used through the school
+              week.
             </p>
           </div>
 
@@ -557,9 +557,9 @@ export default function FacilitiesPage() {
                   and transport support
                 </h2>
                 <p className="mt-4 text-sm leading-7 text-white/85 sm:text-base">
-                  Parents can visit the campus, discuss route availability,
-                  review facilities in person, and understand admission details
-                  with the school office.
+                  Visit the campus, discuss route availability, review
+                  facilities in person, and understand admission details with
+                  the school office.
                 </p>
               </div>
 

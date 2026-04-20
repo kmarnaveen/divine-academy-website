@@ -74,7 +74,7 @@ const eventFlow = [
   {
     title: "Advance planning and notices",
     description:
-      "Well-run school events start with clear planning, class-wise preparation, and timely communication to students and parents where needed.",
+      "Well-run school events start with clear planning, class-wise preparation, and timely communication to students and families where needed.",
   },
   {
     title: "Practice and teacher guidance",
@@ -95,8 +95,8 @@ const eventFlow = [
 
 const parentNotes = [
   "Participation varies by class, interest, and event format. Not every student joins every activity in the same way.",
-  "When uniforms, costumes, practice timings, or event-specific instructions matter, parents should receive clear school communication in advance.",
-  "A good events page should help parents understand the types of events students experience during the school year, not just list old dates.",
+  "Uniforms, costumes, practice timings, and event-specific instructions are shared clearly in advance when they matter.",
+  "The most useful event pages show the kinds of experiences students have during the year, not just old dates on a list.",
 ] as const;
 
 const nextSteps = [
@@ -147,8 +147,8 @@ export default function StudentLifeEventsPage() {
               School Events
             </Badge>
             <h1 className="mt-5 text-4xl font-bold font-heading leading-tight text-primary sm:text-5xl lg:text-[3.35rem]">
-              School events matter when they help students participate with
-              confidence and discipline
+              Assemblies, showcases, sports, and stage programmes across the
+              school year
             </h1>
             <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
               At Divine International Academy, events are part of school
@@ -175,17 +175,16 @@ export default function StudentLifeEventsPage() {
                     Participation Calendar
                   </Badge>
                   <h2 className="mt-4 max-w-2xl text-2xl font-bold font-heading leading-tight text-white sm:text-[2rem] lg:text-[2.45rem]">
-                    Parents usually want to know what kinds of events students
-                    actually take part in, not just outdated event dates.
+                    School events are strongest when students take part with
+                    confidence, rehearsal, and guidance.
                   </h2>
                 </div>
               </div>
 
               <div className="p-6 sm:p-8 lg:p-10">
                 <p className="max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
-                  This page explains the types of school events students
-                  experience and how those events support confidence, teamwork,
-                  academic presentation, and school culture.
+                  School events at Divine support confidence, teamwork, academic
+                  presentation, and school culture through the year.
                 </p>
 
                 <div className="mt-5 flex flex-wrap gap-2.5">
@@ -201,9 +200,9 @@ export default function StudentLifeEventsPage() {
 
                 <div className="mt-6 rounded-[24px] border border-slate-200 bg-slate-50 px-5 py-5">
                   <p className="text-sm leading-7 text-slate-700 sm:text-base">
-                    Events work best when they are planned, supervised, and
-                    clearly connected to student growth rather than treated as
-                    scattered activities without structure.
+                    Events at Divine are planned, supervised, and connected to
+                    student growth through participation, rehearsal, and school
+                    presentation.
                   </p>
                 </div>
 
@@ -240,8 +239,8 @@ export default function StudentLifeEventsPage() {
               Event Types
             </Badge>
             <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
-              School events usually support academics, sports, culture, and
-              values-based participation
+              Events across academics, sports, culture, and values-based
+              participation
             </h2>
           </div>
 
@@ -317,10 +316,10 @@ export default function StudentLifeEventsPage() {
             <Card className="rounded-[28px] border-slate-200/80 bg-white shadow-[0_20px_60px_-46px_rgba(15,23,42,0.22)]">
               <CardContent className="p-6 sm:p-7">
                 <Badge className="border border-primary/10 bg-primary/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary hover:bg-primary/5">
-                  Parent Notes
+                  Event Culture
                 </Badge>
                 <h3 className="mt-5 text-2xl font-bold font-heading text-slate-950">
-                  What parents should know about school events
+                  How school events take shape in practice
                 </h3>
 
                 <ul className="mt-6 space-y-4">
@@ -338,9 +337,8 @@ export default function StudentLifeEventsPage() {
                   <div className="flex items-start gap-3">
                     <Shield className="mt-0.5 h-5 w-5 shrink-0 text-amber-700" />
                     <p className="text-sm leading-6 text-amber-900">
-                      A strong events page should reduce confusion by showing
-                      how participation works, not by publishing stale calendars
-                      that parents cannot rely on.
+                      Clear event information keeps families aligned with the
+                      current school year and the right preparation.
                     </p>
                   </div>
                 </div>
@@ -354,7 +352,7 @@ export default function StudentLifeEventsPage() {
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-3xl text-center">
             <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
-              Next Step
+              Continue
             </Badge>
             <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
               Continue to clubs, gallery, or the broader student-life section

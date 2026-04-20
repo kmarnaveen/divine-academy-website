@@ -227,7 +227,7 @@ const academicSupport = [
       "Daily classwork and notebook checking",
       "Unit tests and term-end assessments",
       "Projects, oral work, and practical review where relevant",
-      "Parent updates through school follow-up",
+      "Regular updates shared through school follow-up",
     ],
   },
   {

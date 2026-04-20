@@ -61,12 +61,12 @@ const stepLabels = [
     description: "Basic admission and school-entry information",
   },
   {
-    title: "Parent contact",
+    title: "Family contact",
     description: "Primary family and communication details",
   },
   {
     title: "Review and confirm",
-    description: "Check the draft before the next admissions step",
+    description: "Review the draft and keep it ready for admissions review",
   },
 ] as const;
 
@@ -195,7 +195,7 @@ function getStepErrors(
 
   if (stepIndex === 2 && !formData.consent) {
     errors.consent =
-      "Please confirm that the details are correct for the next admissions step.";
+      "Please confirm that the details are correct for the admissions review.";
   }
 
   return errors;
@@ -379,7 +379,7 @@ export default function ApplyPageClient() {
               Start your admission application draft for Nursery to Class XII
             </h1>
             <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
-              Fill in the student and parent details once, review the draft, and
+              Fill in the student and family details once, review the draft, and
               keep everything ready for the next admissions interaction.
             </p>
           </div>
@@ -400,7 +400,7 @@ export default function ApplyPageClient() {
                       Complete the form in 3 clear steps
                     </h2>
                   </div>
-                  <div className="rounded-[20px] border border-primary/10 bg-primary/5 px-4 py-3 text-sm leading-6 text-primary">
+                  <div className="min-w-0 rounded-[20px] border border-primary/10 bg-primary/5 px-4 py-3 text-sm leading-6 text-primary break-words sm:max-w-xs">
                     {draftStatus}
                   </div>
                 </div>
@@ -818,12 +818,12 @@ export default function ApplyPageClient() {
                           <Card className="rounded-[24px] border-slate-200/80 bg-slate-50 shadow-none">
                             <CardContent className="p-5">
                               <h3 className="text-lg font-bold font-heading text-slate-950">
-                                Parent summary
+                                Family summary
                               </h3>
                               <div className="mt-4 space-y-3 text-sm leading-6 text-slate-700">
                                 <p>
                                   <span className="font-semibold text-slate-950">
-                                    Parent or guardian:
+                                    Family or guardian:
                                   </span>{" "}
                                   {formData.parentName || "Not shared yet"}
                                 </p>
@@ -913,7 +913,7 @@ export default function ApplyPageClient() {
                             />
                             <span>
                               I confirm that the details shared here are correct
-                              for the next admissions step.
+                              for the admissions review.
                             </span>
                           </label>
 
@@ -987,7 +987,7 @@ export default function ApplyPageClient() {
                       <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
                         Application reference
                       </p>
-                      <p className="mt-2 text-2xl font-bold text-primary">
+                      <p className="mt-2 break-all text-2xl font-bold text-primary">
                         {applicationReference}
                       </p>
                     </div>
@@ -1049,19 +1049,19 @@ export default function ApplyPageClient() {
                             <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-primary/10 text-primary">
                               <Icon className="h-5 w-5" />
                             </div>
-                            <div>
+                            <div className="min-w-0">
                               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
                                 {item.label}
                               </p>
                               {"href" in item ? (
                                 <Link
                                   href={item.href}
-                                  className="mt-1 block text-sm font-semibold text-primary hover:underline"
+                                  className="mt-1 block break-words text-sm font-semibold text-primary hover:underline"
                                 >
                                   {item.value}
                                 </Link>
                               ) : (
-                                <p className="mt-1 text-sm font-semibold text-slate-900">
+                                <p className="mt-1 break-words text-sm font-semibold text-slate-900">
                                   {item.value}
                                 </p>
                               )}
@@ -1080,10 +1080,10 @@ export default function ApplyPageClient() {
               <Card className="rounded-[28px] border-slate-200/80 bg-slate-50 shadow-none">
                 <CardContent className="p-6 sm:p-7">
                   <Badge className="border border-primary/10 bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary hover:bg-white">
-                    Before You Finish
+                    Document Checklist
                   </Badge>
                   <h3 className="mt-5 text-2xl font-bold font-heading text-slate-950">
-                    Keep these documents ready for the next admissions step
+                    Keep these documents ready for admissions review
                   </h3>
 
                   <ul className="mt-6 space-y-3">
@@ -1102,7 +1102,7 @@ export default function ApplyPageClient() {
                       <Shield className="mt-0.5 h-5 w-5 shrink-0 text-amber-700" />
                       <p className="text-sm leading-6 text-amber-900">
                         Filling this form does not by itself confirm admission.
-                        The school reviews documents and confirms the next step
+                        The school reviews documents and shares the next update
                         according to class-wise seat availability.
                       </p>
                     </div>

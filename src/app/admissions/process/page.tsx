@@ -68,9 +68,9 @@ const processSteps = [
     step: "02",
     title: "Visit campus and review essentials",
     description:
-      "Review classrooms, safety systems, fees, transport support, and the document checklist before you move to the next step.",
+      "Review classrooms, safety systems, fees, transport support, and the document list during the campus visit.",
     points: [
-      "Campus visit and parent interaction",
+      "Campus visit and school interaction",
       "Fee and transport clarification",
       "Document and process explanation",
     ],
@@ -78,9 +78,9 @@ const processSteps = [
   },
   {
     step: "03",
-    title: "Submit documents and confirm the next step",
+    title: "Submit documents and wait for confirmation",
     description:
-      "The admissions office reviews documents and confirms seat status or the next action according to class-wise availability.",
+      "The admissions office reviews documents and confirms seat status according to class-wise availability.",
     points: [
       "Birth certificate and school records review",
       "Photographs and address proof check",
@@ -126,21 +126,21 @@ const ageGuidance = [
 
 const processNotes = [
   {
-    title: "Start early when possible",
+    title: "Early guidance helps",
     description:
-      "Parents usually get better clarity on class entry, documents, and transport support when they begin the process before the last-minute rush.",
+      "Class entry, documents, and transport support stay easier to discuss when the process begins before the last-minute rush.",
     icon: Clock,
   },
   {
     title: "Seat confirmation depends on availability",
     description:
-      "An enquiry or campus visit does not automatically confirm admission. The school reviews documents and confirms the next step according to class-wise seat position.",
+      "An enquiry or campus visit does not automatically confirm admission. Seat status is shared after document review and class-wise availability.",
     icon: Shield,
   },
   {
     title: "Fees and transport are reviewed separately",
     description:
-      "Parents can discuss annual fees, admission charges, and route-based transport charges during the process before making a final decision.",
+      "Annual fees, admission charges, and route-based transport charges are discussed separately during the process.",
     icon: GraduationCap,
   },
   {
@@ -176,9 +176,9 @@ const officeSupport = [
 
 const parentQuestions = [
   {
-    question: "Do parents need to carry all documents on the first visit?",
+    question: "Do you need to carry all documents on the first visit?",
     answer:
-      "Not always. It is still useful to keep the main documents ready so the admissions office can guide you properly during the process.",
+      "Not always. It still helps to keep the main documents ready so the admissions office can guide the process properly.",
   },
   {
     question: "Is admission confirmed immediately after enquiry?",
@@ -186,9 +186,9 @@ const parentQuestions = [
       "No. Seat confirmation depends on class-wise availability, document review, and the school’s admissions decision for that stage.",
   },
   {
-    question: "Can parents discuss fees and transport during the same visit?",
+    question: "Can fees and transport be discussed during the same visit?",
     answer:
-      "Yes. Parents can review fee bands, transport support, and route guidance during the campus visit or admissions interaction.",
+      "Yes. Fee bands, transport support, and route guidance can all be reviewed during the campus visit or admissions interaction.",
   },
 ] as const;
 
@@ -219,9 +219,9 @@ export default function AdmissionProcessPage() {
               A clear 3-step admission process for Nursery to Class XII
             </h1>
             <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
-              Start with the enquiry, visit the campus, keep documents ready,
-              and confirm the next step with the admissions office according to
-              class-wise availability.
+              The admissions process moves from enquiry to campus visit,
+              document review, and the next step shared by the admissions office
+              according to class-wise availability.
             </p>
           </div>
 
@@ -250,9 +250,9 @@ export default function AdmissionProcessPage() {
 
               <div className="p-6 sm:p-8 lg:p-10">
                 <p className="max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
-                  The admissions process is easier when parents start with the
-                  right basics: class entry, age guidance, document readiness,
-                  campus review, and direct contact with the school office.
+                  The admissions process stays clearer when class entry, age
+                  guidance, document readiness, campus review, and school
+                  contact are all handled together.
                 </p>
 
                 <div className="mt-5 flex flex-wrap gap-2.5">
@@ -461,19 +461,29 @@ export default function AdmissionProcessPage() {
               </p>
 
               <div className="mt-6 overflow-hidden rounded-[28px] border border-slate-200/80 bg-white shadow-[0_20px_60px_-46px_rgba(15,23,42,0.2)]">
-                <div className="grid grid-cols-2 border-b border-slate-200 bg-slate-50 px-5 py-4 text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+                <div className="hidden grid-cols-2 border-b border-slate-200 bg-slate-50 px-5 py-4 text-xs font-semibold uppercase tracking-[0.16em] text-slate-500 sm:grid">
                   <div>Stage</div>
                   <div>Age guidance</div>
                 </div>
                 {ageGuidance.map((item) => (
                   <div
                     key={item.stage}
-                    className="grid grid-cols-2 border-b border-slate-200/70 px-5 py-4 last:border-b-0"
+                    className="grid gap-3 border-b border-slate-200/70 px-5 py-4 last:border-b-0 sm:grid-cols-2 sm:gap-4"
                   >
-                    <div className="text-sm font-semibold text-slate-900">
-                      {item.stage}
+                    <div>
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500 sm:hidden">
+                        Stage
+                      </p>
+                      <div className="text-sm font-semibold text-slate-900">
+                        {item.stage}
+                      </div>
                     </div>
-                    <div className="text-sm text-slate-700">{item.age}</div>
+                    <div>
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500 sm:hidden">
+                        Age guidance
+                      </p>
+                      <div className="text-sm text-slate-700">{item.age}</div>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -484,7 +494,7 @@ export default function AdmissionProcessPage() {
                 Important Notes
               </Badge>
               <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl">
-                What parents should keep in mind during the process
+                What helps the process stay smooth
               </h2>
 
               <div className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -520,7 +530,7 @@ export default function AdmissionProcessPage() {
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-3xl text-center">
             <Badge className="border border-primary/10 bg-white px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-white">
-              Parent Questions
+              Common Questions
             </Badge>
             <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
               Common admissions-process questions
@@ -566,8 +576,8 @@ export default function AdmissionProcessPage() {
                   Need help with class entry, documents, or seat availability?
                 </h2>
                 <p className="mt-4 text-sm leading-7 text-white/85 sm:text-base">
-                  Contact the admissions desk to review the next step, confirm
-                  what to bring, and plan a campus visit before you proceed.
+                  Contact the admissions desk for the next step, what to bring,
+                  and campus-visit planning.
                 </p>
               </div>
 

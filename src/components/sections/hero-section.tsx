@@ -20,7 +20,9 @@ import {
   Shield,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import { BoardResultsCarouselSection } from "@/components/sections/board-results-carousel-section";
 import { DivineAcademyVideoDialog } from "@/components/sections/divine-video-dialog";
+import { ValueFrameworkHomeSection } from "@/components/sections/value-framework-section";
 import { cn } from "@/lib/utils";
 
 const admissionCycle = "2026-27";
@@ -533,14 +535,22 @@ export function HeroSection() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.7 }}
               >
+                Divine International Academy
+              </motion.h1>
+
+              <motion.p
+                className="text-xl font-bold font-heading leading-tight tracking-[-0.02em] text-black sm:text-2xl md:text-3xl"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.36, duration: 0.7 }}
+              >
                 <span className="block sm:inline">
                   Where academic depth meets
                 </span>
                 <span className="text-primary block w-fit rounded-[18px] border border-primary/10 bg-primary/[0.05] px-2.5 py-1 shadow-none sm:inline-block sm:px-4 sm:py-1.5">
                   character and confidence
                 </span>
-              </motion.h1>
-
+              </motion.p>
               <motion.p
                 className="max-w-2xl text-base font-medium leading-[1.7] text-gray-700 sm:text-lg md:text-xl"
                 initial={{ opacity: 0, y: 20 }}
@@ -562,19 +572,36 @@ export function HeroSection() {
             transition={{ delay: 0.4, duration: 0.8 }}
           >
             <div className="relative overflow-hidden rounded-[30px] border border-slate-200/80 bg-white/92 p-2.5 shadow-[0_24px_72px_-56px_rgba(15,23,42,0.14)] backdrop-blur-sm sm:p-3">
-              {/* Divine Academy Interactive Video */}
-              <DivineAcademyVideoDialog />
+              <div className="relative">
+                {/* Divine Academy Interactive Video */}
+                <DivineAcademyVideoDialog />
 
-              {/* Floating Cards - Hidden on very small screens, responsive sizing */}
-              <div className="absolute -right-2 -top-2 hidden rounded-[18px] border border-slate-200/80 bg-white/94 p-2 text-primary shadow-[0_16px_44px_-32px_rgba(15,23,42,0.12)] xs:block sm:-right-4 sm:-top-4 sm:p-4">
-                <div className="font-bold text-sm sm:text-lg">2131764</div>
-                <div className="text-xs sm:text-sm">CBSE Code</div>
-              </div>
+                <div className="pointer-events-none absolute inset-0 z-10 flex flex-col justify-between p-3 sm:p-4 md:p-5">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="rounded-full border border-white/20 bg-white/92 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-primary shadow-[0_16px_40px_-28px_rgba(15,23,42,0.35)] backdrop-blur-sm sm:px-4 sm:py-2 sm:text-xs">
+                      CBSE Affiliated
+                    </div>
 
-              <div className="absolute -bottom-2 -left-2 hidden rounded-[18px] border border-slate-200/80 bg-white/94 p-2 text-primary shadow-[0_16px_44px_-32px_rgba(15,23,42,0.12)] xs:block sm:-bottom-4 sm:-left-4 sm:p-4">
-                <div className="font-bold text-sm sm:text-lg">Est. 2012</div>
-                <div className="text-xs sm:text-sm text-gray-600">
-                  Om Educational Trust
+                    <div className="rounded-[18px] border border-white/20 bg-white/92 px-3 py-2 text-right text-primary shadow-[0_16px_40px_-28px_rgba(15,23,42,0.35)] backdrop-blur-sm sm:px-4 sm:py-3">
+                      <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500 sm:text-[11px]">
+                        CBSE Code
+                      </div>
+                      <div className="mt-1 text-sm font-bold sm:text-lg">
+                        2131764
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-end justify-start">
+                    <div className="rounded-[18px] border border-white/20 bg-white/92 px-3 py-2 text-primary shadow-[0_16px_40px_-28px_rgba(15,23,42,0.35)] backdrop-blur-sm sm:px-4 sm:py-3">
+                      <div className="text-sm font-bold sm:text-lg">
+                        Est. 2012
+                      </div>
+                      <div className="text-[11px] font-medium text-slate-600 sm:text-sm">
+                        Om Educational Trust
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -681,6 +708,8 @@ export function HeroSection() {
             </motion.div>
           </div>
         </div>
+
+        <BoardResultsCarouselSection />
 
         {/* Facilities Section */}
         <motion.div
@@ -862,6 +891,8 @@ export function HeroSection() {
             </div>
           </div>
         </motion.div>
+
+        <ValueFrameworkHomeSection />
 
         {/* Three Pillars Section */}
         <motion.div

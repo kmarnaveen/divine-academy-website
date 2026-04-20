@@ -128,24 +128,24 @@ const stageUse = [
 
 const parentChecks = [
   {
-    title: "Ask how often lab periods are scheduled",
+    title: "Regular lab scheduling",
     description:
       "Regular practical use matters more than the appearance of the room itself.",
   },
   {
-    title: "Check supervision and safety routine",
+    title: "Supervision and safety routine",
     description:
-      "Parents should understand how students are supervised during practical sessions and how the school manages movement and safety in lab areas.",
+      "Students benefit when practical sessions are supervised and movement through lab areas stays orderly and safe.",
   },
   {
-    title: "Review computer-learning frequency",
+    title: "Computer-learning frequency",
     description:
-      "Ask how often students use the computer lab and how digital learning is linked to classroom teaching.",
+      "Computer learning is strongest when lab use stays regular and connected to classroom teaching.",
   },
   {
-    title: "Understand board-year practical support",
+    title: "Board-year practical support",
     description:
-      "For senior classes, ask how practical work, records, and submission follow-up are managed before examinations.",
+      "Senior classes need practical work, records, and submission follow-up to stay aligned before examinations.",
   },
 ] as const;
 
@@ -363,7 +363,7 @@ export default function LabsPage() {
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-3xl text-center">
             <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
-              Parent Checks
+              Visit Guide
             </Badge>
             <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
               What to review during a lab visit
@@ -409,9 +409,8 @@ export default function LabsPage() {
                   Want to review the science and computer labs in person?
                 </h2>
                 <p className="mt-4 text-sm leading-7 text-white/85 sm:text-base">
-                  Parents can contact the school to discuss lab access,
-                  practical learning support, and stage-wise academic use before
-                  admission.
+                  Contact the school to discuss lab access, practical learning
+                  support, and stage-wise academic use before admission.
                 </p>
               </div>
 

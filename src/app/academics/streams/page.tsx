@@ -21,7 +21,7 @@ import { Card, CardContent } from "../../../components/ui/card";
 const streamSignals = [
   "Science, Commerce, and Humanities",
   "Class XI and XII stream guidance",
-  "Parent counselling before confirmation",
+  "Supportive counselling before confirmation",
 ] as const;
 
 const streamProfile = [
@@ -34,7 +34,7 @@ const streamProfile = [
     value: "Class XI after Class X performance, interest, and counselling",
   },
   {
-    label: "What parents should confirm",
+    label: "Current session offering",
     value:
       "Exact subject combinations and seat availability for the current session",
   },
@@ -76,7 +76,7 @@ const streamOptions = [
     fit: [
       "Students who enjoy Physics, Chemistry, Mathematics, Biology, or computing",
       "Learners who can sustain regular numericals, concepts, and practical work",
-      "Parents planning for engineering, medical, technology, or science-based higher studies",
+      "Students aiming for engineering, medical, technology, or science-based higher studies",
     ],
     subjects: [
       "Physics and Chemistry",
@@ -101,7 +101,7 @@ const streamOptions = [
     fit: [
       "Students with interest in business studies, accountancy, and economics",
       "Learners who are comfortable with concepts, calculations, and regular written practice",
-      "Parents planning for management, finance, commerce, banking, or entrepreneurship pathways",
+      "Students aiming for management, finance, commerce, banking, or entrepreneurship pathways",
     ],
     subjects: [
       "Business Studies",
@@ -126,7 +126,7 @@ const streamOptions = [
     fit: [
       "Students who enjoy reading, interpretation, analysis, and written expression",
       "Learners interested in history, political science, psychology, geography, or economics",
-      "Parents considering law, civil services, liberal arts, design, media, or social-science pathways",
+      "Students interested in law, civil services, liberal arts, design, media, or social-science pathways",
     ],
     subjects: [
       "History and Political Science",
@@ -182,7 +182,7 @@ const seniorSupport = [
   {
     title: "Guidance before the next step",
     description:
-      "Parents get support on stream fit, academic expectations, and the next step after school.",
+      "Families get support on stream fit, academic expectations, and the next step after school.",
     points: [
       "Stream counselling before admission confirmation",
       "Discussion around aptitude and goals",
@@ -195,25 +195,25 @@ const seniorSupport = [
 const decisionGuide = [
   {
     step: "01",
-    title: "Check subject strength, not only trend",
+    title: "Subject strength matters most",
     description:
-      "The right stream is not the one that sounds more prestigious. It is the one the student can handle well for two full academic years.",
+      "The strongest stream choice is the one the student can handle well across two full academic years.",
   },
   {
     step: "02",
-    title: "Match interests with higher-study direction",
+    title: "Interest and future direction",
     description:
       "Engineering, medicine, management, law, design, civil services, psychology, or liberal-arts pathways all begin with clearer subject alignment after Class X.",
   },
   {
     step: "03",
-    title: "Discuss workload honestly",
+    title: "Workload pattern",
     description:
-      "Every stream needs discipline, but the learning pattern changes. Parents should consider reading load, practical work, numericals, and written preparation.",
+      "Every stream needs discipline, but the learning pattern changes through reading load, practical work, numericals, and written preparation.",
   },
   {
     step: "04",
-    title: "Confirm the final combination with the school",
+    title: "Final subject combination",
     description:
       "Subject combinations can vary by session, timetable, and class strength. Confirm the exact offering during the admission process.",
   },
@@ -226,21 +226,20 @@ const faqItems = [
       "Start with subject strength, learning comfort, and the kind of higher-study path the student is likely to pursue. The right stream is the one the student can handle consistently for two years, not the one chosen only because it sounds more prestigious.",
   },
   {
-    question:
-      "Should parents wait for board results before speaking to the school?",
+    question: "Should the conversation wait until board results are declared?",
     answer:
-      "Not necessarily. It is better to start the discussion early, once Class X plans are clear. That gives parents time to understand stream fit, likely subject combinations, documents, and the current admission timeline without rushing the decision.",
+      "Not necessarily. It helps to start early, once Class X plans are clear, so stream fit, likely subject combinations, documents, and the admission timeline can be understood without rushing the decision.",
   },
   {
     question:
-      "Does Divine help parents compare stream options before Class XI admission?",
+      "Does Divine help with stream comparison before Class XI admission?",
     answer:
-      "Yes. Parents can speak with the school during the admission process to understand subject expectations, workload pattern, and the stream that is more suitable for the student’s strengths and plans.",
+      "Yes. The school guides families through subject expectations, workload pattern, and the stream that best fits the student&rsquo;s strengths and plans.",
   },
   {
     question: "Will the same subject combinations be available every session?",
     answer:
-      "No school should assume that automatically. Final combinations depend on the academic session, timetable, class strength, and actual enrolment, so parents should confirm the exact subjects and seat availability before completing Class XI admission.",
+      "Final combinations depend on the academic session, timetable, class strength, and actual enrolment, so the exact subjects and seat availability are confirmed before Class XI admission is completed.",
   },
 ] as const;
 
@@ -272,10 +271,9 @@ export default function StreamsPage() {
               after Class X
             </h1>
             <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
-              For parents comparing senior secondary schools in Sirsaganj and
-              nearby Firozabad, this page explains what each stream usually
-              covers, who it suits, and how Divine supports students through
-              Classes XI and XII.
+              The stream overview brings together what each option covers, who
+              it suits, and how Divine supports students through Classes XI and
+              XII.
             </p>
           </div>
 
@@ -296,9 +294,8 @@ export default function StreamsPage() {
                     Class XI and XII
                   </Badge>
                   <h2 className="mt-4 max-w-2xl text-2xl font-bold font-heading leading-tight text-white sm:text-[2rem] lg:text-[2.45rem]">
-                    Parents do not need more jargon. They need a stream choice
-                    that matches aptitude, workload comfort, and the next
-                    academic step.
+                    A good stream choice should match aptitude, workload
+                    comfort, and the next academic step.
                   </h2>
                 </div>
               </div>
@@ -385,7 +382,7 @@ export default function StreamsPage() {
               Available Streams
             </Badge>
             <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
-              Stream information parents can actually use
+              A clearer look at the available streams
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-base">
               The right choice after Class X depends on subject comfort,
@@ -495,8 +492,8 @@ export default function StreamsPage() {
 
           <div className="mx-auto mt-6 max-w-5xl rounded-[28px] border border-amber-200 bg-amber-50 px-5 py-5 text-sm leading-7 text-amber-900 sm:px-6">
             Stream and elective combinations are confirmed by the school for
-            each academic session. Parents should check the final subject
-            offering and seat availability before completing Class XI admission.
+            each academic session. The final subject offering and seat
+            availability are confirmed before Class XI admission is completed.
           </div>
         </div>
       </section>
@@ -561,11 +558,11 @@ export default function StreamsPage() {
               Stream Selection Guide
             </Badge>
             <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
-              Before you finalise a stream
+              Key factors in stream selection
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-base">
-              This is usually the point where parents need clarity, not
-              pressure.
+              The strongest decision comes from subject fit, workload comfort,
+              and a clear academic direction.
             </p>
           </div>
 
@@ -596,10 +593,10 @@ export default function StreamsPage() {
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-3xl text-center">
             <Badge className="border border-primary/10 bg-white px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-white">
-              Parent FAQs
+              Common Questions
             </Badge>
             <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
-              Questions parents usually want answered before stream selection
+              Questions families usually want answered before stream selection
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-base">
               Short answers first. Final combinations, electives, and seats
@@ -647,10 +644,8 @@ export default function StreamsPage() {
                   Need help deciding the right stream after Class X?
                 </h2>
                 <p className="mt-4 text-sm leading-7 text-white/85 sm:text-base">
-                  Parents looking for a CBSE senior secondary school in
-                  Sirsaganj or near Firozabad can contact Divine before
-                  finalising Class XI admission, subject choice, and document
-                  planning.
+                  Contact Divine before finalising Class XI admission, subject
+                  choice, and document planning.
                 </p>
               </div>
 

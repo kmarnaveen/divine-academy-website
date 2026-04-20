@@ -40,9 +40,9 @@ const sportsProfile = [
       "Students benefit from house activities, school events, annual functions, and physical activity beyond the classroom.",
   },
   {
-    label: "Parent focus",
+    label: "Regular access",
     value:
-      "Parents usually review how often students access sports spaces and whether participation is part of the school routine.",
+      "Regular access to sports spaces keeps participation active within the school routine.",
   },
 ] as const;
 
@@ -127,24 +127,24 @@ const sportsUse = [
 
 const parentChecks = [
   {
-    title: "Ask about sports periods and activity schedule",
+    title: "Sports periods and activity schedule",
     description:
-      "Parents should understand how often students use the grounds and whether physical education is part of the weekly routine.",
+      "The grounds matter most when students use them regularly and physical education is part of the weekly routine.",
   },
   {
-    title: "Check supervision during sports time",
+    title: "Supervision during sports time",
     description:
-      "Review how students are supervised during outdoor activities, events, and movement beyond classroom hours.",
+      "Outdoor activities, events, and movement beyond classroom hours rely on clear supervision.",
   },
   {
-    title: "Review participation opportunities",
+    title: "Participation opportunities",
     description:
-      "Ask how students take part in school events, group games, house activities, and annual sports-related programs.",
+      "School events, group games, house activities, and annual sports programmes give students wider participation opportunities.",
   },
   {
-    title: "Understand how sports support development",
+    title: "Sports and student development",
     description:
-      "Sports spaces matter when they help students build discipline, stamina, teamwork, and school confidence over time.",
+      "Sports spaces support discipline, stamina, teamwork, and school confidence over time.",
   },
 ] as const;
 
@@ -363,7 +363,7 @@ export default function SportsPage() {
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-3xl text-center">
             <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
-              Parent Checks
+              Visit Guide
             </Badge>
             <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
               What to review during a sports-facilities visit
@@ -409,9 +409,8 @@ export default function SportsPage() {
                   Want to review the sports and activity spaces in person?
                 </h2>
                 <p className="mt-4 text-sm leading-7 text-white/85 sm:text-base">
-                  Parents can contact the school to understand how sports,
-                  events, and student participation are planned through the
-                  academic year.
+                  Contact the school to understand how sports, events, and
+                  student participation are planned through the academic year.
                 </p>
               </div>
 

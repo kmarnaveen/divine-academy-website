@@ -41,7 +41,7 @@ const visionBlocks = [
     points: [
       "Planned teaching and teacher follow-up across sections",
       "Lab, library, activity, and sports exposure inside the timetable",
-      "Clear parent-facing support on academics, safety, and student growth",
+      "Clear routines and dependable school-day support",
     ],
   },
 ] as const;
@@ -127,7 +127,7 @@ const nextSteps = [
   {
     title: "See school leadership",
     description:
-      "Understand how the principal office, academic coordination, and parent communication work across the school.",
+      "See how the principal office, academic coordination, and school guidance work together across the year.",
     href: "/about/leadership",
     cta: "Go to leadership",
     icon: Users,
@@ -174,14 +174,12 @@ export default function VisionPage() {
               Vision and Mission
             </Badge>
             <h1 className="mt-5 text-4xl font-bold font-heading leading-tight text-primary sm:text-5xl lg:text-[3.35rem]">
-              A school vision that shows up in discipline, teaching, and daily
-              student life
+              Vision and mission lived through the daily school routine
             </h1>
             <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
-              At Divine International Academy, the school vision is not treated
-              as a ceremonial statement. It is visible in classroom structure,
-              supervision, student conduct, practical learning, and how students
-              are prepared for the next stage.
+              At Divine International Academy, the school vision appears in
+              classroom structure, supervision, student conduct, practical
+              learning, and the way children are prepared for the next stage.
             </p>
           </div>
 
@@ -202,8 +200,8 @@ export default function VisionPage() {
                     School Direction
                   </Badge>
                   <h2 className="mt-4 max-w-2xl text-2xl font-bold font-heading leading-tight text-white sm:text-[2rem] lg:text-[2.45rem]">
-                    Parents should be able to see the vision in routines, not
-                    only in slogans.
+                    Strong school values show up in routines, not only in a
+                    written statement.
                   </h2>
                 </div>
               </div>
@@ -275,8 +273,8 @@ export default function VisionPage() {
               What It Means On Campus
             </Badge>
             <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
-              The school vision becomes real through how the campus operates
-              every day
+              How the school&rsquo;s direction becomes part of everyday campus
+              life
             </h2>
           </div>
 
@@ -326,8 +324,7 @@ export default function VisionPage() {
                 Values In Practice
               </Badge>
               <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl">
-                The values page matters only if parents can identify them in
-                daily school life
+                Values only matter when they are visible in real school life
               </h2>
 
               <div className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -355,7 +352,7 @@ export default function VisionPage() {
                   NEP 2020 Direction
                 </Badge>
                 <h3 className="mt-5 text-2xl font-bold font-heading text-slate-950">
-                  The school direction aligns best when teaching moves beyond
+                  The school direction is strongest when learning moves beyond
                   rote-only routines
                 </h3>
 
@@ -382,8 +379,7 @@ export default function VisionPage() {
               Next Step
             </Badge>
             <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
-              Move from school values to leadership, principal guidance, or
-              admissions
+              Continue to leadership, the principal's message, or admissions
             </h2>
           </div>
 

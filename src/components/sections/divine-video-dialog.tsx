@@ -13,10 +13,10 @@ export function DivineAcademyVideoDialog() {
         thumbnailAlt="Divine International Academy featured video"
         title="PRAKRAM Tribute Showcase"
         description="A short look at the discipline, confidence, and stage presence our students bring to school life."
-        duration="2:30"
         videoType="local"
         thumbnailFit="contain"
         previewMode="video"
+        showTrustBadge={false}
       />
     </div>
   );

@@ -129,17 +129,6 @@ export default function StudentLoginPage() {
                   </ul>
                 </div>
 
-                <div className="mt-6 rounded-[28px] border border-amber-200 bg-white/75 p-5 shadow-sm backdrop-blur-sm sm:p-6">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-700">
-                    Dummy credentials for now
-                  </p>
-                  <p className="mt-4 text-sm leading-6 text-slate-700">
-                    Email: {dummyCredentials.student.email}
-                  </p>
-                  <p className="mt-1 text-sm leading-6 text-slate-700">
-                    Password: {dummyCredentials.student.password}
-                  </p>
-                </div>
               </div>
             </div>
 

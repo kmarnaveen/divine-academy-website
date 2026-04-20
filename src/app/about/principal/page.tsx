@@ -18,13 +18,13 @@ import { Card, CardContent } from "@/components/ui/card";
 const principalSignals = [
   "Principal Dr. Garima Gupta",
   "Academic direction from Pre-Primary to Class XII",
-  "Parent trust through clarity and discipline",
+  "Academic leadership grounded in care and discipline",
 ] as const;
 
 const principalMessage = [
   "At Divine International Academy, the expectation is simple: students should learn in a school environment that is disciplined, supportive, and academically serious from the first years onward.",
   "The school aims to combine structured teaching with practical exposure, reading habits, sports, values, and participation so students do not grow through academics alone.",
-  "Parents also expect visibility on safety, communication, classroom routines, and the next academic step. Those expectations matter, and the school leadership is accountable for them.",
+  "Safety, communication, classroom routines, and careful guidance matter just as much as academics, and school leadership remains accountable for them.",
   "The goal is not only strong results at the end of the year, but steady student growth in habits, confidence, communication, and readiness for the future.",
 ] as const;
 
@@ -38,7 +38,7 @@ const principalPriorities = [
   {
     title: "Safe and disciplined campus life",
     description:
-      "Parents should be able to trust the school's supervision, movement control, behaviour standards, and everyday discipline.",
+      "The campus runs on clear supervision, movement control, behaviour standards, and everyday discipline.",
     icon: Shield,
   },
   {
@@ -59,14 +59,14 @@ const officeCommitments = [
   "Academic consistency and visible teacher follow-up",
   "Respectful school conduct and student discipline",
   "Practical learning, activities, and wider participation",
-  "Clear guidance for parents on school expectations and next steps",
+  "Clear guidance for families on school expectations and next steps",
 ] as const;
 
 const nextSteps = [
   {
     title: "See school leadership",
     description:
-      "Review how leadership structure, campus oversight, and parent communication are organised at school level.",
+      "See how leadership, campus oversight, and school guidance come together beyond the principal's desk.",
     href: "/about/leadership",
     cta: "Go to leadership",
   },
@@ -107,16 +107,16 @@ export default function PrincipalMessagePage() {
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-3xl text-center">
             <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
-              From the Principal's Desk
+              From the Principal&rsquo;s Desk
             </Badge>
             <h1 className="mt-5 text-4xl font-bold font-heading leading-tight text-primary sm:text-5xl lg:text-[3.35rem]">
-              A principal's message should tell parents what the school stands
-              for in practice
+              A message rooted in classrooms, discipline, and student growth
             </h1>
             <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
               Principal Dr. Garima Gupta leads Divine International Academy with
               a focus on academic consistency, student discipline, wider
-              participation, and long-term student readiness.
+              participation, and the kind of steady growth that becomes visible
+              over time.
             </p>
           </div>
 
@@ -129,7 +129,7 @@ export default function PrincipalMessagePage() {
                   </div>
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
-                      Principal's Message
+                      Principal&rsquo;s Message
                     </p>
                     <h2 className="mt-2 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl">
                       Dr. Garima Gupta
@@ -171,7 +171,7 @@ export default function PrincipalMessagePage() {
                   Office Priorities
                 </Badge>
                 <h3 className="mt-5 text-2xl font-bold font-heading text-slate-950">
-                  What the principal's office is expected to protect
+                  Daily priorities from the principal&rsquo;s office
                 </h3>
 
                 <ul className="mt-6 space-y-4">
@@ -197,8 +197,8 @@ export default function PrincipalMessagePage() {
               Academic Priorities
             </Badge>
             <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
-              The principal's message is strongest when it clarifies what
-              students and parents will actually experience
+              These priorities become visible in classrooms, routines, and
+              opportunities across the school
             </h2>
           </div>
 
@@ -236,7 +236,7 @@ export default function PrincipalMessagePage() {
               Next Step
             </Badge>
             <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
-              Continue to leadership, school vision, or direct school contact
+              Continue to school leadership, school vision, or direct contact
             </h2>
           </div>
 

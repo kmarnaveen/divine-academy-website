@@ -19,6 +19,7 @@ import {
   Building,
   BookOpen,
   Heart,
+  Trophy,
   User,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -76,6 +77,15 @@ const navigation: NavigationItem[] = [
         icon: <Award className="h-4 w-4" />,
         imageSrc: "/images/submenu/achievements.jpg",
         imageAlt: "Students receiving recognition and awards",
+      },
+      {
+        name: "Board Results",
+        href: "/academics/board-results",
+        description: "Latest Class X results list",
+        icon: <Trophy className="h-4 w-4" />,
+        imageSrc: "/images/submenu/achievements.jpg",
+        imageAlt:
+          "Class X board-result recognitions at Divine International Academy",
       },
     ],
   },
@@ -613,9 +623,6 @@ export function Header() {
                               )}
                               <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
                               <div className="absolute inset-x-0 bottom-0 p-3 text-white">
-                                <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/75">
-                                  Hover Preview
-                                </div>
                                 <div className="mt-1 text-sm font-semibold leading-tight">
                                   {previewItem.name}
                                 </div>
