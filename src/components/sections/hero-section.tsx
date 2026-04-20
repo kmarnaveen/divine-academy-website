@@ -36,7 +36,7 @@ const learningPillars = [
     title: "Disciplined classrooms from day one",
     eyebrow: "Smart teaching and follow-up",
     description:
-      "Smart-board lessons, regular classwork, revision, and teacher follow-up keep the academic day structured from foundational classes to board years.",
+      "Your child learns through clear lessons, regular practice, and steady teacher follow-up.",
     points: [
       "Structured lesson flow",
       "Regular classwork and revision",
@@ -48,7 +48,7 @@ const learningPillars = [
     imageLabel: "Classroom discipline",
     icon: BookOpen,
     cardClass:
-      "border-primary/10 bg-gradient-to-br from-white via-white to-red-50/80 hover:border-primary/30",
+      "border-slate-200/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(253,244,246,0.42)_100%)] hover:border-primary/20",
     iconClass: "bg-red-100 text-primary",
     dotClass: "bg-primary",
   },
@@ -56,7 +56,7 @@ const learningPillars = [
     title: "Confidence grows through visible participation",
     eyebrow: "Sports, stage, and school culture",
     description:
-      "Assemblies, stage events, sports periods, and house activities keep confidence, teamwork, and expression inside the weekly routine instead of outside it.",
+      "Sports, assemblies, and stage time help children build confidence, teamwork, and expression.",
     points: [
       "Assemblies and stage exposure",
       "Sports and team participation",
@@ -68,7 +68,7 @@ const learningPillars = [
     imageLabel: "Student participation",
     icon: Heart,
     cardClass:
-      "border-amber-200/80 bg-gradient-to-br from-white via-white to-amber-50/90 hover:border-accent/40",
+      "border-slate-200/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(255,251,235,0.52)_100%)] hover:border-accent/20",
     iconClass: "bg-amber-100 text-accent",
     dotClass: "bg-accent",
   },
@@ -76,7 +76,7 @@ const learningPillars = [
     title: "Practical readiness starts before board pressure",
     eyebrow: "Labs, application, and senior preparation",
     description:
-      "Science practicals, computer learning, and subject guidance move students beyond textbook theory before they step fully into the senior-board years.",
+      "Lab work and computer learning build confidence before board pressure becomes intense.",
     points: [
       "Regular practical exposure",
       "Computer learning and subject application",
@@ -88,7 +88,7 @@ const learningPillars = [
     imageLabel: "Practical learning",
     icon: Rocket,
     cardClass:
-      "border-slate-200 bg-gradient-to-br from-white via-white to-slate-50 hover:border-primary/25",
+      "border-slate-200/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(248,250,252,0.9)_100%)] hover:border-primary/18",
     iconClass: "bg-slate-100 text-primary",
     dotClass: "bg-slate-500",
   },
@@ -96,21 +96,21 @@ const learningPillars = [
 
 const familySignals = [
   {
-    title: "Progress is tracked through the term",
+    title: "Progress stays visible through the term",
     description:
-      "Classwork, assessments, and teacher follow-up keep performance visible instead of waiting for the final exam.",
+      "Classwork, assessments, and teacher follow-up help families see how a child is progressing.",
     icon: Award,
   },
   {
-    title: "Discipline supports the full school day",
+    title: "Good routines help children settle and focus",
     description:
-      "Lesson timing, assemblies, activity blocks, movement, and dispersal follow clear routines across the campus.",
+      "Assemblies, lesson timing, movement, and dispersal follow a calm, guided routine.",
     icon: Heart,
   },
   {
-    title: "Senior classes prepare ahead of deadlines",
+    title: "Senior classes prepare early",
     description:
-      "Practical work, board-focused support, and future planning begin early so students are not rushed at the end.",
+      "Practical work, revision support, and future guidance begin before deadlines pile up.",
     icon: Rocket,
   },
 ] as const;
@@ -124,12 +124,12 @@ const heroParentChecklist = [
   {
     title: "1200+ students with 50+ faculty",
     description:
-      "Families see a full school community with teaching strength across stages.",
+      "A full school community with teaching support across age groups and stages.",
   },
   {
     title: "One campus with key learning spaces",
     description:
-      "Classrooms, labs, library, sports spaces, and transport support are in one system.",
+      "Classrooms, labs, library, sports, and transport planned around one school day.",
   },
 ] as const;
 
@@ -148,7 +148,7 @@ const schoolFacilities = [
     imageLabel: "Academic classrooms",
     icon: Monitor,
     cardClass:
-      "border-primary/10 bg-gradient-to-br from-white via-white to-red-50/80 hover:border-primary/25",
+      "border-slate-200/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(253,244,246,0.42)_100%)] hover:border-primary/18",
     iconClass: "bg-red-100 text-primary",
     dotClass: "bg-primary",
   },
@@ -166,7 +166,7 @@ const schoolFacilities = [
     imageLabel: "Laboratory complex",
     icon: Microscope,
     cardClass:
-      "border-amber-200/80 bg-gradient-to-br from-white via-white to-amber-50/90 hover:border-accent/35",
+      "border-slate-200/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(255,251,235,0.52)_100%)] hover:border-accent/18",
     iconClass: "bg-amber-100 text-accent",
     dotClass: "bg-accent",
   },
@@ -185,7 +185,7 @@ const schoolFacilities = [
     imageLabel: "Reading and reference",
     icon: BookOpen,
     cardClass:
-      "border-slate-200 bg-gradient-to-br from-white via-white to-slate-50 hover:border-slate-300",
+      "border-slate-200/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(248,250,252,0.9)_100%)] hover:border-slate-300",
     iconClass: "bg-slate-100 text-primary",
     dotClass: "bg-slate-500",
   },
@@ -203,7 +203,7 @@ const schoolFacilities = [
     imageLabel: "Transport and security",
     icon: Shield,
     cardClass:
-      "border-emerald-200/80 bg-gradient-to-br from-white via-white to-emerald-50/90 hover:border-emerald-300",
+      "border-slate-200/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(236,253,245,0.56)_100%)] hover:border-emerald-200",
     iconClass: "bg-emerald-100 text-emerald-700",
     dotClass: "bg-emerald-600",
   },
@@ -239,15 +239,15 @@ function LearningPillarCard({
   return (
     <article
       className={cn(
-        "group relative h-full overflow-hidden rounded-[28px] border p-5 sm:p-6 md:p-8 shadow-[0_24px_70px_-40px_rgba(15,23,42,0.45)] transition-all duration-300 hover:-translate-y-1.5 hover:scale-[1.01] sm:hover:-translate-y-2",
+        "group relative h-full overflow-hidden rounded-[30px] border p-6 sm:p-7 md:p-10 shadow-[0_24px_72px_-56px_rgba(15,23,42,0.14)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_26px_74px_-56px_rgba(15,23,42,0.18)] sm:hover:-translate-y-1.5",
         pillar.cardClass,
         className,
       )}
     >
       <div className="absolute right-0 top-0 h-32 w-32 translate-x-10 -translate-y-10 rounded-full bg-white/60 blur-3xl" />
-      <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-primary via-accent to-primary/60" />
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-primary/35 via-slate-200 to-transparent" />
 
-      <div className="relative aspect-[16/10] overflow-hidden rounded-[22px] border border-black/5">
+      <div className="relative aspect-[16/10] overflow-hidden rounded-[24px] border border-black/5">
         <Image
           src={pillar.imageSrc}
           alt={pillar.imageAlt}
@@ -281,10 +281,10 @@ function LearningPillarCard({
       </div>
 
       <div className="mt-6">
-        <h3 className="text-xl sm:text-2xl font-bold text-primary">
+        <h3 className="text-xl font-bold tracking-[-0.02em] text-primary sm:text-2xl">
           {pillar.title}
         </h3>
-        <p className="mt-3 text-sm sm:text-base leading-relaxed text-charcoal/90">
+        <p className="mt-3 text-sm leading-[1.72] text-charcoal/90 sm:text-base">
           {pillar.description}
         </p>
       </div>
@@ -320,7 +320,7 @@ function FacilityCard({ facility }: { facility: SchoolFacility }) {
   return (
     <article
       className={cn(
-        "relative h-full overflow-hidden rounded-[26px] border shadow-[0_20px_60px_-42px_rgba(15,23,42,0.35)] transition-all duration-300 hover:-translate-y-1.5",
+        "relative h-full overflow-hidden rounded-[30px] border shadow-[0_20px_60px_-48px_rgba(15,23,42,0.12)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_64px_-48px_rgba(15,23,42,0.16)]",
         facility.cardClass,
       )}
     >
@@ -356,16 +356,9 @@ function FacilityCard({ facility }: { facility: SchoolFacility }) {
         </div>
       </div>
 
-      <div className="relative p-5">
-        <p className="mt-2 text-sm leading-relaxed text-slate-600">
-          {facility.description}
-        </p>
-
-        <div className="mt-5 border-t border-black/5 pt-4">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
-            Proof points
-          </p>
-          <ul className="mt-3 space-y-2.5">
+      <div className="relative p-6 sm:p-7">
+        <div className="border-t border-black/5 pt-4">
+          <ul className="space-y-2.5">
             {facility.points.map((point) => (
               <li
                 key={point}
@@ -521,7 +514,7 @@ export function HeroSection() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
             >
-              <Badge className="bg-primary/10 text-primary hover:bg-primary/15 hover:text-primary border-2 border-primary/25 px-3 sm:px-4 py-1 sm:py-1.5 text-xs sm:text-sm font-semibold inline-flex items-center justify-center text-center shadow-sm backdrop-blur-sm">
+              <Badge className="border border-primary/12 bg-primary/[0.05] px-3 py-1 text-xs font-semibold text-primary shadow-none backdrop-blur-sm hover:bg-primary/[0.07] sm:px-4 sm:py-1.5 sm:text-sm">
                 <span className="hidden sm:inline">
                   Admissions Open {admissionCycle} — Nursery to Class XII | CBSE
                   Affiliation No. 2131764
@@ -535,7 +528,7 @@ export function HeroSection() {
             {/* Hero Statement */}
             <div className="space-y-6">
               <motion.h1
-                className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-heading text-black leading-tight"
+                className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-heading leading-tight tracking-[-0.03em] text-black"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.7 }}
@@ -543,7 +536,7 @@ export function HeroSection() {
                 <span className="block sm:inline">
                   A CBSE school in Sirsaganj where{" "}
                 </span>
-                <span className="text-primary block w-fit rounded-[22px] bg-gradient-to-r from-primary/14 via-rose-50 to-accent/18 px-2.5 py-1 shadow-[0_18px_45px_-30px_rgba(165,28,48,0.6)] sm:inline-block sm:px-4 sm:py-1.5">
+                <span className="text-primary block w-fit rounded-[18px] border border-primary/10 bg-primary/[0.05] px-2.5 py-1 shadow-none sm:inline-block sm:px-4 sm:py-1.5">
                   academics and discipline
                 </span>
                 <span className="block sm:inline text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl mt-2 sm:mt-0">
@@ -553,16 +546,14 @@ export function HeroSection() {
               </motion.h1>
 
               <motion.p
-                className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed max-w-2xl font-medium"
+                className="max-w-2xl text-base font-medium leading-[1.7] text-gray-700 sm:text-lg md:text-xl"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.7 }}
               >
-                Divine International Academy serves Nursery to Class XII
-                families across Sirsaganj and the Firozabad region with
-                structured teaching, 100% board results, 50+ faculty members,
-                co-curricular participation, and a campus planned for safer
-                daily routines.
+                From Nursery to Class XII, your child learns in a school with
+                strong teaching, steady board support, active student life, and
+                routines families can trust.
               </motion.p>
             </div>
           </div>
@@ -574,17 +565,17 @@ export function HeroSection() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
-            <div className="relative bg-primary rounded-2xl p-2 sm:p-4 shadow-2xl ">
+            <div className="relative overflow-hidden rounded-[30px] border border-slate-200/80 bg-white/92 p-2.5 shadow-[0_24px_72px_-56px_rgba(15,23,42,0.14)] backdrop-blur-sm sm:p-3">
               {/* Divine Academy Interactive Video */}
               <DivineAcademyVideoDialog />
 
               {/* Floating Cards - Hidden on very small screens, responsive sizing */}
-              <div className="hidden xs:block absolute -top-2 sm:-top-4 -right-2 sm:-right-4 bg-white text-primary p-2 sm:p-4 rounded-lg sm:rounded-xl shadow-lg border border-gray-200">
+              <div className="absolute -right-2 -top-2 hidden rounded-[18px] border border-slate-200/80 bg-white/94 p-2 text-primary shadow-[0_16px_44px_-32px_rgba(15,23,42,0.12)] xs:block sm:-right-4 sm:-top-4 sm:p-4">
                 <div className="font-bold text-sm sm:text-lg">2131764</div>
                 <div className="text-xs sm:text-sm">CBSE Code</div>
               </div>
 
-              <div className="hidden xs:block absolute -bottom-2 sm:-bottom-4 -left-2 sm:-left-4 bg-white text-primary p-2 sm:p-4 rounded-lg sm:rounded-xl shadow-lg">
+              <div className="absolute -bottom-2 -left-2 hidden rounded-[18px] border border-slate-200/80 bg-white/94 p-2 text-primary shadow-[0_16px_44px_-32px_rgba(15,23,42,0.12)] xs:block sm:-bottom-4 sm:-left-4 sm:p-4">
                 <div className="font-bold text-sm sm:text-lg">Est. 2012</div>
                 <div className="text-xs sm:text-sm text-gray-600">
                   Om Educational Trust
@@ -592,7 +583,7 @@ export function HeroSection() {
               </div>
             </div>
             <motion.div
-              className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-100 shadow-lg mt-8"
+              className="mt-8 rounded-[28px] border border-slate-200/80 bg-white/92 p-6 shadow-[0_20px_60px_-46px_rgba(15,23,42,0.12)] backdrop-blur-md"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.7 }}
@@ -644,7 +635,7 @@ export function HeroSection() {
               <Button
                 asChild
                 size="lg"
-                className="bg-primary hover:bg-crimson-700 text-white font-semibold text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 shadow-xl w-full sm:w-auto"
+                className="w-full bg-primary px-6 py-3 text-base font-semibold text-white shadow-[0_16px_40px_-28px_rgba(165,28,48,0.18)] hover:bg-crimson-700 sm:w-auto sm:px-8 sm:py-4 sm:text-lg"
               >
                 <Link
                   href="/admissions"
@@ -702,30 +693,25 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.76, duration: 0.8 }}
         >
-          <div className="relative overflow-hidden rounded-[32px] border border-slate-200/70 bg-gradient-to-br from-white via-white to-slate-50/90 px-4 py-6 shadow-[0_30px_90px_-55px_rgba(15,23,42,0.42)] sm:px-6 sm:py-8 md:px-8 md:py-10">
-            <div className="absolute left-0 top-0 h-44 w-44 -translate-x-10 -translate-y-10 rounded-full bg-primary/10 blur-3xl" />
-            <div className="absolute bottom-0 right-0 h-44 w-44 translate-x-12 translate-y-12 rounded-full bg-accent/10 blur-3xl" />
+          <div className="relative overflow-hidden rounded-[30px] border border-slate-200/80 bg-white px-5 py-7 shadow-[0_24px_72px_-54px_rgba(15,23,42,0.12)] sm:px-7 sm:py-9 md:px-9 md:py-11">
+            <div className="absolute left-0 top-0 h-44 w-44 -translate-x-10 -translate-y-10 rounded-full bg-primary/4 blur-3xl" />
+            <div className="absolute bottom-0 right-0 h-44 w-44 translate-x-12 translate-y-12 rounded-full bg-accent/5 blur-3xl" />
 
             <div className="relative grid gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-start">
               <div className="max-w-xl">
                 <Badge className="border border-primary/15 bg-white/90 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-primary shadow-sm hover:bg-white/90">
                   Safe, Structured Campus
                 </Badge>
-                <h2 className="mt-4 text-2xl font-bold font-heading leading-tight text-black sm:text-3xl md:text-4xl">
-                  40 smart classrooms, 25-student lab batches, 15,000+ books,
-                  and supervised campus systems
+                <h2 className="mt-4 text-2xl font-bold font-heading leading-tight tracking-[-0.02em] text-black sm:text-3xl md:text-4xl">
+                  A campus designed for focus and peace of mind
                 </h2>
-                <p className="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base md:text-lg">
-                  Every core facility on campus has a clear job: protect
-                  teaching time, make practical work safer, give students quiet
-                  reading space, and keep movement supervised from gate to bus.
-                  Classrooms run with digital teaching support, science
-                  practicals happen in teacher-guided batches of 25, the library
-                  holds 15,000+ books, and transport adds GPS tracking,
-                  CCTV-supported monitoring, and trained staff.
+                <p className="mt-4 text-sm leading-[1.75] text-slate-600 sm:text-base md:text-lg">
+                  From smart classrooms to GPS-tracked buses, each space and
+                  routine is built to keep your child safe, settled, and ready
+                  to learn.
                 </p>
 
-                <div className="mt-6 overflow-hidden rounded-[28px] border border-slate-200/80 bg-slate-950 shadow-[0_24px_70px_-48px_rgba(15,23,42,0.7)]">
+                <div className="mt-7 overflow-hidden rounded-[28px] border border-slate-200/80 bg-white shadow-[0_18px_58px_-42px_rgba(15,23,42,0.14)]">
                   <div className="relative aspect-[4/3] sm:aspect-[16/11]">
                     <Image
                       src="/images/submenu/facilities.avif"
@@ -757,9 +743,8 @@ export function HeroSection() {
                         Supervised campus
                       </p>
                       <h3 className="mt-2 max-w-lg text-xl font-bold font-heading leading-tight sm:text-2xl">
-                        One campus system for classroom learning, practical
-                        work, reading periods, sports, and controlled daily
-                        movement
+                        One campus for classrooms, labs, reading, sports, and
+                        guided daily movement
                       </h3>
                     </div>
                   </div>
@@ -769,7 +754,7 @@ export function HeroSection() {
                   {campusStats.map((stat) => (
                     <div
                       key={stat.label}
-                      className="rounded-[22px] border border-slate-200/80 bg-white/90 px-4 py-4 shadow-[0_18px_40px_-35px_rgba(15,23,42,0.25)]"
+                      className="rounded-[24px] border border-slate-200/80 bg-white px-5 py-5 shadow-[0_14px_40px_-34px_rgba(15,23,42,0.1)]"
                     >
                       <div className="text-lg font-bold text-primary sm:text-xl">
                         {stat.value}
@@ -889,9 +874,9 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.8 }}
         >
-          <div className="relative overflow-hidden rounded-[32px] border border-primary/10 bg-gradient-to-br from-rose-50/70 via-white to-amber-50/60 px-4 py-6 shadow-[0_30px_90px_-55px_rgba(15,23,42,0.45)] sm:px-6 sm:py-8 md:px-8 md:py-10">
-            <div className="absolute left-0 top-0 h-40 w-40 -translate-x-10 -translate-y-10 rounded-full bg-primary/10 blur-3xl" />
-            <div className="absolute bottom-0 right-0 h-48 w-48 translate-x-12 translate-y-12 rounded-full bg-accent/10 blur-3xl" />
+          <div className="relative overflow-hidden rounded-[30px] border border-slate-200/80 bg-[linear-gradient(180deg,#ffffff_0%,#fcfcfc_100%)] px-5 py-7 shadow-[0_24px_72px_-54px_rgba(15,23,42,0.12)] sm:px-7 sm:py-9 md:px-9 md:py-11">
+            <div className="absolute left-0 top-0 h-40 w-40 -translate-x-10 -translate-y-10 rounded-full bg-primary/4 blur-3xl" />
+            <div className="absolute bottom-0 right-0 h-48 w-48 translate-x-12 translate-y-12 rounded-full bg-accent/5 blur-3xl" />
 
             <div className="relative">
               <div className="grid gap-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(280px,0.8fr)] lg:items-end">
@@ -899,19 +884,18 @@ export function HeroSection() {
                   <Badge className="mb-4 border border-primary/15 bg-white/85 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-primary shadow-sm hover:bg-white/85">
                     The DIA Difference
                   </Badge>
-                  <h2 className="text-2xl font-bold font-heading text-black leading-tight sm:text-3xl md:text-4xl">
-                    Disciplined classrooms, active student life, and earlier
-                    senior-school readiness
+                  <h2 className="text-2xl font-bold font-heading leading-tight tracking-[-0.02em] text-black sm:text-3xl md:text-4xl">
+                    Strong teaching, confident children, and early senior-school
+                    readiness
                   </h2>
-                  <p className="mt-3 max-w-2xl text-sm leading-relaxed text-gray-600 sm:text-base md:text-lg">
-                    The difference is visible in the school day: lessons stay
-                    structured, students participate beyond textbooks, and
-                    practical preparation starts before the senior-board years
-                    become high pressure.
+                  <p className="mt-3 max-w-2xl text-sm leading-[1.72] text-gray-600 sm:text-base md:text-lg">
+                    You can feel the difference in the school day: lessons stay
+                    focused, children take part with confidence, and senior
+                    classes build readiness before pressure rises.
                   </p>
                 </div>
 
-                <div className="rounded-[28px] border border-white/80 bg-white/90 p-5 shadow-[0_24px_60px_-45px_rgba(15,23,42,0.35)] backdrop-blur-sm sm:p-6">
+                <div className="rounded-[28px] border border-slate-200/80 bg-white/94 p-6 shadow-[0_18px_54px_-42px_rgba(15,23,42,0.12)] backdrop-blur-sm sm:p-7">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-gray-500">
                     Built into the school day
                   </p>

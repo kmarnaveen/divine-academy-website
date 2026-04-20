@@ -125,7 +125,7 @@ const parentPriorityBlocks = [
   {
     title: "School transport",
     description:
-      "The school transport system supports safer daily travel for students coming from different routes. Families can confirm route availability, travel timing, and transport charges with the school.",
+      "The school transport system supports safer daily travel for students coming from different routes. Parents can confirm route availability, travel timing, and transport charges with the school.",
     points: [
       "GPS-tracked buses",
       "CCTV-supported transport monitoring",
@@ -410,7 +410,7 @@ export default function FacilitiesPage() {
               Transport, supervision, and daily school routine
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-base">
-              Along with academics, families usually review commute support,
+              Along with academics, parents usually review commute support,
               campus safety, and how facilities are used through the school day.
             </p>
           </div>
@@ -512,7 +512,7 @@ export default function FacilitiesPage() {
               What to review during a campus visit
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-base">
-              A campus visit helps families understand how these spaces are used
+              A campus visit helps parents understand how these spaces are used
               during the school week.
             </p>
           </div>

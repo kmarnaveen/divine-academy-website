@@ -202,7 +202,7 @@ export default function VisionPage() {
                     School Direction
                   </Badge>
                   <h2 className="mt-4 max-w-2xl text-2xl font-bold font-heading leading-tight text-white sm:text-[2rem] lg:text-[2.45rem]">
-                    Families should be able to see the vision in routines, not
+                    Parents should be able to see the vision in routines, not
                     only in slogans.
                   </h2>
                 </div>
@@ -326,7 +326,7 @@ export default function VisionPage() {
                 Values In Practice
               </Badge>
               <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl">
-                The values page matters only if families can identify them in
+                The values page matters only if parents can identify them in
                 daily school life
               </h2>
 

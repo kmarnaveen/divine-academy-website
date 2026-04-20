@@ -59,7 +59,7 @@ const lifeAreas = [
   {
     title: "School memories and visibility",
     description:
-      "The gallery and event coverage help families understand how students participate in school life beyond classroom lessons.",
+      "The gallery and event coverage help parents understand how students participate in school life beyond classroom lessons.",
     points: [
       "Academic and event highlights",
       "Sports and activity moments",
@@ -195,7 +195,7 @@ export default function StudentLifePage() {
 
               <div className="p-6 sm:p-8 lg:p-10">
                 <p className="max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
-                  This section helps families understand how the school supports
+                  This section helps parents understand how the school supports
                   student participation through activities, events, sports, and
                   school memories across the academic year.
                 </p>
@@ -216,7 +216,7 @@ export default function StudentLifePage() {
                     Good student-life content should answer clear parent
                     questions: What activities happen during the year, how
                     students participate, how it supports growth, and where
-                    families can see evidence of that participation.
+                    parents can see evidence of that participation.
                   </p>
                 </div>
 
@@ -344,7 +344,7 @@ export default function StudentLifePage() {
                   Parent Notes
                 </Badge>
                 <h3 className="mt-5 text-2xl font-bold font-heading text-slate-950">
-                  What families should understand about student participation
+                  What parents should understand about student participation
                 </h3>
 
                 <ul className="mt-6 space-y-4">

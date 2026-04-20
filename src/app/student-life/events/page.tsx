@@ -74,7 +74,7 @@ const eventFlow = [
   {
     title: "Advance planning and notices",
     description:
-      "Well-run school events start with clear planning, class-wise preparation, and timely communication to students and families where needed.",
+      "Well-run school events start with clear planning, class-wise preparation, and timely communication to students and parents where needed.",
   },
   {
     title: "Practice and teacher guidance",
@@ -96,7 +96,7 @@ const eventFlow = [
 const parentNotes = [
   "Participation varies by class, interest, and event format. Not every student joins every activity in the same way.",
   "When uniforms, costumes, practice timings, or event-specific instructions matter, parents should receive clear school communication in advance.",
-  "A good events page should help families understand the types of events students experience during the school year, not just list old dates.",
+  "A good events page should help parents understand the types of events students experience during the school year, not just list old dates.",
 ] as const;
 
 const nextSteps = [
@@ -320,7 +320,7 @@ export default function StudentLifeEventsPage() {
                   Parent Notes
                 </Badge>
                 <h3 className="mt-5 text-2xl font-bold font-heading text-slate-950">
-                  What families should know about school events
+                  What parents should know about school events
                 </h3>
 
                 <ul className="mt-6 space-y-4">
@@ -340,7 +340,7 @@ export default function StudentLifeEventsPage() {
                     <p className="text-sm leading-6 text-amber-900">
                       A strong events page should reduce confusion by showing
                       how participation works, not by publishing stale calendars
-                      that families cannot rely on.
+                      that parents cannot rely on.
                     </p>
                   </div>
                 </div>

@@ -42,7 +42,7 @@ const sportsProfile = [
   {
     label: "Parent focus",
     value:
-      "Families usually review how often students access sports spaces and whether participation is part of the school routine.",
+      "Parents usually review how often students access sports spaces and whether participation is part of the school routine.",
   },
 ] as const;
 
@@ -409,7 +409,7 @@ export default function SportsPage() {
                   Want to review the sports and activity spaces in person?
                 </h2>
                 <p className="mt-4 text-sm leading-7 text-white/85 sm:text-base">
-                  Families can contact the school to understand how sports,
+                  Parents can contact the school to understand how sports,
                   events, and student participation are planned through the
                   academic year.
                 </p>

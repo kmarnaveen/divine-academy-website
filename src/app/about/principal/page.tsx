@@ -24,7 +24,7 @@ const principalSignals = [
 const principalMessage = [
   "At Divine International Academy, the expectation is simple: students should learn in a school environment that is disciplined, supportive, and academically serious from the first years onward.",
   "The school aims to combine structured teaching with practical exposure, reading habits, sports, values, and participation so students do not grow through academics alone.",
-  "Families also expect visibility on safety, communication, classroom routines, and the next academic step. Those expectations matter, and the school leadership is accountable for them.",
+  "Parents also expect visibility on safety, communication, classroom routines, and the next academic step. Those expectations matter, and the school leadership is accountable for them.",
   "The goal is not only strong results at the end of the year, but steady student growth in habits, confidence, communication, and readiness for the future.",
 ] as const;
 
@@ -59,7 +59,7 @@ const officeCommitments = [
   "Academic consistency and visible teacher follow-up",
   "Respectful school conduct and student discipline",
   "Practical learning, activities, and wider participation",
-  "Clear guidance for families on school expectations and next steps",
+  "Clear guidance for parents on school expectations and next steps",
 ] as const;
 
 const nextSteps = [
@@ -110,7 +110,7 @@ export default function PrincipalMessagePage() {
               From the Principal's Desk
             </Badge>
             <h1 className="mt-5 text-4xl font-bold font-heading leading-tight text-primary sm:text-5xl lg:text-[3.35rem]">
-              A principal's message should tell families what the school stands
+              A principal's message should tell parents what the school stands
               for in practice
             </h1>
             <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">

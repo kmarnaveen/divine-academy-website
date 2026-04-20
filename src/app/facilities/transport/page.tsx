@@ -21,7 +21,7 @@ const transportSignals = [
   "GPS-tracked buses",
   "CCTV-supported monitoring",
   "Route confirmation through the school",
-  "Pickup and travel guidance for families",
+  "Pickup and travel guidance for parents",
 ] as const;
 
 const transportProfile = [
@@ -38,12 +38,12 @@ const transportProfile = [
   {
     label: "Parent planning",
     value:
-      "Families can confirm route coverage, travel timing, pickup points, and transport charges with the school office.",
+      "Parents can confirm route coverage, travel timing, pickup points, and transport charges with the school office.",
   },
   {
     label: "Admission relevance",
     value:
-      "Transport clarity matters before admission confirmation, especially for families coming from nearby areas.",
+      "Transport clarity matters before admission confirmation, especially for parents coming from nearby areas.",
   },
 ] as const;
 
@@ -68,7 +68,7 @@ const transportStats = [
     value: "Office",
     label: "Route confirmation",
     detail:
-      "Families should confirm pickup details and fees with the school directly.",
+      "Parents should confirm pickup details and fees with the school directly.",
   },
 ] as const;
 
@@ -98,7 +98,7 @@ const transportSupport = [
   {
     title: "Parent planning before admission",
     description:
-      "Families should review route practicality before they finalise admission, especially if commute time and daily routine are important factors.",
+      "Parents should review route practicality before they finalise admission, especially if commute time and daily routine are important factors.",
     points: [
       "Travel time and pickup planning",
       "Transport-charge clarification",
@@ -117,7 +117,7 @@ const parentChecks = [
   {
     title: "Understand the likely travel time",
     description:
-      "Travel duration matters for younger students and for families planning the daily school routine.",
+      "Travel duration matters for younger students and for parents planning the daily school routine.",
   },
   {
     title: "Ask about monitoring and supervision",
@@ -159,7 +159,7 @@ export default function TransportPage() {
               travel
             </h1>
             <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
-              Divine's transport support helps families plan daily commute with
+              Divine's transport support helps parents plan daily commute with
               route guidance, monitoring visibility, and school-level transport
               confirmation before admission.
             </p>
@@ -183,7 +183,7 @@ export default function TransportPage() {
                   </Badge>
                   <h2 className="mt-4 max-w-2xl text-2xl font-bold font-heading leading-tight text-white sm:text-[2rem] lg:text-[2.45rem]">
                     Route clarity, safer monitoring, and daily timing matter as
-                    much as the classroom for many families.
+                    much as the classroom for many parents.
                   </h2>
                 </div>
               </div>
@@ -270,7 +270,7 @@ export default function TransportPage() {
               Transport Support
             </Badge>
             <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
-              What families usually review before using school transport
+              What parents usually review before using school transport
             </h2>
           </div>
 

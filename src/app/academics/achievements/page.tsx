@@ -155,7 +155,7 @@ const recognitionBlocks = [
   {
     title: "Academic recognition",
     description:
-      "Board results, subject progress, class performance, and steady exam-readiness remain the clearest academic indicators for families.",
+      "Board results, subject progress, class performance, and steady exam-readiness remain the clearest academic indicators for parents.",
   },
   {
     title: "Competition and event participation",
@@ -193,7 +193,7 @@ const parentChecks = [
   {
     title: "Confirm the current year, not an old highlight",
     description:
-      "Achievement records change every session. Families should ask for the latest verified updates during the admission process.",
+      "Achievement records change every session. Parents should ask for the latest verified updates during the admission process.",
   },
 ] as const;
 
@@ -343,7 +343,7 @@ export default function AchievementsPage() {
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-base">
               This page avoids invented topper lists and focuses on the kinds of
-              outcomes families can actually evaluate.
+              outcomes parents can actually evaluate.
             </p>
           </div>
 
@@ -526,8 +526,8 @@ export default function AchievementsPage() {
                   latest school achievement summary?
                 </h2>
                 <p className="mt-4 text-sm leading-7 text-white/85 sm:text-base">
-                  Families comparing the best CBSE school options in Sirsaganj
-                  or near Firozabad can contact Divine for the latest verified
+                  Parents comparing the best CBSE school options in Sirsaganj or
+                  near Firozabad can contact Divine for the latest verified
                   academic details before they make an admission decision.
                 </p>
               </div>

@@ -176,7 +176,7 @@ const parentQuestions = [
     question:
       "Can parents review the full fee breakup before confirming admission?",
     answer:
-      "Yes. Families can review the current session fee sheet, transport guidance, and separate annual charges during the admissions discussion.",
+      "Yes. Parents can review the current session fee sheet, transport guidance, and separate annual charges during the admissions discussion.",
   },
 ] as const;
 

@@ -160,7 +160,7 @@ const galleryCollections: GalleryCollection[] = [
 
 const parentNotes = [
   "The gallery is most useful when it reflects academics, celebrations, sports, and campus life together instead of only one event type.",
-  "Images help families judge activity level and school culture faster, but they do not replace a campus visit or direct admissions conversation.",
+  "Images help parents judge activity level and school culture faster, but they do not replace a campus visit or direct admissions conversation.",
   "For now the page uses the current DIA public image set. It can be shifted to API-based gallery data later without changing the page structure.",
 ] as const;
 
@@ -217,7 +217,7 @@ export default function StudentLifeGalleryPage() {
             </h1>
             <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
               The gallery now uses current Divine International Academy public
-              images so families can actually see classrooms, campus areas,
+              images so parents can actually see classrooms, campus areas,
               events, sports, and school activity moments instead of only
               reading about them.
             </p>
@@ -382,7 +382,7 @@ export default function StudentLifeGalleryPage() {
                       Campus visibility
                     </h3>
                     <p className="mt-2 text-sm leading-6 text-slate-600">
-                      Families can now see campus spaces, classrooms, and
+                      Parents can now see campus spaces, classrooms, and
                       practical learning areas instead of imagining them.
                     </p>
                   </CardContent>
@@ -419,8 +419,7 @@ export default function StudentLifeGalleryPage() {
                   Parent Notes
                 </Badge>
                 <h3 className="mt-5 text-2xl font-bold font-heading text-slate-950">
-                  What families should still keep in mind while using the
-                  gallery
+                  What parents should still keep in mind while using the gallery
                 </h3>
 
                 <ul className="mt-6 space-y-4">

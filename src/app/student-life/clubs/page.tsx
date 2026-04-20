@@ -177,7 +177,7 @@ export default function StudentLifeClubsPage() {
 
               <div className="p-6 sm:p-8 lg:p-10">
                 <p className="max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
-                  This page helps families understand how club participation
+                  This page helps parents understand how club participation
                   supports creativity, teamwork, discipline, and school
                   confidence across different student stages.
                 </p>
@@ -314,7 +314,7 @@ export default function StudentLifeClubsPage() {
                   Parent Notes
                 </Badge>
                 <h3 className="mt-5 text-2xl font-bold font-heading text-slate-950">
-                  What families should understand about clubs
+                  What parents should understand about clubs
                 </h3>
 
                 <ul className="mt-6 space-y-4">

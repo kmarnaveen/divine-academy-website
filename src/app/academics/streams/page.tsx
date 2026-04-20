@@ -76,7 +76,7 @@ const streamOptions = [
     fit: [
       "Students who enjoy Physics, Chemistry, Mathematics, Biology, or computing",
       "Learners who can sustain regular numericals, concepts, and practical work",
-      "Families planning for engineering, medical, technology, or science-based higher studies",
+      "Parents planning for engineering, medical, technology, or science-based higher studies",
     ],
     subjects: [
       "Physics and Chemistry",
@@ -101,7 +101,7 @@ const streamOptions = [
     fit: [
       "Students with interest in business studies, accountancy, and economics",
       "Learners who are comfortable with concepts, calculations, and regular written practice",
-      "Families planning for management, finance, commerce, banking, or entrepreneurship pathways",
+      "Parents planning for management, finance, commerce, banking, or entrepreneurship pathways",
     ],
     subjects: [
       "Business Studies",
@@ -126,7 +126,7 @@ const streamOptions = [
     fit: [
       "Students who enjoy reading, interpretation, analysis, and written expression",
       "Learners interested in history, political science, psychology, geography, or economics",
-      "Families considering law, civil services, liberal arts, design, media, or social-science pathways",
+      "Parents considering law, civil services, liberal arts, design, media, or social-science pathways",
     ],
     subjects: [
       "History and Political Science",
@@ -182,7 +182,7 @@ const seniorSupport = [
   {
     title: "Guidance before the next step",
     description:
-      "Families get support on stream fit, academic expectations, and the next step after school.",
+      "Parents get support on stream fit, academic expectations, and the next step after school.",
     points: [
       "Stream counselling before admission confirmation",
       "Discussion around aptitude and goals",
@@ -209,7 +209,7 @@ const decisionGuide = [
     step: "03",
     title: "Discuss workload honestly",
     description:
-      "Every stream needs discipline, but the learning pattern changes. Families should consider reading load, practical work, numericals, and written preparation.",
+      "Every stream needs discipline, but the learning pattern changes. Parents should consider reading load, practical work, numericals, and written preparation.",
   },
   {
     step: "04",
@@ -229,11 +229,11 @@ const faqItems = [
     question:
       "Should parents wait for board results before speaking to the school?",
     answer:
-      "Not necessarily. It is better to start the discussion early, once Class X plans are clear. That gives families time to understand stream fit, likely subject combinations, documents, and the current admission timeline without rushing the decision.",
+      "Not necessarily. It is better to start the discussion early, once Class X plans are clear. That gives parents time to understand stream fit, likely subject combinations, documents, and the current admission timeline without rushing the decision.",
   },
   {
     question:
-      "Does Divine help families compare stream options before Class XI admission?",
+      "Does Divine help parents compare stream options before Class XI admission?",
     answer:
       "Yes. Parents can speak with the school during the admission process to understand subject expectations, workload pattern, and the stream that is more suitable for the student’s strengths and plans.",
   },
@@ -272,7 +272,7 @@ export default function StreamsPage() {
               after Class X
             </h1>
             <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
-              For families comparing senior secondary schools in Sirsaganj and
+              For parents comparing senior secondary schools in Sirsaganj and
               nearby Firozabad, this page explains what each stream usually
               covers, who it suits, and how Divine supports students through
               Classes XI and XII.

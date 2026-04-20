@@ -47,7 +47,7 @@ const campusProfile = [
   {
     label: "Visit focus",
     value:
-      "Families can review classroom spaces, supervised movement, activity areas, and transport coordination during a campus visit.",
+      "Parents can review classroom spaces, supervised movement, activity areas, and transport coordination during a campus visit.",
   },
 ] as const;
 
@@ -146,7 +146,7 @@ const dayFlow = [
   {
     title: "Dispersal and transport",
     description:
-      "The campus day closes with supervised dispersal and transport coordination for families using school buses and pickups.",
+      "The campus day closes with supervised dispersal and transport coordination for parents using school buses and pickups.",
     icon: Bus,
   },
 ] as const;
@@ -443,7 +443,7 @@ export default function CampusPage() {
                   in person?
                 </h2>
                 <p className="mt-4 text-sm leading-7 text-white/85 sm:text-base">
-                  Families can plan a campus visit, review the school-day
+                  Parents can plan a campus visit, review the school-day
                   environment, and understand admissions and transport support
                   with the school office.
                 </p>

@@ -237,7 +237,7 @@ const nextSteps = [
 export const metadata: Metadata = {
   title: "About Divine International Academy | Sirsaganj",
   description:
-    "Learn about Divine International Academy, Sirsaganj: school profile, CBSE affiliation, Om Educational Trust, campus systems, and what families can expect from Pre-Primary to Class XII.",
+    "Learn about Divine International Academy, Sirsaganj: school profile, CBSE affiliation, Om Educational Trust, campus systems, and what parents can expect from Pre-Primary to Class XII.",
   keywords: [
     "About Divine International Academy",
     "CBSE school Sirsaganj",
@@ -287,7 +287,7 @@ export default function AboutPage() {
                   </Badge>
                   <h2 className="mt-4 max-w-2xl text-2xl font-bold font-heading leading-tight text-white sm:text-[2rem] lg:text-[2.45rem]">
                     Teaching quality, safety, campus systems, and board outcomes
-                    are the first signals families look for.
+                    are the first signals parents look for.
                   </h2>
                 </div>
               </div>
@@ -295,7 +295,7 @@ export default function AboutPage() {
               <div className="grid gap-6 p-6 sm:p-8 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start">
                 <div>
                   <p className="max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
-                    DIA serves families across Sirsaganj and the wider Firozabad
+                    DIA serves parents across Sirsaganj and the wider Firozabad
                     region with CBSE academics, 50+ faculty members, 40 smart
                     classrooms, practical learning spaces, and a complete school
                     journey from Pre-Primary to Class XII.
@@ -593,7 +593,7 @@ export default function AboutPage() {
               visit
             </h2>
             <p className="mt-4 text-base leading-7 text-white/75 sm:text-lg">
-              Once families understand the school profile, the next decision is
+              Once parents understand the school profile, the next decision is
               usually admissions, academic fit, or an in-person campus review.
             </p>
           </div>

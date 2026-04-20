@@ -49,7 +49,7 @@ const leadershipAreas = [
   {
     title: "Principal leadership",
     description:
-      "The principal office sets the academic direction, classroom expectations, discipline standards, and school priorities families experience across the year.",
+      "The principal office sets the academic direction, classroom expectations, discipline standards, and school priorities parents experience across the year.",
     points: [
       "Academic quality and school direction",
       "Student discipline and conduct standards",
@@ -82,11 +82,11 @@ const leadershipAreas = [
   {
     title: "Parent support and communication",
     description:
-      "Families need clarity on admissions, processes, expectations, and school routines. Leadership quality improves when that communication is clear and direct.",
+      "Parents need clarity on admissions, processes, expectations, and school routines. Leadership quality improves when that communication is clear and direct.",
     points: [
       "Admissions and office guidance",
       "Parent-facing process clarity",
-      "Support when families need campus or academic information",
+      "Support when parents need campus or academic information",
     ],
     icon: MessageSquare,
   },
@@ -96,7 +96,7 @@ const leadershipSystems = [
   {
     title: "What parents should expect",
     description:
-      "A good leadership page should help families understand who oversees academics, student routines, and campus systems before they visit or enquire.",
+      "A good leadership page should help parents understand who oversees academics, student routines, and campus systems before they visit or enquire.",
   },
   {
     title: "What leadership should protect",
@@ -173,7 +173,7 @@ export default function LeadershipPage() {
             </h1>
             <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
               Divine International Academy is led by Principal Dr. Garima Gupta
-              and managed under Om Educational Trust. For families, leadership
+              and managed under Om Educational Trust. For parents, leadership
               matters most in how academics, supervision, communication, and
               campus systems actually function.
             </p>
@@ -320,8 +320,8 @@ export default function LeadershipPage() {
                 Leadership Standards
               </Badge>
               <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl">
-                Families do not need long biographies first. They need clarity
-                on how the school is run.
+                Parents do not need long biographies first. They need clarity on
+                how the school is run.
               </h2>
 
               <div className="mt-8 grid gap-4">
@@ -349,7 +349,7 @@ export default function LeadershipPage() {
                   Parent Touchpoints
                 </Badge>
                 <h3 className="mt-5 text-2xl font-bold font-heading text-slate-950">
-                  Common ways families experience school leadership
+                  Common ways parents experience school leadership
                 </h3>
 
                 <ul className="mt-6 space-y-4">

@@ -127,7 +127,7 @@ const processNotes = [
   {
     title: "Start early when possible",
     description:
-      "Families usually get better clarity on class entry, documents, and transport support when they begin the process before the last-minute rush.",
+      "Parents usually get better clarity on class entry, documents, and transport support when they begin the process before the last-minute rush.",
     icon: Clock,
   },
   {
@@ -139,7 +139,7 @@ const processNotes = [
   {
     title: "Fees and transport are reviewed separately",
     description:
-      "Families can discuss annual fees, admission charges, and route-based transport charges during the process before making a final decision.",
+      "Parents can discuss annual fees, admission charges, and route-based transport charges during the process before making a final decision.",
     icon: GraduationCap,
   },
   {
@@ -185,7 +185,7 @@ const parentQuestions = [
       "No. Seat confirmation depends on class-wise availability, document review, and the school’s admissions decision for that stage.",
   },
   {
-    question: "Can families discuss fees and transport during the same visit?",
+    question: "Can parents discuss fees and transport during the same visit?",
     answer:
       "Yes. Parents can review fee bands, transport support, and route guidance during the campus visit or admissions interaction.",
   },
@@ -249,7 +249,7 @@ export default function AdmissionProcessPage() {
 
               <div className="p-6 sm:p-8 lg:p-10">
                 <p className="max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
-                  The admissions process is easier when families start with the
+                  The admissions process is easier when parents start with the
                   right basics: class entry, age guidance, document readiness,
                   campus review, and direct contact with the school office.
                 </p>
@@ -483,7 +483,7 @@ export default function AdmissionProcessPage() {
                 Important Notes
               </Badge>
               <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl">
-                What families should keep in mind during the process
+                What parents should keep in mind during the process
               </h2>
 
               <div className="mt-8 grid gap-4 sm:grid-cols-2">

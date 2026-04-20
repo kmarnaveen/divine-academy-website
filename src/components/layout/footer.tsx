@@ -121,7 +121,7 @@ export function Footer() {
             </div>
 
             <p className="max-w-2xl text-sm leading-7 text-white/78 sm:text-[15px]">
-              Divine International Academy serves families across Sirsaganj and
+              Divine International Academy serves parents across Sirsaganj and
               the Firozabad region with structured teaching, 50+ faculty
               members, smart classrooms, practical learning, supervised
               routines, and board-focused support.

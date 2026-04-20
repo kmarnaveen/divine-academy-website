@@ -409,7 +409,7 @@ export default function LabsPage() {
                   Want to review the science and computer labs in person?
                 </h2>
                 <p className="mt-4 text-sm leading-7 text-white/85 sm:text-base">
-                  Families can contact the school to discuss lab access,
+                  Parents can contact the school to discuss lab access,
                   practical learning support, and stage-wise academic use before
                   admission.
                 </p>

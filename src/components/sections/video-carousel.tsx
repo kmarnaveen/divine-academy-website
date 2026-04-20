@@ -100,9 +100,9 @@ const experienceCollections: ExperienceCollection[] = [
     id: "academics",
     label: "Academics",
     title:
-      "Classroom teaching, science practicals, computer learning, and reading periods",
+      "Classrooms, labs, computer learning, and reading",
     description:
-      "These images show the academic blocks where daily teaching, lab work, computer learning, and supervised reading happen.",
+      "A closer look at lessons, practical work, computer periods, and reading time.",
     sourceLabel: "Academics, Facilities, Home",
     icon: FlaskConical,
     accentClass: "from-accent/22 via-amber-50 to-white",
@@ -133,9 +133,9 @@ const experienceCollections: ExperienceCollection[] = [
     id: "culture",
     label: "Cultural Life",
     title:
-      "Annual day, festivals, and stage opportunities through the school year",
+      "Stage performances, festivals, and school celebrations",
     description:
-      "Stage events and school celebrations build confidence, participation, and a stronger sense of school culture.",
+      "Moments that build confidence, expression, and school spirit.",
     sourceLabel: "Home, Gallery, Student Life",
     icon: PartyPopper,
     accentClass: "from-rose-100 via-white to-accent/18",
@@ -174,9 +174,9 @@ const experienceCollections: ExperienceCollection[] = [
     id: "sports",
     label: "Sports",
     title:
-      "Volleyball, cricket, and routine sports participation across the year",
+      "Volleyball, cricket, and everyday sports participation",
     description:
-      "Sports periods and team activity build movement, stamina, teamwork, and discipline beyond classroom hours.",
+      "Games and team activity that build stamina, teamwork, and energy.",
     sourceLabel: "Home, Achievements, Student Life",
     icon: Trophy,
     accentClass: "from-sky-100 via-white to-primary/10",
@@ -215,9 +215,9 @@ const experienceCollections: ExperienceCollection[] = [
     id: "achievements",
     label: "Achievements",
     title:
-      "Awards, exhibitions, and inter-school competitions that bring recognition",
+      "Awards, exhibitions, and inter-school competitions",
     description:
-      "These moments show student work, competition entries, exhibitions, and public recognition beyond the classroom.",
+      "Recognition that comes from student work, competitions, and public performance.",
     sourceLabel: "Achievements, Home, Gallery",
     icon: Award,
     accentClass: "from-primary/16 via-white to-slate-100",
@@ -256,9 +256,9 @@ const experienceCollections: ExperienceCollection[] = [
     id: "campus",
     label: "Campus",
     title:
-      "Campus entry points, open grounds, and shared spaces students use every day",
+      "Campus spaces children use every day",
     description:
-      "These photographs show the scale, layout, and daily-use environment of the campus students move through each day.",
+      "The classrooms, grounds, and shared spaces students move through each day.",
     sourceLabel: "Home, About, Facilities",
     icon: Building2,
     accentClass: "from-primary/18 via-primary/8 to-red-50",
@@ -332,8 +332,8 @@ export function VideoCarousel() {
   };
 
   return (
-    <section className="relative overflow-hidden bg-[radial-gradient(circle_at_top_right,rgba(165,28,48,0.08),transparent_32%),linear-gradient(180deg,#f8fafc_0%,#fff8f8_45%,#ffffff_100%)] py-20 sm:py-24">
-      <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-primary/6 to-transparent" />
+    <section className="relative overflow-hidden bg-[radial-gradient(circle_at_top_right,rgba(165,28,48,0.03),transparent_30%),linear-gradient(180deg,#fcfcfd_0%,#ffffff_42%,#ffffff_100%)] py-20 sm:py-24">
+      <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-primary/3 to-transparent" />
 
       <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
@@ -341,10 +341,9 @@ export function VideoCarousel() {
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-3xl font-bold font-heading text-primary sm:text-4xl lg:text-5xl"
+              className="text-3xl font-bold font-heading tracking-[-0.02em] text-primary sm:text-4xl lg:text-5xl"
             >
-              Inside DIA: classrooms, campus spaces, events, sports, and student
-              achievement
+              A closer look at life at DIA
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -352,9 +351,8 @@ export function VideoCarousel() {
               transition={{ delay: 0.08 }}
               className="mt-4 max-w-2xl text-base leading-relaxed text-gray-600 sm:text-lg"
             >
-              These photographs show the academic blocks, activity spaces, stage
-              events, sports, and recognition moments that shape everyday school
-              life at Divine International Academy.
+              Browse classrooms, campus spaces, events, sports, and student
+              achievements.
             </motion.p>
           </div>
 
@@ -390,7 +388,7 @@ export function VideoCarousel() {
             className="mt-10 grid gap-6 xl:grid-cols-12"
           >
             <div className="xl:col-span-7">
-              <div className="group overflow-hidden rounded-[32px] border border-primary/10 bg-white shadow-[0_32px_100px_-48px_rgba(15,23,42,0.45)]">
+              <div className="group overflow-hidden rounded-[30px] border border-slate-200/80 bg-white shadow-[0_24px_78px_-56px_rgba(15,23,42,0.14)]">
                 <div className="aspect-[16/10] bg-slate-100">
                   <img
                     src={activeCollection.heroImage.src}
@@ -402,9 +400,6 @@ export function VideoCarousel() {
                   <div className="mb-4 flex flex-wrap gap-2">
                     <span className="rounded-full border border-primary/10 bg-primary/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary">
                       {activeCollection.label}
-                    </span>
-                    <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-gray-600">
-                      {activeCollection.sourceLabel}
                     </span>
                   </div>
                   <h3 className="max-w-2xl text-2xl font-bold text-primary sm:text-3xl">
@@ -418,14 +413,14 @@ export function VideoCarousel() {
             </div>
 
             <div className="flex flex-col gap-5 xl:col-span-5">
-              <div className="overflow-hidden rounded-[28px] border border-primary/10 bg-white p-4 shadow-[0_24px_70px_-44px_rgba(15,23,42,0.32)] sm:p-5">
+              <div className="overflow-hidden rounded-[28px] border border-slate-200/80 bg-white p-5 shadow-[0_20px_62px_-48px_rgba(15,23,42,0.12)] sm:p-6">
                 <div className="mb-4 flex items-start justify-between gap-4">
                   <div>
                     <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gray-500">
                       Inside {activeCollection.label}
                     </p>
                     <h4 className="mt-1 text-lg font-bold text-primary sm:text-xl">
-                      Selected images from this collection
+                      More from this collection
                     </h4>
                   </div>
                   {supportingImages.length > 1 && (
@@ -475,10 +470,6 @@ export function VideoCarousel() {
                       <p className="text-base font-semibold leading-snug text-primary">
                         {activeSupportingImage.alt}
                       </p>
-                      <p className="mt-2 text-sm leading-relaxed text-gray-600">
-                        From the DIA {activeCollection.label.toLowerCase()}{" "}
-                        photo archive.
-                      </p>
                     </div>
                   </motion.article>
                 </AnimatePresence>
@@ -512,7 +503,7 @@ export function VideoCarousel() {
                       className={cn(
                         "overflow-hidden rounded-2xl border bg-white text-left transition-all duration-300",
                         activeSupportingIndex === index
-                          ? "border-primary shadow-[0_18px_50px_-38px_rgba(15,23,42,0.45)]"
+                          ? "border-primary/50 shadow-[0_14px_38px_-28px_rgba(15,23,42,0.12)]"
                           : "border-primary/10 hover:border-primary/25",
                       )}
                     >
@@ -540,7 +531,7 @@ export function VideoCarousel() {
               className={cn(
                 "flex items-center gap-3 rounded-[24px] border p-3 text-left transition-all duration-300",
                 activeCollectionId === collection.id
-                  ? "border-primary bg-white shadow-[0_24px_70px_-48px_rgba(15,23,42,0.45)]"
+                  ? "border-primary/50 bg-white shadow-[0_18px_48px_-38px_rgba(15,23,42,0.12)]"
                   : "border-primary/10 bg-white/70 hover:border-primary/25 hover:bg-white",
               )}
             >

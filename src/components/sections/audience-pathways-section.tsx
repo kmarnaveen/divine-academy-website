@@ -31,13 +31,13 @@ const audiencePathways: AudiencePathway[] = [
     title: "Admissions, Fees & Campus Visit",
     eyebrow: "For Parents",
     description:
-      "Check admission steps, fee details, campus visit options, and the documents needed before seat confirmation.",
+      "Admissions steps, fee details, campus visits, and document guidance before seat confirmation.",
     cta: "See admission details",
     href: "/admissions",
     icon: Users,
     iconClass: "bg-accent/15 text-accent",
     cardClass:
-      "border-accent/15 bg-gradient-to-br from-white via-white to-amber-50/90 hover:border-accent/35",
+      "border-slate-200/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(255,251,235,0.5)_100%)] hover:border-accent/18",
     linkClass: "text-accent",
     gridClass: "xl:col-span-3",
   },
@@ -45,13 +45,13 @@ const audiencePathways: AudiencePathway[] = [
     title: "Student Life, Sports & Events",
     eyebrow: "For Students",
     description:
-      "See sports, clubs, stage events, and the everyday participation that shapes school life beyond classes.",
+      "Sports, clubs, events, and the everyday experiences that shape school life.",
     cta: "Explore student life",
     href: "/student-life",
     icon: Trophy,
     iconClass: "bg-primary/12 text-primary",
     cardClass:
-      "border-primary/10 bg-gradient-to-br from-white via-white to-red-50/80 hover:border-primary/30",
+      "border-slate-200/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(253,244,246,0.42)_100%)] hover:border-primary/18",
     linkClass: "text-primary",
     gridClass: "xl:col-span-3",
   },
@@ -59,13 +59,13 @@ const audiencePathways: AudiencePathway[] = [
     title: "Alumni Network & Reconnect",
     eyebrow: "For Alumni",
     description:
-      "Reconnect with teachers and peers, share updates, and stay involved in mentoring, events, and school initiatives.",
+      "Reconnect with teachers and classmates, share updates, and stay part of the school community.",
     cta: "Reconnect now",
     href: "/contact",
     icon: Award,
     iconClass: "bg-slate-100 text-primary",
     cardClass:
-      "border-slate-200 bg-gradient-to-br from-white via-white to-slate-50 hover:border-primary/25",
+      "border-slate-200/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(248,250,252,0.9)_100%)] hover:border-primary/18",
     linkClass: "text-primary",
     gridClass: "sm:col-span-2 xl:col-span-6",
     wide: true,
@@ -82,7 +82,7 @@ function AudiencePathwayCard({ pathway }: { pathway: AudiencePathway }) {
     >
       <article
         className={cn(
-          "relative flex h-full min-h-[220px] flex-col rounded-[28px] border p-5 sm:p-6 shadow-[0_24px_70px_-42px_rgba(15,23,42,0.35)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_28px_90px_-42px_rgba(15,23,42,0.45)]",
+          "relative flex h-full min-h-[220px] flex-col rounded-[28px] border p-6 sm:p-7 shadow-[0_20px_60px_-48px_rgba(15,23,42,0.1)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_62px_-48px_rgba(15,23,42,0.14)]",
           pathway.cardClass,
           pathway.wide
             ? "xl:flex-row xl:items-end xl:justify-between xl:gap-8"
@@ -128,7 +128,7 @@ function AudiencePathwayCard({ pathway }: { pathway: AudiencePathway }) {
 export function AudiencePathwaysSection() {
   return (
     <motion.section
-      className="relative overflow-hidden rounded-[28px] border border-slate-200 bg-gradient-to-br from-stone-50 via-white to-red-50/60 p-4 shadow-[0_28px_90px_-50px_rgba(15,23,42,0.3)] sm:rounded-[32px] sm:p-6 md:p-8 lg:p-10"
+      className="relative overflow-hidden rounded-[30px] border border-slate-200/80 bg-[linear-gradient(180deg,#ffffff_0%,#fcfcfc_100%)] p-5 shadow-[0_22px_68px_-52px_rgba(15,23,42,0.1)] sm:p-7 md:p-9 lg:p-10"
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.1, duration: 0.8 }}
@@ -139,11 +139,10 @@ export function AudiencePathwaysSection() {
             Start Here
           </Badge>
           <h2 className="text-2xl font-bold font-heading text-primary sm:text-3xl md:text-4xl">
-            Admissions, student life, and alumni updates in one place
+            Choose your next step
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-gray-600 sm:text-base md:text-lg">
-            Choose the page you need now: admission and fee information, student
-            activities and events, or alumni reconnect.
+            Start with admissions and fees, student life, or alumni reconnect.
           </p>
 
           <div className="mt-6 grid grid-cols-1 gap-3 xs:grid-cols-2 sm:max-w-md">

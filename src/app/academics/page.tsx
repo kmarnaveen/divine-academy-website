@@ -515,7 +515,7 @@ export default function AcademicsPage() {
               Parent Questions
             </Badge>
             <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
-              What families often want clarified before admission
+              What parents often want clarified before admission
             </h2>
           </div>
 
@@ -559,8 +559,8 @@ export default function AcademicsPage() {
                   for your child?
                 </h2>
                 <p className="mt-4 text-sm leading-7 text-white/85 sm:text-base">
-                  Families comparing the best CBSE school options in Sirsaganj
-                  or near Firozabad can contact Divine for class-entry guidance,
+                  Parents comparing the best CBSE school options in Sirsaganj or
+                  near Firozabad can contact Divine for class-entry guidance,
                   senior-secondary stream support, and admissions discussion.
                 </p>
               </div>
