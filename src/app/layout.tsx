@@ -1,26 +1,20 @@
 import type { Metadata } from "next";
-import { Poppins, Inter } from "next/font/google";
+import { Nunito } from "next/font/google";
 import "./globals.css";
 
-const poppins = Poppins({
-  variable: "--font-poppins",
+const nunito = Nunito({
+  variable: "--font-nunito",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
-  display: "swap",
-});
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
   title: "Divine International Academy | Best CBSE School in Firozabad",
   description:
-    "Divine International Academy - Shaping Futures Through Learning by Doing. CBSE affiliated school in Sirsaganj, Firozabad offering quality education from Nursery to Class 12.",
+    "Divine International Academy is a CBSE affiliated school in Sirsaganj, Firozabad offering admissions, academics, facilities, and school guidance from Nursery to Class 12.",
   keywords:
-    "CBSE school Firozabad, best school Sirsaganj, Divine International Academy, admissions open 2025, quality education Uttar Pradesh",
+    "CBSE school Firozabad, best school Sirsaganj, Divine International Academy, admissions 2026-27, school in Uttar Pradesh",
   authors: [{ name: "Divine International Academy" }],
   creator: "Divine International Academy",
   publisher: "Divine International Academy",
@@ -47,7 +41,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Divine International Academy | Best CBSE School in Firozabad",
     description:
-      "Shaping Futures Through Learning by Doing - Quality CBSE education from Nursery to Class 12",
+      "CBSE education, admissions guidance, and school facilities from Nursery to Class 12 at Divine International Academy, Sirsaganj.",
     url: "https://divineacademy.edu.in",
     siteName: "Divine International Academy",
     images: [
@@ -65,7 +59,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Divine International Academy | Best CBSE School in Firozabad",
     description:
-      "Shaping Futures Through Learning by Doing - Quality CBSE education from Nursery to Class 12",
+      "CBSE education, admissions guidance, and school facilities from Nursery to Class 12 at Divine International Academy, Sirsaganj.",
     images: ["/images/logo.png"],
   },
   viewport: {
@@ -183,10 +177,10 @@ export default function RootLayout({
         />
 
         {/* PWA Registration Script */}
-        <script async src="/pwa-register.js"></script>
+        <script async src="/pwa-register.js?v=disable-sw-cache"></script>
       </head>
       <body
-        className={`${poppins.variable} ${inter.variable} font-sans antialiased min-h-screen bg-background text-foreground`}
+        className={`${nunito.variable} font-sans antialiased min-h-screen bg-background text-foreground`}
       >
         {children}
       </body>

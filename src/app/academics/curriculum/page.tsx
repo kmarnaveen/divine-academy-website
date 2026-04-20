@@ -1,694 +1,769 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  BookOpen,
-  Users,
-  Target,
-  Award,
-  Brain,
-  Heart,
-  Globe,
-  Microscope,
-  Calculator,
-  Languages,
-  Palette,
-  Music,
-  GraduationCap,
-  ArrowRight,
-  CheckCircle,
-  Sparkles,
-  TrendingUp,
-} from "lucide-react";
+import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-import { MainLayout } from "@/components/layout/main-layout";
+import {
+  ArrowRight,
+  BookOpen,
+  CheckCircle,
+  GraduationCap,
+  Microscope,
+  Monitor,
+  Shield,
+  Target,
+  Trophy,
+  Users,
+} from "lucide-react";
 
-const curriculumPhases = [
+import { MainLayout } from "../../../components/layout/main-layout";
+import { Badge } from "../../../components/ui/badge";
+import { Button } from "../../../components/ui/button";
+import { Card, CardContent } from "../../../components/ui/card";
+
+const curriculumSignals = [
+  "CBSE Pre-Primary to Senior Secondary",
+  "40 smart classrooms",
+  "25-student science lab batches",
+  "15,000+ books and references",
+] as const;
+
+const curriculumProfile = [
   {
-    phase: "Foundation Phase",
-    grades: "Pre-KG to Class II",
-    focus: "Learning through Play & Exploration",
-    description:
-      "Building fundamental skills through activity-based learning, creative expression, and social interaction.",
-    keyAreas: [
-      "Language Development (English & Hindi)",
-      "Number Concepts & Basic Math",
-      "Environmental Awareness",
-      "Creative Arts & Music",
-      "Physical Development",
-      "Social & Emotional Skills",
-    ],
-    methodology: [
-      "Play-based learning",
-      "Storytelling & rhymes",
-      "Hands-on activities",
-      "Art & craft integration",
-      "Field trips & nature walks",
-    ],
-    icon: <Heart className="w-6 h-6" />,
+    label: "School type",
+    value:
+      "CBSE-affiliated co-educational English medium Senior Secondary School",
   },
   {
-    phase: "Preparatory Phase",
-    grades: "Class III to V",
-    focus: "Skill Building & Conceptual Learning",
-    description:
-      "Developing core academic skills while maintaining creativity and curiosity through structured learning.",
-    keyAreas: [
-      "English Language & Literature",
-      "Hindi Language & Literature",
-      "Mathematics & Problem Solving",
-      "Environmental Science",
-      "Computer Basics",
-      "Physical Education & Sports",
-    ],
-    methodology: [
-      "Activity-based learning",
-      "Project work & presentations",
-      "Group discussions",
-      "Digital learning tools",
-      "Laboratory experiments",
-    ],
-    icon: <Brain className="w-6 h-6" />,
+    label: "Managed by",
+    value: "Om Educational Trust",
   },
   {
-    phase: "Middle School Phase",
-    grades: "Class VI to VIII",
-    focus: "Subject Specialization & Critical Thinking",
-    description:
-      "Introducing specialized subjects while developing analytical and critical thinking capabilities.",
-    keyAreas: [
-      "English & Hindi Literature",
-      "Mathematics & Algebra",
-      "Science (Physics, Chemistry, Biology)",
-      "Social Science (History, Geography, Civics)",
-      "Computer Science",
-      "Sanskrit (Optional)",
-    ],
-    methodology: [
-      "Subject-wise specialization",
-      "Laboratory-based learning",
-      "Research projects",
-      "Debates & discussions",
-      "Technology integration",
-    ],
-    icon: <Microscope className="w-6 h-6" />,
+    label: "Academic coverage",
+    value: "Pre-Primary to Class XII",
   },
   {
-    phase: "Secondary Phase",
-    grades: "Class IX to X",
-    focus: "Board Preparation & Career Guidance",
+    label: "CBSE affiliation",
+    value: "2131764",
+  },
+] as const;
+
+const curriculumStats = [
+  {
+    value: "5",
+    label: "Academic stages",
+    detail: "From Pre-Primary to Senior Secondary.",
+    icon: BookOpen,
+  },
+  {
+    value: "40",
+    label: "Smart classrooms",
+    detail: "Daily teaching supported by digital boards.",
+    icon: Monitor,
+  },
+  {
+    value: "25",
+    label: "Science lab batch size",
+    detail: "Supervised practical learning in smaller groups.",
+    icon: Microscope,
+  },
+  {
+    value: "100%",
+    label: "Board results",
+    detail: "Senior-school support stays visible through exam years.",
+    icon: Trophy,
+  },
+] as const;
+
+const learningStages = [
+  {
+    title: "Pre-Primary",
+    classes: "Nursery, LKG, UKG",
+    focus: "Play, stories, art, and routine-building",
     description:
-      "Comprehensive CBSE curriculum preparation with focus on board exams and career orientation.",
-    keyAreas: [
-      "English Language & Literature",
-      "Hindi/Sanskrit",
+      "The early years focus on language readiness, number sense, expression, and social comfort inside a gentle classroom routine.",
+    subjects: [
+      "English and Hindi exposure",
+      "Number concepts and shapes",
+      "Art, music, and movement",
+      "Social habits and expression",
+    ],
+    approach: [
+      "Storytelling, rhymes, and guided play",
+      "Conversation and observation-based learning",
+      "Fine-motor and pre-writing readiness",
+    ],
+    icon: Users,
+  },
+  {
+    title: "Primary School",
+    classes: "Class I to V",
+    focus: "Reading, writing, numeracy, and classroom discipline",
+    description:
+      "Primary classes strengthen English, Hindi, Mathematics, EVS, and Computer Science while building reading habits, creative expression, and moral values through the CBSE framework.",
+    subjects: [
+      "English and Hindi",
       "Mathematics",
-      "Science (Physics, Chemistry, Biology)",
-      "Social Science",
-      "Information Technology (Optional)",
+      "EVS",
+      "Computer Science",
     ],
-    methodology: [
-      "Board exam preparation",
-      "Regular assessments",
-      "Career counseling",
-      "Competitive exam guidance",
-      "Life skills development",
+    approach: [
+      "Concept-building through classwork and revision",
+      "Reading practice and written expression",
+      "Projects, activities, and guided digital learning",
     ],
-    icon: <Target className="w-6 h-6" />,
+    icon: BookOpen,
   },
   {
-    phase: "Senior Secondary Phase",
-    grades: "Class XI to XII",
-    focus: "Stream Specialization & Higher Education Prep",
+    title: "Middle School",
+    classes: "Class VI to VIII",
+    focus: "Subject depth, projects, and critical thinking",
     description:
-      "Specialized stream-based education preparing students for higher education and competitive exams.",
-    keyAreas: [
-      "Science Stream: PCM/PCB combinations",
-      "Commerce Stream: Business, Economics, Accountancy",
-      "Humanities: Psychology, History, Political Science",
-      "Elective Subjects based on interest",
-      "Career Counseling & Guidance",
+      "Students move into deeper work in Science, Mathematics, Social Science, and Languages, with laboratory exposure and project-based learning becoming more regular.",
+    subjects: [
+      "Science",
+      "Mathematics",
+      "Social Science",
+      "English, Hindi, and Sanskrit options",
     ],
-    methodology: [
-      "Stream-specific teaching",
-      "Advanced laboratory work",
-      "Entrance exam coaching",
-      "University preparation",
-      "Industry exposure",
+    approach: [
+      "Laboratory-based demonstrations and practicals",
+      "Project work and subject presentations",
+      "Analytical and discussion-based learning",
     ],
-    icon: <Globe className="w-6 h-6" />,
+    icon: Microscope,
   },
-];
+  {
+    title: "Secondary School",
+    classes: "Class IX to X",
+    focus: "CBSE board preparation with stronger academic tracking",
+    description:
+      "Secondary classes focus on Science, Mathematics, Social Science, English, and Hindi with regular assessments, exam-readiness planning, and subject-wise follow-up.",
+    subjects: [
+      "Science",
+      "Mathematics",
+      "Social Science",
+      "English and Hindi",
+    ],
+    approach: [
+      "Regular tests, notebooks, and revision cycles",
+      "Board-style paper practice and concept reinforcement",
+      "Academic tracking and exam-readiness support",
+    ],
+    icon: Target,
+  },
+  {
+    title: "Senior Secondary",
+    classes: "Class XI to XII",
+    focus: "Stream selection, board performance, and higher-study preparation",
+    description:
+      "Senior Secondary students move into Science, Commerce, or Humanities with stream-based teaching, practical work, board preparation, and career guidance.",
+    subjects: [
+      "Science stream combinations",
+      "Commerce stream combinations",
+      "Humanities stream combinations",
+      "English and stream-aligned electives",
+    ],
+    approach: [
+      "Stream-specific classroom and lab support",
+      "Board exam preparation and paper practice",
+      "Career guidance and higher-education direction",
+    ],
+    icon: GraduationCap,
+  },
+] as const;
 
-const subjectDetails = {
-  foundation: [
-    {
-      subject: "English",
-      focus: "Phonics, vocabulary, storytelling",
-      hours: 6,
-    },
-    { subject: "Hindi", focus: "Basic conversation, rhymes", hours: 4 },
-    { subject: "Mathematics", focus: "Numbers, patterns, shapes", hours: 5 },
-    { subject: "EVS", focus: "Nature, family, community", hours: 4 },
-    {
-      subject: "Art & Craft",
-      focus: "Creative expression, motor skills",
-      hours: 3,
-    },
-    {
-      subject: "Music & Dance",
-      focus: "Rhythm, movement, expression",
-      hours: 2,
-    },
-    {
-      subject: "Physical Education",
-      focus: "Gross motor development",
-      hours: 3,
-    },
-  ],
-  preparatory: [
-    { subject: "English", focus: "Grammar, comprehension, writing", hours: 6 },
-    { subject: "Hindi", focus: "Literature, grammar, composition", hours: 5 },
-    {
-      subject: "Mathematics",
-      focus: "Operations, geometry, measurement",
-      hours: 6,
-    },
-    { subject: "EVS", focus: "Science concepts, social studies", hours: 5 },
-    { subject: "Computer", focus: "Basic operations, typing", hours: 2 },
-    { subject: "Art Education", focus: "Drawing, painting, crafts", hours: 2 },
-    {
-      subject: "Physical Education",
-      focus: "Sports skills, fitness",
-      hours: 3,
-    },
-  ],
-  middle: [
-    {
-      subject: "English",
-      focus: "Literature analysis, creative writing",
-      hours: 5,
-    },
-    { subject: "Hindi", focus: "Advanced grammar, literature", hours: 4 },
-    {
-      subject: "Mathematics",
-      focus: "Algebra, geometry, statistics",
-      hours: 6,
-    },
-    {
-      subject: "Science",
-      focus: "Physics, chemistry, biology basics",
-      hours: 6,
-    },
-    {
-      subject: "Social Science",
-      focus: "History, geography, civics",
-      hours: 5,
-    },
-    {
-      subject: "Computer Science",
-      focus: "Programming basics, applications",
-      hours: 2,
-    },
-    { subject: "Sanskrit", focus: "Basics of Sanskrit language", hours: 2 },
-  ],
-  secondary: [
-    {
-      subject: "English",
-      focus: "Board exam preparation, literature",
-      hours: 5,
-    },
-    { subject: "Hindi", focus: "Advanced literature, composition", hours: 4 },
-    {
-      subject: "Mathematics",
-      focus: "Algebra, geometry, trigonometry",
-      hours: 6,
-    },
-    { subject: "Science", focus: "Detailed PCB concepts", hours: 6 },
-    {
-      subject: "Social Science",
-      focus: "In-depth historical, geographical study",
-      hours: 5,
-    },
-    { subject: "IT", focus: "Computer applications, internet", hours: 2 },
+const curriculumSystems = [
+  {
+    title: "Smart teaching in 40 classrooms",
+    description:
+      "Digital boards and structured lesson flow help teachers explain, revise, and follow up better across sections.",
+    points: [
+      "Visual explanation and recap support",
+      "Better pacing across full teaching periods",
+      "Daily classwork and revision reinforcement",
+    ],
+    icon: Monitor,
+  },
+  {
+    title: "Labs and computer periods",
+    description:
+      "Science and computer learning move beyond theory through supervised practical work and digital exposure.",
+    points: [
+      "25-student science lab batches",
+      "30-system computer lab access",
+      "Practical and project-based application",
+    ],
+    icon: Microscope,
+  },
+  {
+    title: "Library and reading support",
+    description:
+      "The library supports reading habits, reference work, revision, and subject depth beyond the classroom timetable.",
+    points: [
+      "15,000+ books and references",
+      "Reading support across stages",
+      "Quiet study and revision access",
+    ],
+    icon: BookOpen,
+  },
+  {
+    title: "Assessment and board readiness",
+    description:
+      "Progress is tracked through classwork, tests, practicals, and board-focused preparation in the senior years.",
+    points: [
+      "Unit tests and term assessments",
+      "Projects, practicals, and notebook review",
+      "Pre-board planning and exam support",
+    ],
+    icon: CheckCircle,
+  },
+] as const;
+
+const academicSupport = [
+  {
+    title: "How progress is tracked",
+    description:
+      "Academic follow-up happens through regular classroom review rather than waiting only for final exams.",
+    points: [
+      "Daily classwork and notebook checking",
+      "Unit tests and term-end assessments",
+      "Projects, oral work, and practical review where relevant",
+      "Parent updates through school follow-up",
+    ],
+  },
+  {
+    title: "How senior classes prepare",
+    description:
+      "Board classes get more structured revision, paper practice, and stream-aligned academic support.",
+    points: [
+      "Subject-wise revision planning",
+      "Board-pattern question practice",
+      "Practical completion and submission tracking",
+      "Career and stream guidance for the next step",
+    ],
+  },
+] as const;
+
+const streamOptions = [
+  {
+    title: "Science Stream",
+    description:
+      "Science in Classes XI and XII supports PCM, PCB, and PCMB pathways with lab work, problem-solving, and board preparation.",
+    subjects: [
+      "Physics and Chemistry",
+      "Mathematics, Biology, or both depending on the combination",
+      "English Core",
+      "Computer Science or Physical Education where applicable",
+    ],
+    outcomes: [
+      "Engineering and technology",
+      "Medical and allied health fields",
+      "Research and science-based higher studies",
+    ],
+    icon: Microscope,
+  },
+  {
+    title: "Commerce Stream",
+    description:
+      "Commerce builds strength in business studies, accountancy, economics, and quantitative thinking for management and finance pathways.",
+    subjects: [
+      "Business Studies",
+      "Accountancy",
+      "Economics",
+      "Mathematics or Physical Education where applicable",
+    ],
+    outcomes: [
+      "Business and management",
+      "Finance, banking, and accountancy",
+      "Entrepreneurship and commerce-based degrees",
+    ],
+    icon: Target,
+  },
+  {
+    title: "Humanities Stream",
+    description:
+      "Humanities supports students interested in social sciences, public affairs, psychology, writing, and liberal-arts pathways.",
+    subjects: [
+      "History and Political Science",
+      "Psychology, Geography, or Economics as offered",
+      "English Core",
+      "Physical Education or stream-aligned electives",
+    ],
+    outcomes: [
+      "Civil services and public policy",
+      "Psychology, social sciences, and research",
+      "Law, writing, media, and liberal-arts pathways",
+    ],
+    icon: Users,
+  },
+] as const;
+
+export const metadata: Metadata = {
+  title: "Curriculum | Divine International Academy Sirsaganj",
+  description:
+    "Explore the CBSE curriculum at Divine International Academy, Sirsaganj from Pre-Primary to Senior Secondary, including academic stages, teaching systems, assessment, and stream options.",
+  keywords: [
+    "Divine International Academy curriculum",
+    "CBSE curriculum Sirsaganj",
+    "school curriculum Firozabad",
+    "Pre-Primary to Senior Secondary curriculum",
   ],
 };
-
-const teachingMethodology = [
-  {
-    method: "Activity-Based Learning",
-    description:
-      "Hands-on experiences that make learning engaging and memorable",
-    icon: <Users className="w-8 h-8" />,
-    examples: [
-      "Science experiments",
-      "Math manipulatives",
-      "Role-playing",
-      "Field trips",
-    ],
-  },
-  {
-    method: "Digital Integration",
-    description:
-      "Technology-enhanced learning with smart classrooms and digital resources",
-    icon: <Calculator className="w-8 h-8" />,
-    examples: [
-      "Smart boards",
-      "Educational apps",
-      "Online resources",
-      "Virtual labs",
-    ],
-  },
-  {
-    method: "Collaborative Learning",
-    description: "Group projects and peer learning to develop teamwork skills",
-    icon: <Users className="w-8 h-8" />,
-    examples: [
-      "Group projects",
-      "Peer teaching",
-      "Team challenges",
-      "Discussion circles",
-    ],
-  },
-  {
-    method: "Multilingual Approach",
-    description:
-      "Developing proficiency in multiple languages for global communication",
-    icon: <Languages className="w-8 h-8" />,
-    examples: [
-      "English medium",
-      "Hindi literature",
-      "Sanskrit optional",
-      "Foreign language clubs",
-    ],
-  },
-];
 
 export default function CurriculumPage() {
   return (
     <MainLayout>
-      <div className="min-h-screen bg-white">
-        {/* Enhanced Hero Section - Harvard Theme */}
-        <section className="relative pt-24 pb-20 overflow-hidden">
-          {/* Background Pattern */}
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-white to-primary/3"></div>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(165,28,48,0.1),transparent_50%)]"></div>
+      <section className="relative overflow-hidden bg-[linear-gradient(180deg,#fffdfb_0%,#fff7f1_46%,#ffffff_100%)] pt-16 pb-20 sm:pt-20 sm:pb-24">
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-primary/5 to-transparent" />
 
-          <div className="container mx-auto px-4 relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-center max-w-5xl mx-auto"
-            >
-              {/* CBSE Badge */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm border border-primary/20 rounded-full px-6 py-3 mb-8 shadow-lg"
-              >
-                <Award className="h-5 w-5 text-primary" />
-                <span className="font-semibold text-gray-900">
-                  CBSE Affiliated Excellence
-                </span>
-                <Sparkles className="h-4 w-4 text-primary animate-pulse" />
-              </motion.div>
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
+              Curriculum at DIA
+            </Badge>
+            <h1 className="mt-5 text-4xl font-bold font-heading leading-tight text-primary sm:text-5xl lg:text-[3.35rem]">
+              CBSE curriculum from Pre-Primary to Senior Secondary
+            </h1>
+            <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
+              Divine International Academy builds the academic journey in clear
+              stages: early learning, primary foundations, middle-school depth,
+              board readiness, and stream-based senior-secondary study.
+            </p>
+          </div>
 
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold font-heading text-gray-900 mb-8 leading-tight">
-                <span className="bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-                  Curriculum
-                </span>
-                <br />
-                <span className="text-gray-700">Excellence</span>
-              </h1>
+          <div className="mt-10 grid gap-6 xl:grid-cols-[minmax(0,1.04fr)_380px] xl:items-start">
+            <div className="overflow-hidden rounded-[32px] border border-slate-200/80 bg-white shadow-[0_28px_80px_-52px_rgba(15,23,42,0.24)]">
+              <div className="relative aspect-[16/9] border-b border-slate-200/80 bg-slate-100">
+                <Image
+                  src="/images/submenu/curriculum.jpg"
+                  alt="Curriculum and classroom learning at Divine International Academy"
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1280px) 52vw, 100vw"
+                  priority
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.08)_0%,rgba(15,23,42,0.18)_38%,rgba(15,23,42,0.68)_100%)]" />
+                <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6 lg:p-8">
+                  <Badge className="border border-white/15 bg-white/12 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-white/12">
+                    Academic Journey
+                  </Badge>
+                  <h2 className="mt-4 max-w-2xl text-2xl font-bold font-heading leading-tight text-white sm:text-[2rem] lg:text-[2.45rem]">
+                    From play-based early learning to stream selection in senior secondary.
+                  </h2>
+                </div>
+              </div>
 
-              <p className="text-xl md:text-2xl text-gray-600 mb-12 leading-relaxed max-w-4xl mx-auto font-medium">
-                A comprehensive curriculum designed to nurture
-                <span className="text-primary font-semibold">
-                  {" "}
-                  well-rounded individuals
-                </span>{" "}
-                through
-                <span className="text-primary font-semibold">
-                  {" "}
-                  activity-based learning
-                </span>
-                ,
-                <span className="text-primary font-semibold">
-                  {" "}
-                  critical thinking
-                </span>
-                , and holistic development.
-              </p>
+              <div className="grid gap-6 p-6 sm:p-8 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start">
+                <div>
+                  <p className="max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
+                    The curriculum at DIA combines CBSE classroom teaching,
+                    reading support, laboratory exposure, computer learning,
+                    regular assessment, and board-focused preparation as
+                    students move upward through the school.
+                  </p>
 
-              {/* Enhanced Stats */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="grid grid-cols-3 gap-8 max-w-2xl mx-auto mb-12"
-              >
-                {[
-                  {
-                    number: "5",
-                    label: "Learning Phases",
-                    icon: <TrendingUp className="h-6 w-6" />,
-                  },
-                  {
-                    number: "15+",
-                    label: "Core Subjects",
-                    icon: <BookOpen className="h-6 w-6" />,
-                  },
-                  {
-                    number: "360°",
-                    label: "Development",
-                    icon: <Target className="h-6 w-6" />,
-                  },
-                ].map((stat, idx) => (
-                  <div key={idx} className="text-center group">
-                    <div className="text-primary group-hover:scale-110 transition-transform duration-300 mb-2 flex justify-center">
-                      {stat.icon}
+                  <div className="mt-5 flex flex-wrap gap-2.5">
+                    {curriculumSignals.map((signal) => (
+                      <div
+                        key={signal}
+                        className="rounded-full border border-primary/10 bg-primary/5 px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-primary"
+                      >
+                        {signal}
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                    <Button asChild size="lg" className="bg-primary text-white hover:bg-primary/90">
+                      <Link href="/academics/streams" className="flex items-center justify-center">
+                        Explore Senior Streams
+                        <ArrowRight className="ml-2 h-5 w-5" />
+                      </Link>
+                    </Button>
+                    <Button
+                      asChild
+                      variant="outline"
+                      size="lg"
+                      className="border-primary/20 bg-white text-primary hover:bg-primary hover:text-white"
+                    >
+                      <Link href="/admissions" className="flex items-center justify-center">
+                        Review Admissions
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
+
+                <div className="rounded-[26px] border border-slate-200 bg-slate-50 p-5 sm:p-6">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/6 text-primary shadow-sm">
+                      <Shield className="h-5 w-5" />
                     </div>
-                    <div className="text-3xl font-bold text-gray-900 mb-1">
-                      {stat.number}
-                    </div>
-                    <div className="text-sm text-gray-600 font-medium">
-                      {stat.label}
+                    <div>
+                      <p className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-500">
+                        Curriculum profile
+                      </p>
+                      <p className="text-lg font-semibold text-slate-950">
+                        Key school facts behind the academics
+                      </p>
                     </div>
                   </div>
-                ))}
-              </motion.div>
 
-              <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                <Button
-                  size="lg"
-                  asChild
-                  className="bg-primary hover:bg-primary/90 text-white font-semibold px-8 py-4 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
-                >
-                  <Link href="/academics/streams" className="flex items-center">
-                    <BookOpen className="mr-3 h-5 w-5" />
-                    Explore Academic Streams
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  asChild
-                  className="border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
-                >
-                  <Link href="/apply" className="flex items-center">
-                    <GraduationCap className="mr-3 h-5 w-5" />
-                    Start Your Journey
-                  </Link>
-                </Button>
+                  <div className="mt-5 space-y-3.5 text-sm text-slate-700">
+                    {curriculumProfile.map((item) => (
+                      <div
+                        key={item.label}
+                        className="rounded-2xl border border-slate-200 bg-white px-4 py-3.5"
+                      >
+                        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+                          {item.label}
+                        </p>
+                        <p className="mt-2 leading-6 text-slate-700">{item.value}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
-            </motion.div>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-1">
+              {curriculumStats.map((stat) => {
+                const Icon = stat.icon;
+
+                return (
+                  <div
+                    key={stat.label}
+                    className="rounded-[26px] border border-slate-200 bg-white px-5 py-5 shadow-[0_20px_60px_-48px_rgba(15,23,42,0.18)]"
+                  >
+                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/6 text-primary shadow-sm">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <div className="mt-4 text-3xl font-bold font-heading text-primary">
+                      {stat.value}
+                    </div>
+                    <div className="mt-2 text-sm font-semibold uppercase tracking-[0.16em] text-slate-500">
+                      {stat.label}
+                    </div>
+                    <p className="mt-2 text-sm leading-6 text-slate-600">{stat.detail}</p>
+                  </div>
+                );
+              })}
+            </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Enhanced Curriculum Overview */}
-        <section className="py-20 bg-gradient-to-b from-white to-gray-50/50">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-16"
-            >
-              <h2 className="text-4xl md:text-5xl font-bold font-heading text-gray-900 mb-6">
-                <span className="text-primary">Five-Phase</span> Learning
-                Journey
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Our curriculum is structured in five progressive phases, each
-                designed to meet the developmental needs of students at
-                different stages.
-              </p>
-            </motion.div>
+      <section className="bg-white py-20">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
+              Academic Stages
+            </Badge>
+            <h2 className="mt-5 text-3xl font-bold font-heading text-primary sm:text-4xl">
+              How the curriculum changes as students move up the school
+            </h2>
+            <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
+              Each stage carries a different academic expectation, but the move
+              from one level to the next stays connected through routine,
+              revision, and classroom follow-up.
+            </p>
+          </div>
 
-            <div className="space-y-8 max-w-6xl mx-auto">
-              {curriculumPhases.map((phase, index) => (
-                <motion.div
-                  key={phase.phase}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+          <div className="mt-12 grid gap-6 lg:grid-cols-2">
+            {learningStages.map((stage, index) => {
+              const Icon = stage.icon;
+              const isLast = index === learningStages.length - 1;
+
+              return (
+                <Card
+                  key={stage.title}
+                  className={`rounded-[30px] border border-slate-200 shadow-[0_20px_60px_-48px_rgba(15,23,42,0.16)] ${
+                    isLast ? "lg:col-span-2" : ""
+                  }`}
                 >
-                  <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                    <CardContent className="p-6">
-                      <div className="flex flex-col lg:flex-row gap-6">
-                        <div className="lg:w-1/3">
-                          <div className="flex items-center gap-3 mb-3">
-                            <div className="p-3 bg-blue-100 rounded-full text-blue-600">
-                              {phase.icon}
-                            </div>
-                            <div>
-                              <h3 className="text-xl font-bold text-blue-900">
-                                {phase.phase}
-                              </h3>
-                              <Badge variant="outline" className="text-xs">
-                                {phase.grades}
-                              </Badge>
-                            </div>
-                          </div>
-                          <h4 className="font-semibold text-gray-800 mb-2">
-                            {phase.focus}
-                          </h4>
-                          <p className="text-gray-600 text-sm">
-                            {phase.description}
-                          </p>
-                        </div>
+                  <CardContent className="p-6 sm:p-8">
+                    <div className="flex items-start gap-4">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/6 text-primary shadow-sm">
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <h3 className="text-2xl font-bold text-slate-950">
+                          {stage.title}
+                        </h3>
+                        <p className="mt-1 text-sm font-semibold uppercase tracking-[0.16em] text-slate-500">
+                          {stage.classes}
+                        </p>
+                        <Badge className="mt-3 inline-flex max-w-full whitespace-normal rounded-2xl border border-primary/10 bg-primary/5 px-3.5 py-2 text-left text-[12px] font-semibold leading-5 tracking-normal text-primary hover:bg-primary/5">
+                          {stage.focus}
+                        </Badge>
+                      </div>
+                    </div>
 
-                        <div className="lg:w-1/3">
-                          <h4 className="font-semibold text-blue-900 mb-3">
-                            Key Subject Areas
-                          </h4>
-                          <ul className="space-y-2">
-                            {phase.keyAreas.map((area, idx) => (
-                              <li
-                                key={idx}
-                                className="flex items-center gap-2 text-sm"
-                              >
-                                <BookOpen className="w-3 h-3 text-blue-600 flex-shrink-0" />
-                                {area}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
+                    <p className="mt-5 text-sm leading-7 text-slate-600 sm:text-base">
+                      {stage.description}
+                    </p>
 
-                        <div className="lg:w-1/3">
-                          <h4 className="font-semibold text-blue-900 mb-3">
-                            Teaching Methodology
-                          </h4>
-                          <ul className="space-y-2">
-                            {phase.methodology.map((method, idx) => (
-                              <li
-                                key={idx}
-                                className="flex items-center gap-2 text-sm"
-                              >
-                                <Target className="w-3 h-3 text-green-600 flex-shrink-0" />
-                                {method}
-                              </li>
-                            ))}
-                          </ul>
+                    <div className="mt-6 grid gap-5 md:grid-cols-2">
+                      <div>
+                        <p className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-500">
+                          Subject focus
+                        </p>
+                        <div className="mt-4 space-y-3 text-sm text-slate-700">
+                          {stage.subjects.map((subject) => (
+                            <div
+                              key={subject}
+                              className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5"
+                            >
+                              <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
+                              <span>{subject}</span>
+                            </div>
+                          ))}
                         </div>
                       </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
 
-        {/* Subject Breakdown */}
-        <section className="py-16 bg-white/50">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold text-blue-900 mb-4">
-                Subject-wise Curriculum Details
-              </h2>
-              <p className="text-gray-600">
-                Detailed breakdown of subjects and weekly hours across different
-                phases
-              </p>
-            </motion.div>
-
-            <div className="max-w-6xl mx-auto">
-              <Tabs defaultValue="foundation" className="w-full">
-                <TabsList className="grid w-full grid-cols-4 mb-8">
-                  <TabsTrigger value="foundation">Foundation</TabsTrigger>
-                  <TabsTrigger value="preparatory">Preparatory</TabsTrigger>
-                  <TabsTrigger value="middle">Middle School</TabsTrigger>
-                  <TabsTrigger value="secondary">Secondary</TabsTrigger>
-                </TabsList>
-
-                {Object.entries(subjectDetails).map(([phase, subjects]) => (
-                  <TabsContent key={phase} value={phase}>
-                    <Card>
-                      <CardContent className="p-0">
-                        <div className="overflow-x-auto">
-                          <table className="w-full">
-                            <thead className="bg-blue-50">
-                              <tr>
-                                <th className="px-4 py-3 text-left font-semibold text-blue-900">
-                                  Subject
-                                </th>
-                                <th className="px-4 py-3 text-left font-semibold text-blue-900">
-                                  Focus Areas
-                                </th>
-                                <th className="px-4 py-3 text-center font-semibold text-blue-900">
-                                  Weekly Hours
-                                </th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {subjects.map((subject, index) => (
-                                <tr
-                                  key={subject.subject}
-                                  className={
-                                    index % 2 === 0 ? "bg-gray-50" : "bg-white"
-                                  }
-                                >
-                                  <td className="px-4 py-3 font-medium text-blue-900">
-                                    {subject.subject}
-                                  </td>
-                                  <td className="px-4 py-3 text-gray-700">
-                                    {subject.focus}
-                                  </td>
-                                  <td className="px-4 py-3 text-center font-semibold">
-                                    {subject.hours} hrs
-                                  </td>
-                                </tr>
-                              ))}
-                            </tbody>
-                          </table>
+                      <div>
+                        <p className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-500">
+                          How learning happens
+                        </p>
+                        <div className="mt-4 space-y-3 text-sm text-slate-700">
+                          {stage.approach.map((item) => (
+                            <div
+                              key={item}
+                              className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5"
+                            >
+                              <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
+                              <span>{item}</span>
+                            </div>
+                          ))}
                         </div>
-                      </CardContent>
-                    </Card>
-                  </TabsContent>
-                ))}
-              </Tabs>
-            </div>
-          </div>
-        </section>
-
-        {/* Teaching Methodology */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold text-blue-900 mb-4">
-                Innovative Teaching Methodology
-              </h2>
-              <p className="text-gray-600">
-                Modern pedagogical approaches that make learning engaging and
-                effective
-              </p>
-            </motion.div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-              {teachingMethodology.map((method, index) => (
-                <motion.div
-                  key={method.method}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  <Card className="h-full text-center hover:shadow-lg transition-shadow duration-300">
-                    <CardHeader>
-                      <div className="mx-auto p-4 bg-blue-100 rounded-full text-blue-600 w-fit">
-                        {method.icon}
                       </div>
-                      <CardTitle className="text-blue-900">
-                        {method.method}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-gray-600 mb-4 text-sm">
-                        {method.description}
-                      </p>
-                      <ul className="space-y-1">
-                        {method.examples.map((example, idx) => (
-                          <li key={idx} className="text-xs text-gray-500">
-                            • {example}
-                          </li>
-                        ))}
-                      </ul>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-gray-50 py-20">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
+              Curriculum Systems
+            </Badge>
+            <h2 className="mt-5 text-3xl font-bold font-heading text-primary sm:text-4xl">
+              What supports the curriculum beyond the textbook
+            </h2>
+            <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
+              At DIA, curriculum delivery depends on classroom systems,
+              practical spaces, reading support, and steady assessment rather
+              than only on the textbook list.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {curriculumSystems.map((item) => {
+              const Icon = item.icon;
+
+              return (
+                <Card
+                  key={item.title}
+                  className="rounded-[28px] border border-slate-200 shadow-[0_20px_60px_-48px_rgba(15,23,42,0.14)]"
+                >
+                  <CardContent className="p-6">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/6 text-primary shadow-sm">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <h3 className="mt-5 text-xl font-bold text-slate-950">
+                      {item.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-7 text-slate-600 sm:text-base">
+                      {item.description}
+                    </p>
+                    <div className="mt-5 space-y-3 text-sm text-slate-700">
+                      {item.points.map((point) => (
+                        <div
+                          key={point}
+                          className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-3.5"
+                        >
+                          <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
+                          <span>{point}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white py-20">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
+              Assessment and Academic Support
+            </Badge>
+            <h2 className="mt-5 text-3xl font-bold font-heading text-primary sm:text-4xl">
+              How progress is tracked and how board classes are supported
+            </h2>
+            <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
+              The academic routine becomes more structured as students move up,
+              especially once classes begin preparing for board exams and stream
+              choices.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-6 lg:grid-cols-2">
+            {academicSupport.map((block) => (
+              <Card
+                key={block.title}
+                className="rounded-[30px] border border-slate-200 shadow-[0_20px_60px_-48px_rgba(15,23,42,0.16)]"
+              >
+                <CardContent className="p-6 sm:p-8">
+                  <h3 className="text-2xl font-bold text-slate-950">
+                    {block.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-7 text-slate-600 sm:text-base">
+                    {block.description}
+                  </p>
+                  <div className="mt-6 space-y-3 text-sm text-slate-700">
+                    {block.points.map((point) => (
+                      <div
+                        key={point}
+                        className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5"
+                      >
+                        <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
+                        <span>{point}</span>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-gray-50 py-20">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
+              Senior Secondary Streams
+            </Badge>
+            <h2 className="mt-5 text-3xl font-bold font-heading text-primary sm:text-4xl">
+              Stream choices in Classes XI and XII at Divine
+            </h2>
+            <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
+              Senior Secondary moves students into stream-based study with board
+              preparation, subject depth, and higher-education direction.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+            {streamOptions.map((stream) => {
+              const Icon = stream.icon;
+
+              return (
+                <Card
+                  key={stream.title}
+                  className="rounded-[30px] border border-slate-200 shadow-[0_20px_60px_-48px_rgba(15,23,42,0.16)]"
+                >
+                  <CardContent className="p-6 sm:p-7">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/6 text-primary shadow-sm">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <h3 className="mt-5 text-xl font-bold text-slate-950">
+                      {stream.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-7 text-slate-600 sm:text-base">
+                      {stream.description}
+                    </p>
+
+                    <div className="mt-5 space-y-4">
+                      <div>
+                        <p className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-500">
+                          Subject direction
+                        </p>
+                        <div className="mt-3 space-y-3 text-sm text-slate-700">
+                          {stream.subjects.map((subject) => (
+                            <div
+                              key={subject}
+                              className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-3.5"
+                            >
+                              <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
+                              <span>{subject}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div>
+                        <p className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-500">
+                          Common pathways
+                        </p>
+                        <div className="mt-3 space-y-3 text-sm text-slate-700">
+                          {stream.outcomes.map((outcome) => (
+                            <div
+                              key={outcome}
+                              className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-3.5"
+                            >
+                              <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
+                              <span>{outcome}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+
+          <div className="mt-8 flex justify-center">
+            <Button asChild size="lg" className="bg-primary text-white hover:bg-primary/90">
+              <Link href="/academics/streams" className="flex items-center justify-center">
+                View Detailed Stream Options
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[linear-gradient(180deg,#7d1324_0%,#5f0d1b_40%,#22060b_100%)] py-20 text-white">
+        <div className="container mx-auto px-4 text-center">
+          <div className="mx-auto max-w-4xl">
+            <h2 className="text-3xl font-bold font-heading sm:text-4xl lg:text-5xl">
+              Ready to match the curriculum with your child’s stage?
+            </h2>
+            <p className="mt-4 text-base leading-7 text-white/75 sm:text-lg">
+              Review admissions, speak with the school, or explore senior
+              streams once you know which stage or class matters to your family.
+            </p>
+
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
+              <Button asChild size="lg" className="bg-white text-primary hover:bg-white/95">
+                <Link href="/admissions" className="flex items-center justify-center">
+                  Review Admissions
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="border-white/20 bg-white/8 text-white hover:bg-white hover:text-primary"
+              >
+                <Link href="/contact" className="flex items-center justify-center">
+                  Speak With the School
+                </Link>
+              </Button>
             </div>
           </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="py-16 bg-primary">
-          <div className="container mx-auto px-4 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="max-w-3xl mx-auto"
-            >
-              <h2 className="text-3xl font-bold text-white mb-4">
-                Experience Excellence in Education
-              </h2>
-              <p className="text-blue-100 mb-8 text-lg">
-                Join us to provide your child with a curriculum that balances
-                academic excellence with holistic development and prepares them
-                for future success.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" variant="secondary" asChild>
-                  <Link href="/academics/streams">
-                    <Target className="mr-2 h-5 w-5" />
-                    Senior Secondary Streams
-                  </Link>
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="bg-white text-blue-600 hover:bg-blue-50"
-                  asChild
-                >
-                  <Link href="/academics/achievements">
-                    <Award className="mr-2 h-5 w-5" />
-                    Academic Achievements
-                  </Link>
-                </Button>
-                <Button
-                  size="lg"
-                  variant="ghost"
-                  className="text-white hover:bg-blue-600"
-                  asChild
-                >
-                  <Link href="/apply">
-                    <BookOpen className="mr-2 h-5 w-5" />
-                    Apply Now
-                  </Link>
-                </Button>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-      </div>
+        </div>
+      </section>
     </MainLayout>
   );
 }

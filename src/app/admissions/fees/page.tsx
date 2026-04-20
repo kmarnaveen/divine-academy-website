@@ -1,568 +1,661 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import {
-  CreditCard,
-  Download,
-  Calendar,
-  AlertCircle,
-  CheckCircle,
-  IndianRupee,
-  FileText,
-  Calculator,
-} from "lucide-react";
+import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
+import {
+  ArrowRight,
+  CalendarDays,
+  CheckCircle,
+  Clock,
+  FileText,
+  Mail,
+  Phone,
+  Shield,
+} from "lucide-react";
+
 import { MainLayout } from "@/components/layout/main-layout";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 
-const feeStructure = [
-  {
-    grade: "Pre-KG & LKG",
-    annualFee: 45000,
-    admissionFee: 5000,
-    quarterly: 11250,
-    monthly: 3750,
-    transport: 18000,
-    activities: 3000,
-  },
-  {
-    grade: "UKG & Class I",
-    annualFee: 50000,
-    admissionFee: 5000,
-    quarterly: 12500,
-    monthly: 4167,
-    transport: 18000,
-    activities: 3500,
-  },
-  {
-    grade: "Class II - V",
-    annualFee: 55000,
-    admissionFee: 7500,
-    quarterly: 13750,
-    monthly: 4583,
-    transport: 20000,
-    activities: 4000,
-  },
-  {
-    grade: "Class VI - VIII",
-    annualFee: 65000,
-    admissionFee: 10000,
-    quarterly: 16250,
-    monthly: 5417,
-    transport: 22000,
-    activities: 5000,
-  },
-  {
-    grade: "Class IX - X",
-    annualFee: 75000,
-    admissionFee: 12500,
-    quarterly: 18750,
-    monthly: 6250,
-    transport: 24000,
-    activities: 6000,
-  },
-  {
-    grade: "Class XI - XII",
-    annualFee: 85000,
-    admissionFee: 15000,
-    quarterly: 21250,
-    monthly: 7083,
-    transport: 26000,
-    activities: 7500,
-  },
-];
+const admissionCycle = "2026-27";
 
-const additionalCharges = [
-  {
-    category: "Laboratory Charges",
-    items: [
-      { name: "Science Lab (VI-XII)", amount: 2500, frequency: "Annual" },
-      { name: "Computer Lab (All Classes)", amount: 2000, frequency: "Annual" },
-      { name: "Language Lab (VI-XII)", amount: 1500, frequency: "Annual" },
-    ],
-  },
-  {
-    category: "Activity Charges",
-    items: [
-      { name: "Sports & Games", amount: 1500, frequency: "Annual" },
-      { name: "Cultural Activities", amount: 1000, frequency: "Annual" },
-      { name: "Field Trips", amount: 1200, frequency: "Annual" },
-    ],
-  },
-  {
-    category: "Examination Charges",
-    items: [
-      { name: "Internal Assessments", amount: 500, frequency: "Annual" },
-      {
-        name: "Board Exam Registration (X & XII)",
-        amount: 2000,
-        frequency: "One-time",
-      },
-      { name: "Report Cards & Certificates", amount: 300, frequency: "Annual" },
-    ],
-  },
-];
+const feeSignals = [
+  "Annual fee by class band",
+  "Admission fee shown separately",
+  "Optional transport by route",
+] as const;
 
-const paymentPlans = [
+const heroHighlights = [
   {
-    title: "Annual Payment",
-    discount: "5% Early Bird Discount",
-    description: "Pay full year fees by March 31st",
-    perks: [
-      "5% discount on tuition fees",
-      "Priority in all activities",
-      "Free uniform set",
-      "Complimentary ID card",
-    ],
-    recommended: true,
+    value: "₹45,000",
+    label: "Starting annual band",
+    detail: "Pre-KG to Class I",
   },
   {
-    title: "Quarterly Payment",
-    discount: "2% Discount",
-    description: "Pay in 4 installments throughout the year",
-    perks: [
-      "2% discount on tuition fees",
-      "Flexible payment dates",
-      "EMI convenience",
-      "Online payment options",
-    ],
-    recommended: false,
+    value: "₹85,000",
+    label: "Highest annual band",
+    detail: "Class XI to XII",
   },
   {
-    title: "Monthly Payment",
-    discount: "No Discount",
-    description: "Pay monthly fees by 10th of each month",
-    perks: [
-      "Maximum flexibility",
-      "No large upfront payment",
-      "Monthly budgeting",
-      "Auto-debit facility",
-    ],
-    recommended: false,
+    value: "₹18,000 - ₹26,000",
+    label: "Transport estimate",
+    detail: "Optional and route-based",
   },
-];
+  {
+    value: "Printed breakup",
+    label: "Ask before payment",
+    detail: "Current class-wise fee sheet",
+  },
+] as const;
 
-const scholarships = [
+const feeBands = [
   {
-    name: "Academic Excellence Scholarship",
-    eligibility: "Students scoring 95%+ in previous class",
-    benefit: "25% fee waiver on tuition",
-    duration: "Valid for one academic year",
+    stage: "Foundational entry",
+    classes: "Pre-KG to Class I",
+    annualFee: "₹45,000 - ₹50,000",
+    admissionFee: "₹5,000",
+    transport: "₹18,000",
+    note: "Suitable for entry-level admissions in the foundational years.",
+    toneClass: "from-rose-50 via-white to-white",
+    badgeClass: "bg-rose-100 text-rose-700",
+    borderClass: "border-rose-100",
   },
   {
-    name: "Sibling Discount",
-    eligibility: "2nd child onwards in the same family",
-    benefit: "15% discount on tuition fees",
-    duration: "Throughout school tenure",
+    stage: "Primary stage",
+    classes: "Class II to V",
+    annualFee: "₹55,000",
+    admissionFee: "₹7,500",
+    transport: "₹20,000",
+    note: "Primary-stage fee band with separate annual activity and exam notes.",
+    toneClass: "from-amber-50 via-white to-white",
+    badgeClass: "bg-amber-100 text-amber-700",
+    borderClass: "border-amber-100",
   },
   {
-    name: "Sports Achievement Scholarship",
-    eligibility: "State/National level sports achievements",
-    benefit: "20% fee waiver on tuition",
-    duration: "Valid for one academic year",
+    stage: "Middle school",
+    classes: "Class VI to VIII",
+    annualFee: "₹65,000",
+    admissionFee: "₹10,000",
+    transport: "₹22,000",
+    note: "Middle-school fee band where class-wise lab charges may apply.",
+    toneClass: "from-slate-100 via-white to-white",
+    badgeClass: "bg-slate-200 text-slate-700",
+    borderClass: "border-slate-200",
   },
   {
-    name: "Staff Ward Concession",
-    eligibility: "Children of school staff members",
-    benefit: "40% discount on tuition fees",
-    duration: "Throughout employment",
+    stage: "Secondary",
+    classes: "Class IX to X",
+    annualFee: "₹75,000",
+    admissionFee: "₹12,500",
+    transport: "₹24,000",
+    note: "Board-foundation years with separate practical and exam-related costs.",
+    toneClass: "from-orange-50 via-white to-white",
+    badgeClass: "bg-orange-100 text-orange-700",
+    borderClass: "border-orange-100",
   },
-];
+  {
+    stage: "Senior secondary",
+    classes: "Class XI to XII",
+    annualFee: "₹85,000",
+    admissionFee: "₹15,000",
+    transport: "₹26,000",
+    note: "Senior-secondary fee band for stream selection and board-year planning.",
+    toneClass: "from-emerald-50 via-white to-white",
+    badgeClass: "bg-emerald-100 text-emerald-700",
+    borderClass: "border-emerald-100",
+  },
+] as const;
+
+const separateCharges = [
+  {
+    title: "Transport charges",
+    description:
+      "Transport is optional. The final amount depends on route, stop, and seat availability on the bus network.",
+  },
+  {
+    title: "Lab and computer charges",
+    description:
+      "Computer lab support applies across the school, while science lab charges are relevant where practical work is part of the class stage.",
+  },
+  {
+    title: "Activity and examination charges",
+    description:
+      "Annual activity charges and class-specific examination costs are reviewed separately according to the student’s stage.",
+  },
+  {
+    title: "Payment schedule",
+    description:
+      "Parents should confirm the current payment timeline, due dates, and accepted payment modes with the admissions office before deposit.",
+  },
+] as const;
+
+const paymentChecks = [
+  "Confirm the child’s class band and the current session fee sheet.",
+  "Check whether transport is needed and whether the route is available.",
+  "Review lab, activity, and examination charges applicable to the class.",
+  "Ask the office to explain the payment schedule and receipt process.",
+  "Keep the admission process and document requirements in mind before seat confirmation.",
+] as const;
+
+const officeSupport = [
+  {
+    label: "Admissions desk",
+    value: "+91 9876543211",
+    detail:
+      "Class-wise fee guidance, transport clarification, and admission support",
+    href: "tel:+919876543211",
+    icon: Phone,
+  },
+  {
+    label: "Admissions email",
+    value: "admissions@divineacademy.edu.in",
+    detail: "Share class, session, and fee questions by email",
+    href: "mailto:admissions@divineacademy.edu.in?subject=Fee%20Structure%20Enquiry",
+    icon: Mail,
+  },
+  {
+    label: "Office hours",
+    value: "Monday to Friday, 8 AM to 4 PM",
+    detail: "Saturday, 8 AM to 12 PM",
+    icon: Clock,
+  },
+] as const;
+
+const parentQuestions = [
+  {
+    question: "Are transport charges included in the annual fee?",
+    answer:
+      "No. Transport is optional and charged separately according to route, stop, and class band.",
+  },
+  {
+    question: "Do lab and activity charges apply to every class?",
+    answer:
+      "They vary by stage. Parents should confirm the current class-wise breakup with the school before payment.",
+  },
+  {
+    question:
+      "Can parents review the full fee breakup before confirming admission?",
+    answer:
+      "Yes. Families can review the current session fee sheet, transport guidance, and separate annual charges during the admissions discussion.",
+  },
+] as const;
+
+export const metadata: Metadata = {
+  title: "Admission Fees 2026-27 | Divine International Academy Sirsaganj",
+  description:
+    "Review the 2026-27 fee structure at Divine International Academy, Sirsaganj. Check annual fee bands, admission charges, transport guidance, and separate fee notes before admission.",
+  keywords: [
+    "Divine International Academy fees",
+    "school fee structure Sirsaganj",
+    "CBSE school fees Firozabad",
+    "admission fees 2026-27",
+  ],
+};
 
 export default function AdmissionFeesPage() {
   return (
     <MainLayout>
-      <div className="min-h-screen bg-white">
-        {/* Hero Section */}
-        <section className="relative pt-20 pb-16 overflow-hidden">
-          <div className="absolute inset-0 bg-blue-900/5"></div>
-          <div className="container mx-auto px-4 relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center max-w-4xl mx-auto"
-            >
-              <h1 className="text-4xl md:text-5xl font-bold text-blue-900 mb-6">
-                Fee Structure 2024-25
+      <section className="relative overflow-hidden bg-[linear-gradient(180deg,#fff9f5_0%,#fff4ed_42%,#ffffff_100%)] pt-16 pb-20 sm:pt-20 sm:pb-24">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(165,28,48,0.09),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(245,158,11,0.08),transparent_28%)]" />
+        <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-white/60 to-transparent" />
+
+        <div className="container relative mx-auto px-4">
+          <div className="grid gap-10 xl:grid-cols-[minmax(0,1fr)_430px] xl:items-center">
+            <div className="max-w-3xl">
+              <Badge className="border border-primary/10 bg-white/80 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary shadow-sm hover:bg-white/80">
+                Fees {admissionCycle}
+              </Badge>
+              <h1 className="mt-5 text-4xl font-bold font-heading leading-tight text-slate-950 sm:text-5xl lg:text-[3.6rem]">
+                A clearer fee page for parents comparing school costs in
+                Sirsaganj
               </h1>
-              <p className="text-xl text-gray-700 mb-8 leading-relaxed">
-                Transparent, competitive fees with flexible payment options and
-                scholarship opportunities. Quality education that's worth every
-                investment.
+              <p className="mt-5 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
+                This page is organised around the four questions parents usually
+                ask first: the annual fee for the class band, the admission
+                charge, the transport estimate, and which costs still need
+                separate confirmation before payment.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
-                  <Download className="mr-2 h-5 w-5" />
-                  Download Fee Structure
+
+              <div className="mt-6 flex flex-wrap gap-2.5">
+                {feeSignals.map((signal) => (
+                  <div
+                    key={signal}
+                    className="rounded-full border border-primary/10 bg-white px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-primary shadow-sm"
+                  >
+                    {signal}
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:max-w-2xl">
+                <div className="rounded-[28px] border border-slate-200/80 bg-white/90 p-5 shadow-[0_20px_60px_-45px_rgba(15,23,42,0.22)] backdrop-blur-sm">
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+                    What to decide first
+                  </p>
+                  <p className="mt-3 text-lg font-bold text-slate-950">
+                    Start with your child’s class band.
+                  </p>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">
+                    The annual fee, admission charge, and transport estimate all
+                    move from that starting point.
+                  </p>
+                </div>
+
+                <div className="rounded-[28px] border border-amber-200 bg-amber-50/90 p-5 shadow-[0_20px_60px_-45px_rgba(120,53,15,0.18)]">
+                  <div className="flex items-start gap-3">
+                    <Shield className="mt-0.5 h-5 w-5 shrink-0 text-amber-700" />
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-700">
+                        Before payment
+                      </p>
+                      <p className="mt-2 text-sm leading-6 text-amber-900">
+                        Ask for the current printed or digital fee breakup for{" "}
+                        {admissionCycle} before you make any deposit.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <Button
+                  asChild
+                  size="lg"
+                  className="bg-primary text-white hover:bg-primary/90"
+                >
+                  <Link href="/contact">
+                    Speak to Admissions
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
                 </Button>
-                <Button variant="outline" size="lg" asChild>
-                  <Link href="/apply">
-                    <FileText className="mr-2 h-5 w-5" />
-                    Apply Now
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="border-primary/20 bg-white text-primary hover:bg-primary hover:text-white"
+                >
+                  <Link href="/admissions/process">
+                    Review Admission Process
                   </Link>
                 </Button>
               </div>
-            </motion.div>
-          </div>
-        </section>
+            </div>
 
-        {/* Fee Structure Table */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold text-blue-900 mb-4">
-                Grade-wise Fee Structure
-              </h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                Comprehensive fee breakdown with multiple payment options to
-                suit your convenience
-              </p>
-            </motion.div>
+            <div className="overflow-hidden rounded-[34px] border border-slate-200/80 bg-white shadow-[0_30px_90px_-52px_rgba(15,23,42,0.28)]">
+              <div className="relative aspect-[16/11] overflow-hidden border-b border-slate-200/80">
+                <Image
+                  src="/images/submenu/fee-structure.avif"
+                  alt="Fee guidance at Divine International Academy"
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1280px) 430px, (min-width: 768px) 60vw, 100vw"
+                  priority
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.05)_0%,rgba(15,23,42,0.2)_42%,rgba(15,23,42,0.72)_100%)]" />
+                <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
+                  <Badge className="border border-white/15 bg-white/12 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-white/12">
+                    Quick Fee Snapshot
+                  </Badge>
+                  <h2 className="mt-3 text-2xl font-bold font-heading leading-tight text-white sm:text-[2rem]">
+                    See the fee range first. Confirm the full breakup second.
+                  </h2>
+                </div>
+              </div>
 
-            <div className="max-w-7xl mx-auto">
-              <Card className="overflow-hidden">
-                <CardContent className="p-0">
-                  <div className="overflow-x-auto">
-                    <table className="w-full">
-                      <thead className="bg-blue-900 text-white">
-                        <tr>
-                          <th className="px-4 py-4 text-left font-semibold">
-                            Grade
-                          </th>
-                          <th className="px-4 py-4 text-center font-semibold">
-                            <div className="flex items-center justify-center gap-1">
-                              <IndianRupee className="w-4 h-4" />
-                              Annual Fee
-                            </div>
-                          </th>
-                          <th className="px-4 py-4 text-center font-semibold">
-                            Admission Fee
-                          </th>
-                          <th className="px-4 py-4 text-center font-semibold">
-                            Quarterly
-                          </th>
-                          <th className="px-4 py-4 text-center font-semibold">
-                            Monthly
-                          </th>
-                          <th className="px-4 py-4 text-center font-semibold">
-                            Transport
-                          </th>
-                          <th className="px-4 py-4 text-center font-semibold">
-                            Activities
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {feeStructure.map((fee, index) => (
-                          <motion.tr
-                            key={fee.grade}
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.3, delay: index * 0.05 }}
-                            className={`${
-                              index % 2 === 0 ? "bg-blue-50/50" : "bg-white"
-                            } hover:bg-yellow-50/50 transition-colors duration-200`}
-                          >
-                            <td className="px-4 py-4 font-semibold text-blue-900">
-                              {fee.grade}
-                            </td>
-                            <td className="px-4 py-4 text-center font-bold text-green-700">
-                              ₹{fee.annualFee.toLocaleString()}
-                            </td>
-                            <td className="px-4 py-4 text-center">
-                              ₹{fee.admissionFee.toLocaleString()}
-                            </td>
-                            <td className="px-4 py-4 text-center">
-                              ₹{fee.quarterly.toLocaleString()}
-                            </td>
-                            <td className="px-4 py-4 text-center">
-                              ₹{fee.monthly.toLocaleString()}
-                            </td>
-                            <td className="px-4 py-4 text-center">
-                              ₹{fee.transport.toLocaleString()}
-                            </td>
-                            <td className="px-4 py-4 text-center">
-                              ₹{fee.activities.toLocaleString()}
-                            </td>
-                          </motion.tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                </CardContent>
-              </Card>
+              <div className="p-5 sm:p-6">
+                <div className="grid gap-3 sm:grid-cols-2">
+                  {heroHighlights.map((item) => (
+                    <div
+                      key={item.label}
+                      className="rounded-[24px] border border-slate-200 bg-slate-50 px-4 py-4"
+                    >
+                      <p className="text-xl font-bold text-primary sm:text-2xl">
+                        {item.value}
+                      </p>
+                      <p className="mt-1 text-sm font-semibold text-slate-950">
+                        {item.label}
+                      </p>
+                      <p className="mt-1 text-sm leading-6 text-slate-600">
+                        {item.detail}
+                      </p>
+                    </div>
+                  ))}
+                </div>
 
-              <div className="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-                <div className="flex items-start gap-3">
-                  <AlertCircle className="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" />
-                  <div className="text-sm text-yellow-800">
-                    <strong>Note:</strong> All fees are in Indian Rupees.
-                    Transport charges are optional and route-specific. Activity
-                    charges cover sports, cultural events, and co-curricular
-                    programs.
-                  </div>
+                <div className="mt-4 rounded-[24px] border border-primary/10 bg-primary/5 px-4 py-4">
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+                    Parent note
+                  </p>
+                  <p className="mt-2 text-sm leading-6 text-slate-700">
+                    Transport, lab, activity, and exam-related costs should not
+                    be assumed from the annual band alone. The admissions office
+                    should confirm the current class-wise sheet.
+                  </p>
                 </div>
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Payment Plans */}
-        <section className="py-16 bg-white/50">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold text-blue-900 mb-4">
-                Flexible Payment Plans
-              </h2>
-              <p className="text-gray-600">
-                Choose the payment option that works best for your family
-              </p>
-            </motion.div>
+      <section className="bg-white pb-20">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
+              Fee Map
+            </Badge>
+            <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.85rem]">
+              Stage-by-stage fee bands for {admissionCycle}
+            </h2>
+            <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
+              Use the child’s current or target class first. Once that is clear,
+              the annual fee, admission charge, and transport estimate become
+              easier to compare.
+            </p>
+          </div>
 
-            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {paymentPlans.map((plan, index) => (
-                <motion.div
-                  key={plan.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  <Card
-                    className={`h-full relative ${
-                      plan.recommended
-                        ? "ring-2 ring-yellow-400 shadow-lg"
-                        : "hover:shadow-md"
-                    } transition-all duration-300`}
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 xl:grid-cols-5">
+            {feeBands.map((band, index) => (
+              <Card
+                key={band.classes}
+                className={`relative overflow-hidden rounded-[30px] border ${band.borderClass} bg-gradient-to-br ${band.toneClass} shadow-[0_24px_70px_-48px_rgba(15,23,42,0.22)]`}
+              >
+                <CardContent className="relative h-full p-5 sm:p-6">
+                  <div className="absolute right-4 top-3 text-5xl font-bold text-slate-200/70">
+                    {String(index + 1).padStart(2, "0")}
+                  </div>
+
+                  <div
+                    className={`inline-flex rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] ${band.badgeClass}`}
                   >
-                    {plan.recommended && (
-                      <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                        <Badge className="bg-yellow-500 text-white">
-                          Recommended
-                        </Badge>
-                      </div>
-                    )}
-                    <CardHeader className="text-center">
-                      <CardTitle className="text-blue-900">
-                        {plan.title}
-                      </CardTitle>
-                      <Badge
-                        variant="outline"
-                        className="mx-auto text-green-700 border-green-300"
-                      >
-                        {plan.discount}
-                      </Badge>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-gray-600 mb-4 text-center">
-                        {plan.description}
+                    {band.stage}
+                  </div>
+
+                  <h3 className="mt-4 text-2xl font-bold font-heading text-slate-950">
+                    {band.classes}
+                  </h3>
+
+                  <div className="mt-5 space-y-3">
+                    <div className="rounded-[22px] border border-white/80 bg-white/80 px-4 py-4 backdrop-blur-sm">
+                      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+                        Annual fee
                       </p>
-                      <ul className="space-y-2">
-                        {plan.perks.map((perk, idx) => (
-                          <li
-                            key={idx}
-                            className="flex items-center gap-2 text-sm"
-                          >
-                            <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0" />
-                            {perk}
-                          </li>
-                        ))}
-                      </ul>
+                      <p className="mt-2 text-lg font-bold text-slate-950">
+                        {band.annualFee}
+                      </p>
+                    </div>
+
+                    <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-1">
+                      <div className="rounded-[22px] border border-white/80 bg-white/80 px-4 py-4 backdrop-blur-sm">
+                        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+                          Admission fee
+                        </p>
+                        <p className="mt-2 text-base font-bold text-slate-950">
+                          {band.admissionFee}
+                        </p>
+                      </div>
+                      <div className="rounded-[22px] border border-white/80 bg-white/80 px-4 py-4 backdrop-blur-sm">
+                        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+                          Transport
+                        </p>
+                        <p className="mt-2 text-base font-bold text-slate-950">
+                          {band.transport}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <p className="mt-5 text-sm leading-6 text-slate-600">
+                    {band.note}
+                  </p>
+                  <p className="mt-4 text-xs font-semibold uppercase tracking-[0.16em] text-primary">
+                    Separate lab, activity, and exam notes may still apply.
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative overflow-hidden bg-slate-950 py-20">
+        <div className="absolute left-0 top-0 h-56 w-56 -translate-x-12 -translate-y-12 rounded-full bg-primary/20 blur-3xl" />
+        <div className="absolute bottom-0 right-0 h-56 w-56 translate-x-14 translate-y-14 rounded-full bg-amber-400/10 blur-3xl" />
+
+        <div className="container relative mx-auto px-4">
+          <div className="grid gap-8 xl:grid-cols-[minmax(0,1fr)_390px] xl:items-start">
+            <div>
+              <Badge className="border border-white/15 bg-white/10 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-white hover:bg-white/10">
+                Separate Charges
+              </Badge>
+              <h2 className="mt-5 max-w-3xl text-3xl font-bold font-heading leading-tight text-white sm:text-4xl lg:text-[2.75rem]">
+                What parents should confirm outside the annual fee band
+              </h2>
+              <p className="mt-4 max-w-2xl text-base leading-7 text-white/75 sm:text-lg">
+                Most fee confusion happens when optional or class-specific
+                charges are assumed to be included. These four areas should
+                always be checked separately.
+              </p>
+
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                {separateCharges.map((item, index) => (
+                  <Card
+                    key={item.title}
+                    className="rounded-[26px] border border-white/10 bg-white/5 text-white shadow-[0_20px_60px_-48px_rgba(15,23,42,0.55)] backdrop-blur-sm"
+                  >
+                    <CardContent className="p-5 sm:p-6">
+                      <div className="flex items-center justify-between gap-4">
+                        <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/10 text-white">
+                          <FileText className="h-5 w-5" />
+                        </div>
+                        <div className="text-sm font-bold text-white/25">
+                          {String(index + 1).padStart(2, "0")}
+                        </div>
+                      </div>
+                      <h3 className="mt-5 text-lg font-bold text-white">
+                        {item.title}
+                      </h3>
+                      <p className="mt-2 text-sm leading-6 text-white/72">
+                        {item.description}
+                      </p>
                     </CardContent>
                   </Card>
-                </motion.div>
-              ))}
+                ))}
+              </div>
             </div>
+
+            <Card className="rounded-[30px] border-0 bg-white shadow-[0_30px_80px_-52px_rgba(15,23,42,0.6)]">
+              <CardContent className="p-6 sm:p-7">
+                <Badge className="border border-primary/10 bg-primary/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary hover:bg-primary/5">
+                  Before Payment
+                </Badge>
+                <h3 className="mt-5 text-2xl font-bold font-heading text-slate-950">
+                  Confirm these points with the school office
+                </h3>
+
+                <ul className="mt-6 space-y-4">
+                  {paymentChecks.map((item) => (
+                    <li key={item} className="flex items-start gap-3">
+                      <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                      <span className="text-sm leading-6 text-slate-700">
+                        {item}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-6 rounded-[24px] border border-amber-200 bg-amber-50 px-4 py-4">
+                  <div className="flex items-start gap-3">
+                    <Shield className="mt-0.5 h-5 w-5 shrink-0 text-amber-700" />
+                    <p className="text-sm leading-6 text-amber-900">
+                      The safest next step is to ask for the current fee
+                      breakup, transport note, and payment schedule in one
+                      conversation before any seat payment.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Additional Charges */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold text-blue-900 mb-4">
-                Additional Charges
-              </h2>
-              <p className="text-gray-600">
-                Optional services and facilities with transparent pricing
-              </p>
-            </motion.div>
+      <section className="bg-[linear-gradient(180deg,#ffffff_0%,#fff8f4_100%)] py-20">
+        <div className="container mx-auto px-4">
+          <div className="grid gap-8 xl:grid-cols-[380px_minmax(0,1fr)] xl:items-start">
+            <Card className="overflow-hidden rounded-[30px] border-slate-200/80 bg-white shadow-[0_24px_70px_-48px_rgba(15,23,42,0.22)]">
+              <div className="border-b border-slate-200/80 bg-primary px-6 py-5 text-white sm:px-7">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/75">
+                  Admissions Help
+                </p>
+                <h2 className="mt-2 text-2xl font-bold font-heading">
+                  Get fee guidance before you confirm the next step
+                </h2>
+              </div>
+              <CardContent className="p-6 sm:p-7">
+                <div className="space-y-4">
+                  {officeSupport.map((item) => {
+                    const Icon = item.icon;
 
-            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {additionalCharges.map((category, index) => (
-                <motion.div
-                  key={category.category}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  <Card className="h-full">
-                    <CardHeader>
-                      <CardTitle className="text-blue-900 text-center">
-                        {category.category}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-3">
-                        {category.items.map((item, idx) => (
-                          <div
-                            key={idx}
-                            className="flex justify-between items-center py-2 border-b border-gray-100 last:border-0"
-                          >
-                            <div>
-                              <div className="font-medium text-sm">
-                                {item.name}
-                              </div>
-                              <div className="text-xs text-gray-500">
-                                {item.frequency}
-                              </div>
-                            </div>
-                            <div className="font-semibold text-blue-900">
-                              ₹{item.amount.toLocaleString()}
-                            </div>
+                    return (
+                      <div
+                        key={item.label}
+                        className="rounded-[22px] border border-slate-200 bg-slate-50 px-4 py-4"
+                      >
+                        <div className="flex items-start gap-3">
+                          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                            <Icon className="h-5 w-5" />
                           </div>
-                        ))}
+                          <div>
+                            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+                              {item.label}
+                            </p>
+                            {"href" in item ? (
+                              <Link
+                                href={item.href}
+                                className="mt-1 block text-sm font-semibold text-primary hover:underline"
+                              >
+                                {item.value}
+                              </Link>
+                            ) : (
+                              <p className="mt-1 text-sm font-semibold text-slate-900">
+                                {item.value}
+                              </p>
+                            )}
+                            <p className="mt-1 text-sm leading-6 text-slate-600">
+                              {item.detail}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                <div className="mt-6 flex flex-col gap-3">
+                  <Button
+                    asChild
+                    className="bg-primary text-white hover:bg-primary/90"
+                  >
+                    <Link href="/contact">
+                      Contact Admissions
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                  <Button
+                    asChild
+                    variant="outline"
+                    className="border-primary/20 bg-white text-primary hover:bg-primary hover:text-white"
+                  >
+                    <Link href="/admissions/process">
+                      Review Documents and Process
+                    </Link>
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+
+            <div>
+              <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
+                Parent Questions
+              </Badge>
+              <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl">
+                Fee questions parents usually ask before admission
+              </h2>
+              <p className="mt-4 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
+                These are the practical questions that usually shape enquiry
+                calls and campus discussions.
+              </p>
+
+              <div className="mt-8 grid gap-4">
+                {parentQuestions.map((item) => (
+                  <Card
+                    key={item.question}
+                    className="rounded-[26px] border-slate-200/80 bg-white shadow-[0_18px_50px_-44px_rgba(15,23,42,0.18)]"
+                  >
+                    <CardContent className="p-5 sm:p-6">
+                      <div className="flex items-start gap-3">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                          <CalendarDays className="h-5 w-5" />
+                        </div>
+                        <div>
+                          <h3 className="text-base font-bold text-slate-950 sm:text-lg">
+                            {item.question}
+                          </h3>
+                          <p className="mt-2 text-sm leading-7 text-slate-600 sm:text-base">
+                            {item.answer}
+                          </p>
+                        </div>
                       </div>
                     </CardContent>
                   </Card>
-                </motion.div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Scholarships */}
-        <section className="py-16 bg-white">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold text-blue-900 mb-4">
-                Scholarships & Concessions
+      <section className="pb-20">
+        <div className="container mx-auto px-4">
+          <div className="overflow-hidden rounded-[34px] bg-[linear-gradient(135deg,#7f1322_0%,#a51c30_42%,#c33a44_100%)] px-6 py-10 text-center shadow-[0_30px_90px_-55px_rgba(127,19,34,0.55)] sm:px-10 lg:px-14 lg:py-14">
+            <div className="mx-auto max-w-3xl">
+              <Badge className="border border-white/15 bg-white/10 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-white hover:bg-white/10">
+                Next Step
+              </Badge>
+              <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-white sm:text-4xl lg:text-[2.8rem]">
+                Review the admission process, then ask for the current
+                class-wise breakup
               </h2>
-              <p className="text-gray-600">
-                Merit-based scholarships and family-friendly concessions
+              <p className="mt-4 text-base leading-7 text-white/80 sm:text-lg">
+                The fees page helps you shortlist the class band. The final
+                confirmation should still come from the admissions office with
+                the current fee sheet and payment guidance.
               </p>
-            </motion.div>
 
-            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              {scholarships.map((scholarship, index) => (
-                <motion.div
-                  key={scholarship.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  <Card className="h-full hover:shadow-md transition-shadow duration-300">
-                    <CardHeader>
-                      <CardTitle className="text-blue-900 flex items-center gap-2">
-                        <CheckCircle className="w-5 h-5 text-green-600" />
-                        {scholarship.name}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-3">
-                        <div>
-                          <span className="font-medium text-sm text-gray-700">
-                            Eligibility:{" "}
-                          </span>
-                          <span className="text-sm">
-                            {scholarship.eligibility}
-                          </span>
-                        </div>
-                        <div>
-                          <span className="font-medium text-sm text-gray-700">
-                            Benefit:{" "}
-                          </span>
-                          <span className="text-sm font-semibold text-green-700">
-                            {scholarship.benefit}
-                          </span>
-                        </div>
-                        <div>
-                          <span className="font-medium text-sm text-gray-700">
-                            Duration:{" "}
-                          </span>
-                          <span className="text-sm">
-                            {scholarship.duration}
-                          </span>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Fee Calculator CTA */}
-        <section className="py-16 bg-primary">
-          <div className="container mx-auto px-4 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="max-w-3xl mx-auto"
-            >
-              <h2 className="text-3xl font-bold text-white mb-4">
-                Calculate Your Total Investment
-              </h2>
-              <p className="text-blue-100 mb-8 text-lg">
-                Use our fee calculator to estimate total costs including
-                optional services and applicable discounts
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" variant="secondary">
-                  <Calculator className="mr-2 h-5 w-5" />
-                  Fee Calculator
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="bg-white text-blue-600 hover:bg-blue-50"
-                  asChild
-                >
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
+                <Button asChild size="lg" variant="secondary">
                   <Link href="/admissions/process">
                     <FileText className="mr-2 h-5 w-5" />
                     Admission Process
                   </Link>
                 </Button>
                 <Button
-                  size="lg"
-                  variant="ghost"
-                  className="text-white hover:bg-blue-600"
                   asChild
+                  size="lg"
+                  variant="outline"
+                  className="border-white/30 bg-transparent text-white hover:bg-white hover:text-primary"
                 >
-                  <Link href="/apply">
-                    <CreditCard className="mr-2 h-5 w-5" />
-                    Apply Now
+                  <Link href="/contact">
+                    <Phone className="mr-2 h-5 w-5" />
+                    Contact Admissions
                   </Link>
                 </Button>
               </div>
-            </motion.div>
+            </div>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
     </MainLayout>
   );
 }

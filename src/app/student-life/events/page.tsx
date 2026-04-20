@@ -1,723 +1,396 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Calendar,
-  Trophy,
-  Music,
-  Palette,
-  Users,
-  BookOpen,
-  Globe,
-  Heart,
-  Star,
-  Award,
-  Clock,
-  MapPin,
-} from "lucide-react";
+import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
+import {
+  ArrowRight,
+  BookOpen,
+  CalendarDays,
+  CheckCircle,
+  Music,
+  Shield,
+  Trophy,
+  Users,
+} from "lucide-react";
+
 import { MainLayout } from "@/components/layout/main-layout";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 
-const upcomingEvents = [
-  {
-    title: "Annual Day Celebration",
-    date: "December 15, 2024",
-    time: "9:00 AM - 1:00 PM",
-    venue: "School Auditorium",
-    category: "Cultural",
-    description:
-      "Grand celebration showcasing student talents through dance, music, and drama performances",
-    highlights: [
-      "Cultural performances",
-      "Award ceremony",
-      "Guest performances",
-      "Parent participation",
-    ],
-    participants: "All students",
-    icon: <Music className="w-6 h-6" />,
-    status: "upcoming",
-  },
-  {
-    title: "Science Exhibition",
-    date: "January 10, 2025",
-    time: "10:00 AM - 4:00 PM",
-    venue: "Science Labs & Corridors",
-    category: "Academic",
-    description:
-      "Students showcase innovative science projects, experiments, and research work",
-    highlights: [
-      "Student projects",
-      "Live experiments",
-      "Science fair",
-      "Innovation awards",
-    ],
-    participants: "Classes VI-XII",
-    icon: <BookOpen className="w-6 h-6" />,
-    status: "upcoming",
-  },
-  {
-    title: "Inter-House Sports Meet",
-    date: "February 5-7, 2025",
-    time: "8:00 AM - 5:00 PM",
-    venue: "School Sports Complex",
-    category: "Sports",
-    description:
-      "Three-day sports extravaganza with various indoor and outdoor sporting competitions",
-    highlights: [
-      "Track & field events",
-      "Team sports",
-      "House competitions",
-      "Championship trophies",
-    ],
-    participants: "All houses",
-    icon: <Trophy className="w-6 h-6" />,
-    status: "upcoming",
-  },
-  {
-    title: "Art & Craft Exhibition",
-    date: "March 20, 2025",
-    time: "11:00 AM - 3:00 PM",
-    venue: "Art Rooms & Gallery",
-    category: "Cultural",
-    description: "Showcase of student artwork, crafts, and creative projects",
-    highlights: [
-      "Student artwork",
-      "Craft displays",
-      "Live demonstrations",
-      "Art workshops",
-    ],
-    participants: "All students",
-    icon: <Palette className="w-6 h-6" />,
-    status: "upcoming",
-  },
-];
+const eventSignals = [
+  "Assemblies, showcases, and stage programs",
+  "Academic, sports, and cultural participation",
+  "Planned events with school supervision",
+] as const;
 
-const annualEvents = [
+const eventGroups = [
   {
-    month: "April",
-    events: [
-      {
-        name: "New Academic Year Inauguration",
-        description:
-          "Welcome ceremony for new academic session with orientation programs",
-        type: "Academic",
-        duration: "1 day",
-      },
-      {
-        name: "Earth Day Celebration",
-        description:
-          "Environmental awareness programs and tree plantation drives",
-        type: "Social",
-        duration: "1 week",
-      },
-    ],
-  },
-  {
-    month: "May",
-    events: [
-      {
-        name: "Mother's Day Special",
-        description:
-          "Celebrating mothers with special performances and appreciation events",
-        type: "Social",
-        duration: "1 day",
-      },
-      {
-        name: "Summer Camp Activities",
-        description:
-          "Sports camps, skill development workshops, and recreational activities",
-        type: "Activities",
-        duration: "2 weeks",
-      },
-    ],
-  },
-  {
-    month: "July",
-    events: [
-      {
-        name: "Guru Purnima",
-        description:
-          "Honoring teachers with cultural programs and gratitude ceremonies",
-        type: "Cultural",
-        duration: "1 day",
-      },
-    ],
-  },
-  {
-    month: "August",
-    events: [
-      {
-        name: "Independence Day Celebration",
-        description:
-          "Patriotic programs, flag hoisting, and cultural performances",
-        type: "National",
-        duration: "1 day",
-      },
-      {
-        name: "Inter-School Debate Competition",
-        description:
-          "Regional debate championship with multiple schools participating",
-        type: "Academic",
-        duration: "2 days",
-      },
-    ],
-  },
-  {
-    month: "September",
-    events: [
-      {
-        name: "Teachers' Day Celebration",
-        description:
-          "Student-organized programs honoring teachers and their contributions",
-        type: "Social",
-        duration: "1 day",
-      },
-      {
-        name: "Hindi Diwas",
-        description:
-          "Celebrating Hindi language through poetry, essays, and cultural programs",
-        type: "Cultural",
-        duration: "1 day",
-      },
-    ],
-  },
-  {
-    month: "October",
-    events: [
-      {
-        name: "Dussehra Celebration",
-        description:
-          "Traditional festival celebration with cultural performances",
-        type: "Cultural",
-        duration: "1 day",
-      },
-      {
-        name: "Gandhi Jayanti",
-        description:
-          "Commemorating Mahatma Gandhi with peace programs and community service",
-        type: "National",
-        duration: "1 day",
-      },
-    ],
-  },
-  {
-    month: "November",
-    events: [
-      {
-        name: "Diwali Celebration",
-        description:
-          "Festival of lights celebration with rangoli, lights, and cultural programs",
-        type: "Cultural",
-        duration: "1 day",
-      },
-      {
-        name: "Children's Day",
-        description:
-          "Special day dedicated to children with fun activities and celebrations",
-        type: "Social",
-        duration: "1 day",
-      },
-    ],
-  },
-  {
-    month: "December",
-    events: [
-      {
-        name: "Annual Day & Prize Distribution",
-        description:
-          "Grand annual celebration with performances, awards, and recognition",
-        type: "Cultural",
-        duration: "1 day",
-      },
-      {
-        name: "Christmas Celebration",
-        description:
-          "Christmas festivities with carol singing, decorations, and joy sharing",
-        type: "Cultural",
-        duration: "1 day",
-      },
-    ],
-  },
-  {
-    month: "January",
-    events: [
-      {
-        name: "Republic Day Celebration",
-        description:
-          "Patriotic celebration with march past, flag hoisting, and cultural programs",
-        type: "National",
-        duration: "1 day",
-      },
-      {
-        name: "Science Fair",
-        description:
-          "Annual science exhibition showcasing student projects and innovations",
-        type: "Academic",
-        duration: "3 days",
-      },
-    ],
-  },
-  {
-    month: "February",
-    events: [
-      {
-        name: "Annual Sports Meet",
-        description:
-          "Grand sports competition with track & field, team sports, and athletics",
-        type: "Sports",
-        duration: "3 days",
-      },
-      {
-        name: "Vasant Panchami",
-        description:
-          "Celebrating knowledge and learning with Saraswati Puja and cultural programs",
-        type: "Cultural",
-        duration: "1 day",
-      },
-    ],
-  },
-  {
-    month: "March",
-    events: [
-      {
-        name: "Holi Celebration",
-        description:
-          "Festival of colors celebration with traditional programs and joy",
-        type: "Cultural",
-        duration: "1 day",
-      },
-      {
-        name: "Farewell Ceremony",
-        description:
-          "Emotional farewell for graduating students with memories and best wishes",
-        type: "Social",
-        duration: "1 day",
-      },
-    ],
-  },
-];
-
-const eventCategories = [
-  {
-    category: "Academic Events",
+    title: "School assemblies and observances",
     description:
-      "Educational competitions, exhibitions, and learning celebrations",
-    icon: <BookOpen className="w-8 h-8" />,
-    color: "bg-blue-500",
-    count: 8,
+      "Assemblies and observance-based programs help students build confidence, listen, participate, and understand school values through regular public engagement.",
+    points: [
+      "Morning assemblies and class-led presentations",
+      "National days and school observances",
+      "Theme-based participation with teacher guidance",
+    ],
+    icon: Users,
   },
   {
-    category: "Cultural Programs",
-    description: "Arts, music, dance, and traditional festival celebrations",
-    icon: <Music className="w-8 h-8" />,
-    color: "bg-purple-500",
-    count: 12,
-  },
-  {
-    category: "Sports Competitions",
-    description: "Athletic meets, tournaments, and physical fitness events",
-    icon: <Trophy className="w-8 h-8" />,
-    color: "bg-orange-500",
-    count: 6,
-  },
-  {
-    category: "Social Activities",
+    title: "Academic showcases",
     description:
-      "Community service, awareness programs, and social celebrations",
-    icon: <Heart className="w-8 h-8" />,
-    color: "bg-green-500",
-    count: 10,
-  },
-];
-
-const eventHighlights = [
-  {
-    title: "Annual Day 2023 Highlights",
-    achievements: [
-      "Over 500 students participated in various performances",
-      "Cultural programs representing 8 different states",
-      "Special recognition for 50+ meritorious students",
-      "Guest performance by renowned classical dancers",
+      "Events connected to learning give students a chance to present projects, experiments, reading work, or subject understanding in a visible format.",
+    points: [
+      "Science and practical work presentations",
+      "Academic exhibitions and subject displays",
+      "Public speaking and class representation",
     ],
-    image: "Annual Day celebration with colorful cultural performances",
+    icon: BookOpen,
   },
   {
-    title: "Sports Meet 2024 Records",
-    achievements: [
-      "15 new school records established",
-      "Participation from all 4 houses with 400+ athletes",
-      "Inter-school relay race championship won",
-      "Best sportsmanship award for overall conduct",
+    title: "Sports events and school participation",
+    description:
+      "Sports events bring physical participation, school spirit, discipline, and teamwork into the academic year rather than treating games as a side activity.",
+    points: [
+      "Sports meets and games participation",
+      "Team-based events and healthy competition",
+      "Recognition through performance and effort",
     ],
-    image: "Athletic competitions with enthusiastic participation",
+    icon: Trophy,
   },
-];
+  {
+    title: "Cultural and stage programs",
+    description:
+      "Music, dance, stage presentation, and cultural events help students develop confidence, expression, and responsibility in front of an audience.",
+    points: [
+      "Annual stage programs and performances",
+      "Music, dance, and cultural participation",
+      "Confidence-building through rehearsed presentation",
+    ],
+    icon: Music,
+  },
+] as const;
 
-export default function EventsPage() {
+const eventFlow = [
+  {
+    title: "Advance planning and notices",
+    description:
+      "Well-run school events start with clear planning, class-wise preparation, and timely communication to students and families where needed.",
+  },
+  {
+    title: "Practice and teacher guidance",
+    description:
+      "Students need supervised rehearsal and preparation so participation remains organised and age-appropriate.",
+  },
+  {
+    title: "Event-day supervision",
+    description:
+      "Event quality depends on crowd flow, discipline, teacher coordination, and safe movement during the programme.",
+  },
+  {
+    title: "Recognition and follow-up",
+    description:
+      "Events work best when schools connect participation to encouragement, recognition, and student reflection afterward.",
+  },
+] as const;
+
+const parentNotes = [
+  "Participation varies by class, interest, and event format. Not every student joins every activity in the same way.",
+  "When uniforms, costumes, practice timings, or event-specific instructions matter, parents should receive clear school communication in advance.",
+  "A good events page should help families understand the types of events students experience during the school year, not just list old dates.",
+] as const;
+
+const nextSteps = [
+  {
+    title: "See clubs and activities",
+    description:
+      "Review the interest-based activities and club exposure that support student confidence outside formal events.",
+    href: "/student-life/clubs",
+    cta: "Go to clubs",
+  },
+  {
+    title: "Open the school gallery",
+    description:
+      "See how events, academics, sports, and student participation are documented visually across the year.",
+    href: "/student-life/gallery",
+    cta: "Go to gallery",
+  },
+  {
+    title: "Return to student life",
+    description:
+      "Go back to the student-life overview to understand the larger school participation picture.",
+    href: "/student-life",
+    cta: "Go to student life",
+  },
+] as const;
+
+export const metadata: Metadata = {
+  title: "School Events | Divine International Academy Sirsaganj",
+  description:
+    "See the types of school events at Divine International Academy, Sirsaganj, including assemblies, academic showcases, sports participation, and cultural programmes.",
+  keywords: [
+    "school events Divine International Academy",
+    "student events Sirsaganj school",
+    "CBSE school cultural programs Firozabad",
+    "school assemblies and sports events",
+  ],
+};
+
+export default function StudentLifeEventsPage() {
   return (
     <MainLayout>
-      <div className="min-h-screen bg-white">
-        {/* Hero Section */}
-        <section className="relative pt-20 pb-16 overflow-hidden">
-          <div className="absolute inset-0 bg-blue-900/5"></div>
-          <div className="container mx-auto px-4 relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center max-w-4xl mx-auto"
-            >
-              <h1 className="text-4xl md:text-5xl font-bold text-blue-900 mb-6">
-                School Events & Celebrations
-              </h1>
-              <p className="text-xl text-gray-700 mb-8 leading-relaxed">
-                Experience vibrant school life through our diverse calendar of
-                academic, cultural, and social events that create lasting
-                memories and learning opportunities.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button
-                  size="lg"
-                  asChild
-                  className="bg-blue-600 hover:bg-blue-700"
-                >
-                  <Link href="#upcoming">
-                    <Calendar className="mr-2 h-5 w-5" />
-                    Upcoming Events
-                  </Link>
-                </Button>
-                <Button variant="outline" size="lg" asChild>
-                  <Link href="/student-life/gallery">
-                    <Palette className="mr-2 h-5 w-5" />
-                    Event Gallery
-                  </Link>
-                </Button>
+      <section className="relative overflow-hidden bg-[linear-gradient(180deg,#fffdfb_0%,#fff7f1_46%,#ffffff_100%)] pt-16 pb-20 sm:pt-20 sm:pb-24">
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-primary/5 to-transparent" />
+
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
+              School Events
+            </Badge>
+            <h1 className="mt-5 text-4xl font-bold font-heading leading-tight text-primary sm:text-5xl lg:text-[3.35rem]">
+              School events matter when they help students participate with
+              confidence and discipline
+            </h1>
+            <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
+              At Divine International Academy, events are part of school
+              culture: assemblies, exhibitions, sports participation, stage
+              programs, and school observances all help students learn to
+              present, collaborate, and represent the school well.
+            </p>
+          </div>
+
+          <div className="mt-10 overflow-hidden rounded-[32px] border border-slate-200/80 bg-white shadow-[0_28px_80px_-52px_rgba(15,23,42,0.24)]">
+            <div className="grid lg:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.92fr)] lg:items-stretch">
+              <div className="relative min-h-[320px] border-b border-slate-200/80 bg-slate-100 lg:min-h-full lg:border-b-0 lg:border-r lg:border-slate-200/80">
+                <Image
+                  src="/images/submenu/achievements.jpg"
+                  alt="School events at Divine International Academy"
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 48vw, 100vw"
+                  priority
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.08)_0%,rgba(15,23,42,0.18)_38%,rgba(15,23,42,0.68)_100%)]" />
+                <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6 lg:p-8">
+                  <Badge className="border border-white/15 bg-white/12 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-white/12">
+                    Participation Calendar
+                  </Badge>
+                  <h2 className="mt-4 max-w-2xl text-2xl font-bold font-heading leading-tight text-white sm:text-[2rem] lg:text-[2.45rem]">
+                    Parents usually want to know what kinds of events students
+                    actually take part in, not just outdated event dates.
+                  </h2>
+                </div>
               </div>
-            </motion.div>
-          </div>
-        </section>
 
-        {/* Event Categories */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-              {eventCategories.map((category, index) => (
-                <motion.div
-                  key={category.category}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  <Card className="text-center hover:shadow-lg transition-shadow duration-300">
-                    <CardContent className="p-6">
-                      <div
-                        className={`mx-auto p-3 ${category.color} rounded-full text-white w-fit mb-4`}
-                      >
-                        {category.icon}
-                      </div>
-                      <h3 className="font-bold text-blue-900 mb-2">
-                        {category.category}
-                      </h3>
-                      <p className="text-gray-600 text-sm mb-3">
-                        {category.description}
-                      </p>
-                      <Badge className="bg-gray-100 text-gray-800">
-                        {category.count} events/year
-                      </Badge>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
+              <div className="p-6 sm:p-8 lg:p-10">
+                <p className="max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
+                  This page explains the types of school events students
+                  experience and how those events support confidence, teamwork,
+                  academic presentation, and school culture.
+                </p>
 
-        {/* Upcoming Events */}
-        <section id="upcoming" className="py-16 bg-white/50">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold text-blue-900 mb-4">
-                Upcoming Events
-              </h2>
-              <p className="text-gray-600">
-                Don't miss these exciting events coming up in our school
-                calendar
-              </p>
-            </motion.div>
+                <div className="mt-5 flex flex-wrap gap-2.5">
+                  {eventSignals.map((signal) => (
+                    <div
+                      key={signal}
+                      className="rounded-full border border-primary/10 bg-primary/5 px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-primary"
+                    >
+                      {signal}
+                    </div>
+                  ))}
+                </div>
 
-            <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
-              {upcomingEvents.map((event, index) => (
-                <motion.div
-                  key={event.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  <Card className="h-full hover:shadow-lg transition-shadow duration-300">
-                    <CardHeader>
-                      <div className="flex items-start justify-between">
-                        <div className="flex items-center gap-3">
-                          <div className="p-2 bg-blue-100 rounded-full text-blue-600">
-                            {event.icon}
-                          </div>
-                          <div>
-                            <CardTitle className="text-blue-900">
-                              {event.title}
-                            </CardTitle>
-                            <Badge className="mt-1">{event.category}</Badge>
-                          </div>
-                        </div>
-                      </div>
-                      <p className="text-gray-600 text-sm mt-2">
-                        {event.description}
-                      </p>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-4">
-                        <div className="grid grid-cols-2 gap-4 text-sm">
-                          <div className="flex items-center gap-2">
-                            <Calendar className="w-4 h-4 text-blue-600" />
-                            <span>{event.date}</span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <Clock className="w-4 h-4 text-green-600" />
-                            <span>{event.time}</span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <MapPin className="w-4 h-4 text-orange-600" />
-                            <span>{event.venue}</span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <Users className="w-4 h-4 text-purple-600" />
-                            <span>{event.participants}</span>
-                          </div>
-                        </div>
+                <div className="mt-6 rounded-[24px] border border-slate-200 bg-slate-50 px-5 py-5">
+                  <p className="text-sm leading-7 text-slate-700 sm:text-base">
+                    Events work best when they are planned, supervised, and
+                    clearly connected to student growth rather than treated as
+                    scattered activities without structure.
+                  </p>
+                </div>
 
-                        <div>
-                          <h4 className="font-semibold text-gray-800 mb-2">
-                            Event Highlights:
-                          </h4>
-                          <ul className="space-y-1">
-                            {event.highlights.map((highlight, idx) => (
-                              <li
-                                key={idx}
-                                className="flex items-center gap-2 text-sm text-gray-600"
-                              >
-                                <Star className="w-3 h-3 text-yellow-500" />
-                                {highlight}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Annual Calendar */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold text-blue-900 mb-4">
-                Annual Event Calendar
-              </h2>
-              <p className="text-gray-600">
-                Complete overview of all events throughout the academic year
-              </p>
-            </motion.div>
-
-            <div className="max-w-6xl mx-auto">
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {annualEvents.map((monthData, monthIndex) => (
-                  <motion.div
-                    key={monthData.month}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: monthIndex * 0.05 }}
+                <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                  <Button
+                    asChild
+                    size="lg"
+                    className="bg-primary text-white hover:bg-primary/90 sm:flex-1"
                   >
-                    <Card className="h-full">
-                      <CardHeader>
-                        <CardTitle className="text-blue-900 text-center">
-                          {monthData.month}
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="space-y-4">
-                          {monthData.events.map((event, eventIndex) => (
-                            <div
-                              key={event.name}
-                              className="p-3 bg-gray-50 rounded-lg border-l-4 border-blue-500"
-                            >
-                              <div className="flex items-center justify-between mb-1">
-                                <h4 className="font-semibold text-sm text-gray-800">
-                                  {event.name}
-                                </h4>
-                                <Badge variant="outline" className="text-xs">
-                                  {event.duration}
-                                </Badge>
-                              </div>
-                              <p className="text-xs text-gray-600 mb-2">
-                                {event.description}
-                              </p>
-                              <Badge
-                                variant="secondary"
-                                className={`text-xs ${
-                                  event.type === "Academic"
-                                    ? "bg-blue-100 text-blue-800"
-                                    : event.type === "Cultural"
-                                    ? "bg-purple-100 text-purple-800"
-                                    : event.type === "Sports"
-                                    ? "bg-orange-100 text-orange-800"
-                                    : event.type === "Social"
-                                    ? "bg-green-100 text-green-800"
-                                    : event.type === "National"
-                                    ? "bg-red-100 text-red-800"
-                                    : "bg-gray-100 text-gray-800"
-                                }`}
-                              >
-                                {event.type}
-                              </Badge>
-                            </div>
-                          ))}
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
+                    <Link href="/student-life/gallery">
+                      Open Gallery
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                  <Button
+                    asChild
+                    size="lg"
+                    variant="outline"
+                    className="border-primary text-primary hover:bg-primary hover:text-white sm:flex-1"
+                  >
+                    <Link href="/student-life">Back to Student Life</Link>
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="pb-20">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
+              Event Types
+            </Badge>
+            <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
+              School events usually support academics, sports, culture, and
+              values-based participation
+            </h2>
+          </div>
+
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            {eventGroups.map((item) => {
+              const Icon = item.icon;
+
+              return (
+                <Card
+                  key={item.title}
+                  className="rounded-[28px] border-slate-200/80 bg-white shadow-[0_20px_60px_-46px_rgba(15,23,42,0.24)]"
+                >
+                  <CardContent className="p-6 sm:p-7">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <h3 className="mt-5 text-xl font-bold font-heading text-slate-950">
+                      {item.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-7 text-slate-600 sm:text-base">
+                      {item.description}
+                    </p>
+
+                    <ul className="mt-5 space-y-3">
+                      {item.points.map((point) => (
+                        <li key={point} className="flex items-start gap-3">
+                          <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                          <span className="text-sm leading-6 text-slate-700">
+                            {point}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-slate-50/80 py-20">
+        <div className="container mx-auto px-4">
+          <div className="grid gap-8 xl:grid-cols-[minmax(0,1fr)_360px] xl:items-start">
+            <div>
+              <Badge className="border border-primary/10 bg-white px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-white">
+                Event Flow
+              </Badge>
+              <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl">
+                Event quality depends on planning, rehearsal, and school
+                supervision
+              </h2>
+
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                {eventFlow.map((item) => (
+                  <Card
+                    key={item.title}
+                    className="rounded-[24px] border-slate-200/80 bg-white"
+                  >
+                    <CardContent className="p-5">
+                      <h3 className="text-base font-bold text-slate-950">
+                        {item.title}
+                      </h3>
+                      <p className="mt-2 text-sm leading-6 text-slate-600">
+                        {item.description}
+                      </p>
+                    </CardContent>
+                  </Card>
                 ))}
               </div>
             </div>
+
+            <Card className="rounded-[28px] border-slate-200/80 bg-white shadow-[0_20px_60px_-46px_rgba(15,23,42,0.22)]">
+              <CardContent className="p-6 sm:p-7">
+                <Badge className="border border-primary/10 bg-primary/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary hover:bg-primary/5">
+                  Parent Notes
+                </Badge>
+                <h3 className="mt-5 text-2xl font-bold font-heading text-slate-950">
+                  What families should know about school events
+                </h3>
+
+                <ul className="mt-6 space-y-4">
+                  {parentNotes.map((item) => (
+                    <li key={item} className="flex items-start gap-3">
+                      <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                      <span className="text-sm leading-6 text-slate-700">
+                        {item}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-6 rounded-[24px] border border-amber-200 bg-amber-50 px-4 py-4">
+                  <div className="flex items-start gap-3">
+                    <Shield className="mt-0.5 h-5 w-5 shrink-0 text-amber-700" />
+                    <p className="text-sm leading-6 text-amber-900">
+                      A strong events page should reduce confusion by showing
+                      how participation works, not by publishing stale calendars
+                      that families cannot rely on.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Event Highlights */}
-        <section className="py-16 bg-white/50">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold text-blue-900 mb-4">
-                Event Highlights
-              </h2>
-              <p className="text-gray-600">
-                Memorable moments from our recent celebrations and achievements
-              </p>
-            </motion.div>
-
-            <div className="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              {eventHighlights.map((highlight, index) => (
-                <motion.div
-                  key={highlight.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  <Card className="h-full">
-                    <CardHeader>
-                      <CardTitle className="text-blue-900">
-                        {highlight.title}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-4">
-                        <div className="h-40 bg-gray-100 rounded-lg flex items-center justify-center">
-                          <p className="text-gray-600 text-center text-sm px-4">
-                            {highlight.image}
-                          </p>
-                        </div>
-
-                        <ul className="space-y-2">
-                          {highlight.achievements.map((achievement, idx) => (
-                            <li
-                              key={idx}
-                              className="flex items-center gap-2 text-sm"
-                            >
-                              <Award className="w-4 h-4 text-yellow-500 flex-shrink-0" />
-                              <span className="text-gray-700">
-                                {achievement}
-                              </span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
+              Next Step
+            </Badge>
+            <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
+              Continue to clubs, gallery, or the broader student-life section
+            </h2>
           </div>
-        </section>
 
-        {/* CTA Section */}
-        <section className="py-16 bg-primary">
-          <div className="container mx-auto px-4 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="max-w-3xl mx-auto"
-            >
-              <h2 className="text-3xl font-bold text-white mb-4">
-                Be Part of Our Celebrations
-              </h2>
-              <p className="text-blue-100 mb-8 text-lg">
-                Join us for exciting events, competitions, and celebrations that
-                make school life memorable and enriching for every student.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" variant="secondary" asChild>
-                  <Link href="/student-life/clubs">
-                    <Users className="mr-2 h-5 w-5" />
-                    Join Clubs
-                  </Link>
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="bg-white text-blue-600 hover:bg-blue-50"
-                  asChild
-                >
-                  <Link href="/student-life/gallery">
-                    <Palette className="mr-2 h-5 w-5" />
-                    Event Photos
-                  </Link>
-                </Button>
-                <Button
-                  size="lg"
-                  variant="ghost"
-                  className="text-white hover:bg-blue-600"
-                  asChild
-                >
-                  <Link href="/apply">
-                    <Calendar className="mr-2 h-5 w-5" />
-                    Apply Now
-                  </Link>
-                </Button>
-              </div>
-            </motion.div>
+          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+            {nextSteps.map((item) => (
+              <Card
+                key={item.title}
+                className="rounded-[28px] border-slate-200/80 bg-white shadow-[0_20px_60px_-46px_rgba(15,23,42,0.24)]"
+              >
+                <CardContent className="p-6 sm:p-7">
+                  <h3 className="text-xl font-bold font-heading text-slate-950">
+                    {item.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-7 text-slate-600">
+                    {item.description}
+                  </p>
+
+                  <Button
+                    asChild
+                    size="lg"
+                    className="mt-6 w-full bg-primary text-white hover:bg-primary/90"
+                  >
+                    <Link href={item.href}>
+                      {item.cta}
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
     </MainLayout>
   );
 }

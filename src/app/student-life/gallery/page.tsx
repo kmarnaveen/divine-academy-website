@@ -1,786 +1,496 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Camera,
-  Users,
-  Trophy,
-  Music,
-  Palette,
-  BookOpen,
-  Heart,
-  Award,
-  Filter,
-  Eye,
-  Download,
-  Share2,
-} from "lucide-react";
+import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
+import { ArrowRight, Camera, CheckCircle } from "lucide-react";
+
 import { MainLayout } from "@/components/layout/main-layout";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 
-const galleryCategories = [
+type GalleryImage = {
+  src: string;
+  alt: string;
+  caption: string;
+};
+
+type GalleryCollection = {
+  title: string;
+  description: string;
+  images: GalleryImage[];
+};
+
+const gallerySignals = [
+  "Campus and classroom spaces",
+  "Events, celebrations, and stage life",
+  "Sports, achievements, and student moments",
+] as const;
+
+const featuredImages: GalleryImage[] = [
   {
-    category: "Academic Events",
-    description: "Science exhibitions, competitions, and academic celebrations",
-    count: 45,
-    icon: <BookOpen className="w-5 h-5" />,
-    color: "bg-blue-500",
+    src: "https://divineinternationalacademy.com/assets/campus-view-BB4971sW.avif",
+    alt: "Aerial view of Divine International Academy campus",
+    caption: "Campus overview",
   },
   {
-    category: "Cultural Programs",
-    description: "Annual day, festivals, dance, music, and drama performances",
-    count: 60,
-    icon: <Music className="w-5 h-5" />,
-    color: "bg-purple-500",
+    src: "https://divineinternationalacademy.com/assets/annual-day-performance-BGrA0t2k.jpg",
+    alt: "Annual day stage performance",
+    caption: "Annual day performance",
   },
   {
-    category: "Sports Activities",
-    description: "Sports meets, tournaments, and athletic competitions",
-    count: 35,
-    icon: <Trophy className="w-5 h-5" />,
-    color: "bg-orange-500",
-  },
-  {
-    category: "Campus Life",
-    description: "Daily activities, classroom moments, and campus facilities",
-    count: 80,
-    icon: <Users className="w-5 h-5" />,
-    color: "bg-green-500",
-  },
-  {
-    category: "Achievements",
-    description: "Awards, recognitions, and milestone celebrations",
-    count: 25,
-    icon: <Award className="w-5 h-5" />,
-    color: "bg-yellow-500",
-  },
-  {
-    category: "Art & Creativity",
-    description: "Student artwork, craft exhibitions, and creative showcases",
-    count: 40,
-    icon: <Palette className="w-5 h-5" />,
-    color: "bg-pink-500",
+    src: "https://divineinternationalacademy.com/assets/sports-volleyball-C9XFHMDC.avif",
+    alt: "Students playing volleyball",
+    caption: "Sports participation",
   },
 ];
 
-const featuredPhotos = [
+const galleryCollections: GalleryCollection[] = [
   {
-    id: 1,
-    title: "Annual Day Grand Finale",
+    title: "Campus and learning spaces",
     description:
-      "Students performing the spectacular finale of Annual Day 2024",
-    category: "Cultural Programs",
-    date: "December 15, 2023",
-    photographer: "School Photography Team",
-    tags: ["Annual Day", "Cultural", "Performance", "Students"],
-    featured: true,
+      "These images help parents understand how the academic environment looks across classrooms, labs, library areas, and the wider campus.",
+    images: [
+      {
+        src: "https://divineinternationalacademy.com/assets/campus-entrance-DiaJFwsW.avif",
+        alt: "Divine International Academy Campus",
+        caption: "Campus entrance",
+      },
+      {
+        src: "https://divineinternationalacademy.com/assets/classroom-teaching.jpg",
+        alt: "Classroom Teaching",
+        caption: "Classroom teaching",
+      },
+      {
+        src: "https://divineinternationalacademy.com/assets/smartboard-class.jpg",
+        alt: "Smart Board Class",
+        caption: "Smart classroom",
+      },
+      {
+        src: "https://divineinternationalacademy.com/assets/biology-lab.avif",
+        alt: "Biology Lab",
+        caption: "Biology lab",
+      },
+      {
+        src: "https://divineinternationalacademy.com/assets/it-lab.avif",
+        alt: "IT Lab",
+        caption: "Computer lab",
+      },
+      {
+        src: "https://divineinternationalacademy.com/assets/students-library.jpg",
+        alt: "Library",
+        caption: "Library and reading space",
+      },
+    ],
   },
   {
-    id: 2,
-    title: "Science Exhibition Winner",
-    description: "Students showcasing their award-winning robotics project",
-    category: "Academic Events",
-    date: "January 20, 2024",
-    photographer: "Mr. Rajesh Kumar",
-    tags: ["Science", "Exhibition", "Robotics", "Innovation"],
-    featured: true,
-  },
-  {
-    id: 3,
-    title: "Athletic Championship Victory",
-    description: "Our relay team celebrating their state championship win",
-    category: "Sports Activities",
-    date: "February 10, 2024",
-    photographer: "Sports Department",
-    tags: ["Sports", "Athletics", "Championship", "Victory"],
-    featured: true,
-  },
-  {
-    id: 4,
-    title: "Art Gallery Opening",
+    title: "Celebrations and stage life",
     description:
-      "Students admiring artwork at the annual art exhibition opening",
-    category: "Art & Creativity",
-    date: "March 5, 2024",
-    photographer: "Ms. Kavita Jain",
-    tags: ["Art", "Exhibition", "Creativity", "Students"],
-    featured: true,
+      "The gallery also needs to show how students participate in assemblies, celebrations, cultural programmes, and public performances during the school year.",
+    images: [
+      {
+        src: "https://divineinternationalacademy.com/assets/republic-day-flag-Dypt4hYG.jpg",
+        alt: "Republic Day Celebrations — A Grand Event",
+        caption: "Republic Day celebration",
+      },
+      {
+        src: "https://divineinternationalacademy.com/assets/diwali-celebration-Ywr-jBME.jpg",
+        alt: "Students celebrating Diwali",
+        caption: "Diwali celebration",
+      },
+      {
+        src: "https://divineinternationalacademy.com/assets/dandiya-kids-DTsTZ54z.jpg",
+        alt: "Children performing dandiya dance",
+        caption: "Dandiya performance",
+      },
+      {
+        src: "https://divineinternationalacademy.com/assets/holi-celebration-BLIQAWpj.jpg",
+        alt: "Colors of Childhood",
+        caption: "Holi celebration",
+      },
+      {
+        src: "https://divineinternationalacademy.com/assets/annual-day-winners.jpg",
+        alt: "Annual Day Winners",
+        caption: "Annual day recognition",
+      },
+      {
+        src: "https://divineinternationalacademy.com/assets/annual-day-performance.jpg",
+        alt: "Annual Day Performance",
+        caption: "Stage performance",
+      },
+    ],
+  },
+  {
+    title: "Sports, achievements, and student highlights",
+    description:
+      "Parents also look for visible proof of participation, achievement, and school confidence through sports, competitions, exhibitions, and student milestones.",
+    images: [
+      {
+        src: "https://divineinternationalacademy.com/assets/dpl-cricket-JvSpUaK3.jpg",
+        alt: "Champions Are Made Here",
+        caption: "Cricket team highlight",
+      },
+      {
+        src: "https://divineinternationalacademy.com/assets/goenka-award.jpg",
+        alt: "School Team",
+        caption: "Award recognition",
+      },
+      {
+        src: "https://divineinternationalacademy.com/assets/art-exhibition.jpg",
+        alt: "Art Exhibition",
+        caption: "Art exhibition",
+      },
+      {
+        src: "https://divineinternationalacademy.com/assets/kr8ivity-league-B_iSPrTc.jpg",
+        alt: "Kr8ivity League — Inter-School Creative Competition",
+        caption: "Creative competition",
+      },
+      {
+        src: "https://divineinternationalacademy.com/assets/news-organic-farming-1-CZhlEyTR.jpg",
+        alt: "DIA Students Win State Organic Farming Competition",
+        caption: "Organic farming competition",
+      },
+      {
+        src: "https://divineinternationalacademy.com/assets/sports-volleyball.avif",
+        alt: "Sports Complex",
+        caption: "Sports practice",
+      },
+    ],
   },
 ];
 
-const photoCollections = {
-  academic: [
-    {
-      id: "ac1",
-      title: "Science Fair 2024",
-      description:
-        "Students presenting innovative projects at annual science fair",
-      images: 18,
-      date: "January 2024",
-      highlights: [
-        "Robotics projects",
-        "Environmental solutions",
-        "Student research",
-        "Innovation awards",
-      ],
-    },
-    {
-      id: "ac2",
-      title: "Math Olympiad Preparation",
-      description:
-        "Intensive training sessions for national mathematics competition",
-      images: 12,
-      date: "November 2023",
-      highlights: [
-        "Problem solving",
-        "Team collaboration",
-        "Advanced concepts",
-        "Peer learning",
-      ],
-    },
-    {
-      id: "ac3",
-      title: "Inter-School Debate Championship",
-      description: "Regional debate competition hosted at our school",
-      images: 15,
-      date: "August 2023",
-      highlights: [
-        "Public speaking",
-        "Critical thinking",
-        "School representation",
-        "Victory celebration",
-      ],
-    },
-  ],
-  cultural: [
-    {
-      id: "cu1",
-      title: "Annual Day Celebration 2024",
-      description: "Grand cultural extravaganza showcasing student talents",
-      images: 50,
-      date: "December 2023",
-      highlights: [
-        "Dance performances",
-        "Drama presentations",
-        "Music concerts",
-        "Traditional shows",
-      ],
-    },
-    {
-      id: "cu2",
-      title: "Diwali Festival Celebration",
-      description: "Traditional festival celebration with lights and joy",
-      images: 22,
-      date: "October 2023",
-      highlights: [
-        "Rangoli competition",
-        "Cultural programs",
-        "Traditional wear",
-        "Community celebration",
-      ],
-    },
-    {
-      id: "cu3",
-      title: "Independence Day Program",
-      description: "Patriotic celebration honoring our nation",
-      images: 20,
-      date: "August 2023",
-      highlights: [
-        "Flag hoisting",
-        "Patriotic songs",
-        "March past",
-        "Cultural programs",
-      ],
-    },
-  ],
-  sports: [
-    {
-      id: "sp1",
-      title: "Annual Sports Meet 2024",
-      description: "Three-day sports extravaganza with various competitions",
-      images: 40,
-      date: "February 2024",
-      highlights: [
-        "Track events",
-        "Field competitions",
-        "Team sports",
-        "House competitions",
-      ],
-    },
-    {
-      id: "sp2",
-      title: "Inter-House Cricket Tournament",
-      description: "Exciting cricket matches between all four houses",
-      images: 25,
-      date: "January 2024",
-      highlights: [
-        "Cricket matches",
-        "Team spirit",
-        "Sportsmanship",
-        "Victory celebrations",
-      ],
-    },
-    {
-      id: "sp3",
-      title: "Basketball Championship",
-      description: "Regional basketball tournament finals",
-      images: 18,
-      date: "December 2023",
-      highlights: [
-        "Basketball skills",
-        "Team coordination",
-        "Championship finals",
-        "Awards ceremony",
-      ],
-    },
-  ],
-  campus: [
-    {
-      id: "ca1",
-      title: "Campus Life Moments",
-      description:
-        "Candid moments of students enjoying daily campus activities",
-      images: 35,
-      date: "Throughout 2023-24",
-      highlights: [
-        "Classroom interactions",
-        "Library studies",
-        "Cafeteria fun",
-        "Friendship moments",
-      ],
-    },
-    {
-      id: "ca2",
-      title: "New Academic Year Welcome",
-      description: "Welcoming new students and beginning of academic session",
-      images: 20,
-      date: "April 2023",
-      highlights: [
-        "Orientation program",
-        "New friendships",
-        "Campus tour",
-        "Welcome activities",
-      ],
-    },
-    {
-      id: "ca3",
-      title: "Green Campus Initiative",
-      description:
-        "Students participating in environmental conservation activities",
-      images: 15,
-      date: "June 2023",
-      highlights: [
-        "Tree plantation",
-        "Environmental awareness",
-        "Student participation",
-        "Green initiatives",
-      ],
-    },
-  ],
-  achievements: [
-    {
-      id: "ah1",
-      title: "Academic Excellence Awards",
-      description: "Recognition ceremony for outstanding academic achievements",
-      images: 12,
-      date: "March 2024",
-      highlights: [
-        "Merit certificates",
-        "Academic toppers",
-        "Subject excellence",
-        "Recognition ceremony",
-      ],
-    },
-    {
-      id: "ah2",
-      title: "National Competition Winners",
-      description: "Students receiving awards at national level competitions",
-      images: 8,
-      date: "February 2024",
-      highlights: [
-        "National awards",
-        "Competition victories",
-        "Student achievements",
-        "Pride moments",
-      ],
-    },
-  ],
-  art: [
-    {
-      id: "ar1",
-      title: "Student Art Exhibition",
-      description: "Showcase of creative artwork by talented students",
-      images: 30,
-      date: "March 2024",
-      highlights: ["Paintings", "Sculptures", "Crafts", "Creative expressions"],
-    },
-    {
-      id: "ar2",
-      title: "Craft Workshop",
-      description: "Hands-on craft workshop sessions with expert guidance",
-      images: 16,
-      date: "January 2024",
-      highlights: [
-        "Craft techniques",
-        "Creative skills",
-        "Handmade items",
-        "Artistic learning",
-      ],
-    },
+const parentNotes = [
+  "The gallery is most useful when it reflects academics, celebrations, sports, and campus life together instead of only one event type.",
+  "Images help families judge activity level and school culture faster, but they do not replace a campus visit or direct admissions conversation.",
+  "For now the page uses the current DIA public image set. It can be shifted to API-based gallery data later without changing the page structure.",
+] as const;
+
+const nextSteps = [
+  {
+    title: "Review school events",
+    description:
+      "Understand the types of assemblies, exhibitions, sports events, and stage programmes students take part in.",
+    href: "/student-life/events",
+    cta: "Go to events",
+  },
+  {
+    title: "Explore clubs",
+    description:
+      "See how clubs support confidence, creativity, teamwork, and wider participation.",
+    href: "/student-life/clubs",
+    cta: "Go to clubs",
+  },
+  {
+    title: "Back to student life",
+    description:
+      "Return to the student-life overview for the full picture of school participation beyond academics.",
+    href: "/student-life",
+    cta: "Go to student life",
+  },
+] as const;
+
+export const metadata: Metadata = {
+  title: "School Gallery | Divine International Academy Sirsaganj",
+  description:
+    "See the school gallery at Divine International Academy, Sirsaganj, with current campus, classroom, celebration, sports, and student-participation images.",
+  keywords: [
+    "school gallery Divine International Academy",
+    "student activity photos Sirsaganj school",
+    "CBSE school gallery Firozabad",
+    "campus and event images DIA",
   ],
 };
 
-const photoStats = [
-  {
-    number: "2000+",
-    label: "Photos Captured",
-    icon: <Camera className="w-6 h-6" />,
-    color: "text-blue-600",
-  },
-  {
-    number: "50+",
-    label: "Events Covered",
-    icon: <Users className="w-6 h-6" />,
-    color: "text-green-600",
-  },
-  {
-    number: "1500+",
-    label: "Happy Moments",
-    icon: <Heart className="w-6 h-6" />,
-    color: "text-pink-600",
-  },
-  {
-    number: "100%",
-    label: "Memories Preserved",
-    icon: <Award className="w-6 h-6" />,
-    color: "text-purple-600",
-  },
-];
-
-export default function GalleryPage() {
+export default function StudentLifeGalleryPage() {
   return (
     <MainLayout>
-      <div className="min-h-screen bg-white">
-        {/* Hero Section */}
-        <section className="relative pt-20 pb-16 overflow-hidden">
-          <div className="absolute inset-0 bg-blue-900/5"></div>
-          <div className="container mx-auto px-4 relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center max-w-4xl mx-auto"
-            >
-              <h1 className="text-4xl md:text-5xl font-bold text-blue-900 mb-6">
-                School Photo Gallery
-              </h1>
-              <p className="text-xl text-gray-700 mb-8 leading-relaxed">
-                Capturing precious moments, celebrating achievements, and
-                preserving memories of our vibrant school community and student
-                experiences.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button
-                  size="lg"
-                  asChild
-                  className="bg-blue-600 hover:bg-blue-700"
-                >
-                  <Link href="#featured">
-                    <Camera className="mr-2 h-5 w-5" />
-                    Featured Photos
-                  </Link>
-                </Button>
-                <Button variant="outline" size="lg" asChild>
-                  <Link href="#collections">
-                    <Eye className="mr-2 h-5 w-5" />
-                    Browse Collections
-                  </Link>
-                </Button>
-              </div>
-            </motion.div>
-          </div>
-        </section>
+      <section className="relative overflow-hidden bg-[linear-gradient(180deg,#fffdfb_0%,#fff7f1_46%,#ffffff_100%)] pt-16 pb-20 sm:pt-20 sm:pb-24">
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-primary/5 to-transparent" />
 
-        {/* Photo Statistics */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <div className="grid md:grid-cols-4 gap-8 max-w-5xl mx-auto">
-              {photoStats.map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  <Card className="text-center hover:shadow-lg transition-shadow duration-300">
-                    <CardContent className="p-6">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
+              School Gallery
+            </Badge>
+            <h1 className="mt-5 text-4xl font-bold font-heading leading-tight text-primary sm:text-5xl lg:text-[3.35rem]">
+              A visual view of campus life, celebrations, sports, and student
+              participation
+            </h1>
+            <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
+              The gallery now uses current Divine International Academy public
+              images so families can actually see classrooms, campus areas,
+              events, sports, and school activity moments instead of only
+              reading about them.
+            </p>
+          </div>
+
+          <div className="mt-10 overflow-hidden rounded-[32px] border border-slate-200/80 bg-white shadow-[0_28px_80px_-52px_rgba(15,23,42,0.24)]">
+            <div className="grid gap-4 p-4 sm:grid-cols-2 sm:p-5 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:p-6">
+              <div className="relative min-h-[320px] overflow-hidden rounded-[28px] border border-slate-200 bg-slate-100 sm:min-h-[420px]">
+                <Image
+                  src={featuredImages[0].src}
+                  alt={featuredImages[0].alt}
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 52vw, 100vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.08)_0%,rgba(15,23,42,0.18)_38%,rgba(15,23,42,0.72)_100%)]" />
+                <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
+                  <Badge className="border border-white/15 bg-white/12 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-white/12">
+                    Featured Highlight
+                  </Badge>
+                  <h2 className="mt-4 max-w-2xl text-2xl font-bold font-heading leading-tight text-white sm:text-[2rem] lg:text-[2.35rem]">
+                    {featuredImages[0].caption}
+                  </h2>
+                  <p className="mt-2 max-w-xl text-sm leading-6 text-white/80 sm:text-base">
+                    Campus images help parents read the school atmosphere faster
+                    than generic claims ever will.
+                  </p>
+                </div>
+              </div>
+
+              <div className="grid gap-4">
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+                  {featuredImages.slice(1).map((image, index) => (
+                    <div
+                      key={image.src}
+                      className="relative min-h-[200px] overflow-hidden rounded-[28px] border border-slate-200 bg-slate-100"
+                    >
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        fill
+                        priority={index === 0}
+                        sizes="(min-width: 1024px) 24vw, (min-width: 640px) 50vw, 100vw"
+                        className="object-cover"
+                      />
+                      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.08)_0%,rgba(15,23,42,0.18)_38%,rgba(15,23,42,0.72)_100%)]" />
+                      <div className="absolute inset-x-0 bottom-0 p-4">
+                        <p className="text-sm font-semibold text-white sm:text-base">
+                          {image.caption}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="rounded-[28px] border border-slate-200 bg-slate-50 p-5 sm:p-6">
+                  <p className="text-sm leading-7 text-slate-700 sm:text-base">
+                    For now the gallery uses the current DIA public image set.
+                    The page structure is ready to shift to API-based gallery
+                    data later without redesigning the route.
+                  </p>
+
+                  <div className="mt-5 flex flex-wrap gap-2.5">
+                    {gallerySignals.map((signal) => (
                       <div
-                        className={`mx-auto p-3 bg-gray-100 rounded-full w-fit mb-4 ${stat.color}`}
+                        key={signal}
+                        className="rounded-full border border-primary/10 bg-primary/5 px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-primary"
                       >
-                        {stat.icon}
+                        {signal}
                       </div>
-                      <div className="text-3xl font-bold text-blue-900 mb-2">
-                        {stat.number}
-                      </div>
-                      <div className="text-sm text-gray-600">{stat.label}</div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
+                    ))}
+                  </div>
+
+                  <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                    <Button
+                      asChild
+                      size="lg"
+                      className="bg-primary text-white hover:bg-primary/90 sm:flex-1"
+                    >
+                      <Link href="/student-life/events">
+                        Review Events
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </Button>
+                    <Button
+                      asChild
+                      size="lg"
+                      variant="outline"
+                      className="border-primary text-primary hover:bg-primary hover:text-white sm:flex-1"
+                    >
+                      <Link href="/contact">Book a Campus Visit</Link>
+                    </Button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Gallery Categories */}
-        <section className="py-16 bg-white/50">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold text-blue-900 mb-4">
-                Photo Categories
-              </h2>
-              <p className="text-gray-600">
-                Explore our organized photo collections by category and theme
-              </p>
-            </motion.div>
+      <section className="pb-20">
+        <div className="container mx-auto px-4 space-y-14">
+          {galleryCollections.map((collection) => (
+            <div key={collection.title}>
+              <div className="mx-auto max-w-3xl text-center">
+                <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
+                  {collection.title}
+                </Badge>
+                <p className="mt-5 text-base leading-7 text-slate-600 sm:text-lg">
+                  {collection.description}
+                </p>
+              </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-              {galleryCategories.map((category, index) => (
-                <motion.div
-                  key={category.category}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  <Card className="hover:shadow-lg transition-shadow duration-300">
-                    <CardContent className="p-6">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div
-                          className={`p-2 ${category.color} rounded-full text-white`}
-                        >
-                          {category.icon}
-                        </div>
-                        <div className="flex-grow">
-                          <h3 className="font-bold text-blue-900">
-                            {category.category}
-                          </h3>
-                          <Badge variant="outline" className="text-xs mt-1">
-                            {category.count} photos
-                          </Badge>
-                        </div>
-                      </div>
-                      <p className="text-gray-600 text-sm">
-                        {category.description}
+              <div className="mt-8 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+                {collection.images.map((image) => (
+                  <Card
+                    key={image.src}
+                    className="overflow-hidden rounded-[28px] border-slate-200/80 bg-white shadow-[0_20px_60px_-46px_rgba(15,23,42,0.24)]"
+                  >
+                    <div className="relative aspect-[4/3] bg-slate-100">
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        fill
+                        sizes="(min-width: 1280px) 30vw, (min-width: 640px) 50vw, 100vw"
+                        className="object-cover"
+                      />
+                    </div>
+                    <CardContent className="p-5">
+                      <p className="text-base font-semibold text-slate-950">
+                        {image.caption}
+                      </p>
+                      <p className="mt-2 text-sm leading-6 text-slate-600">
+                        {image.alt}
                       </p>
                     </CardContent>
                   </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Featured Photos */}
-        <section id="featured" className="py-16">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold text-blue-900 mb-4">
-                Featured Photos
-              </h2>
-              <p className="text-gray-600">
-                Our most memorable and impactful moments captured beautifully
-              </p>
-            </motion.div>
-
-            <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-              {featuredPhotos.map((photo, index) => (
-                <motion.div
-                  key={photo.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  <Card className="hover:shadow-lg transition-shadow duration-300">
-                    <CardContent className="p-0">
-                      {/* Photo Placeholder */}
-                      <div className="h-64 bg-gray-100 flex items-center justify-center">
-                        <div className="text-center">
-                          <Camera className="w-12 h-12 text-blue-600 mx-auto mb-2" />
-                          <p className="text-gray-600 font-medium">
-                            {photo.title}
-                          </p>
-                        </div>
-                      </div>
-
-                      {/* Photo Details */}
-                      <div className="p-6">
-                        <div className="flex items-start justify-between mb-3">
-                          <div className="flex-grow">
-                            <h3 className="font-bold text-blue-900 mb-1">
-                              {photo.title}
-                            </h3>
-                            <Badge className="text-xs">{photo.category}</Badge>
-                          </div>
-                          <div className="flex gap-2">
-                            <Button size="sm" variant="ghost" className="p-2">
-                              <Eye className="w-4 h-4" />
-                            </Button>
-                            <Button size="sm" variant="ghost" className="p-2">
-                              <Download className="w-4 h-4" />
-                            </Button>
-                            <Button size="sm" variant="ghost" className="p-2">
-                              <Share2 className="w-4 h-4" />
-                            </Button>
-                          </div>
-                        </div>
-
-                        <p className="text-gray-600 text-sm mb-3">
-                          {photo.description}
-                        </p>
-
-                        <div className="space-y-2 text-xs text-gray-500">
-                          <div>
-                            <strong>Date:</strong> {photo.date}
-                          </div>
-                          <div>
-                            <strong>Photographer:</strong> {photo.photographer}
-                          </div>
-                        </div>
-
-                        <div className="flex flex-wrap gap-1 mt-3">
-                          {photo.tags.map((tag, idx) => (
-                            <Badge
-                              key={idx}
-                              variant="outline"
-                              className="text-xs"
-                            >
-                              {tag}
-                            </Badge>
-                          ))}
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Photo Collections */}
-        <section id="collections" className="py-16 bg-white/50">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold text-blue-900 mb-4">
-                Photo Collections
-              </h2>
-              <p className="text-gray-600">
-                Explore our comprehensive photo collections organized by events
-                and activities
-              </p>
-            </motion.div>
-
-            <div className="max-w-6xl mx-auto">
-              <Tabs defaultValue="academic" className="w-full">
-                <TabsList className="grid w-full grid-cols-3 lg:grid-cols-6 mb-8">
-                  <TabsTrigger
-                    value="academic"
-                    className="flex items-center gap-2"
-                  >
-                    <BookOpen className="w-4 h-4" />
-                    <span className="hidden sm:inline">Academic</span>
-                  </TabsTrigger>
-                  <TabsTrigger
-                    value="cultural"
-                    className="flex items-center gap-2"
-                  >
-                    <Music className="w-4 h-4" />
-                    <span className="hidden sm:inline">Cultural</span>
-                  </TabsTrigger>
-                  <TabsTrigger
-                    value="sports"
-                    className="flex items-center gap-2"
-                  >
-                    <Trophy className="w-4 h-4" />
-                    <span className="hidden sm:inline">Sports</span>
-                  </TabsTrigger>
-                  <TabsTrigger
-                    value="campus"
-                    className="flex items-center gap-2"
-                  >
-                    <Users className="w-4 h-4" />
-                    <span className="hidden sm:inline">Campus</span>
-                  </TabsTrigger>
-                  <TabsTrigger
-                    value="achievements"
-                    className="flex items-center gap-2"
-                  >
-                    <Award className="w-4 h-4" />
-                    <span className="hidden sm:inline">Awards</span>
-                  </TabsTrigger>
-                  <TabsTrigger value="art" className="flex items-center gap-2">
-                    <Palette className="w-4 h-4" />
-                    <span className="hidden sm:inline">Art</span>
-                  </TabsTrigger>
-                </TabsList>
-
-                {Object.entries(photoCollections).map(
-                  ([category, collections]) => (
-                    <TabsContent
-                      key={category}
-                      value={category}
-                      className="mt-6"
-                    >
-                      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {collections.map((collection, index) => (
-                          <motion.div
-                            key={collection.id}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.4, delay: index * 0.1 }}
-                          >
-                            <Card className="hover:shadow-lg transition-shadow duration-300">
-                              <CardContent className="p-0">
-                                {/* Collection Cover */}
-                                <div className="h-48 bg-gray-100 flex items-center justify-center">
-                                  <div className="text-center">
-                                    <Camera className="w-10 h-10 text-gray-600 mx-auto mb-2" />
-                                    <div className="text-2xl font-bold text-gray-700">
-                                      {collection.images}
-                                    </div>
-                                    <div className="text-sm text-gray-500">
-                                      Photos
-                                    </div>
-                                  </div>
-                                </div>
-
-                                {/* Collection Info */}
-                                <div className="p-6">
-                                  <div className="flex items-start justify-between mb-2">
-                                    <h3 className="font-bold text-blue-900 flex-grow">
-                                      {collection.title}
-                                    </h3>
-                                    <Badge
-                                      variant="outline"
-                                      className="text-xs"
-                                    >
-                                      {collection.date}
-                                    </Badge>
-                                  </div>
-
-                                  <p className="text-gray-600 text-sm mb-4">
-                                    {collection.description}
-                                  </p>
-
-                                  <div className="space-y-2">
-                                    <div className="text-xs text-gray-500 font-semibold">
-                                      Highlights:
-                                    </div>
-                                    <div className="flex flex-wrap gap-1">
-                                      {collection.highlights.map(
-                                        (highlight, idx) => (
-                                          <Badge
-                                            key={idx}
-                                            variant="secondary"
-                                            className="text-xs"
-                                          >
-                                            {highlight}
-                                          </Badge>
-                                        )
-                                      )}
-                                    </div>
-                                  </div>
-
-                                  <Button
-                                    className="w-full mt-4"
-                                    variant="outline"
-                                  >
-                                    <Eye className="w-4 h-4 mr-2" />
-                                    View Collection
-                                  </Button>
-                                </div>
-                              </CardContent>
-                            </Card>
-                          </motion.div>
-                        ))}
-                      </div>
-                    </TabsContent>
-                  )
-                )}
-              </Tabs>
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="py-16 bg-primary">
-          <div className="container mx-auto px-4 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="max-w-3xl mx-auto"
-            >
-              <h2 className="text-3xl font-bold text-white mb-4">
-                Create Your Own Memories
-              </h2>
-              <p className="text-blue-100 mb-8 text-lg">
-                Join our vibrant school community and become part of these
-                beautiful moments and memorable experiences that last a
-                lifetime.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" variant="secondary" asChild>
-                  <Link href="/student-life/clubs">
-                    <Users className="mr-2 h-5 w-5" />
-                    Join Activities
-                  </Link>
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="bg-white text-blue-600 hover:bg-blue-50"
-                  asChild
-                >
-                  <Link href="/student-life/events">
-                    <Camera className="mr-2 h-5 w-5" />
-                    Upcoming Events
-                  </Link>
-                </Button>
-                <Button
-                  size="lg"
-                  variant="ghost"
-                  className="text-white hover:bg-blue-600"
-                  asChild
-                >
-                  <Link href="/apply">
-                    <Heart className="mr-2 h-5 w-5" />
-                    Apply Now
-                  </Link>
-                </Button>
+                ))}
               </div>
-            </motion.div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="bg-slate-50/80 py-20">
+        <div className="container mx-auto px-4">
+          <div className="grid gap-8 xl:grid-cols-[minmax(0,1fr)_360px] xl:items-start">
+            <div>
+              <Badge className="border border-primary/10 bg-white px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-white">
+                Why This Helps
+              </Badge>
+              <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl">
+                Gallery images improve parent trust when they show the school
+                experience clearly and directly
+              </h2>
+
+              <div className="mt-8 grid gap-4 sm:grid-cols-3">
+                <Card className="rounded-[24px] border-slate-200/80 bg-white">
+                  <CardContent className="p-5">
+                    <h3 className="text-base font-bold text-slate-950">
+                      Campus visibility
+                    </h3>
+                    <p className="mt-2 text-sm leading-6 text-slate-600">
+                      Families can now see campus spaces, classrooms, and
+                      practical learning areas instead of imagining them.
+                    </p>
+                  </CardContent>
+                </Card>
+                <Card className="rounded-[24px] border-slate-200/80 bg-white">
+                  <CardContent className="p-5">
+                    <h3 className="text-base font-bold text-slate-950">
+                      Student participation
+                    </h3>
+                    <p className="mt-2 text-sm leading-6 text-slate-600">
+                      Events, celebrations, sports, and achievements are now
+                      visible instead of being described only in text.
+                    </p>
+                  </CardContent>
+                </Card>
+                <Card className="rounded-[24px] border-slate-200/80 bg-white">
+                  <CardContent className="p-5">
+                    <h3 className="text-base font-bold text-slate-950">
+                      Ready for later data work
+                    </h3>
+                    <p className="mt-2 text-sm leading-6 text-slate-600">
+                      The page can later switch from static image arrays to
+                      API-backed gallery content without changing the layout
+                      direction.
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+
+            <Card className="rounded-[28px] border-slate-200/80 bg-white shadow-[0_20px_60px_-46px_rgba(15,23,42,0.22)]">
+              <CardContent className="p-6 sm:p-7">
+                <Badge className="border border-primary/10 bg-primary/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary hover:bg-primary/5">
+                  Parent Notes
+                </Badge>
+                <h3 className="mt-5 text-2xl font-bold font-heading text-slate-950">
+                  What families should still keep in mind while using the
+                  gallery
+                </h3>
+
+                <ul className="mt-6 space-y-4">
+                  {parentNotes.map((item) => (
+                    <li key={item} className="flex items-start gap-3">
+                      <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                      <span className="text-sm leading-6 text-slate-700">
+                        {item}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-6 rounded-[24px] border border-slate-200 bg-slate-50 px-4 py-4">
+                  <div className="flex items-start gap-3">
+                    <Camera className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+                    <p className="text-sm leading-6 text-slate-700">
+                      The gallery now works as a real visual section. Admissions
+                      guidance, timings, and final visit planning should still
+                      go through the school office and admissions pages.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
+
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
+              Next Step
+            </Badge>
+            <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
+              Continue to events, clubs, or the wider student-life section
+            </h2>
+          </div>
+
+          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+            {nextSteps.map((item) => (
+              <Card
+                key={item.title}
+                className="rounded-[28px] border-slate-200/80 bg-white shadow-[0_20px_60px_-46px_rgba(15,23,42,0.24)]"
+              >
+                <CardContent className="p-6 sm:p-7">
+                  <h3 className="text-xl font-bold font-heading text-slate-950">
+                    {item.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-7 text-slate-600">
+                    {item.description}
+                  </p>
+
+                  <Button
+                    asChild
+                    size="lg"
+                    className="mt-6 w-full bg-primary text-white hover:bg-primary/90"
+                  >
+                    <Link href={item.href}>
+                      {item.cta}
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
     </MainLayout>
   );
 }

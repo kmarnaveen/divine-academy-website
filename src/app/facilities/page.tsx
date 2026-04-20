@@ -1,206 +1,397 @@
-import { MainLayout } from "@/components/layout/main-layout";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import {
-  Building,
+  ArrowRight,
+  BookOpen,
+  Bus,
+  Camera,
+  CheckCircle,
+  GraduationCap,
   Microscope,
   Monitor,
-  Trophy,
-  Bus,
-  Utensils,
-  BookOpen,
-  Users,
-  ArrowRight,
-  Wifi,
   Shield,
-  Heart,
-  Camera,
-  Activity,
-  Gamepad2,
+  Target,
+  Trophy,
 } from "lucide-react";
 
-const facilities = [
-  {
-    title: "Smart Classrooms",
-    description:
-      "Interactive digital boards and multimedia learning environment in every classroom",
-    icon: Monitor,
-    color: "bg-primary/10 text-primary",
-    features: [
-      "Digital Projectors",
-      "Interactive Whiteboards",
-      "Audio-Visual Systems",
-      "Wi-Fi Connectivity",
-    ],
-  },
-  {
-    title: "Science Laboratories",
-    description:
-      "Well-equipped Physics, Chemistry, and Biology labs with modern equipment",
-    icon: Microscope,
-    color: "bg-primary/10 text-primary",
-    features: [
-      "Physics Lab",
-      "Chemistry Lab",
-      "Biology Lab",
-      "Safety Equipment",
-    ],
-  },
-  {
-    title: "Computer Labs",
-    description:
-      "State-of-the-art computer labs with latest hardware and software",
-    icon: Monitor,
-    color: "bg-primary/10 text-primary",
-    features: [
-      "Latest Computers",
-      "High-Speed Internet",
-      "Programming Software",
-      "Multimedia Tools",
-    ],
-  },
-  {
-    title: "Library & Reading Room",
-    description:
-      "Extensive collection of books, journals, and digital resources",
-    icon: BookOpen,
-    color: "bg-primary/10 text-primary",
-    features: [
-      "10,000+ Books",
-      "Digital Library",
-      "Newspapers & Magazines",
-      "Quiet Study Areas",
-    ],
-  },
-  {
-    title: "Sports Complex",
-    description:
-      "Comprehensive sports facilities for various indoor and outdoor games",
-    icon: Trophy,
-    color: "bg-primary/10 text-primary",
-    features: [
-      "Football Ground",
-      "Basketball Court",
-      "Cricket Pitch",
-      "Indoor Games Room",
-    ],
-  },
-  {
-    title: "Transportation",
-    description: "Safe and reliable school bus service covering major areas",
-    icon: Bus,
-    color: "bg-primary/10 text-primary",
-    features: [
-      "GPS Tracking",
-      "Trained Drivers",
-      "CCTV Monitoring",
-      "First Aid Kit",
-    ],
-  },
-];
+import { MainLayout } from "../../components/layout/main-layout";
+import { Badge } from "../../components/ui/badge";
+import { Button } from "../../components/ui/button";
+import { Card, CardContent } from "../../components/ui/card";
 
-const safetyFeatures = [
+const facilitySignals = [
+  "40 smart classrooms",
+  "25-student science lab batches",
+  "15,000+ books and references",
+  "GPS-tracked transport and CCTV support",
+] as const;
+
+const facilityProfile = [
   {
-    title: "CCTV Surveillance",
-    description: "24/7 security monitoring across campus",
-    icon: Camera,
+    label: "Academic spaces",
+    value:
+      "Smart classrooms, science labs, computer learning spaces, and library support from Primary to Senior Secondary.",
   },
   {
-    title: "Security Guards",
-    description: "Professional security personnel on duty",
+    label: "Campus safety",
+    value:
+      "CCTV-supported supervision, security support, and basic first-response arrangements during the school day.",
+  },
+  {
+    label: "Transport support",
+    value:
+      "GPS-tracked buses with route guidance and transport confirmation through the school office.",
+  },
+  {
+    label: "Student experience",
+    value:
+      "Sports, activity spaces, and supervised movement built into the school routine.",
+  },
+] as const;
+
+const facilityStats = [
+  {
+    value: "40",
+    label: "Smart classrooms",
+    detail: "Digital boards support explanation, teaching pace, and revision.",
+  },
+  {
+    value: "25",
+    label: "Science lab batch size",
+    detail:
+      "Practical work stays more manageable in smaller supervised groups.",
+  },
+  {
+    value: "15,000+",
+    label: "Books and references",
+    detail: "Reading and revision support should extend beyond the textbook.",
+  },
+  {
+    value: "30",
+    label: "Computer lab systems",
+    detail: "Digital exposure supports computer periods and guided learning.",
+  },
+] as const;
+
+const coreFacilities = [
+  {
+    title: "Smart classrooms",
+    description:
+      "Divine's smart classrooms support explanation, concept reinforcement, and revision across sections. Digital boards help teachers deliver lessons with better clarity and pace.",
+    points: [
+      "Digital boards for explanation and recap",
+      "Better visual support for concept-heavy lessons",
+      "More consistent delivery across class sections",
+    ],
+    icon: Monitor,
+  },
+  {
+    title: "Science and computer labs",
+    description:
+      "Science and computer labs support practical understanding, demonstrations, and guided digital learning for middle, secondary, and senior-secondary students.",
+    points: [
+      "Physics, Chemistry, and Biology lab access",
+      "25-student science lab batches",
+      "30-system computer lab support",
+    ],
+    icon: Microscope,
+  },
+  {
+    title: "Library and reading support",
+    description:
+      "The library supports reading habits, subject references, project work, and quieter study time across school stages.",
+    points: [
+      "15,000+ books and references",
+      "Reading support across stages",
+      "Reference use for projects and revision",
+    ],
+    icon: BookOpen,
+  },
+  {
+    title: "Sports and activity spaces",
+    description:
+      "Sports grounds and activity spaces give students regular opportunities for physical activity, assemblies, school events, and co-curricular participation.",
+    points: [
+      "Outdoor play and sports use",
+      "Activity spaces for school events and participation",
+      "Regular student exposure beyond the classroom timetable",
+    ],
+    icon: Trophy,
+  },
+] as const;
+
+const parentPriorityBlocks = [
+  {
+    title: "School transport",
+    description:
+      "The school transport system supports safer daily travel for students coming from different routes. Families can confirm route availability, travel timing, and transport charges with the school.",
+    points: [
+      "GPS-tracked buses",
+      "CCTV-supported transport monitoring",
+      "Route and fee confirmation through the school",
+    ],
+    icon: Bus,
+  },
+  {
+    title: "Campus safety",
+    description:
+      "The campus is supported by CCTV coverage, supervised movement, security staff, and basic first-response arrangements for students during the school day.",
+    points: [
+      "CCTV coverage across campus",
+      "Security and supervised movement",
+      "Basic medical and first-response support",
+    ],
     icon: Shield,
   },
   {
-    title: "Medical Room",
-    description: "First aid and basic medical facilities",
-    icon: Heart,
+    title: "Daily academic use",
+    description:
+      "Classrooms, labs, and library spaces are planned for regular school use so students benefit from them through the academic week, especially in the board years.",
+    points: [
+      "Practical sessions linked to the timetable",
+      "Library and reading use beyond display value",
+      "Classroom systems that help in board years",
+    ],
+    icon: Target,
+  },
+] as const;
+
+const facilityRoutes = [
+  {
+    title: "Campus facilities",
+    description:
+      "Review the campus environment, movement, access, and general infrastructure.",
+    href: "/facilities/campus",
+    cta: "Explore Campus",
+    icon: Shield,
   },
   {
-    title: "Fire Safety",
-    description: "Modern fire safety and evacuation systems",
-    icon: Activity,
+    title: "Labs and practical spaces",
+    description:
+      "Review science and computer learning spaces used for practical work and digital instruction.",
+    href: "/facilities/labs",
+    cta: "Explore Labs",
+    icon: Microscope,
   },
-];
+  {
+    title: "Sports facilities",
+    description:
+      "See the sports grounds and activity spaces available for student participation.",
+    href: "/facilities/sports",
+    cta: "See Sports Spaces",
+    icon: Trophy,
+  },
+  {
+    title: "Transport",
+    description:
+      "Check route guidance, commute support, and transport safety details before admission.",
+    href: "/facilities/transport",
+    cta: "Check Transport",
+    icon: Bus,
+  },
+] as const;
+
+const visitChecklist = [
+  {
+    title: "Classroom and lab use",
+    description:
+      "Review how smart classrooms, science labs, and computer periods are used for the class stage you are considering.",
+  },
+  {
+    title: "Library and activity access",
+    description:
+      "Check whether students get regular library periods, reading support, and supervised access to activity spaces.",
+  },
+  {
+    title: "Transport route and travel time",
+    description:
+      "Ask about route availability, pickup points, travel time, and transport charges for your area.",
+  },
+  {
+    title: "Safety systems and supervision",
+    description:
+      "Look for CCTV presence, campus monitoring, entry supervision, and how the school manages student movement during the day.",
+  },
+] as const;
+
+export const metadata: Metadata = {
+  title: "Facilities | Divine International Academy Sirsaganj",
+  description:
+    "Explore the facilities at Divine International Academy, Sirsaganj, including smart classrooms, labs, library, sports spaces, transport, and campus safety systems.",
+  keywords: [
+    "Divine International Academy facilities",
+    "school facilities Sirsaganj",
+    "CBSE school transport Firozabad",
+    "smart classrooms and labs Sirsaganj",
+  ],
+};
 
 export default function FacilitiesPage() {
   return (
     <MainLayout>
-      {/* Hero Section */}
-      <section className="py-20 bg-primary text-white">
+      <section className="relative overflow-hidden bg-[linear-gradient(180deg,#fffdfb_0%,#fff7f1_46%,#ffffff_100%)] pt-16 pb-20 sm:pt-20 sm:pb-24">
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-primary/5 to-transparent" />
+
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <Badge className="mb-6 bg-accent text-primary">
-              World-Class Infrastructure
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
+              Campus Facilities
             </Badge>
-            <h1 className="text-4xl md:text-5xl font-bold font-heading mb-6">
-              State-of-the-Art Facilities
+            <h1 className="mt-5 text-4xl font-bold font-heading leading-tight text-primary sm:text-5xl lg:text-[3.35rem]">
+              Facilities for learning, safety, and student life at Divine
             </h1>
-            <p className="text-xl text-primary-100 leading-relaxed">
-              Our modern campus provides the perfect environment for learning,
-              growth, and development with facilities designed for holistic
-              education.
+            <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
+              Divine International Academy offers smart classrooms, science and
+              computer labs, library support, transport services, sports areas,
+              and campus safety systems that support students through the school
+              week.
             </p>
+          </div>
+
+          <div className="mt-10 overflow-hidden rounded-[32px] border border-slate-200/80 bg-white shadow-[0_28px_80px_-52px_rgba(15,23,42,0.25)]">
+            <div className="grid lg:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.92fr)] lg:items-stretch">
+              <div className="relative min-h-[320px] border-b border-slate-200/80 bg-slate-100 lg:min-h-full lg:border-b-0 lg:border-r lg:border-slate-200/80">
+                <Image
+                  src="/images/submenu/facilities.avif"
+                  alt="Facilities at Divine International Academy"
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 48vw, 100vw"
+                  priority
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.08)_0%,rgba(15,23,42,0.18)_38%,rgba(15,23,42,0.68)_100%)]" />
+                <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6 lg:p-8">
+                  <Badge className="border border-white/15 bg-white/12 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-white/12">
+                    Campus Overview
+                  </Badge>
+                  <h2 className="mt-4 max-w-2xl text-2xl font-bold font-heading leading-tight text-white sm:text-[2rem] lg:text-[2.45rem]">
+                    From classrooms to commute, each facility is planned to
+                    support teaching, supervision, and student participation.
+                  </h2>
+                </div>
+              </div>
+
+              <div className="p-6 sm:p-8 lg:p-10">
+                <p className="max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
+                  Divine's facilities are aligned with classroom teaching,
+                  practical work, reading habits, safer transport, and regular
+                  student participation from Pre-Primary to Senior Secondary.
+                </p>
+
+                <div className="mt-5 flex flex-wrap gap-2.5">
+                  {facilitySignals.map((signal) => (
+                    <div
+                      key={signal}
+                      className="rounded-full border border-primary/10 bg-primary/5 px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-primary"
+                    >
+                      {signal}
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                  {facilityProfile.map((item) => (
+                    <div
+                      key={item.label}
+                      className="rounded-[24px] border border-slate-200 bg-slate-50 px-4 py-4"
+                    >
+                      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+                        {item.label}
+                      </p>
+                      <p className="mt-2 text-sm leading-6 text-slate-700">
+                        {item.value}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                  {facilityStats.map((stat) => (
+                    <div
+                      key={stat.label}
+                      className="rounded-[24px] border border-primary/10 bg-primary/5 px-4 py-4"
+                    >
+                      <p className="text-2xl font-bold text-primary">
+                        {stat.value}
+                      </p>
+                      <p className="mt-1 text-sm font-semibold text-slate-900">
+                        {stat.label}
+                      </p>
+                      <p className="mt-1 text-sm leading-6 text-slate-600">
+                        {stat.detail}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                  <Button asChild size="lg" className="sm:flex-1">
+                    <Link href="/contact">
+                      Plan a Campus Visit
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                  <Button
+                    asChild
+                    size="lg"
+                    variant="outline"
+                    className="border-primary text-primary hover:bg-primary hover:text-white sm:flex-1"
+                  >
+                    <Link href="/admissions">Review Admissions</Link>
+                  </Button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Campus Overview */}
-      <section className="py-20 bg-white">
+      <section className="pb-20">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold font-heading text-primary mb-4">
-              Campus Infrastructure
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
+              Core Facilities
+            </Badge>
+            <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
+              Key facilities across the Divine campus
             </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Our 5-acre campus is thoughtfully designed to provide students
-              with the best possible learning environment and recreational
-              facilities.
+            <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-base">
+              Classrooms, labs, library spaces, and activity areas are designed
+              to support students throughout daily school life.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {facilities.map((facility, index) => {
+          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {coreFacilities.map((facility) => {
               const Icon = facility.icon;
+
               return (
                 <Card
                   key={facility.title}
-                  className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 group"
+                  className="rounded-[28px] border-slate-200/80 bg-white shadow-[0_20px_60px_-46px_rgba(15,23,42,0.24)]"
                 >
                   <CardContent className="p-6">
-                    <div className="mb-6">
-                      <div
-                        className={`w-12 h-12 rounded-lg ${facility.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}
-                      >
-                        <Icon className="h-6 w-6" />
-                      </div>
-                      <h3 className="text-xl font-semibold font-heading text-gray-900 mb-2">
-                        {facility.title}
-                      </h3>
-                      <p className="text-gray-600 text-sm mb-4">
-                        {facility.description}
-                      </p>
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                      <Icon className="h-6 w-6" />
                     </div>
+                    <h3 className="mt-5 text-xl font-bold font-heading text-slate-950">
+                      {facility.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-7 text-slate-600">
+                      {facility.description}
+                    </p>
 
-                    <div className="space-y-2">
-                      <h4 className="font-medium text-gray-800 text-sm">
-                        Key Features:
-                      </h4>
-                      <ul className="space-y-1">
-                        {facility.features.map((feature) => (
-                          <li
-                            key={feature}
-                            className="flex items-center space-x-2"
-                          >
-                            <div className="w-1.5 h-1.5 bg-accent rounded-full"></div>
-                            <span className="text-gray-600 text-xs">
-                              {feature}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                    <ul className="mt-5 space-y-3">
+                      {facility.points.map((point) => (
+                        <li key={point} className="flex items-start gap-3">
+                          <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                          <span className="text-sm leading-6 text-slate-700">
+                            {point}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
                   </CardContent>
                 </Card>
               );
@@ -209,157 +400,51 @@ export default function FacilitiesPage() {
         </div>
       </section>
 
-      {/* Detailed Facility Sections */}
-      <section className="py-20 bg-gray-50">
+      <section className="bg-slate-50/80 py-20">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-16 items-center mb-16">
-            <div>
-              <Badge className="mb-4 bg-accent-100 text-accent-600">
-                Academic Infrastructure
-              </Badge>
-              <h3 className="text-3xl font-bold font-heading text-primary mb-6">
-                Modern Learning Environments
-              </h3>
-              <p className="text-gray-600 leading-relaxed mb-6">
-                Our classrooms and laboratories are equipped with the latest
-                technology to facilitate interactive learning. Each space is
-                designed to encourage collaboration, creativity, and critical
-                thinking.
-              </p>
-
-              <div className="space-y-4">
-                <div className="flex items-center space-x-3">
-                  <Wifi className="h-5 w-5 text-accent" />
-                  <span className="text-gray-700">
-                    High-speed Wi-Fi throughout campus
-                  </span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <Monitor className="h-5 w-5 text-accent" />
-                  <span className="text-gray-700">
-                    Interactive smart boards in every classroom
-                  </span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <Microscope className="h-5 w-5 text-accent" />
-                  <span className="text-gray-700">
-                    Advanced laboratory equipment
-                  </span>
-                </div>
-              </div>
-
-              <Button asChild className="mt-6 bg-primary hover:bg-primary/90">
-                <Link href="/facilities/labs">
-                  Explore Labs <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-
-            <div className="bg-primary rounded-2xl p-8 text-white">
-              <div className="aspect-video bg-white/10 rounded-lg backdrop-blur-sm border border-white/20 flex items-center justify-center mb-6">
-                <Building className="h-16 w-16 text-white/80" />
-              </div>
-              <h4 className="text-xl font-bold mb-2">Campus Virtual Tour</h4>
-              <p className="text-primary-100 text-sm">
-                Take a virtual walk through our modern campus and explore our
-                world-class facilities
-              </p>
-            </div>
-          </div>
-
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="bg-primary rounded-2xl p-8 text-white order-2 lg:order-1">
-              <div className="aspect-video bg-white/10 rounded-lg backdrop-blur-sm border border-white/20 flex items-center justify-center mb-6">
-                <Trophy className="h-16 w-16 text-white/80" />
-              </div>
-              <h4 className="text-xl font-bold mb-2">Sports Facilities</h4>
-              <p className="text-green-100 text-sm">
-                Comprehensive sports infrastructure for physical fitness and
-                competitive sports
-              </p>
-            </div>
-
-            <div className="order-1 lg:order-2">
-              <Badge className="mb-4 bg-emerald-100 text-emerald-600">
-                Sports & Recreation
-              </Badge>
-              <h3 className="text-3xl font-bold font-heading text-primary mb-6">
-                Promoting Physical Excellence
-              </h3>
-              <p className="text-gray-600 leading-relaxed mb-6">
-                We believe in the importance of physical fitness and sports in
-                overall development. Our sports facilities cater to various
-                interests and skill levels, from recreational activities to
-                competitive sports.
-              </p>
-
-              <div className="space-y-4">
-                <div className="flex items-center space-x-3">
-                  <Trophy className="h-5 w-5 text-accent" />
-                  <span className="text-gray-700">
-                    Multi-purpose sports ground
-                  </span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <Activity className="h-5 w-5 text-accent" />
-                  <span className="text-gray-700">
-                    Indoor games and fitness center
-                  </span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <Users className="h-5 w-5 text-accent" />
-                  <span className="text-gray-700">
-                    Professional sports coaching
-                  </span>
-                </div>
-              </div>
-
-              <Button
-                asChild
-                className="mt-6 bg-emerald-600 hover:bg-emerald-700"
-              >
-                <Link href="/facilities/sports">
-                  Sports Programs <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Safety & Security */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <Badge className="mb-4 bg-red-100 text-red-600">Safety First</Badge>
-            <h2 className="text-3xl md:text-4xl font-bold font-heading text-primary mb-4">
-              Student Safety & Security
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-white px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-white">
+              Safety and Transport
+            </Badge>
+            <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
+              Transport, supervision, and daily school routine
             </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              The safety and security of our students is our top priority. We
-              have implemented comprehensive measures to ensure a secure
-              learning environment.
+            <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-base">
+              Along with academics, families usually review commute support,
+              campus safety, and how facilities are used through the school day.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {safetyFeatures.map((feature, index) => {
-              const Icon = feature.icon;
+          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+            {parentPriorityBlocks.map((item) => {
+              const Icon = item.icon;
+
               return (
                 <Card
-                  key={feature.title}
-                  className="text-center border-0 shadow-md hover:shadow-lg transition-shadow"
+                  key={item.title}
+                  className="rounded-[28px] border-slate-200/80 bg-white"
                 >
-                  <CardContent className="p-6">
-                    <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Icon className="h-8 w-8 text-red-600" />
+                  <CardContent className="p-6 sm:p-7">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                      <Icon className="h-6 w-6" />
                     </div>
-                    <h3 className="text-lg font-semibold mb-2">
-                      {feature.title}
+                    <h3 className="mt-5 text-xl font-bold font-heading text-slate-950">
+                      {item.title}
                     </h3>
-                    <p className="text-gray-600 text-sm">
-                      {feature.description}
+                    <p className="mt-3 text-sm leading-7 text-slate-600">
+                      {item.description}
                     </p>
+
+                    <ul className="mt-5 space-y-3">
+                      {item.points.map((point) => (
+                        <li key={point} className="flex items-start gap-3">
+                          <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                          <span className="text-sm leading-6 text-slate-700">
+                            {point}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
                   </CardContent>
                 </Card>
               );
@@ -368,111 +453,140 @@ export default function FacilitiesPage() {
         </div>
       </section>
 
-      {/* Transportation */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <Badge className="mb-4 bg-cyan-100 text-cyan-600">
-                Safe Transportation
-              </Badge>
-              <h3 className="text-3xl font-bold font-heading text-primary mb-6">
-                Reliable School Transport
-              </h3>
-              <p className="text-gray-600 leading-relaxed mb-8">
-                Our comprehensive transport system ensures safe and comfortable
-                commute for students across Firozabad and nearby areas. All
-                buses are equipped with modern safety features and monitored in
-                real-time.
-              </p>
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
+              Explore Facility Pages
+            </Badge>
+            <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
+              Explore the campus, labs, sports, and transport pages
+            </h2>
+          </div>
 
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-4">
-                  <h4 className="font-semibold text-gray-800">
-                    Safety Features:
-                  </h4>
-                  <ul className="space-y-2 text-sm text-gray-600">
-                    <li className="flex items-center space-x-2">
-                      <Shield className="h-4 w-4 text-cyan-600" />
-                      <span>GPS tracking system</span>
-                    </li>
-                    <li className="flex items-center space-x-2">
-                      <Camera className="h-4 w-4 text-cyan-600" />
-                      <span>CCTV monitoring</span>
-                    </li>
-                    <li className="flex items-center space-x-2">
-                      <Users className="h-4 w-4 text-cyan-600" />
-                      <span>Trained bus attendants</span>
-                    </li>
-                  </ul>
-                </div>
+          <div className="mt-10 grid gap-6 lg:grid-cols-2 xl:grid-cols-4">
+            {facilityRoutes.map((route) => {
+              const Icon = route.icon;
 
-                <div className="space-y-4">
-                  <h4 className="font-semibold text-gray-800">
-                    Route Coverage:
-                  </h4>
-                  <ul className="space-y-2 text-sm text-gray-600">
-                    <li>• Firozabad City Center</li>
-                    <li>• Shikohabad</li>
-                    <li>• Jasrana</li>
-                    <li>• Tundla Junction</li>
-                  </ul>
-                </div>
-              </div>
-
-              <Button asChild className="mt-8 bg-cyan-600 hover:bg-cyan-700">
-                <Link href="/facilities/transport">
-                  Transport Details <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-
-            <div className="bg-primary rounded-2xl p-8 text-white">
-              <div className="aspect-video bg-white/10 rounded-lg backdrop-blur-sm border border-white/20 flex items-center justify-center mb-6">
-                <Bus className="h-16 w-16 text-white/80" />
-              </div>
-              <div className="text-center">
-                <h4 className="text-xl font-bold mb-2">Transport Inquiry</h4>
-                <p className="text-cyan-100 text-sm mb-4">
-                  Check route availability and fees for your area
-                </p>
-                <Button
-                  variant="secondary"
-                  className="bg-white text-cyan-600 hover:bg-gray-100"
+              return (
+                <Card
+                  key={route.title}
+                  className="rounded-[28px] border-slate-200/80 bg-white shadow-[0_20px_60px_-46px_rgba(15,23,42,0.2)]"
                 >
-                  Check Routes
-                </Button>
-              </div>
-            </div>
+                  <CardContent className="p-6">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <h3 className="mt-5 text-xl font-bold font-heading text-slate-950">
+                      {route.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-7 text-slate-600">
+                      {route.description}
+                    </p>
+
+                    <Button
+                      asChild
+                      variant="outline"
+                      className="mt-6 border-primary text-primary hover:bg-primary hover:text-white"
+                    >
+                      <Link href={route.href}>
+                        {route.cta}
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </Button>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-primary text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold font-heading mb-4">
-            Experience Our Campus
-          </h2>
-          <p className="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
-            Schedule a campus visit to see our world-class facilities in person
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              asChild
-              size="lg"
-              className="bg-accent hover:bg-accent/90 text-primary"
-            >
-              <Link href="/contact">Schedule Campus Visit</Link>
-            </Button>
-            <Button
-              asChild
-              variant="outline"
-              size="lg"
-              className="border-white text-white hover:bg-white hover:text-primary"
-            >
-              <Link href="/apply">Apply for Admission</Link>
-            </Button>
+      <section className="bg-slate-50/80 py-20">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-white px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-white">
+              Campus Visit Checklist
+            </Badge>
+            <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
+              What to review during a campus visit
+            </h2>
+            <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-base">
+              A campus visit helps families understand how these spaces are used
+              during the school week.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-6 lg:grid-cols-2">
+            {visitChecklist.map((item) => (
+              <Card
+                key={item.title}
+                className="rounded-[28px] border-slate-200/80 bg-white"
+              >
+                <CardContent className="p-6 sm:p-7">
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                      <Camera className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold font-heading leading-7 text-slate-950">
+                        {item.title}
+                      </h3>
+                      <p className="mt-3 text-sm leading-7 text-slate-600">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="pb-24 pt-20">
+        <div className="container mx-auto px-4">
+          <div className="rounded-[32px] bg-primary px-6 py-8 text-white shadow-[0_28px_80px_-46px_rgba(127,29,29,0.45)] sm:px-8 sm:py-10 lg:px-12 lg:py-12">
+            <Badge className="border border-white/15 bg-white/12 px-3.5 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-white/12">
+              Visit Divine Campus
+            </Badge>
+            <div className="mt-5 grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
+              <div className="max-w-3xl">
+                <h2 className="text-3xl font-bold font-heading leading-tight sm:text-4xl lg:text-[2.8rem]">
+                  Schedule a campus visit to review classrooms, labs, library,
+                  and transport support
+                </h2>
+                <p className="mt-4 text-sm leading-7 text-white/85 sm:text-base">
+                  Parents can visit the campus, discuss route availability,
+                  review facilities in person, and understand admission details
+                  with the school office.
+                </p>
+              </div>
+
+              <div className="flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
+                <Button
+                  asChild
+                  size="lg"
+                  className="bg-white text-primary hover:bg-white/90"
+                >
+                  <Link href="/contact">
+                    Contact the School
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="border-white/30 bg-transparent text-white hover:bg-white hover:text-primary"
+                >
+                  <Link href="/admissions">
+                    Review Admissions
+                    <GraduationCap className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -1,731 +1,379 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import {
-  Users,
-  Calendar,
-  Award,
-  BookOpen,
-  Palette,
-  Music,
-  Microscope,
-  Globe,
-  Heart,
-  Zap,
-  Trophy,
-  Target,
-} from "lucide-react";
+import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
+import {
+  ArrowRight,
+  BookOpen,
+  CheckCircle,
+  Heart,
+  Music,
+  Trophy,
+  Users,
+} from "lucide-react";
+
 import { MainLayout } from "@/components/layout/main-layout";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 
-const clubCategories = [
-  {
-    category: "Academic Clubs",
-    description:
-      "Subject-focused clubs for deeper learning and academic excellence",
-    icon: <BookOpen className="w-8 h-8" />,
-    color: "bg-primary",
-    clubs: [
-      {
-        name: "Science Club",
-        description:
-          "Hands-on experiments, science fair participation, and research projects",
-        activities: [
-          "Weekly experiments",
-          "Science fair preparation",
-          "Guest lectures",
-          "Field trips",
-        ],
-        members: 45,
-        achievements: [
-          "State Science Fair - 2nd Place",
-          "National Innovation Award",
-        ],
-        meetingDay: "Wednesdays",
-        teacher: "Ms. Priya Sharma",
-        icon: <Microscope className="w-6 h-6" />,
-      },
-      {
-        name: "Mathematics Club",
-        description:
-          "Problem-solving, mathematical modeling, and competitive mathematics",
-        activities: [
-          "Math Olympiad prep",
-          "Problem solving sessions",
-          "Mathematical modeling",
-          "Peer tutoring",
-        ],
-        members: 38,
-        achievements: [
-          "Regional Math Olympiad Winners",
-          "Inter-school Competition Champions",
-        ],
-        meetingDay: "Fridays",
-        teacher: "Mr. Rajesh Kumar",
-        icon: <Target className="w-6 h-6" />,
-      },
-      {
-        name: "English Literary Society",
-        description:
-          "Creative writing, debates, drama, and literary appreciation",
-        activities: [
-          "Creative writing workshops",
-          "Debate competitions",
-          "Drama productions",
-          "Poetry sessions",
-        ],
-        members: 52,
-        achievements: [
-          "Inter-school Debate Championship",
-          "Published school magazine",
-        ],
-        meetingDay: "Mondays",
-        teacher: "Dr. Anjali Verma",
-        icon: <BookOpen className="w-6 h-6" />,
-      },
-      {
-        name: "Computer Programming Club",
-        description: "Coding, app development, and technology innovation",
-        activities: [
-          "Coding workshops",
-          "App development",
-          "Robotics projects",
-          "Hackathons",
-        ],
-        members: 35,
-        achievements: [
-          "National Coding Competition Finalists",
-          "School App Development",
-        ],
-        meetingDay: "Thursdays",
-        teacher: "Mr. Arjun Singh",
-        icon: <Zap className="w-6 h-6" />,
-      },
-    ],
-  },
-  {
-    category: "Arts & Culture",
-    description:
-      "Creative expression through various art forms and cultural activities",
-    icon: <Palette className="w-8 h-8" />,
-    color: "bg-primary",
-    clubs: [
-      {
-        name: "Art & Craft Club",
-        description: "Visual arts, handicrafts, and creative design projects",
-        activities: [
-          "Painting workshops",
-          "Craft projects",
-          "Art exhibitions",
-          "Design competitions",
-        ],
-        members: 48,
-        achievements: [
-          "State Art Exhibition Winners",
-          "Craft Competition Champions",
-        ],
-        meetingDay: "Tuesdays",
-        teacher: "Ms. Kavita Jain",
-        icon: <Palette className="w-6 h-6" />,
-      },
-      {
-        name: "Music & Dance Club",
-        description:
-          "Classical and contemporary music, dance, and musical performances",
-        activities: [
-          "Vocal training",
-          "Instrumental music",
-          "Dance choreography",
-          "Cultural performances",
-        ],
-        members: 60,
-        achievements: [
-          "Regional Dance Competition Winners",
-          "Inter-school Music Festival Champions",
-        ],
-        meetingDay: "Saturdays",
-        teacher: "Ms. Rekha Gupta",
-        icon: <Music className="w-6 h-6" />,
-      },
-      {
-        name: "Drama & Theatre Club",
-        description:
-          "Acting, script writing, stage production, and theatrical performances",
-        activities: [
-          "Acting workshops",
-          "Script writing",
-          "Stage productions",
-          "Theatre festivals",
-        ],
-        members: 32,
-        achievements: [
-          "Best School Drama Award",
-          "Young Theatre Festival Winners",
-        ],
-        meetingDay: "Wednesdays",
-        teacher: "Mr. Vikash Pandey",
-        icon: <Users className="w-6 h-6" />,
-      },
-    ],
-  },
-  {
-    category: "Social & Leadership",
-    description:
-      "Community service, leadership development, and social awareness",
-    icon: <Heart className="w-8 h-8" />,
-    color: "bg-primary",
-    clubs: [
-      {
-        name: "Student Council",
-        description:
-          "Student leadership, school governance, and peer representation",
-        activities: [
-          "Student leadership",
-          "Event organization",
-          "Peer mediation",
-          "School policy input",
-        ],
-        members: 25,
-        achievements: [
-          "Successful student-led initiatives",
-          "Improved student services",
-        ],
-        meetingDay: "Mondays",
-        teacher: "Ms. Neha Agarwal",
-        icon: <Trophy className="w-6 h-6" />,
-      },
-      {
-        name: "Eco Club",
-        description:
-          "Environmental awareness, sustainability projects, and green initiatives",
-        activities: [
-          "Tree plantation drives",
-          "Waste management projects",
-          "Environmental awareness campaigns",
-          "Green innovation",
-        ],
-        members: 55,
-        achievements: [
-          "Green School Certification",
-          "Environmental Innovation Award",
-        ],
-        meetingDay: "Fridays",
-        teacher: "Dr. Sunita Rao",
-        icon: <Globe className="w-6 h-6" />,
-      },
-      {
-        name: "Community Service Club",
-        description:
-          "Social service, community outreach, and humanitarian activities",
-        activities: [
-          "Community service projects",
-          "Charity drives",
-          "Elderly care programs",
-          "Skill development workshops",
-        ],
-        members: 40,
-        achievements: ["Community Impact Award", "Youth Volunteer Recognition"],
-        meetingDay: "Saturdays",
-        teacher: "Ms. Pooja Malik",
-        icon: <Heart className="w-6 h-6" />,
-      },
-    ],
-  },
-  {
-    category: "Sports & Fitness",
-    description:
-      "Physical fitness, competitive sports, and athletic development",
-    icon: <Trophy className="w-8 h-8" />,
-    color: "bg-primary",
-    clubs: [
-      {
-        name: "Athletics Club",
-        description:
-          "Track and field events, running, and athletic competitions",
-        activities: [
-          "Daily training sessions",
-          "Inter-house competitions",
-          "District championships",
-          "Fitness camps",
-        ],
-        members: 65,
-        achievements: [
-          "State Athletics Championship",
-          "Multiple district records",
-        ],
-        meetingDay: "Daily (Evening)",
-        teacher: "Mr. Rohit Sharma",
-        icon: <Zap className="w-6 h-6" />,
-      },
-      {
-        name: "Sports Teams",
-        description:
-          "Various team sports including cricket, basketball, football",
-        activities: [
-          "Team practice sessions",
-          "Inter-school matches",
-          "Tournament participation",
-          "Sports camps",
-        ],
-        members: 80,
-        achievements: [
-          "District Cricket Champions",
-          "Regional Basketball Winners",
-        ],
-        meetingDay: "Daily (After school)",
-        teacher: "Coach Amit Verma",
-        icon: <Trophy className="w-6 h-6" />,
-      },
-    ],
-  },
-];
+const clubSignals = [
+  "Interest-based student participation",
+  "Teacher-guided activity exposure",
+  "Confidence, teamwork, and expression",
+] as const;
 
-const clubBenefits = [
+const clubStreams = [
   {
-    benefit: "Skill Development",
+    title: "Academic and innovation clubs",
     description:
-      "Learn new skills and enhance existing talents through structured activities",
-    icon: <Target className="w-6 h-6" />,
+      "Clubs connected to science, reading, language, mathematics, or digital learning help students extend classroom understanding into participation and presentation.",
+    points: [
+      "Science and practical-interest exposure",
+      "Reading, language, and communication activities",
+      "Questioning, presenting, and curiosity-led learning",
+    ],
+    icon: BookOpen,
   },
   {
-    benefit: "Leadership Opportunities",
+    title: "Arts, music, and stage expression",
     description:
-      "Take leadership roles and develop organizational and management skills",
-    icon: <Users className="w-6 h-6" />,
+      "Creative clubs give students a space to practise music, art, performance, and stage confidence with regular teacher support.",
+    points: [
+      "Art, music, and cultural participation",
+      "Rehearsed stage expression and confidence building",
+      "Creative work that supports school events and showcases",
+    ],
+    icon: Music,
   },
   {
-    benefit: "Social Connections",
+    title: "Service, values, and social responsibility",
     description:
-      "Build friendships and networks with like-minded peers across different grades",
-    icon: <Heart className="w-6 h-6" />,
+      "Service-oriented clubs help students understand responsibility, teamwork, empathy, and participation in wider school and community values.",
+    points: [
+      "Environment and service-focused activities",
+      "Shared responsibility and school contribution",
+      "Respectful teamwork and social awareness",
+    ],
+    icon: Heart,
   },
   {
-    benefit: "Recognition & Awards",
+    title: "Sports and fitness exposure",
     description:
-      "Participate in competitions and earn recognition for achievements",
-    icon: <Award className="w-6 h-6" />,
+      "Sports-related club activity supports physical confidence, discipline, healthy competition, and student energy beyond the classroom.",
+    points: [
+      "Games, training, and physical activity",
+      "Team spirit and school participation",
+      "Discipline and performance through guided practice",
+    ],
+    icon: Trophy,
   },
-];
+] as const;
 
-const membershipProcess = [
+const clubJourney = [
   {
-    step: 1,
-    title: "Choose Your Interests",
+    title: "Explore interests",
     description:
-      "Explore different clubs and identify areas that match your interests and passions",
-    icon: <BookOpen className="w-6 h-6" />,
+      "Students first need exposure to different activities so they can identify where their interest and confidence begin to grow.",
   },
   {
-    step: 2,
-    title: "Attend Information Sessions",
+    title: "Participate with guidance",
     description:
-      "Join club information sessions to learn about activities, requirements, and expectations",
-    icon: <Calendar className="w-6 h-6" />,
+      "Clubs work best when teachers guide participation, expectations, and behaviour instead of leaving students without structure.",
   },
   {
-    step: 3,
-    title: "Submit Application",
+    title: "Present and improve",
     description:
-      "Complete the club membership form and submit it to the supervising teacher",
-    icon: <Users className="w-6 h-6" />,
+      "Students grow when club work leads to presentation, school events, performances, or visible recognition of effort.",
   },
-  {
-    step: 4,
-    title: "Start Participating",
-    description:
-      "Begin attending regular meetings and actively participate in club activities",
-    icon: <Zap className="w-6 h-6" />,
-  },
-];
+] as const;
 
-export default function ClubsPage() {
+const parentNotes = [
+  "Club exposure should feel organised and age-appropriate, not random or disconnected from the school routine.",
+  "Not every child needs the same club path. The aim is guided participation, not forced uniformity.",
+  "Parents usually value clubs most when they see better confidence, communication, teamwork, and discipline in the child over time.",
+] as const;
+
+const nextSteps = [
+  {
+    title: "Review school events",
+    description:
+      "See how assemblies, exhibitions, sports events, and cultural programmes support student participation.",
+    href: "/student-life/events",
+    cta: "Go to events",
+  },
+  {
+    title: "Open the gallery",
+    description:
+      "See how activities, events, and student participation are documented visually across the school year.",
+    href: "/student-life/gallery",
+    cta: "Go to gallery",
+  },
+  {
+    title: "Return to student life",
+    description:
+      "Go back to the student-life overview to see how clubs fit into the larger school culture.",
+    href: "/student-life",
+    cta: "Go to student life",
+  },
+] as const;
+
+export const metadata: Metadata = {
+  title: "Student Clubs | Divine International Academy Sirsaganj",
+  description:
+    "Explore the club culture at Divine International Academy, Sirsaganj, and see how student activities support confidence, teamwork, creativity, and wider participation.",
+  keywords: [
+    "school clubs Divine International Academy",
+    "student activities Sirsaganj school",
+    "CBSE school clubs Firozabad",
+    "student participation and clubs",
+  ],
+};
+
+export default function StudentLifeClubsPage() {
   return (
     <MainLayout>
-      <div className="min-h-screen bg-white">
-        {/* Hero Section */}
-        <section className="relative pt-20 pb-16 overflow-hidden">
-          <div className="absolute inset-0 bg-blue-900/5"></div>
-          <div className="container mx-auto px-4 relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center max-w-4xl mx-auto"
-            >
-              <h1 className="text-4xl md:text-5xl font-bold text-blue-900 mb-6">
-                Student Clubs & Activities
-              </h1>
-              <p className="text-xl text-gray-700 mb-8 leading-relaxed">
-                Discover your passion, develop your talents, and make lifelong
-                friendships through our diverse range of clubs and
-                extracurricular activities.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button
-                  size="lg"
-                  asChild
-                  className="bg-blue-600 hover:bg-blue-700"
-                >
-                  <Link href="#clubs">
-                    <Users className="mr-2 h-5 w-5" />
-                    Explore Clubs
-                  </Link>
-                </Button>
-                <Button variant="outline" size="lg" asChild>
-                  <Link href="/student-life/events">
-                    <Calendar className="mr-2 h-5 w-5" />
-                    Upcoming Events
-                  </Link>
-                </Button>
+      <section className="relative overflow-hidden bg-[linear-gradient(180deg,#fffdfb_0%,#fff7f1_46%,#ffffff_100%)] pt-16 pb-20 sm:pt-20 sm:pb-24">
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-primary/5 to-transparent" />
+
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
+              Student Clubs
+            </Badge>
+            <h1 className="mt-5 text-4xl font-bold font-heading leading-tight text-primary sm:text-5xl lg:text-[3.35rem]">
+              Clubs matter when they help students discover interests and
+              participate with purpose
+            </h1>
+            <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
+              At Divine International Academy, clubs are not meant to be filler
+              activities. They help students explore interests, build
+              confidence, work in teams, and take part in school life beyond
+              regular classroom lessons.
+            </p>
+          </div>
+
+          <div className="mt-10 overflow-hidden rounded-[32px] border border-slate-200/80 bg-white shadow-[0_28px_80px_-52px_rgba(15,23,42,0.24)]">
+            <div className="grid lg:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.92fr)] lg:items-stretch">
+              <div className="relative min-h-[320px] border-b border-slate-200/80 bg-slate-100 lg:min-h-full lg:border-b-0 lg:border-r lg:border-slate-200/80">
+                <Image
+                  src="/images/submenu/student-activities.jpg"
+                  alt="Student club participation at Divine International Academy"
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 48vw, 100vw"
+                  priority
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.08)_0%,rgba(15,23,42,0.18)_38%,rgba(15,23,42,0.68)_100%)]" />
+                <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6 lg:p-8">
+                  <Badge className="border border-white/15 bg-white/12 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-white/12">
+                    Activity Culture
+                  </Badge>
+                  <h2 className="mt-4 max-w-2xl text-2xl font-bold font-heading leading-tight text-white sm:text-[2rem] lg:text-[2.45rem]">
+                    A strong clubs page should show how students grow through
+                    guided participation, not just list club names.
+                  </h2>
+                </div>
               </div>
-            </motion.div>
-          </div>
-        </section>
 
-        {/* Club Statistics */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <div className="grid md:grid-cols-4 gap-8 max-w-5xl mx-auto">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-              >
-                <Card className="text-center hover:shadow-lg transition-shadow duration-300">
-                  <CardContent className="p-6">
-                    <div className="text-4xl font-bold text-blue-600 mb-2">
-                      15+
-                    </div>
-                    <div className="text-sm text-gray-600">Active Clubs</div>
-                  </CardContent>
-                </Card>
-              </motion.div>
+              <div className="p-6 sm:p-8 lg:p-10">
+                <p className="max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
+                  This page helps families understand how club participation
+                  supports creativity, teamwork, discipline, and school
+                  confidence across different student stages.
+                </p>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
-                <Card className="text-center hover:shadow-lg transition-shadow duration-300">
-                  <CardContent className="p-6">
-                    <div className="text-4xl font-bold text-green-600 mb-2">
-                      450+
+                <div className="mt-5 flex flex-wrap gap-2.5">
+                  {clubSignals.map((signal) => (
+                    <div
+                      key={signal}
+                      className="rounded-full border border-primary/10 bg-primary/5 px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-primary"
+                    >
+                      {signal}
                     </div>
-                    <div className="text-sm text-gray-600">Club Members</div>
-                  </CardContent>
-                </Card>
-              </motion.div>
+                  ))}
+                </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-              >
-                <Card className="text-center hover:shadow-lg transition-shadow duration-300">
-                  <CardContent className="p-6">
-                    <div className="text-4xl font-bold text-purple-600 mb-2">
-                      50+
-                    </div>
-                    <div className="text-sm text-gray-600">Awards Won</div>
-                  </CardContent>
-                </Card>
-              </motion.div>
+                <div className="mt-6 rounded-[24px] border border-slate-200 bg-slate-50 px-5 py-5">
+                  <p className="text-sm leading-7 text-slate-700 sm:text-base">
+                    Club culture works best when students get regular exposure,
+                    teacher guidance, and clear links to school events,
+                    performances, showcases, or visible improvement over time.
+                  </p>
+                </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-              >
-                <Card className="text-center hover:shadow-lg transition-shadow duration-300">
-                  <CardContent className="p-6">
-                    <div className="text-4xl font-bold text-orange-600 mb-2">
-                      120
-                    </div>
-                    <div className="text-sm text-gray-600">Events Per Year</div>
-                  </CardContent>
-                </Card>
-              </motion.div>
+                <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                  <Button
+                    asChild
+                    size="lg"
+                    className="bg-primary text-white hover:bg-primary/90 sm:flex-1"
+                  >
+                    <Link href="/student-life/events">
+                      Review Events
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                  <Button
+                    asChild
+                    size="lg"
+                    variant="outline"
+                    className="border-primary text-primary hover:bg-primary hover:text-white sm:flex-1"
+                  >
+                    <Link href="/student-life/gallery">Open Gallery</Link>
+                  </Button>
+                </div>
+              </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Club Categories */}
-        <section id="clubs" className="py-16 bg-white/50">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold text-blue-900 mb-4">
-                Explore Our Clubs
-              </h2>
-              <p className="text-gray-600">
-                Find your passion and join like-minded peers in pursuing
-                excellence
-              </p>
-            </motion.div>
-
-            <div className="space-y-12 max-w-7xl mx-auto">
-              {clubCategories.map((category, categoryIndex) => (
-                <motion.div
-                  key={category.category}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
-                >
-                  <div className="mb-8">
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className="p-3 rounded-full bg-primary text-white">
-                        {category.icon}
-                      </div>
-                      <div>
-                        <h3 className="text-2xl font-bold text-blue-900">
-                          {category.category}
-                        </h3>
-                        <p className="text-gray-600">{category.description}</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {category.clubs.map((club, clubIndex) => (
-                      <motion.div
-                        key={club.name}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.4, delay: clubIndex * 0.1 }}
-                      >
-                        <Card className="h-full hover:shadow-lg transition-shadow duration-300">
-                          <CardHeader>
-                            <div className="flex items-center gap-3 mb-2">
-                              <div className="p-2 bg-blue-100 rounded-full text-blue-600">
-                                {club.icon}
-                              </div>
-                              <div className="flex-grow">
-                                <CardTitle className="text-blue-900">
-                                  {club.name}
-                                </CardTitle>
-                                <div className="flex items-center gap-2 mt-1">
-                                  <Badge variant="outline">
-                                    {club.members} members
-                                  </Badge>
-                                  <Badge variant="secondary">
-                                    {club.meetingDay}
-                                  </Badge>
-                                </div>
-                              </div>
-                            </div>
-                            <p className="text-gray-600 text-sm">
-                              {club.description}
-                            </p>
-                          </CardHeader>
-                          <CardContent>
-                            <div className="space-y-4">
-                              <div>
-                                <h4 className="font-semibold text-gray-800 mb-2 text-sm">
-                                  Activities:
-                                </h4>
-                                <div className="space-y-1">
-                                  {club.activities.map((activity, idx) => (
-                                    <div
-                                      key={idx}
-                                      className="text-xs text-gray-600"
-                                    >
-                                      • {activity}
-                                    </div>
-                                  ))}
-                                </div>
-                              </div>
-
-                              <div>
-                                <h4 className="font-semibold text-gray-800 mb-2 text-sm">
-                                  Recent Achievements:
-                                </h4>
-                                <div className="space-y-1">
-                                  {club.achievements.map((achievement, idx) => (
-                                    <div
-                                      key={idx}
-                                      className="flex items-center gap-1"
-                                    >
-                                      <Award className="w-3 h-3 text-yellow-500" />
-                                      <span className="text-xs text-gray-700">
-                                        {achievement}
-                                      </span>
-                                    </div>
-                                  ))}
-                                </div>
-                              </div>
-
-                              <div className="pt-2 border-t border-gray-100">
-                                <div className="text-xs text-gray-500">
-                                  <strong>Supervisor:</strong> {club.teacher}
-                                </div>
-                              </div>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      </motion.div>
-                    ))}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+      <section className="pb-20">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
+              Club Streams
+            </Badge>
+            <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
+              Clubs usually support academics, creativity, service, and sports
+              together
+            </h2>
           </div>
-        </section>
 
-        {/* Benefits of Joining */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold text-blue-900 mb-4">
-                Benefits of Club Membership
-              </h2>
-              <p className="text-gray-600">
-                Joining clubs offers numerous advantages for personal and
-                academic growth
-              </p>
-            </motion.div>
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            {clubStreams.map((item) => {
+              const Icon = item.icon;
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-              {clubBenefits.map((benefit, index) => (
-                <motion.div
-                  key={benefit.benefit}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+              return (
+                <Card
+                  key={item.title}
+                  className="rounded-[28px] border-slate-200/80 bg-white shadow-[0_20px_60px_-46px_rgba(15,23,42,0.24)]"
                 >
-                  <Card className="h-full text-center hover:shadow-md transition-shadow duration-300">
-                    <CardHeader>
-                      <div className="mx-auto p-3 bg-blue-100 rounded-full text-blue-600 w-fit">
-                        {benefit.icon}
-                      </div>
-                      <CardTitle className="text-blue-900">
-                        {benefit.benefit}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-gray-600 text-sm">
-                        {benefit.description}
+                  <CardContent className="p-6 sm:p-7">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <h3 className="mt-5 text-xl font-bold font-heading text-slate-950">
+                      {item.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-7 text-slate-600 sm:text-base">
+                      {item.description}
+                    </p>
+
+                    <ul className="mt-5 space-y-3">
+                      {item.points.map((point) => (
+                        <li key={point} className="flex items-start gap-3">
+                          <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                          <span className="text-sm leading-6 text-slate-700">
+                            {point}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-slate-50/80 py-20">
+        <div className="container mx-auto px-4">
+          <div className="grid gap-8 xl:grid-cols-[minmax(0,1fr)_360px] xl:items-start">
+            <div>
+              <Badge className="border border-primary/10 bg-white px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-white">
+                Participation Journey
+              </Badge>
+              <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl">
+                Students usually grow through clubs in three stages: exposure,
+                guidance, and visible participation
+              </h2>
+
+              <div className="mt-8 grid gap-4 sm:grid-cols-3">
+                {clubJourney.map((item) => (
+                  <Card
+                    key={item.title}
+                    className="rounded-[24px] border-slate-200/80 bg-white"
+                  >
+                    <CardContent className="p-5">
+                      <h3 className="text-base font-bold text-slate-950">
+                        {item.title}
+                      </h3>
+                      <p className="mt-2 text-sm leading-6 text-slate-600">
+                        {item.description}
                       </p>
                     </CardContent>
                   </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Membership Process */}
-        <section className="py-16 bg-white/50">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold text-blue-900 mb-4">
-                How to Join a Club
-              </h2>
-              <p className="text-gray-600">
-                Simple steps to become a member of your favorite club
-              </p>
-            </motion.div>
-
-            <div className="grid md:grid-cols-4 gap-8 max-w-5xl mx-auto">
-              {membershipProcess.map((step, index) => (
-                <motion.div
-                  key={step.step}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  <Card className="h-full text-center">
-                    <CardHeader>
-                      <div className="mx-auto w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-lg mb-3">
-                        {step.step}
-                      </div>
-                      <CardTitle className="text-blue-900">
-                        {step.title}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="mb-4">
-                        <div className="mx-auto p-2 bg-blue-100 rounded-full text-blue-600 w-fit">
-                          {step.icon}
-                        </div>
-                      </div>
-                      <p className="text-gray-600 text-sm">
-                        {step.description}
-                      </p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="py-16 bg-primary">
-          <div className="container mx-auto px-4 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="max-w-3xl mx-auto"
-            >
-              <h2 className="text-3xl font-bold text-white mb-4">
-                Ready to Join Our Community?
-              </h2>
-              <p className="text-blue-100 mb-8 text-lg">
-                Discover your talents, make new friends, and create lasting
-                memories through our vibrant club activities and programs.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" variant="secondary" asChild>
-                  <Link href="/student-life/events">
-                    <Calendar className="mr-2 h-5 w-5" />
-                    View Events
-                  </Link>
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="bg-white text-blue-600 hover:bg-blue-50"
-                  asChild
-                >
-                  <Link href="/student-life/gallery">
-                    <Palette className="mr-2 h-5 w-5" />
-                    Photo Gallery
-                  </Link>
-                </Button>
-                <Button
-                  size="lg"
-                  variant="ghost"
-                  className="text-white hover:bg-blue-600"
-                  asChild
-                >
-                  <Link href="/apply">
-                    <Users className="mr-2 h-5 w-5" />
-                    Apply Now
-                  </Link>
-                </Button>
+                ))}
               </div>
-            </motion.div>
+            </div>
+
+            <Card className="rounded-[28px] border-slate-200/80 bg-white shadow-[0_20px_60px_-46px_rgba(15,23,42,0.22)]">
+              <CardContent className="p-6 sm:p-7">
+                <Badge className="border border-primary/10 bg-primary/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary hover:bg-primary/5">
+                  Parent Notes
+                </Badge>
+                <h3 className="mt-5 text-2xl font-bold font-heading text-slate-950">
+                  What families should understand about clubs
+                </h3>
+
+                <ul className="mt-6 space-y-4">
+                  {parentNotes.map((item) => (
+                    <li key={item} className="flex items-start gap-3">
+                      <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                      <span className="text-sm leading-6 text-slate-700">
+                        {item}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
+
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
+              Next Step
+            </Badge>
+            <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
+              Continue to events, gallery, or the full student-life overview
+            </h2>
+          </div>
+
+          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+            {nextSteps.map((item) => (
+              <Card
+                key={item.title}
+                className="rounded-[28px] border-slate-200/80 bg-white shadow-[0_20px_60px_-46px_rgba(15,23,42,0.24)]"
+              >
+                <CardContent className="p-6 sm:p-7">
+                  <h3 className="text-xl font-bold font-heading text-slate-950">
+                    {item.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-7 text-slate-600">
+                    {item.description}
+                  </p>
+
+                  <Button
+                    asChild
+                    size="lg"
+                    className="mt-6 w-full bg-primary text-white hover:bg-primary/90"
+                  >
+                    <Link href={item.href}>
+                      {item.cta}
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
     </MainLayout>
   );
 }

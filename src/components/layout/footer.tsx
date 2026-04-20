@@ -1,447 +1,321 @@
+import Image from "next/image";
 import Link from "next/link";
 import {
-  Phone,
+  ArrowRight,
+  BookOpen,
+  Clock,
+  GraduationCap,
   Mail,
   MapPin,
-  Clock,
-  Facebook,
-  Twitter,
-  Instagram,
-  Youtube,
-  Award,
+  Phone,
   Shield,
-  Star,
-  Users,
-  BookOpen,
   Trophy,
+  Users,
 } from "lucide-react";
 
+import { Button } from "@/components/ui/button";
+
+const footerProofs = [
+  {
+    title: "1200+",
+    label: "Students on campus",
+    icon: Users,
+  },
+  {
+    title: "50+",
+    label: "Faculty members",
+    icon: GraduationCap,
+  },
+  {
+    title: "40",
+    label: "Smart classrooms",
+    icon: BookOpen,
+  },
+  {
+    title: "100%",
+    label: "Board results",
+    icon: Trophy,
+  },
+] as const;
+
+const footerLinkGroups = [
+  {
+    title: "Explore DIA",
+    links: [
+      { label: "About DIA", href: "/about" },
+      { label: "Why DIA", href: "/why-dia" },
+      { label: "Principal's Message", href: "/about/principal" },
+      { label: "Contact & Directions", href: "/contact" },
+    ],
+  },
+  {
+    title: "Admissions & Student Life",
+    links: [
+      { label: "Admission Process", href: "/admissions" },
+      { label: "Apply Online", href: "/apply" },
+      { label: "Facilities", href: "/facilities" },
+      { label: "Student Life", href: "/student-life" },
+      { label: "Clubs & Activities", href: "/student-life/clubs" },
+      { label: "Academic Achievements", href: "/academics/achievements" },
+    ],
+  },
+] as const;
+
 export function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="bg-primary text-white">
-      {/* Achievements Banner */}
-      <div className="bg-white/10 border-b border-white/20">
-        <div className="container mx-auto px-4 py-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-            <div className="flex items-center justify-center space-x-2">
-              <Trophy className="h-5 w-5 text-white" />
-              <div>
-                <div className="text-xl font-bold text-white">98.5%</div>
-                <div className="text-xs text-gray-200">Pass Rate 2024</div>
-              </div>
-            </div>
-            <div className="flex items-center justify-center space-x-2">
-              <Users className="h-5 w-5 text-white" />
-              <div>
-                <div className="text-xl font-bold text-white">1200+</div>
-                <div className="text-xs text-gray-200">Happy Students</div>
-              </div>
-            </div>
-            <div className="flex items-center justify-center space-x-2">
-              <Award className="h-5 w-5 text-white" />
-              <div>
-                <div className="text-xl font-bold text-white">15+</div>
-                <div className="text-xs text-gray-200">Awards Won</div>
-              </div>
-            </div>
-            <div className="flex items-center justify-center space-x-2">
-              <BookOpen className="h-5 w-5 text-white" />
-              <div>
-                <div className="text-xl font-bold text-white">13</div>
-                <div className="text-xs text-gray-200">Years Excellence</div>
-              </div>
-            </div>
+    <footer className="bg-[linear-gradient(180deg,#7d1324_0%,#5f0d1b_40%,#22060b_100%)] text-white">
+      <div className="border-b border-white/10">
+        <div className="container mx-auto px-4 py-6 sm:py-8">
+          <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+            {footerProofs.map((proof) => {
+              const Icon = proof.icon;
+
+              return (
+                <div
+                  key={proof.label}
+                  className="rounded-[22px] border border-white/10 bg-white/8 px-4 py-4 backdrop-blur-sm"
+                >
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/12 text-white shadow-sm">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold font-heading text-white">
+                        {proof.title}
+                      </div>
+                      <div className="mt-1 text-sm text-white/72">
+                        {proof.label}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
 
-      {/* Main Footer */}
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* School Info */}
+      <div className="container mx-auto px-4 py-10 sm:py-12">
+        <div className="grid gap-8 xl:grid-cols-[minmax(0,1.05fr)_minmax(0,0.9fr)_minmax(320px,0.95fr)] xl:gap-10">
           <div className="space-y-6">
-            <div className="space-y-3">
-              <div className="flex items-center space-x-3">
-                <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg">
-                  <span className="text-primary font-bold text-xl font-heading">
-                    D
-                  </span>
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold font-heading text-white">
-                    Divine International Academy
-                  </h3>
-                  <p className="text-sm text-gray-200">
-                    Shaping Tomorrow's Leaders Today
-                  </p>
-                </div>
+            <div className="flex items-center gap-4">
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white shadow-[0_18px_45px_-28px_rgba(255,255,255,0.8)]">
+                <Image
+                  src="/images/logo.png"
+                  alt="Divine International Academy logo"
+                  width={46}
+                  height={46}
+                  className="h-11 w-11 object-contain"
+                />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold font-heading text-white sm:text-2xl">
+                  Divine International Academy
+                </h3>
+                <p className="mt-1 text-sm text-white/72">
+                  CBSE school in Sirsaganj serving Nursery to Class XII
+                </p>
               </div>
             </div>
 
-            <p className="text-gray-200 text-sm leading-relaxed">
-              Empowering young minds since 2012 with world-class CBSE education,
-              fostering innovation, excellence, and character development in a
-              nurturing learning environment.
+            <p className="max-w-2xl text-sm leading-7 text-white/78 sm:text-[15px]">
+              Divine International Academy serves families across Sirsaganj and
+              the Firozabad region with structured teaching, 50+ faculty
+              members, smart classrooms, practical learning, supervised
+              routines, and board-focused support.
             </p>
 
-            <div className="bg-white/5 rounded-lg p-4 space-y-2">
-              <div className="flex items-center space-x-2">
-                <Shield className="h-4 w-4 text-white" />
-                <span className="text-sm font-medium text-white">
-                  CBSE Affiliated
-                </span>
+            <div className="flex flex-wrap gap-2.5">
+              <div className="rounded-full border border-white/10 bg-white/8 px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-white/82">
+                CBSE Affiliation 2131764
               </div>
-              <div className="text-xs text-gray-300 space-y-1">
-                <p>
-                  <strong>Affiliation No:</strong> 2131764
-                </p>
-                <p>
-                  <strong>Valid Until:</strong> 2029
-                </p>
-                <p>
-                  <strong>Recognition:</strong> Government of Uttar Pradesh
-                </p>
+              <div className="rounded-full border border-white/10 bg-white/8 px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-white/82">
+                Established 2012
               </div>
+              <div className="rounded-full border border-white/10 bg-white/8 px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-white/82">
+                Om Educational Trust
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <Button
+                asChild
+                size="lg"
+                className="bg-white text-primary hover:bg-white/95"
+              >
+                <Link
+                  href="/apply"
+                  className="flex items-center justify-center"
+                >
+                  Apply Online
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="border-white/20 bg-white/8 text-white hover:bg-white hover:text-primary"
+              >
+                <Link
+                  href="/contact"
+                  className="flex items-center justify-center"
+                >
+                  Book a Campus Visit
+                </Link>
+              </Button>
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div className="space-y-6">
-            <h4 className="text-lg font-bold font-heading text-white flex items-center space-x-2">
-              <Star className="h-5 w-5 text-white" />
-              <span>Explore</span>
-            </h4>
-            <div className="grid grid-cols-1 gap-6">
-              <div>
-                <h5 className="text-sm font-semibold text-gray-300 mb-3 uppercase tracking-wide">
-                  School
-                </h5>
-                <ul className="space-y-2 text-sm">
-                  <li>
-                    <Link
-                      href="/about"
-                      className="text-gray-200 hover:text-white transition-colors flex items-center space-x-1"
-                    >
-                      <span>About Divine Academy</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/why-dia"
-                      className="text-gray-200 hover:text-white transition-colors"
-                    >
-                      Why Choose Us?
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/about/principal"
-                      className="text-accent-100 hover:text-accent transition-colors"
-                    >
-                      Principal's Message
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/contact"
-                      className="text-accent-100 hover:text-accent transition-colors"
-                    >
-                      Contact & Directions
-                    </Link>
-                  </li>
+          <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-1">
+            {footerLinkGroups.map((group) => (
+              <div key={group.title}>
+                <h4 className="text-sm font-semibold uppercase tracking-[0.18em] text-white/62">
+                  {group.title}
+                </h4>
+                <ul className="mt-4 space-y-3 text-sm">
+                  {group.links.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        className="inline-flex items-center text-white/82 transition-colors hover:text-white"
+                      >
+                        <span>{link.label}</span>
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
               </div>
-
-              <div>
-                <h5 className="text-sm font-semibold text-gray-300 mb-3 uppercase tracking-wide">
-                  Admissions
-                </h5>
-                <ul className="space-y-2 text-sm">
-                  <li>
-                    <Link
-                      href="/admissions"
-                      className="text-accent-100 hover:text-accent transition-colors"
-                    >
-                      Admission Process
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/apply"
-                      className="text-accent-100 hover:text-accent transition-colors"
-                    >
-                      Apply Online
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/admissions#fees"
-                      className="text-accent-100 hover:text-accent transition-colors"
-                    >
-                      Fee Structure
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
+            ))}
           </div>
 
-          {/* Academic Excellence */}
-          <div className="space-y-6">
-            <h4 className="text-lg font-bold font-heading text-white flex items-center space-x-2">
-              <BookOpen className="h-5 w-5 text-white" />
-              <span>Excellence</span>
-            </h4>
-            <div className="space-y-6">
-              <div>
-                <h5 className="text-sm font-semibold text-gray-300 mb-3 uppercase tracking-wide">
-                  Academics
-                </h5>
-                <ul className="space-y-2 text-sm">
-                  <li>
-                    <Link
-                      href="/academics"
-                      className="text-accent-100 hover:text-accent transition-colors"
-                    >
-                      CBSE Curriculum
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/academics/achievements"
-                      className="text-accent-100 hover:text-accent transition-colors"
-                    >
-                      Academic Achievements
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/academics#streams"
-                      className="text-accent-100 hover:text-accent transition-colors"
-                    >
-                      Science, Commerce, Arts
-                    </Link>
-                  </li>
-                </ul>
+          <div className="rounded-[28px] border border-white/10 bg-white/8 p-5 backdrop-blur-sm sm:p-6">
+            <div className="flex items-center gap-3">
+              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/12 text-white shadow-sm">
+                <Shield className="h-5 w-5" />
               </div>
-
               <div>
-                <h5 className="text-sm font-semibold text-accent-200 mb-3 uppercase tracking-wide">
-                  Campus Life
-                </h5>
-                <ul className="space-y-2 text-sm">
-                  <li>
-                    <Link
-                      href="/student-life"
-                      className="text-accent-100 hover:text-accent transition-colors"
-                    >
-                      Student Life
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/facilities"
-                      className="text-accent-100 hover:text-accent transition-colors"
-                    >
-                      World-Class Facilities
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/facilities/sports"
-                      className="text-accent-100 hover:text-accent transition-colors"
-                    >
-                      Sports Excellence
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/student-life/clubs"
-                      className="text-accent-100 hover:text-accent transition-colors"
-                    >
-                      Clubs & Activities
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* Contact & Connect */}
-          <div className="space-y-6">
-            <h4 className="text-lg font-bold font-heading text-white flex items-center space-x-2">
-              <MapPin className="h-5 w-5 text-white" />
-              <span>Connect</span>
-            </h4>
-
-            {/* Contact Information */}
-            <div className="bg-accent/5 rounded-lg p-4 space-y-4">
-              <div>
-                <h5 className="text-sm font-semibold text-gray-300 mb-2 uppercase tracking-wide">
-                  Visit Us
-                </h5>
-                <div className="flex items-start space-x-3">
-                  <MapPin className="h-4 w-4 mt-1 text-white flex-shrink-0" />
-                  <div className="text-gray-200 text-sm">
-                    <p className="font-medium">Divine International Academy</p>
-                    <p>Sirsaganj, Firozabad</p>
-                    <p>Uttar Pradesh 283135, India</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 gap-3">
-                <div className="flex items-center space-x-3">
-                  <Phone className="h-4 w-4 text-white" />
-                  <div>
-                    <span className="text-gray-200 text-sm">
-                      +91 9876543210
-                    </span>
-                    <p className="text-xs text-gray-300">Admissions Helpline</p>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <Mail className="h-4 w-4 text-white" />
-                  <div>
-                    <span className="text-gray-200 text-sm">
-                      info@divineacademy.edu.in
-                    </span>
-                    <p className="text-xs text-gray-300">General Inquiries</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <Clock className="h-4 w-4 mt-1 text-white" />
-                  <div className="text-gray-200 text-sm">
-                    <p>Mon - Fri: 8:00 AM - 4:00 PM</p>
-                    <p>Saturday: 8:00 AM - 12:00 PM</p>
-                    <p className="text-xs text-gray-300 mt-1">Office Hours</p>
-                  </div>
-                </div>
+                <h4 className="text-lg font-bold font-heading text-white">
+                  Visit or call the school office
+                </h4>
+                <p className="mt-1 text-sm text-white/68">
+                  Admissions, general enquiries, and campus visits.
+                </p>
               </div>
             </div>
 
-            {/* Social Media */}
-            <div>
-              <h5 className="text-sm font-semibold text-gray-300 mb-3 uppercase tracking-wide">
-                Follow Our Journey
-              </h5>
-              <div className="flex space-x-3">
-                <Link
-                  href="#"
-                  className="p-3 bg-accent/10 rounded-full hover:bg-accent hover:text-primary transition-all duration-300 group"
-                  title="Facebook"
-                >
-                  <Facebook className="h-4 w-4 group-hover:scale-110 transition-transform" />
-                </Link>
-                <Link
-                  href="#"
-                  className="p-3 bg-accent/10 rounded-full hover:bg-accent hover:text-primary transition-all duration-300 group"
-                  title="Twitter"
-                >
-                  <Twitter className="h-4 w-4 group-hover:scale-110 transition-transform" />
-                </Link>
-                <Link
-                  href="#"
-                  className="p-3 bg-accent/10 rounded-full hover:bg-accent hover:text-primary transition-all duration-300 group"
-                  title="Instagram"
-                >
-                  <Instagram className="h-4 w-4 group-hover:scale-110 transition-transform" />
-                </Link>
-                <Link
-                  href="#"
-                  className="p-3 bg-accent/10 rounded-full hover:bg-accent hover:text-primary transition-all duration-300 group"
-                  title="YouTube"
-                >
-                  <Youtube className="h-4 w-4 group-hover:scale-110 transition-transform" />
-                </Link>
+            <div className="mt-6 space-y-4 text-sm text-white/82">
+              <div className="flex items-start gap-3 rounded-2xl border border-white/10 bg-black/10 px-4 py-3">
+                <MapPin className="mt-1 h-4 w-4 flex-shrink-0 text-white" />
+                <div>
+                  <p className="font-medium text-white">
+                    Divine International Academy
+                  </p>
+                  <p>Sirsaganj, Firozabad</p>
+                  <p>Uttar Pradesh, India - 283203</p>
+                </div>
               </div>
-              <p className="text-xs text-gray-300 mt-2">
-                Stay updated with our latest news and events
-              </p>
+
+              <Link
+                href="tel:+919876543210"
+                className="flex items-center gap-3 rounded-2xl border border-white/10 bg-black/10 px-4 py-3 transition-colors hover:bg-white/10"
+              >
+                <Phone className="h-4 w-4 text-white" />
+                <div>
+                  <div className="font-medium text-white">+91 9876543210</div>
+                  <div className="text-xs text-white/60">Main office</div>
+                </div>
+              </Link>
+
+              <Link
+                href="tel:+919876543211"
+                className="flex items-center gap-3 rounded-2xl border border-white/10 bg-black/10 px-4 py-3 transition-colors hover:bg-white/10"
+              >
+                <Phone className="h-4 w-4 text-white" />
+                <div>
+                  <div className="font-medium text-white">+91 9876543211</div>
+                  <div className="text-xs text-white/60">Admissions office</div>
+                </div>
+              </Link>
+
+              <Link
+                href="mailto:info@divineacademy.edu.in"
+                className="flex items-center gap-3 rounded-2xl border border-white/10 bg-black/10 px-4 py-3 transition-colors hover:bg-white/10"
+              >
+                <Mail className="h-4 w-4 text-white" />
+                <div>
+                  <div className="font-medium text-white">
+                    info@divineacademy.edu.in
+                  </div>
+                  <div className="text-xs text-white/60">General enquiries</div>
+                </div>
+              </Link>
+
+              <Link
+                href="mailto:admissions@divineacademy.edu.in"
+                className="flex items-center gap-3 rounded-2xl border border-white/10 bg-black/10 px-4 py-3 transition-colors hover:bg-white/10"
+              >
+                <Mail className="h-4 w-4 text-white" />
+                <div>
+                  <div className="font-medium text-white">
+                    admissions@divineacademy.edu.in
+                  </div>
+                  <div className="text-xs text-white/60">Admissions desk</div>
+                </div>
+              </Link>
+
+              <div className="flex items-start gap-3 rounded-2xl border border-white/10 bg-black/10 px-4 py-3">
+                <Clock className="mt-1 h-4 w-4 flex-shrink-0 text-white" />
+                <div>
+                  <p>Monday to Friday: 8:00 AM - 4:00 PM</p>
+                  <p>Saturday: 8:00 AM - 12:00 PM</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Trust & Recognition */}
-      <div className="border-t border-white/20 bg-crimson-800">
-        <div className="container mx-auto px-4 py-6">
-          <div className="text-center mb-6">
-            <h5 className="text-sm font-semibold text-white mb-3 uppercase tracking-wide">
-              Trusted by Parents, Recognized by Excellence
-            </h5>
-            <div className="flex flex-wrap justify-center items-center gap-6 text-xs text-gray-200">
-              <span className="flex items-center space-x-1">
-                <Shield className="h-3 w-3 text-white" />
-                <span>CBSE Affiliated</span>
-              </span>
-              <span className="flex items-center space-x-1">
-                <Award className="h-3 w-3 text-white" />
-                <span>Government Recognized</span>
-              </span>
-              <span className="flex items-center space-x-1">
-                <Star className="h-3 w-3 text-white" />
-                <span>ISO 9001:2015 Certified</span>
-              </span>
-              <span className="flex items-center space-x-1">
-                <Trophy className="h-3 w-3 text-accent" />
-                <span>Excellence in Education Award 2024</span>
-              </span>
+      <div className="border-t border-white/10 bg-black/15">
+        <div className="container mx-auto px-4 py-5">
+          <div className="flex flex-col gap-3 text-sm md:flex-row md:items-center md:justify-between">
+            <div className="text-center md:text-left">
+              <p className="text-white/82">
+                &copy; {currentYear} Divine International Academy. Managed by Om
+                Educational Trust.
+              </p>
+              <p className="mt-1 text-white/58">
+                CBSE affiliation number 2131764 • Sirsaganj, Firozabad, Uttar
+                Pradesh
+              </p>
             </div>
-          </div>
-        </div>
-      </div>
 
-      {/* Bottom Footer */}
-      <div className="border-t border-white/20 bg-black">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex flex-col lg:flex-row items-center justify-between text-sm">
-            <div className="text-center lg:text-left">
-              <p className="text-gray-200">
-                &copy; 2025{" "}
-                <span className="font-semibold text-white">
-                  Divine International Academy
-                </span>
-                . All rights reserved.
-              </p>
-              <p className="mt-1 text-gray-300">
-                Proudly managed by{" "}
-                <span className="text-white font-medium">
-                  Om Educational Trust
-                </span>{" "}
-                since 2012 •{" "}
-                <span className="text-white font-medium">
-                  Shaping Tomorrow's Leaders Today
-                </span>
-              </p>
-            </div>
-            <div className="mt-4 lg:mt-0 flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm md:justify-end">
               <Link
-                href="/privacy"
-                className="text-accent-200 hover:text-accent transition-colors text-xs"
+                href="/about"
+                className="text-white/70 transition-colors hover:text-white"
               >
-                Privacy Policy
+                About DIA
               </Link>
-              <span className="text-accent-300">•</span>
               <Link
-                href="/terms"
-                className="text-accent-200 hover:text-accent transition-colors text-xs"
+                href="/admissions"
+                className="text-white/70 transition-colors hover:text-white"
               >
-                Terms of Service
+                Admissions
               </Link>
-              <span className="text-accent-300">•</span>
               <Link
-                href="/sitemap"
-                className="text-accent-200 hover:text-accent transition-colors text-xs"
+                href="/contact"
+                className="text-white/70 transition-colors hover:text-white"
               >
-                Sitemap
+                Contact
               </Link>
-              <span className="text-accent-300">•</span>
               <Link
-                href="/careers"
-                className="text-accent-200 hover:text-accent transition-colors text-xs"
+                href="/apply"
+                className="text-white/70 transition-colors hover:text-white"
               >
-                Careers
+                Apply Online
               </Link>
             </div>
           </div>

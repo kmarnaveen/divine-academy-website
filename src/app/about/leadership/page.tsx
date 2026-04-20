@@ -1,752 +1,422 @@
-'use client'
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import {
+  ArrowRight,
+  BookOpen,
+  CheckCircle,
+  GraduationCap,
+  MapPin,
+  MessageSquare,
+  Shield,
+  Users,
+} from "lucide-react";
 
-import { motion } from 'framer-motion'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
-import { Users, Mail, Phone, Award, GraduationCap, BookOpen, Heart, Star, Target, Calendar, Globe, MessageCircle } from 'lucide-react'
-import Link from 'next/link'
-import { MainLayout } from '@/components/layout/main-layout'
+import { MainLayout } from "@/components/layout/main-layout";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 
-const principalMessage = {
-  name: "Dr. Rajesh Kumar Sharma",
-  position: "Principal & Chief Academic Officer",
-  qualification: "Ph.D. in Education, M.Ed., B.Ed.",
-  experience: "25+ years in Educational Leadership",
-  email: "principal@divineacademy.edu.in",
-  phone: "+91-9876543210",
-  message: "Welcome to Divine International Academy, where we believe that every child has the potential to excel and make a positive impact on the world. Our commitment is to provide an environment where students can discover their passions, develop their talents, and grow into confident, compassionate, and capable individuals. With our dedicated faculty, state-of-the-art facilities, and student-centered approach, we ensure that each child receives the personalized attention they deserve. Together, we are building tomorrow's leaders today.",
-  achievements: [
-    "National Award for Excellence in Educational Leadership (2023)",
-    "Regional Recognition for Innovation in Teaching (2022)",
-    "20+ research publications in educational journals",
-    "Guest speaker at national education conferences"
+const leadershipSignals = [
+  "Principal Dr. Garima Gupta",
+  "Om Educational Trust management",
+  "50+ faculty members across sections",
+] as const;
+
+const leadershipProfile = [
+  {
+    label: "School leadership",
+    value:
+      "Principal-led academic and campus oversight across Pre-Primary to Class XII",
+  },
+  {
+    label: "Management support",
+    value: "Operational and institutional support under Om Educational Trust",
+  },
+  {
+    label: "Academic coordination",
+    value:
+      "Section-wise planning, teacher follow-up, and student supervision across stages",
+  },
+  {
+    label: "Parent communication",
+    value:
+      "Admissions, office guidance, and school-level interaction for routine clarification",
+  },
+] as const;
+
+const leadershipAreas = [
+  {
+    title: "Principal leadership",
+    description:
+      "The principal office sets the academic direction, classroom expectations, discipline standards, and school priorities families experience across the year.",
+    points: [
+      "Academic quality and school direction",
+      "Student discipline and conduct standards",
+      "Campus expectations across sections",
+    ],
+    icon: GraduationCap,
+  },
+  {
+    title: "Academic coordination",
+    description:
+      "School leadership works through teachers and section-level coordination so teaching remains structured and class progress is monitored consistently.",
+    points: [
+      "Lesson planning and classroom continuity",
+      "Assessment and academic follow-up",
+      "Support from foundational to board classes",
+    ],
+    icon: BookOpen,
+  },
+  {
+    title: "Student safety and supervision",
+    description:
+      "Leadership is also judged by how well the campus runs: arrival, dispersal, supervision, movement, safety routines, and activity control.",
+    points: [
+      "Daily discipline and monitored routines",
+      "Visible supervision across campus spaces",
+      "Support during activities, events, and transport transitions",
+    ],
+    icon: Shield,
+  },
+  {
+    title: "Parent support and communication",
+    description:
+      "Families need clarity on admissions, processes, expectations, and school routines. Leadership quality improves when that communication is clear and direct.",
+    points: [
+      "Admissions and office guidance",
+      "Parent-facing process clarity",
+      "Support when families need campus or academic information",
+    ],
+    icon: MessageSquare,
+  },
+] as const;
+
+const leadershipSystems = [
+  {
+    title: "What parents should expect",
+    description:
+      "A good leadership page should help families understand who oversees academics, student routines, and campus systems before they visit or enquire.",
+  },
+  {
+    title: "What leadership should protect",
+    description:
+      "Teaching quality, discipline, safety, teacher accountability, and the consistency of the school day matter more than decorative titles or long biographies.",
+  },
+  {
+    title: "Why this matters",
+    description:
+      "Parents often decide on trust based on whether the school feels organised, responsive, and serious about both academics and supervision.",
+  },
+] as const;
+
+const parentTouchpoints = [
+  "Admissions and office guidance for process-related questions",
+  "Class-level coordination through regular teacher follow-up",
+  "Principal-led academic and discipline direction across the campus",
+  "School office support before campus visits and key school interactions",
+] as const;
+
+const nextSteps = [
+  {
+    title: "Read the principal's message",
+    description:
+      "See the academic priorities and leadership commitments shared from the principal's desk.",
+    href: "/about/principal",
+    cta: "Go to principal's message",
+    icon: GraduationCap,
+  },
+  {
+    title: "Review school vision",
+    description:
+      "See how the school's vision and mission translate into teaching, participation, and values.",
+    href: "/about/vision",
+    cta: "Go to vision and mission",
+    icon: Users,
+  },
+  {
+    title: "Plan a visit or enquiry",
+    description:
+      "Use the contact page for school location, timings, and the next step for admissions-related questions.",
+    href: "/contact",
+    cta: "Go to contact page",
+    icon: MapPin,
+  },
+] as const;
+
+export const metadata: Metadata = {
+  title: "School Leadership | Divine International Academy Sirsaganj",
+  description:
+    "Understand the leadership structure at Divine International Academy, Sirsaganj, including principal-led academic direction, campus supervision, and parent communication support.",
+  keywords: [
+    "Divine International Academy leadership",
+    "school principal Sirsaganj",
+    "CBSE school management Firozabad",
+    "school leadership structure",
   ],
-  philosophy: "Education is not just about academic excellence but about nurturing complete human beings who can contribute meaningfully to society."
-}
-
-const managementTeam = [
-  {
-    name: "Mrs. Priya Agarwal",
-    position: "Vice Principal (Academic)",
-    department: "Academic Affairs",
-    qualification: "M.Ed., M.A. English",
-    experience: "18 years",
-    email: "vp.academic@divineacademy.edu.in",
-    specialization: "Curriculum Development & Assessment",
-    achievements: [
-      "Led curriculum revision for NEP 2020 implementation",
-      "Designed innovative assessment strategies",
-      "Mentored 50+ teachers in pedagogical practices"
-    ],
-    responsibilities: ["Academic planning and execution", "Faculty development programs", "Student assessment systems", "Curriculum innovation"]
-  },
-  {
-    name: "Mr. Amit Verma",
-    position: "Vice Principal (Administration)",
-    department: "Operations & Administration",
-    qualification: "MBA, B.Tech",
-    experience: "15 years",
-    email: "vp.admin@divineacademy.edu.in",
-    specialization: "Educational Administration & Technology",
-    achievements: [
-      "Implemented digital transformation initiatives",
-      "Streamlined administrative processes",
-      "Led infrastructure development projects"
-    ],
-    responsibilities: ["Administrative operations", "Technology integration", "Infrastructure management", "Resource optimization"]
-  },
-  {
-    name: "Dr. Sunita Rao",
-    position: "Academic Director",
-    department: "Curriculum & Research",
-    qualification: "Ph.D. in Science Education",
-    experience: "20 years",
-    email: "academic.director@divineacademy.edu.in",
-    specialization: "STEM Education & Research",
-    achievements: [
-      "Published 15+ research papers in education",
-      "Developed innovative STEM curriculum",
-      "National award for science education excellence"
-    ],
-    responsibilities: ["Research and development", "STEM program leadership", "Academic innovation", "Quality assurance"]
-  }
-]
-
-const departmentHeads = [
-  {
-    name: "Ms. Kavita Jain",
-    position: "Head of Primary Section",
-    department: "Primary Education (Classes I-V)",
-    qualification: "M.Ed., B.Ed.",
-    experience: "16 years",
-    specialization: "Early Childhood Education",
-    students: "Classes I-V (300+ students)",
-    achievements: ["Best Primary Educator Award", "Innovative teaching methodology", "Parent satisfaction rating 98%"]
-  },
-  {
-    name: "Mr. Rohit Singh",
-    position: "Head of Middle Section",
-    department: "Middle School (Classes VI-VIII)",
-    qualification: "M.Sc. Mathematics, B.Ed.",
-    experience: "14 years",
-    specialization: "Mathematics & Logical Reasoning",
-    students: "Classes VI-VIII (250+ students)",
-    achievements: ["Mathematics Olympiad trainer", "100% success rate in competitive exams", "Student mentor award"]
-  },
-  {
-    name: "Dr. Anjali Verma",
-    position: "Head of Senior Section",
-    department: "Senior School (Classes IX-XII)",
-    qualification: "Ph.D. English Literature",
-    experience: "19 years",
-    specialization: "Language Arts & Literature",
-    students: "Classes IX-XII (200+ students)",
-    achievements: ["Board exam excellence (98% pass rate)", "Literary society founder", "Inter-school debate champion coach"]
-  },
-  {
-    name: "Coach Arjun Pandey",
-    position: "Sports Director",
-    department: "Physical Education & Sports",
-    qualification: "M.P.Ed., Sports Science Diploma",
-    experience: "12 years",
-    specialization: "Athletics & Team Sports",
-    students: "All sections (athletic programs)",
-    achievements: ["State championship coach", "Sports excellence award", "Trained 20+ national level athletes"]
-  },
-  {
-    name: "Ms. Rekha Gupta",
-    position: "Cultural Activities Director",
-    department: "Arts, Music & Cultural Programs",
-    qualification: "M.A. Fine Arts, Classical Music",
-    experience: "13 years",
-    specialization: "Performing Arts & Cultural Education",
-    students: "All sections (cultural activities)",
-    achievements: ["Regional cultural competition winner", "Annual day director", "Arts integration specialist"]
-  },
-  {
-    name: "Mr. Vikash Kumar",
-    position: "Technology Director",
-    department: "Information Technology & Digital Learning",
-    qualification: "M.Tech Computer Science",
-    experience: "10 years",
-    specialization: "Educational Technology & Innovation",
-    students: "Digital literacy programs (all sections)",
-    achievements: ["Smart classroom implementation", "Coding curriculum developer", "Technology innovation award"]
-  }
-]
-
-const supportStaff = [
-  {
-    name: "Ms. Pooja Malik",
-    position: "Student Counselor",
-    department: "Student Welfare",
-    qualification: "M.A. Psychology, Counseling Certification",
-    specialization: "Student Counseling & Mental Health"
-  },
-  {
-    name: "Dr. Ashok Gupta",
-    position: "Medical Officer",
-    department: "Health & Wellness",
-    qualification: "MBBS, Child Health Specialist",
-    specialization: "Student Health & Emergency Care"
-  },
-  {
-    name: "Mr. Suresh Chand",
-    position: "Transport Manager",
-    department: "Transportation",
-    qualification: "Transport Management Diploma",
-    specialization: "Safe Transportation & Fleet Management"
-  },
-  {
-    name: "Mrs. Neha Sharma",
-    position: "Librarian",
-    department: "Library & Resources",
-    qualification: "M.Lib.Sc., B.Ed.",
-    specialization: "Information Management & Digital Resources"
-  }
-]
-
-const organizationalValues = [
-  {
-    title: "Collaborative Leadership",
-    description: "Our leadership team works together to ensure seamless coordination across all departments",
-    icon: <Users className="w-8 h-8" />
-  },
-  {
-    title: "Professional Excellence",
-    description: "Continuous learning and development to maintain the highest standards of education",
-    icon: <Star className="w-8 h-8" />
-  },
-  {
-    title: "Student-Centric Approach",
-    description: "Every decision is made with student welfare and success as the primary consideration",
-    icon: <Heart className="w-8 h-8" />
-  },
-  {
-    title: "Innovation & Growth",
-    description: "Embracing new ideas and methodologies to enhance the educational experience",
-    icon: <Target className="w-8 h-8" />
-  }
-]
-
-const teamStats = [
-  {
-    number: "50+",
-    label: "Qualified Faculty",
-    icon: <GraduationCap className="w-6 h-6" />,
-    color: "text-blue-600"
-  },
-  {
-    number: "200+",
-    label: "Years Combined Experience",
-    icon: <Calendar className="w-6 h-6" />,
-    color: "text-green-600"
-  },
-  {
-    number: "15+",
-    label: "Department Heads",
-    icon: <Users className="w-6 h-6" />,
-    color: "text-purple-600"
-  },
-  {
-    number: "25+",
-    label: "Support Staff",
-    icon: <Heart className="w-6 h-6" />,
-    color: "text-orange-600"
-  }
-]
+};
 
 export default function LeadershipPage() {
   return (
     <MainLayout>
-      <div className="min-h-screen bg-white">
-        {/* Hero Section */}
-        <section className="relative pt-20 pb-16 overflow-hidden">
-          <div className="absolute inset-0 bg-blue-900/5"></div>
-          <div className="container mx-auto px-4 relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center max-w-4xl mx-auto"
-            >
-              <h1 className="text-4xl md:text-5xl font-bold text-blue-900 mb-6">
-                Leadership Team
-              </h1>
-              <p className="text-xl text-gray-700 mb-8 leading-relaxed">
-                Meet the dedicated professionals who guide our school's mission
-                of academic excellence, character development, and holistic
-                education.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button
-                  size="lg"
-                  asChild
-                  className="bg-blue-600 hover:bg-blue-700"
-                >
-                  <Link href="#principal">
-                    <Users className="mr-2 h-5 w-5" />
-                    Principal's Message
-                  </Link>
-                </Button>
-                <Button variant="outline" size="lg" asChild>
-                  <Link href="/about/vision">
-                    <Target className="mr-2 h-5 w-5" />
-                    Our Vision
-                  </Link>
-                </Button>
+      <section className="relative overflow-hidden bg-[linear-gradient(180deg,#fffdfb_0%,#fff7f1_46%,#ffffff_100%)] pt-16 pb-20 sm:pt-20 sm:pb-24">
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-primary/5 to-transparent" />
+
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
+              School Leadership
+            </Badge>
+            <h1 className="mt-5 text-4xl font-bold font-heading leading-tight text-primary sm:text-5xl lg:text-[3.35rem]">
+              Leadership matters when it makes the school day clear,
+              disciplined, and dependable
+            </h1>
+            <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
+              Divine International Academy is led by Principal Dr. Garima Gupta
+              and managed under Om Educational Trust. For families, leadership
+              matters most in how academics, supervision, communication, and
+              campus systems actually function.
+            </p>
+          </div>
+
+          <div className="mt-10 overflow-hidden rounded-[32px] border border-slate-200/80 bg-white shadow-[0_28px_80px_-52px_rgba(15,23,42,0.24)]">
+            <div className="grid lg:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.92fr)] lg:items-stretch">
+              <div className="relative min-h-[320px] border-b border-slate-200/80 bg-slate-100 lg:min-h-full lg:border-b-0 lg:border-r lg:border-slate-200/80">
+                <Image
+                  src="/images/submenu/curriculum.jpg"
+                  alt="Academic leadership at Divine International Academy"
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 48vw, 100vw"
+                  priority
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.08)_0%,rgba(15,23,42,0.18)_38%,rgba(15,23,42,0.68)_100%)]" />
+                <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6 lg:p-8">
+                  <Badge className="border border-white/15 bg-white/12 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-white/12">
+                    Parent Trust Signals
+                  </Badge>
+                  <h2 className="mt-4 max-w-2xl text-2xl font-bold font-heading leading-tight text-white sm:text-[2rem] lg:text-[2.45rem]">
+                    Parents usually trust leadership when school systems feel
+                    organised, visible, and responsive.
+                  </h2>
+                </div>
               </div>
-            </motion.div>
-          </div>
-        </section>
 
-        {/* Team Statistics */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <div className="grid md:grid-cols-4 gap-8 max-w-5xl mx-auto">
-              {teamStats.map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  <Card className="text-center hover:shadow-lg transition-shadow duration-300">
-                    <CardContent className="p-6">
-                      <div
-                        className={`mx-auto p-3 bg-gray-100 rounded-full w-fit mb-4 ${stat.color}`}
-                      >
-                        {stat.icon}
-                      </div>
-                      <div className="text-3xl font-bold text-blue-900 mb-2">
-                        {stat.number}
-                      </div>
-                      <div className="text-sm text-gray-600">{stat.label}</div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
+              <div className="p-6 sm:p-8 lg:p-10">
+                <p className="max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
+                  This page focuses on how school leadership supports the
+                  academic environment, parent clarity, and operational
+                  stability across the year.
+                </p>
 
-        {/* Principal's Message */}
-        <section id="principal" className="py-16 bg-white/50">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold text-blue-900 mb-4">
-                Principal's Message
-              </h2>
-              <p className="text-gray-600">
-                A message from our school's visionary leader
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <Card className="max-w-5xl mx-auto">
-                <CardContent className="p-8">
-                  <div className="grid lg:grid-cols-3 gap-8">
-                    {/* Principal Photo & Info */}
-                    <div className="lg:col-span-1">
-                      <div className="text-center">
-                        {/* Photo Placeholder */}
-                        <div className="w-40 h-40 mx-auto mb-6 bg-gray-100 rounded-full flex items-center justify-center">
-                          <Users className="w-20 h-20 text-blue-600" />
-                        </div>
-                        <h3 className="text-xl font-bold text-blue-900 mb-2">
-                          {principalMessage.name}
-                        </h3>
-                        <p className="text-blue-600 font-semibold mb-1">
-                          {principalMessage.position}
-                        </p>
-                        <p className="text-gray-600 text-sm mb-4">
-                          {principalMessage.qualification}
-                        </p>
-                        <Badge className="mb-4">
-                          {principalMessage.experience}
-                        </Badge>
-
-                        <div className="space-y-2 text-sm">
-                          <div className="flex items-center justify-center gap-2">
-                            <Mail className="w-4 h-4 text-blue-600" />
-                            <span className="text-gray-600">
-                              {principalMessage.email}
-                            </span>
-                          </div>
-                          <div className="flex items-center justify-center gap-2">
-                            <Phone className="w-4 h-4 text-green-600" />
-                            <span className="text-gray-600">
-                              {principalMessage.phone}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
+                <div className="mt-5 flex flex-wrap gap-2.5">
+                  {leadershipSignals.map((signal) => (
+                    <div
+                      key={signal}
+                      className="rounded-full border border-primary/10 bg-primary/5 px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-primary"
+                    >
+                      {signal}
                     </div>
+                  ))}
+                </div>
 
-                    {/* Message Content */}
-                    <div className="lg:col-span-2">
-                      <div className="space-y-6">
-                        <div>
-                          <h4 className="text-lg font-semibold text-blue-900 mb-3">
-                            Welcome Message
-                          </h4>
-                          <p className="text-gray-700 leading-relaxed">
-                            {principalMessage.message}
-                          </p>
-                        </div>
-
-                        <div>
-                          <h4 className="text-lg font-semibold text-blue-900 mb-3">
-                            Educational Philosophy
-                          </h4>
-                          <p className="text-gray-700 italic leading-relaxed">
-                            {principalMessage.philosophy}
-                          </p>
-                        </div>
-
-                        <div>
-                          <h4 className="text-lg font-semibold text-blue-900 mb-3">
-                            Key Achievements
-                          </h4>
-                          <ul className="space-y-2">
-                            {principalMessage.achievements.map(
-                              (achievement, idx) => (
-                                <li
-                                  key={idx}
-                                  className="flex items-center gap-2"
-                                >
-                                  <Award className="w-4 h-4 text-yellow-500 flex-shrink-0" />
-                                  <span className="text-gray-700 text-sm">
-                                    {achievement}
-                                  </span>
-                                </li>
-                              )
-                            )}
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Management Team */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold text-blue-900 mb-4">
-                Senior Management Team
-              </h2>
-              <p className="text-gray-600">
-                Strategic leaders driving our educational excellence
-              </p>
-            </motion.div>
-
-            <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {managementTeam.map((member, index) => (
-                <motion.div
-                  key={member.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  <Card className="h-full hover:shadow-lg transition-shadow duration-300">
-                    <CardHeader>
-                      <div className="text-center mb-4">
-                        <div className="w-24 h-24 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
-                          <Users className="w-12 h-12 text-blue-600" />
-                        </div>
-                        <CardTitle className="text-blue-900">
-                          {member.name}
-                        </CardTitle>
-                        <p className="text-blue-600 font-medium text-sm">
-                          {member.position}
-                        </p>
-                        <Badge variant="outline" className="text-xs mt-1">
-                          {member.department}
-                        </Badge>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-4">
-                        <div className="text-center space-y-1 text-sm">
-                          <p>
-                            <strong>Qualification:</strong>{" "}
-                            {member.qualification}
-                          </p>
-                          <p>
-                            <strong>Experience:</strong> {member.experience}
-                          </p>
-                          <p>
-                            <strong>Specialization:</strong>{" "}
-                            {member.specialization}
-                          </p>
-                        </div>
-
-                        <div>
-                          <h4 className="font-semibold text-gray-800 mb-2 text-sm">
-                            Key Achievements:
-                          </h4>
-                          <ul className="space-y-1">
-                            {member.achievements.map((achievement, idx) => (
-                              <li key={idx} className="flex items-start gap-1">
-                                <Star className="w-3 h-3 text-yellow-500 mt-0.5 flex-shrink-0" />
-                                <span className="text-xs text-gray-600">
-                                  {achievement}
-                                </span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-
-                        <div>
-                          <h4 className="font-semibold text-gray-800 mb-2 text-sm">
-                            Responsibilities:
-                          </h4>
-                          <div className="flex flex-wrap gap-1">
-                            {member.responsibilities.map((resp, idx) => (
-                              <Badge
-                                key={idx}
-                                variant="secondary"
-                                className="text-xs"
-                              >
-                                {resp}
-                              </Badge>
-                            ))}
-                          </div>
-                        </div>
-
-                        <div className="pt-2 border-t border-gray-100">
-                          <div className="flex items-center gap-2 text-xs text-gray-500">
-                            <Mail className="w-3 h-3" />
-                            <span>{member.email}</span>
-                          </div>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Department Heads */}
-        <section className="py-16 bg-white/50">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold text-blue-900 mb-4">
-                Department Heads & Specialists
-              </h2>
-              <p className="text-gray-600">
-                Experienced educators leading their respective departments
-              </p>
-            </motion.div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-              {departmentHeads.map((head, index) => (
-                <motion.div
-                  key={head.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.05 }}
-                >
-                  <Card className="h-full hover:shadow-md transition-shadow duration-300">
-                    <CardHeader>
-                      <div className="text-center">
-                        <div className="w-16 h-16 mx-auto mb-3 bg-gray-100 rounded-full flex items-center justify-center">
-                          <GraduationCap className="w-8 h-8 text-blue-600" />
-                        </div>
-                        <CardTitle className="text-blue-900 text-sm">
-                          {head.name}
-                        </CardTitle>
-                        <p className="text-blue-600 font-medium text-xs">
-                          {head.position}
-                        </p>
-                        <Badge variant="outline" className="text-xs mt-1">
-                          {head.experience}
-                        </Badge>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-3">
-                        <div className="text-xs space-y-1">
-                          <p>
-                            <strong>Department:</strong> {head.department}
-                          </p>
-                          <p>
-                            <strong>Qualification:</strong> {head.qualification}
-                          </p>
-                          <p>
-                            <strong>Specialization:</strong>{" "}
-                            {head.specialization}
-                          </p>
-                          <p>
-                            <strong>Students:</strong> {head.students}
-                          </p>
-                        </div>
-
-                        <div>
-                          <h4 className="font-semibold text-gray-800 mb-2 text-xs">
-                            Key Achievements:
-                          </h4>
-                          <ul className="space-y-1">
-                            {head.achievements.map((achievement, idx) => (
-                              <li key={idx} className="flex items-start gap-1">
-                                <Award className="w-2.5 h-2.5 text-yellow-500 mt-0.5 flex-shrink-0" />
-                                <span className="text-xs text-gray-600">
-                                  {achievement}
-                                </span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Support Staff */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold text-blue-900 mb-4">
-                Support & Specialist Staff
-              </h2>
-              <p className="text-gray-600">
-                Dedicated professionals ensuring comprehensive student support
-              </p>
-            </motion.div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-              {supportStaff.map((staff, index) => (
-                <motion.div
-                  key={staff.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  <Card className="h-full text-center hover:shadow-md transition-shadow duration-300">
-                    <CardHeader>
-                      <div className="w-14 h-14 mx-auto mb-3 bg-gray-100 rounded-full flex items-center justify-center">
-                        <Heart className="w-7 h-7 text-green-600" />
-                      </div>
-                      <CardTitle className="text-blue-900 text-sm">
-                        {staff.name}
-                      </CardTitle>
-                      <p className="text-blue-600 font-medium text-xs">
-                        {staff.position}
+                <div className="mt-6 space-y-3.5 text-sm text-slate-700">
+                  {leadershipProfile.map((item) => (
+                    <div
+                      key={item.label}
+                      className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5"
+                    >
+                      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+                        {item.label}
                       </p>
-                      <Badge variant="outline" className="text-xs mt-1">
-                        {staff.department}
-                      </Badge>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="text-xs space-y-2">
-                        <p>
-                          <strong>Qualification:</strong> {staff.qualification}
-                        </p>
-                        <p>
-                          <strong>Specialization:</strong>{" "}
-                          {staff.specialization}
-                        </p>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
+                      <p className="mt-2 leading-6 text-slate-700">
+                        {item.value}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                  <Button
+                    asChild
+                    size="lg"
+                    className="bg-primary text-white hover:bg-primary/90 sm:flex-1"
+                  >
+                    <Link href="/about/principal">
+                      Principal's Message
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                  <Button
+                    asChild
+                    size="lg"
+                    variant="outline"
+                    className="border-primary text-primary hover:bg-primary hover:text-white sm:flex-1"
+                  >
+                    <Link href="/contact">Contact the School</Link>
+                  </Button>
+                </div>
+              </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Organizational Values */}
-        <section className="py-16 bg-white/50">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold text-blue-900 mb-4">
-                Leadership Principles
-              </h2>
-              <p className="text-gray-600">
-                The core values that guide our leadership approach
-              </p>
-            </motion.div>
+      <section className="pb-20">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
+              Leadership Responsibilities
+            </Badge>
+            <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
+              The leadership page should answer what the school leadership
+              actually oversees
+            </h2>
+          </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
-              {organizationalValues.map((value, index) => (
-                <motion.div
-                  key={value.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            {leadershipAreas.map((item) => {
+              const Icon = item.icon;
+
+              return (
+                <Card
+                  key={item.title}
+                  className="rounded-[28px] border-slate-200/80 bg-white shadow-[0_20px_60px_-46px_rgba(15,23,42,0.24)]"
                 >
-                  <Card className="h-full text-center hover:shadow-md transition-shadow duration-300">
-                    <CardHeader>
-                      <div className="mx-auto p-3 bg-blue-100 rounded-full text-blue-600 w-fit">
-                        {value.icon}
-                      </div>
-                      <CardTitle className="text-blue-900">
-                        {value.title}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-gray-600 text-sm">
-                        {value.description}
+                  <CardContent className="p-6 sm:p-7">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <h3 className="mt-5 text-xl font-bold font-heading text-slate-950">
+                      {item.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-7 text-slate-600 sm:text-base">
+                      {item.description}
+                    </p>
+
+                    <ul className="mt-5 space-y-3">
+                      {item.points.map((point) => (
+                        <li key={point} className="flex items-start gap-3">
+                          <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                          <span className="text-sm leading-6 text-slate-700">
+                            {point}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-slate-50/80 py-20">
+        <div className="container mx-auto px-4">
+          <div className="grid gap-8 xl:grid-cols-[minmax(0,0.98fr)_360px] xl:items-start">
+            <div>
+              <Badge className="border border-primary/10 bg-white px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-white">
+                Leadership Standards
+              </Badge>
+              <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl">
+                Families do not need long biographies first. They need clarity
+                on how the school is run.
+              </h2>
+
+              <div className="mt-8 grid gap-4">
+                {leadershipSystems.map((item) => (
+                  <Card
+                    key={item.title}
+                    className="rounded-[24px] border-slate-200/80 bg-white"
+                  >
+                    <CardContent className="p-5 sm:p-6">
+                      <h3 className="text-base font-bold text-slate-950">
+                        {item.title}
+                      </h3>
+                      <p className="mt-2 text-sm leading-6 text-slate-600">
+                        {item.description}
                       </p>
                     </CardContent>
                   </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="py-16 bg-primary">
-          <div className="container mx-auto px-4 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="max-w-3xl mx-auto"
-            >
-              <h2 className="text-3xl font-bold text-white mb-4">
-                Join Our Educational Community
-              </h2>
-              <p className="text-blue-100 mb-8 text-lg">
-                Experience the difference of learning under visionary leadership
-                committed to your child's holistic development and success.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" variant="secondary" asChild>
-                  <Link href="/about/vision">
-                    <Target className="mr-2 h-5 w-5" />
-                    Our Vision
-                  </Link>
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="bg-white text-blue-600 hover:bg-blue-50"
-                  asChild
-                >
-                  <Link href="/admissions">
-                    <BookOpen className="mr-2 h-5 w-5" />
-                    Admissions Info
-                  </Link>
-                </Button>
-                <Button
-                  size="lg"
-                  variant="ghost"
-                  className="text-white hover:bg-blue-600"
-                  asChild
-                >
-                  <Link href="/apply">
-                    <MessageCircle className="mr-2 h-5 w-5" />
-                    Contact Us
-                  </Link>
-                </Button>
+                ))}
               </div>
-            </motion.div>
+            </div>
+
+            <Card className="rounded-[28px] border-slate-200/80 bg-white shadow-[0_20px_60px_-46px_rgba(15,23,42,0.22)]">
+              <CardContent className="p-6 sm:p-7">
+                <Badge className="border border-primary/10 bg-primary/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary hover:bg-primary/5">
+                  Parent Touchpoints
+                </Badge>
+                <h3 className="mt-5 text-2xl font-bold font-heading text-slate-950">
+                  Common ways families experience school leadership
+                </h3>
+
+                <ul className="mt-6 space-y-4">
+                  {parentTouchpoints.map((item) => (
+                    <li key={item} className="flex items-start gap-3">
+                      <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                      <span className="text-sm leading-6 text-slate-700">
+                        {item}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
+
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
+              Next Step
+            </Badge>
+            <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
+              Move from leadership structure to the principal's desk, school
+              vision, or contact details
+            </h2>
+          </div>
+
+          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+            {nextSteps.map((item) => {
+              const Icon = item.icon;
+
+              return (
+                <Card
+                  key={item.title}
+                  className="rounded-[28px] border-slate-200/80 bg-white shadow-[0_20px_60px_-46px_rgba(15,23,42,0.24)]"
+                >
+                  <CardContent className="p-6 sm:p-7">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <h3 className="mt-5 text-xl font-bold font-heading text-slate-950">
+                      {item.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-7 text-slate-600">
+                      {item.description}
+                    </p>
+
+                    <Button
+                      asChild
+                      size="lg"
+                      className="mt-6 w-full bg-primary text-white hover:bg-primary/90"
+                    >
+                      <Link href={item.href}>
+                        {item.cta}
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </Button>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </div>
+      </section>
     </MainLayout>
   );
 }

@@ -1,650 +1,481 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import {
-  Building,
-  Users,
-  Wifi,
-  Shield,
-  Camera,
-  TreePine,
-  Car,
-  Utensils,
-  Heart,
-  BookOpen,
-  MapPin,
-  Clock,
-} from "lucide-react";
+import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-import { MainLayout } from "@/components/layout/main-layout";
+import {
+  ArrowRight,
+  BookOpen,
+  Building,
+  Bus,
+  CheckCircle,
+  Clock,
+  GraduationCap,
+  MapPin,
+  Microscope,
+  Monitor,
+  Shield,
+  Users,
+} from "lucide-react";
 
-const campusHighlights = [
+import { MainLayout } from "../../../components/layout/main-layout";
+import { Badge } from "../../../components/ui/badge";
+import { Button } from "../../../components/ui/button";
+import { Card, CardContent } from "../../../components/ui/card";
+
+const campusSignals = [
+  "40 smart classrooms",
+  "15,000+ books and references",
+  "Science labs and computer learning spaces",
+  "CCTV-supported campus supervision",
+] as const;
+
+const campusProfile = [
   {
-    title: "Sprawling 8-Acre Campus",
+    label: "Academic environment",
+    value:
+      "Classrooms, labs, library spaces, and activity areas are planned to support the school day from Primary to Senior Secondary.",
+  },
+  {
+    label: "Student movement",
+    value:
+      "Arrival, classroom transitions, activity periods, and dispersal follow a supervised campus routine.",
+  },
+  {
+    label: "Daily support",
+    value:
+      "The campus is designed to support teaching time, reading habits, practical learning, and safer movement through the day.",
+  },
+  {
+    label: "Visit focus",
+    value:
+      "Families can review classroom spaces, supervised movement, activity areas, and transport coordination during a campus visit.",
+  },
+] as const;
+
+const campusStats = [
+  {
+    value: "40",
+    label: "Smart classrooms",
+    detail:
+      "Teaching and revision are supported with digital boards across classrooms.",
+  },
+  {
+    value: "15,000+",
+    label: "Books and references",
+    detail:
+      "Library use supports reading, reference work, and quieter study time.",
+  },
+  {
+    value: "25",
+    label: "Science lab batch size",
+    detail: "Science practicals are managed in smaller supervised groups.",
+  },
+  {
+    value: "1200+",
+    label: "Students on campus",
+    detail:
+      "The school supports a full campus routine across age groups and stages.",
+  },
+] as const;
+
+const campusZones = [
+  {
+    title: "Classroom blocks",
     description:
-      "Eco-friendly campus with lush green spaces and modern infrastructure",
-    icon: <TreePine className="w-6 h-6" />,
-    details: [
-      "Green building design",
-      "Natural lighting",
-      "Rainwater harvesting",
-      "Solar panels",
+      "Classroom spaces are planned for daily teaching, revision, and steady lesson flow through the academic timetable.",
+    points: [
+      "40 smart classrooms",
+      "Digital teaching support",
+      "Classroom use across all school stages",
     ],
+    icon: Monitor,
   },
   {
-    title: "Smart Classrooms",
+    title: "Labs and practical areas",
     description:
-      "Technology-enabled learning environments with modern amenities",
-    icon: <Building className="w-6 h-6" />,
-    details: [
-      "Interactive whiteboards",
-      "Audio-visual systems",
-      "Air conditioning",
-      "Ergonomic furniture",
+      "Science and computer-learning spaces support practical exposure, guided digital instruction, and stronger subject application.",
+    points: [
+      "Science labs for practical learning",
+      "Computer learning spaces for guided use",
+      "Regular access linked to the timetable",
     ],
+    icon: Microscope,
   },
   {
-    title: "24/7 Security",
-    description: "Comprehensive security system ensuring student safety",
-    icon: <Shield className="w-6 h-6" />,
-    details: [
-      "CCTV surveillance",
-      "Access control",
-      "Security guards",
-      "Emergency protocols",
+    title: "Library and reading spaces",
+    description:
+      "The library supports reading habits, quieter study time, reference work, and project-related learning across stages.",
+    points: [
+      "15,000+ books and references",
+      "Reading and library support",
+      "Reference use beyond the textbook",
     ],
+    icon: BookOpen,
   },
   {
-    title: "Digital Infrastructure",
-    description: "High-speed internet connectivity throughout the campus",
-    icon: <Wifi className="w-6 h-6" />,
-    details: [
-      "Fiber optic network",
-      "Wi-Fi coverage",
-      "Digital learning platforms",
-      "Smart attendance",
+    title: "Activity and open-use areas",
+    description:
+      "Open spaces support assemblies, physical activity, school events, student participation, and supervised movement beyond classroom periods.",
+    points: [
+      "Sports and activity use",
+      "School events and gatherings",
+      "Student participation across the week",
     ],
+    icon: Building,
   },
-];
+] as const;
 
-const infrastructureDetails = [
+const dayFlow = [
   {
-    category: "Academic Block",
-    facilities: [
-      {
-        name: "40 Smart Classrooms",
-        capacity: "30-35 students each",
-        features: ["Interactive boards", "AC", "Natural lighting"],
-      },
-      {
-        name: "Science Laboratories",
-        capacity: "25 students each",
-        features: [
-          "Modern equipment",
-          "Safety protocols",
-          "Digital microscopes",
-        ],
-      },
-      {
-        name: "Computer Labs",
-        capacity: "30 systems each",
-        features: ["Latest hardware", "Licensed software", "Internet access"],
-      },
-      {
-        name: "Library & Reading Rooms",
-        capacity: "100 students",
-        features: ["15,000+ books", "Digital resources", "Quiet zones"],
-      },
-    ],
+    title: "Arrival and entry",
+    description:
+      "The school day begins with supervised arrival, entry coordination, and movement toward classrooms and assembly areas.",
+    icon: MapPin,
   },
   {
-    category: "Activity Zones",
-    facilities: [
-      {
-        name: "Multipurpose Hall",
-        capacity: "500 students",
-        features: ["Stage facility", "Sound system", "AC"],
-      },
-      {
-        name: "Music & Dance Rooms",
-        capacity: "25 students each",
-        features: ["Sound proofing", "Mirrors", "Instruments"],
-      },
-      {
-        name: "Art & Craft Studios",
-        capacity: "20 students each",
-        features: ["Natural lighting", "Storage", "Display areas"],
-      },
-      {
-        name: "Activity Rooms",
-        capacity: "15-20 students",
-        features: ["Flexible seating", "Project displays", "Storage"],
-      },
-    ],
+    title: "Academic periods",
+    description:
+      "Classroom time, practical periods, and library access are planned around the daily timetable for each stage.",
+    icon: Clock,
   },
   {
-    category: "Support Facilities",
-    facilities: [
-      {
-        name: "Medical Room",
-        capacity: "Emergency care",
-        features: ["Qualified nurse", "First aid", "Emergency contacts"],
-      },
-      {
-        name: "Cafeteria",
-        capacity: "200 students",
-        features: ["Hygienic kitchen", "Healthy meals", "Seating area"],
-      },
-      {
-        name: "Transport Hub",
-        capacity: "25 buses",
-        features: ["Covered parking", "Maintenance", "GPS tracking"],
-      },
-      {
-        name: "Administrative Block",
-        capacity: "Staff offices",
-        features: ["Principal cabin", "Staff rooms", "Reception"],
-      },
-    ],
+    title: "Activity and movement",
+    description:
+      "Students move through breaks, activity periods, and open-use spaces under a structured school routine.",
+    icon: Users,
   },
-];
+  {
+    title: "Dispersal and transport",
+    description:
+      "The campus day closes with supervised dispersal and transport coordination for families using school buses and pickups.",
+    icon: Bus,
+  },
+] as const;
 
-const safetyFeatures = [
+const parentChecks = [
   {
-    feature: "Fire Safety",
-    details: [
-      "Smoke detectors",
-      "Fire extinguishers",
-      "Emergency exits",
-      "Evacuation plans",
-    ],
-    icon: <Shield className="w-8 h-8" />,
-    color: "bg-red-500",
+    title: "Review classroom condition and daily use",
+    description:
+      "During a visit, check how classrooms are arranged, how digital teaching is used, and whether the spaces feel prepared for regular school-day learning.",
   },
   {
-    feature: "Health & Hygiene",
-    details: [
-      "Water purifiers",
-      "Sanitizers",
-      "Clean restrooms",
-      "Regular cleaning",
-    ],
-    icon: <Heart className="w-8 h-8" />,
-    color: "bg-green-500",
+    title: "Check movement and supervision",
+    description:
+      "Observe how the campus handles student movement between classes, activity spaces, and entry or exit areas.",
   },
   {
-    feature: "Child Safety",
-    details: [
-      "Boundary walls",
-      "Single entry/exit",
-      "Visitor management",
-      "Child-safe equipment",
-    ],
-    icon: <Users className="w-8 h-8" />,
-    color: "bg-primary",
+    title: "See how facilities connect to the timetable",
+    description:
+      "Ask how labs, library spaces, activity areas, and sports grounds are used through the week for the relevant class stage.",
   },
   {
-    feature: "Digital Monitoring",
-    details: [
-      "CCTV surveillance",
-      "Access cards",
-      "Attendance tracking",
-      "Parent app updates",
-    ],
-    icon: <Camera className="w-8 h-8" />,
-    color: "bg-purple-500",
+    title: "Understand transport and dispersal flow",
+    description:
+      "If commute matters, review pickup coordination, bus support, and dispersal planning before admission is finalised.",
   },
-];
+] as const;
 
-const campusMap = [
-  {
-    zone: "Main Entrance",
-    description: "Reception & Administrative Block",
-    coordinates: "A1",
-  },
-  {
-    zone: "Primary Block",
-    description: "Pre-KG to Class V",
-    coordinates: "B2",
-  },
-  {
-    zone: "Secondary Block",
-    description: "Class VI to XII",
-    coordinates: "C2",
-  },
-  {
-    zone: "Laboratory Complex",
-    description: "Science & Computer Labs",
-    coordinates: "D1",
-  },
-  {
-    zone: "Sports Complex",
-    description: "Indoor & Outdoor Sports",
-    coordinates: "E3",
-  },
-  {
-    zone: "Activity Center",
-    description: "Arts, Music, Dance",
-    coordinates: "F2",
-  },
-  {
-    zone: "Library & Resource Center",
-    description: "Books & Digital Resources",
-    coordinates: "G1",
-  },
-  {
-    zone: "Cafeteria & Medical",
-    description: "Food Court & Health Services",
-    coordinates: "H2",
-  },
-  {
-    zone: "Transport Hub",
-    description: "Bus Parking & Maintenance",
-    coordinates: "I3",
-  },
-];
-
-const sustainabilityInitiatives = [
-  {
-    initiative: "Green Energy",
-    description: "Solar panels and energy-efficient systems",
-    impact: "40% reduction in electricity consumption",
-    icon: "🌞",
-  },
-  {
-    initiative: "Water Conservation",
-    description: "Rainwater harvesting and recycling systems",
-    impact: "60% water savings annually",
-    icon: "💧",
-  },
-  {
-    initiative: "Waste Management",
-    description: "Segregation, composting, and recycling programs",
-    impact: "Zero waste to landfill achieved",
-    icon: "♻️",
-  },
-  {
-    initiative: "Green Spaces",
-    description: "Botanical garden and tree plantation drives",
-    impact: "200+ trees planted annually",
-    icon: "🌳",
-  },
-];
+export const metadata: Metadata = {
+  title: "Campus Facilities | Divine International Academy Sirsaganj",
+  description:
+    "Explore the campus facilities at Divine International Academy, Sirsaganj, including classrooms, labs, library spaces, activity areas, supervised movement, and daily school routine support.",
+  keywords: [
+    "Divine International Academy campus",
+    "school campus Sirsaganj",
+    "CBSE campus facilities Firozabad",
+    "school classrooms and library Sirsaganj",
+  ],
+};
 
 export default function CampusPage() {
   return (
     <MainLayout>
-      <div className="min-h-screen bg-white">
-        {/* Hero Section */}
-        <section className="relative pt-20 pb-16 overflow-hidden">
-          <div className="absolute inset-0 bg-primary-900/5"></div>
-          <div className="container mx-auto px-4 relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center max-w-4xl mx-auto"
-            >
-              <h1 className="text-4xl md:text-5xl font-bold text-primary-900 mb-6">
-                World-Class Campus
-              </h1>
-              <p className="text-xl text-gray-700 mb-8 leading-relaxed">
-                A thoughtfully designed 8-acre campus that combines modern
-                infrastructure with eco-friendly features, creating the perfect
-                environment for learning and growth.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button
-                  size="lg"
-                  asChild
-                  className="bg-primary hover:bg-primary-700"
-                >
-                  <Link href="/facilities/labs">
-                    <BookOpen className="mr-2 h-5 w-5" />
-                    Explore Labs
-                  </Link>
-                </Button>
-                <Button variant="outline" size="lg" asChild>
-                  <Link href="/contact">
-                    <MapPin className="mr-2 h-5 w-5" />
-                    Schedule Visit
-                  </Link>
-                </Button>
+      <section className="relative overflow-hidden bg-[linear-gradient(180deg,#fffdfb_0%,#fff7f1_46%,#ffffff_100%)] pt-16 pb-20 sm:pt-20 sm:pb-24">
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-primary/5 to-transparent" />
+
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
+              Campus Overview
+            </Badge>
+            <h1 className="mt-5 text-4xl font-bold font-heading leading-tight text-primary sm:text-5xl lg:text-[3.35rem]">
+              A campus designed for teaching, supervised movement, and daily
+              student routine
+            </h1>
+            <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
+              Divine International Academy brings classrooms, labs, library
+              spaces, activity areas, and transport support into one school-day
+              system from Primary to Senior Secondary.
+            </p>
+          </div>
+
+          <div className="mt-10 overflow-hidden rounded-[32px] border border-slate-200/80 bg-white shadow-[0_28px_80px_-52px_rgba(15,23,42,0.25)]">
+            <div className="grid lg:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.92fr)] lg:items-stretch">
+              <div className="relative min-h-[320px] border-b border-slate-200/80 bg-slate-100 lg:min-h-full lg:border-b-0 lg:border-r lg:border-slate-200/80">
+                <Image
+                  src="/images/submenu/facilities.avif"
+                  alt="Campus view at Divine International Academy"
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 48vw, 100vw"
+                  priority
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.08)_0%,rgba(15,23,42,0.18)_38%,rgba(15,23,42,0.68)_100%)]" />
+                <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6 lg:p-8">
+                  <Badge className="border border-white/15 bg-white/12 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-white/12">
+                    Daily School Life
+                  </Badge>
+                  <h2 className="mt-4 max-w-2xl text-2xl font-bold font-heading leading-tight text-white sm:text-[2rem] lg:text-[2.45rem]">
+                    The campus supports classroom learning, practical use,
+                    reading time, activity periods, and safer daily movement.
+                  </h2>
+                </div>
               </div>
-            </motion.div>
-          </div>
-        </section>
 
-        {/* Campus Highlights */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold text-blue-900 mb-4">
-                Campus Highlights
-              </h2>
-              <p className="text-gray-600">
-                Modern facilities designed with student safety and comfort in
-                mind
-              </p>
-            </motion.div>
+              <div className="p-6 sm:p-8 lg:p-10">
+                <p className="max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
+                  The campus environment is planned to support the full school
+                  routine, from arrival and classroom periods to activity use,
+                  library access, practical sessions, and dispersal.
+                </p>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
-              {campusHighlights.map((highlight, index) => (
-                <motion.div
-                  key={highlight.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  <Card className="h-full text-center hover:shadow-lg transition-shadow duration-300">
-                    <CardHeader>
-                      <div className="mx-auto p-3 bg-blue-100 rounded-full text-blue-600 w-fit">
-                        {highlight.icon}
-                      </div>
-                      <CardTitle className="text-blue-900">
-                        {highlight.title}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-gray-600 mb-4 text-sm">
-                        {highlight.description}
+                <div className="mt-5 flex flex-wrap gap-2.5">
+                  {campusSignals.map((signal) => (
+                    <div
+                      key={signal}
+                      className="rounded-full border border-primary/10 bg-primary/5 px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-primary"
+                    >
+                      {signal}
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                  {campusProfile.map((item) => (
+                    <div
+                      key={item.label}
+                      className="rounded-[24px] border border-slate-200 bg-slate-50 px-4 py-4"
+                    >
+                      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+                        {item.label}
                       </p>
-                      <ul className="space-y-1">
-                        {highlight.details.map((detail, idx) => (
-                          <li key={idx} className="text-xs text-gray-500">
-                            • {detail}
-                          </li>
-                        ))}
-                      </ul>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
+                      <p className="mt-2 text-sm leading-6 text-slate-700">
+                        {item.value}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                  {campusStats.map((stat) => (
+                    <div
+                      key={stat.label}
+                      className="rounded-[24px] border border-primary/10 bg-primary/5 px-4 py-4"
+                    >
+                      <p className="text-2xl font-bold text-primary">
+                        {stat.value}
+                      </p>
+                      <p className="mt-1 text-sm font-semibold text-slate-900">
+                        {stat.label}
+                      </p>
+                      <p className="mt-1 text-sm leading-6 text-slate-600">
+                        {stat.detail}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                  <Button asChild size="lg" className="sm:flex-1">
+                    <Link href="/contact">
+                      Plan a Campus Visit
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                  <Button
+                    asChild
+                    size="lg"
+                    variant="outline"
+                    className="border-primary text-primary hover:bg-primary hover:text-white sm:flex-1"
+                  >
+                    <Link href="/facilities">Back to Facilities</Link>
+                  </Button>
+                </div>
+              </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Infrastructure Details */}
-        <section className="py-16 bg-white/50">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold text-blue-900 mb-4">
-                Infrastructure Overview
-              </h2>
-              <p className="text-gray-600">
-                Comprehensive facilities to support academic excellence and
-                holistic development
-              </p>
-            </motion.div>
+      <section className="pb-20">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
+              Campus Zones
+            </Badge>
+            <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
+              Key spaces across the campus
+            </h2>
+          </div>
 
-            <div className="space-y-8 max-w-6xl mx-auto">
-              {infrastructureDetails.map((block, blockIndex) => (
-                <motion.div
-                  key={block.category}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: blockIndex * 0.1 }}
+          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {campusZones.map((item) => {
+              const Icon = item.icon;
+
+              return (
+                <Card
+                  key={item.title}
+                  className="rounded-[28px] border-slate-200/80 bg-white shadow-[0_20px_60px_-46px_rgba(15,23,42,0.24)]"
                 >
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="text-blue-900">
-                        {block.category}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="grid md:grid-cols-2 gap-6">
-                        {block.facilities.map((facility, facilityIndex) => (
-                          <div
-                            key={facility.name}
-                            className="p-4 bg-gray-50 rounded-lg"
-                          >
-                            <div className="flex items-center justify-between mb-2">
-                              <h4 className="font-semibold text-gray-800">
-                                {facility.name}
-                              </h4>
-                              <Badge variant="outline" className="text-xs">
-                                {facility.capacity}
-                              </Badge>
-                            </div>
-                            <div className="flex flex-wrap gap-1">
-                              {facility.features.map((feature, idx) => (
-                                <Badge
-                                  key={idx}
-                                  variant="secondary"
-                                  className="text-xs"
-                                >
-                                  {feature}
-                                </Badge>
-                              ))}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Safety Features */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold text-blue-900 mb-4">
-                Safety & Security
-              </h2>
-              <p className="text-gray-600">
-                Comprehensive safety measures ensuring a secure learning
-                environment
-              </p>
-            </motion.div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-              {safetyFeatures.map((safety, index) => (
-                <motion.div
-                  key={safety.feature}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  <Card className="h-full text-center hover:shadow-md transition-shadow duration-300">
-                    <CardHeader>
-                      <div
-                        className={`mx-auto p-3 ${safety.color} rounded-full text-white w-fit`}
-                      >
-                        {safety.icon}
-                      </div>
-                      <CardTitle className="text-blue-900">
-                        {safety.feature}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <ul className="space-y-2 text-sm">
-                        {safety.details.map((detail, idx) => (
-                          <li key={idx} className="flex items-center gap-2">
-                            <Shield className="w-3 h-3 text-green-600 flex-shrink-0" />
-                            {detail}
-                          </li>
-                        ))}
-                      </ul>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Campus Map */}
-        <section className="py-16 bg-white/50">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold text-blue-900 mb-4">
-                Campus Layout
-              </h2>
-              <p className="text-gray-600">
-                Strategic placement of facilities for optimal functionality and
-                accessibility
-              </p>
-            </motion.div>
-
-            <div className="max-w-5xl mx-auto">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-blue-900 text-center">
-                    Campus Zone Map
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid md:grid-cols-3 gap-4">
-                    {campusMap.map((zone, index) => (
-                      <motion.div
-                        key={zone.zone}
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.3, delay: index * 0.05 }}
-                        className="p-3 bg-blue-50 rounded-lg border-l-4 border-blue-500"
-                      >
-                        <div className="flex items-center justify-between mb-1">
-                          <span className="font-semibold text-sm text-blue-900">
-                            {zone.zone}
+                  <CardContent className="p-6">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <h3 className="mt-5 text-xl font-bold font-heading text-slate-950">
+                      {item.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-7 text-slate-600">
+                      {item.description}
+                    </p>
+                    <ul className="mt-5 space-y-3">
+                      {item.points.map((point) => (
+                        <li key={point} className="flex items-start gap-3">
+                          <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                          <span className="text-sm leading-6 text-slate-700">
+                            {point}
                           </span>
-                          <Badge variant="outline">{zone.coordinates}</Badge>
-                        </div>
-                        <p className="text-xs text-gray-600">
-                          {zone.description}
-                        </p>
-                      </motion.div>
-                    ))}
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-slate-50/80 py-20">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-white px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-white">
+              School-Day Flow
+            </Badge>
+            <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
+              How the campus supports the daily routine
+            </h2>
+          </div>
+
+          <div className="mt-10 grid gap-6 lg:grid-cols-2 xl:grid-cols-4">
+            {dayFlow.map((item) => {
+              const Icon = item.icon;
+
+              return (
+                <Card
+                  key={item.title}
+                  className="rounded-[28px] border-slate-200/80 bg-white"
+                >
+                  <CardContent className="p-6 sm:p-7">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <h3 className="mt-5 text-xl font-bold font-heading text-slate-950">
+                      {item.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-7 text-slate-600">
+                      {item.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
+              Visit Checklist
+            </Badge>
+            <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
+              What to review during a campus visit
+            </h2>
+          </div>
+
+          <div className="mt-10 grid gap-6 lg:grid-cols-2">
+            {parentChecks.map((item) => (
+              <Card
+                key={item.title}
+                className="rounded-[28px] border-slate-200/80 bg-white"
+              >
+                <CardContent className="p-6 sm:p-7">
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                      <Shield className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold font-heading leading-7 text-slate-950">
+                        {item.title}
+                      </h3>
+                      <p className="mt-3 text-sm leading-7 text-slate-600">
+                        {item.description}
+                      </p>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
-            </div>
+            ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Sustainability */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold text-blue-900 mb-4">
-                Sustainability Initiatives
-              </h2>
-              <p className="text-gray-600">
-                Environmental responsibility and green practices for a
-                sustainable future
-              </p>
-            </motion.div>
+      <section className="pb-24 pt-20">
+        <div className="container mx-auto px-4">
+          <div className="rounded-[32px] bg-primary px-6 py-8 text-white shadow-[0_28px_80px_-46px_rgba(127,29,29,0.45)] sm:px-8 sm:py-10 lg:px-12 lg:py-12">
+            <Badge className="border border-white/15 bg-white/12 px-3.5 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-white/12">
+              Campus Visit
+            </Badge>
+            <div className="mt-5 grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
+              <div className="max-w-3xl">
+                <h2 className="text-3xl font-bold font-heading leading-tight sm:text-4xl lg:text-[2.8rem]">
+                  Want to review classrooms, labs, library, and student movement
+                  in person?
+                </h2>
+                <p className="mt-4 text-sm leading-7 text-white/85 sm:text-base">
+                  Families can plan a campus visit, review the school-day
+                  environment, and understand admissions and transport support
+                  with the school office.
+                </p>
+              </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-              {sustainabilityInitiatives.map((initiative, index) => (
-                <motion.div
-                  key={initiative.initiative}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  <Card className="h-full text-center hover:shadow-md transition-shadow duration-300">
-                    <CardHeader>
-                      <div className="text-4xl mb-2">{initiative.icon}</div>
-                      <CardTitle className="text-blue-900">
-                        {initiative.initiative}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-sm text-gray-600 mb-3">
-                        {initiative.description}
-                      </p>
-                      <Badge className="bg-green-600 text-white">
-                        {initiative.impact}
-                      </Badge>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Virtual Tour CTA */}
-        <section className="py-16 bg-primary">
-          <div className="container mx-auto px-4 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="max-w-3xl mx-auto"
-            >
-              <h2 className="text-3xl font-bold text-white mb-4">
-                Experience Our Campus
-              </h2>
-              <p className="text-blue-100 mb-8 text-lg">
-                See our world-class facilities in person. Schedule a campus
-                visit to explore our infrastructure and meet our faculty and
-                staff.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" variant="secondary">
-                  <Camera className="mr-2 h-5 w-5" />
-                  Virtual Campus Tour
-                </Button>
+              <div className="flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
                 <Button
-                  size="lg"
-                  variant="outline"
-                  className="bg-white text-blue-600 hover:bg-blue-50"
                   asChild
+                  size="lg"
+                  className="bg-white text-primary hover:bg-white/90"
                 >
                   <Link href="/contact">
-                    <Clock className="mr-2 h-5 w-5" />
-                    Schedule Visit
+                    Contact the School
+                    <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
                 <Button
-                  size="lg"
-                  variant="ghost"
-                  className="text-white hover:bg-blue-600"
                   asChild
+                  size="lg"
+                  variant="outline"
+                  className="border-white/30 bg-transparent text-white hover:bg-white hover:text-primary"
                 >
-                  <Link href="/apply">
-                    <Building className="mr-2 h-5 w-5" />
-                    Apply Now
+                  <Link href="/admissions">
+                    Review Admissions
+                    <GraduationCap className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
               </div>
-            </motion.div>
+            </div>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
     </MainLayout>
   );
 }

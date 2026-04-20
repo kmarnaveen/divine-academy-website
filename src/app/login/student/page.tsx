@@ -3,67 +3,211 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { BookOpen, ArrowLeft, Lock, Mail, Eye, EyeOff } from "lucide-react";
+import {
+  BookOpen,
+  ArrowLeft,
+  Lock,
+  Mail,
+  Eye,
+  EyeOff,
+  ArrowRight,
+  CheckCircle,
+} from "lucide-react";
 import Link from "next/link";
 import { MainLayout } from "@/components/layout/main-layout";
 import { useState } from "react";
 
+import {
+  dummyCredentials,
+  loginWithDummyAuth,
+  persistDummySession,
+  type DummyAuthSession,
+} from "@/lib/dummy-auth-client";
+
+const studentSignals = [
+  "For registered student accounts",
+  "Use the school-linked email",
+  "Recover access if credentials changed",
+] as const;
+
+const studentChecks = [
+  "Enter the email registered with the school",
+  "Use the current student portal password",
+  "Use forgot-password if your access was recently updated",
+] as const;
+
 export default function StudentLoginPage() {
   const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [session, setSession] = useState<DummyAuthSession | null>(null);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Student login attempt:", formData);
+    setErrorMessage("");
+    setIsSubmitting(true);
+
+    try {
+      const nextSession = await loginWithDummyAuth({
+        role: "student",
+        email: formData.email,
+        password: formData.password,
+      });
+
+      persistDummySession(nextSession, rememberMe);
+      setSession(nextSession);
+      setFormData((current) => ({ ...current, password: "" }));
+    } catch (error) {
+      setErrorMessage(
+        error instanceof Error ? error.message : "Dummy login failed.",
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <MainLayout>
-      <div className="min-h-screen bg-gray-50">
-        {/* Back Button - Fixed at top */}
-        <div className="pt-6 pb-4">
-          <div className="container mx-auto px-4">
-            <Button
-              variant="ghost"
-              className="text-gray-600 hover:text-primary hover:bg-primary/5 transition-colors"
-              asChild
-            >
-              <Link href="/login">
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Back to Login
-              </Link>
-            </Button>
-          </div>
-        </div>
+      <div className="min-h-screen bg-[linear-gradient(180deg,#fffdf8_0%,#ffffff_100%)]">
+        <div className="container mx-auto px-4 pt-6 pb-16">
+          <Button
+            variant="ghost"
+            className="text-slate-600 hover:bg-primary/5 hover:text-primary"
+            asChild
+          >
+            <Link href="/login">
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Back to Login
+            </Link>
+          </Button>
 
-        {/* Login Form - Centered */}
-        <div className="flex items-center justify-center py-8 px-4">
-          <div className="w-full max-w-md">
-            <Card className="shadow-lg border-0">
-              <CardHeader className="text-center pb-4">
-                <div className="w-12 h-12 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
-                  <BookOpen className="h-6 w-6 text-primary" />
+          <div className="mt-6 grid gap-8 xl:grid-cols-[minmax(0,0.95fr)_470px] xl:items-stretch">
+            <div className="relative overflow-hidden rounded-[34px] bg-[linear-gradient(180deg,#fff7df_0%,#fff1c7_42%,#fff9ef_100%)] p-8 shadow-[0_30px_90px_-54px_rgba(146,64,14,0.3)] sm:p-10 lg:p-12">
+              <div className="absolute left-0 top-0 h-40 w-40 -translate-x-10 -translate-y-10 rounded-full bg-amber-200/70 blur-3xl" />
+              <div className="absolute bottom-0 right-0 h-48 w-48 translate-x-12 translate-y-12 rounded-full bg-white/55 blur-3xl" />
+
+              <div className="relative max-w-xl">
+                <div className="inline-flex rounded-full border border-amber-300/60 bg-white/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-amber-700 backdrop-blur-sm">
+                  Student Portal
                 </div>
-                <CardTitle className="text-xl font-bold text-gray-900">
-                  Student Login
+                <h1 className="mt-6 text-4xl font-bold font-heading leading-tight text-slate-950 sm:text-5xl">
+                  Student login with a simpler, clearer entry flow
+                </h1>
+                <p className="mt-5 max-w-lg text-base leading-7 text-slate-700 sm:text-lg">
+                  Use the email and password linked to your school account. If the portal credentials were recently updated, recover access before trying again.
+                </p>
+
+                <div className="mt-7 flex flex-wrap gap-2.5">
+                  {studentSignals.map((signal) => (
+                    <div
+                      key={signal}
+                      className="rounded-full border border-amber-300/60 bg-white/75 px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-amber-700 shadow-sm"
+                    >
+                      {signal}
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-10 rounded-[28px] border border-amber-200 bg-white/75 p-5 shadow-sm backdrop-blur-sm sm:p-6">
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-700">
+                    Before you continue
+                  </p>
+                  <ul className="mt-5 space-y-4">
+                    {studentChecks.map((item) => (
+                      <li key={item} className="flex items-start gap-3">
+                        <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-amber-600" />
+                        <span className="text-sm leading-6 text-slate-700">
+                          {item}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="mt-6 rounded-[28px] border border-amber-200 bg-white/75 p-5 shadow-sm backdrop-blur-sm sm:p-6">
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-700">
+                    Dummy credentials for now
+                  </p>
+                  <p className="mt-4 text-sm leading-6 text-slate-700">
+                    Email: {dummyCredentials.student.email}
+                  </p>
+                  <p className="mt-1 text-sm leading-6 text-slate-700">
+                    Password: {dummyCredentials.student.password}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <Card className="rounded-[34px] border border-slate-200/80 bg-white shadow-[0_30px_90px_-56px_rgba(15,23,42,0.22)]">
+              <CardHeader className="px-6 pb-4 pt-6 sm:px-8 sm:pt-8">
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-100 text-amber-700 shadow-sm">
+                  <BookOpen className="h-7 w-7" />
+                </div>
+                <CardTitle className="mt-5 text-2xl font-bold font-heading text-slate-950 sm:text-[2rem]">
+                  Student login
                 </CardTitle>
+                <p className="text-sm leading-6 text-slate-600 sm:text-base">
+                  Continue with the student email and password already linked to the portal.
+                </p>
               </CardHeader>
 
-              <CardContent className="pt-0">
+              <CardContent className="px-6 pb-6 pt-2 sm:px-8 sm:pb-8">
+                {session ? (
+                  <div className="space-y-6">
+                    <div className="rounded-[24px] border border-emerald-200 bg-emerald-50 px-4 py-4">
+                      <div className="flex items-start gap-3">
+                        <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-emerald-700" />
+                        <div>
+                          <p className="text-sm font-semibold text-emerald-900">
+                            Dummy student login successful
+                          </p>
+                          <p className="mt-1 text-sm leading-6 text-emerald-800">
+                            Signed in as {session.displayName} using {session.email}.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="rounded-[24px] border border-slate-200 bg-slate-50 px-4 py-4">
+                      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+                        Session mode
+                      </p>
+                      <p className="mt-2 text-sm leading-6 text-slate-700">
+                        Dummy session saved in {rememberMe ? "localStorage" : "sessionStorage"} until {new Date(session.expiresAt).toLocaleString()}.
+                      </p>
+                    </div>
+
+                    <div className="flex flex-col gap-3">
+                      <Button asChild className="h-12 bg-primary text-white hover:bg-primary/90">
+                        <Link href="/">Continue to Website</Link>
+                      </Button>
+                      <Button
+                        type="button"
+                        variant="outline"
+                        className="h-12 border-primary/20 bg-white text-primary hover:bg-primary hover:text-white"
+                        onClick={() => setSession(null)}
+                      >
+                        Use Another Account
+                      </Button>
+                    </div>
+                  </div>
+                ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="space-y-2">
-                    <label className="text-sm font-semibold text-gray-700">
-                      Student Email
+                    <label className="text-sm font-semibold text-slate-700">
+                      Student email
                     </label>
                     <div className="relative">
-                      <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                      <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
                       <Input
                         type="email"
                         placeholder="student@divineacademy.edu.in"
-                        className="pl-10 h-12"
+                        className="h-12 border-slate-200 pl-10"
                         value={formData.email}
                         onChange={(e) =>
                           setFormData({ ...formData, email: e.target.value })
@@ -74,15 +218,15 @@ export default function StudentLoginPage() {
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-sm font-semibold text-gray-700">
+                    <label className="text-sm font-semibold text-slate-700">
                       Password
                     </label>
                     <div className="relative">
-                      <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                      <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
                       <Input
                         type={showPassword ? "text" : "password"}
                         placeholder="Enter your password"
-                        className="pl-10 pr-10 h-12"
+                        className="h-12 border-slate-200 pl-10 pr-10"
                         value={formData.password}
                         onChange={(e) =>
                           setFormData({ ...formData, password: e.target.value })
@@ -92,7 +236,8 @@ export default function StudentLoginPage() {
                       <button
                         type="button"
                         onClick={() => setShowPassword(!showPassword)}
-                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 transition-colors hover:text-slate-600"
+                        aria-label={showPassword ? "Hide password" : "Show password"}
                       >
                         {showPassword ? (
                           <EyeOff className="h-4 w-4" />
@@ -103,17 +248,34 @@ export default function StudentLoginPage() {
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between text-sm">
-                    <label className="flex items-center">
+                  <div className="rounded-[24px] border border-amber-200 bg-amber-50 px-4 py-4">
+                    <div className="flex items-start gap-3">
+                      <BookOpen className="mt-0.5 h-4 w-4 shrink-0 text-amber-700" />
+                      <p className="text-sm leading-6 text-slate-700">
+                        If your student email or password was recently updated, use the recovery flow before trying multiple times with older credentials.
+                      </p>
+                    </div>
+                  </div>
+
+                  {errorMessage ? (
+                    <div className="rounded-[24px] border border-red-200 bg-red-50 px-4 py-4 text-sm leading-6 text-red-700">
+                      {errorMessage}
+                    </div>
+                  ) : null}
+
+                  <div className="flex items-center justify-between gap-4 text-sm">
+                    <label className="flex items-center text-slate-600">
                       <input
                         type="checkbox"
-                        className="rounded border-gray-300 text-primary focus:ring-primary"
+                        className="rounded border-slate-300 text-primary focus:ring-primary"
+                        checked={rememberMe}
+                        onChange={(event) => setRememberMe(event.target.checked)}
                       />
-                      <span className="ml-2 text-gray-600">Remember me</span>
+                      <span className="ml-2">Remember me</span>
                     </label>
                     <Link
                       href="/login/forgot-password"
-                      className="text-primary hover:text-primary/80 font-medium"
+                      className="font-medium text-primary hover:text-primary/80"
                     >
                       Forgot password?
                     </Link>
@@ -121,11 +283,14 @@ export default function StudentLoginPage() {
 
                   <Button
                     type="submit"
-                    className="w-full bg-primary hover:bg-primary/90 text-white h-12 text-lg font-semibold"
+                    disabled={isSubmitting}
+                    className="h-12 w-full bg-primary text-base font-semibold text-white hover:bg-primary/90"
                   >
-                    Login to Student Portal
+                    {isSubmitting ? "Checking student access..." : "Login to Student Portal"}
+                    {isSubmitting ? null : <ArrowRight className="ml-2 h-4 w-4" />}
                   </Button>
                 </form>
+                )}
               </CardContent>
             </Card>
           </div>

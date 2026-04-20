@@ -10,9 +10,9 @@ export default function WhyDIAPage() {
 }
 
 export const metadata = {
-  title: "Why Choose Divine International Academy? | DIA Firozabad",
+  title: "Why Divine International Academy | CBSE School in Sirsaganj",
   description:
-    "Discover what makes Divine International Academy unique. From innovative STEM programs to character development, see why families choose DIA for their children's future.",
+    "See why families shortlist Divine International Academy in Sirsaganj for academics, supervised routines, facilities, board support, and the admissions journey from Nursery to Class XII.",
   keywords:
-    "why choose DIA, best CBSE school Firozabad, Divine International Academy benefits, school comparison, educational excellence",
+    "why divine international academy, cbse school in sirsaganj, school admissions in sirsaganj, best cbse school near firozabad, divine international academy",
 };

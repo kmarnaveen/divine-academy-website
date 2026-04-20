@@ -15,6 +15,12 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
+        hostname: "divineinternationalacademy.com",
+        port: "",
+        pathname: "/assets/**",
+      },
+      {
+        protocol: "https",
         hostname: "scontent.fhyd1-3.fna.fbcdn.net",
         port: "",
         pathname: "/**",

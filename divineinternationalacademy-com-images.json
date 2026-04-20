@@ -1,0 +1,797 @@
+{
+  "source": {
+    "start_url": "https://divineinternationalacademy.com/",
+    "robots_url": "https://divineinternationalacademy.com/robots.txt",
+    "sitemap_url": "https://divineinternationalacademy.com/sitemap.xml"
+  },
+  "pages": [
+    {
+      "url": "https://divineinternationalacademy.com/",
+      "status": 200,
+      "images": [
+        {
+          "url": "https://divineinternationalacademy.com/assets/school-logo-De-GgQLt.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/hero-modern.jpg",
+          "alt": "Admissions Open 2025-26"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/students-library.jpg",
+          "alt": "Academic Excellence"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/annual-day.jpg",
+          "alt": "Holistic Development"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/campus-view-BB4971sW.avif",
+          "alt": ""
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/goenka-award.jpg",
+          "alt": "School Team"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/dpl-cricket.jpg",
+          "alt": "DPL Cricket Team"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/art-exhibition.jpg",
+          "alt": "Art Club Students"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/kr8ivity-league.jpg",
+          "alt": "Kr8ivity League Team"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/republic-day-flag-Dypt4hYG.jpg",
+          "alt": "Where Patriotism Comes Alive"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/holi-celebration-BLIQAWpj.jpg",
+          "alt": "Colors of Childhood"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/annual-day-performance-BGrA0t2k.jpg",
+          "alt": "Every Child, A Star"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/dandiya-dance-W1ZJlAoP.jpg",
+          "alt": "Traditions That Bind Us"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/diwali-celebration-Ywr-jBME.jpg",
+          "alt": "Festival of Dreams"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/dpl-cricket-JvSpUaK3.jpg",
+          "alt": "Champions Are Made Here"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/smartboard-class.jpg",
+          "alt": "Smart Classrooms"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/biology-lab.avif",
+          "alt": "Science Labs"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/it-lab.avif",
+          "alt": "Computer Lab"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/students-library.jpg",
+          "alt": "Library"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/sports-volleyball.avif",
+          "alt": "Sports Complex"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/annual-day-performance.jpg",
+          "alt": "Music & Dance"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/campus-entrance.avif",
+          "alt": "Medical Room"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/campus-view.avif",
+          "alt": "Transport"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/campus-view-BB4971sW.avif",
+          "alt": "Aerial view of Divine International Academy campus"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/sports-volleyball-C9XFHMDC.avif",
+          "alt": "Students playing volleyball"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/diwali-celebration-Ywr-jBME.jpg",
+          "alt": "Students celebrating Diwali"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/dandiya-kids-DTsTZ54z.jpg",
+          "alt": "Children performing dandiya dance"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/annual-day-performance-BGrA0t2k.jpg",
+          "alt": "Annual day stage performance"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/biology-lab-CXsSHf-3.avif",
+          "alt": "Students in biology laboratory"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/news-organic-farming-1-CZhlEyTR.jpg",
+          "alt": "DIA Students Win State Organic Farming Competition"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/republic-day-flag-Dypt4hYG.jpg",
+          "alt": "Republic Day Celebrations — A Grand Event"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/kr8ivity-league-B_iSPrTc.jpg",
+          "alt": "Kr8ivity League — Inter-School Creative Competition"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/school-logo-CWSmDCzK.png",
+          "alt": ""
+        }
+      ]
+    },
+    {
+      "url": "https://divineinternationalacademy.com/about",
+      "status": 404,
+      "images": [
+        {
+          "url": "https://divineinternationalacademy.com/assets/school-logo-De-GgQLt.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/campus-entrance-DiaJFwsW.avif",
+          "alt": "Divine International Academy Campus"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/campus-view-BB4971sW.avif",
+          "alt": "Campus aerial view"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/school-logo-CWSmDCzK.png",
+          "alt": ""
+        }
+      ]
+    },
+    {
+      "url": "https://divineinternationalacademy.com/academics",
+      "status": 404,
+      "images": [
+        {
+          "url": "https://divineinternationalacademy.com/assets/school-logo-De-GgQLt.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/smartboard-class-aVOxRM_D.jpg",
+          "alt": "Academics"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/school-logo-CWSmDCzK.png",
+          "alt": ""
+        }
+      ]
+    },
+    {
+      "url": "https://divineinternationalacademy.com/achievements",
+      "status": 404,
+      "images": [
+        {
+          "url": "https://divineinternationalacademy.com/assets/school-logo-De-GgQLt.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/goenka-award.jpg",
+          "alt": "School Team"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/dpl-cricket.jpg",
+          "alt": "DPL Cricket Team"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/art-exhibition.jpg",
+          "alt": "Art Club Students"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/kr8ivity-league.jpg",
+          "alt": "Kr8ivity League Team"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/annual-day-performance.jpg",
+          "alt": "Annual Day Performers"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/sports-volleyball.avif",
+          "alt": "Volleyball Team"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/school-logo-CWSmDCzK.png",
+          "alt": ""
+        }
+      ]
+    },
+    {
+      "url": "https://divineinternationalacademy.com/admissions",
+      "status": 404,
+      "images": [
+        {
+          "url": "https://divineinternationalacademy.com/assets/school-logo-De-GgQLt.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/campus-view-BB4971sW.avif",
+          "alt": "Admissions"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/school-logo-CWSmDCzK.png",
+          "alt": ""
+        }
+      ]
+    },
+    {
+      "url": "https://divineinternationalacademy.com/calendar",
+      "status": 404,
+      "images": [
+        {
+          "url": "https://divineinternationalacademy.com/assets/school-logo-De-GgQLt.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/school-logo-CWSmDCzK.png",
+          "alt": ""
+        }
+      ]
+    },
+    {
+      "url": "https://divineinternationalacademy.com/careers",
+      "status": 404,
+      "images": [
+        {
+          "url": "https://divineinternationalacademy.com/assets/school-logo-De-GgQLt.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/campus-view-BB4971sW.avif",
+          "alt": "Careers"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/school-logo-CWSmDCzK.png",
+          "alt": ""
+        }
+      ]
+    },
+    {
+      "url": "https://divineinternationalacademy.com/contact",
+      "status": 404,
+      "images": [
+        {
+          "url": "https://divineinternationalacademy.com/assets/school-logo-De-GgQLt.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/campus-entrance-DiaJFwsW.avif",
+          "alt": "Contact"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/school-logo-CWSmDCzK.png",
+          "alt": ""
+        }
+      ]
+    },
+    {
+      "url": "https://divineinternationalacademy.com/downloads",
+      "status": 404,
+      "images": [
+        {
+          "url": "https://divineinternationalacademy.com/assets/school-logo-De-GgQLt.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/school-logo-CWSmDCzK.png",
+          "alt": ""
+        }
+      ]
+    },
+    {
+      "url": "https://divineinternationalacademy.com/events",
+      "status": 404,
+      "images": [
+        {
+          "url": "https://divineinternationalacademy.com/assets/school-logo-De-GgQLt.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://oopqpzlbfleebwjtgnsp.supabase.co/storage/v1/object/public/school-media/events/1773013731023.jpg",
+          "alt": "DPL 6"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/school-logo-CWSmDCzK.png",
+          "alt": ""
+        }
+      ]
+    },
+    {
+      "url": "https://divineinternationalacademy.com/events/dpl-6",
+      "status": 404,
+      "images": [
+        {
+          "url": "https://divineinternationalacademy.com/assets/school-logo-De-GgQLt.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://oopqpzlbfleebwjtgnsp.supabase.co/storage/v1/object/public/school-media/events/1773013731023.jpg",
+          "alt": "DPL 6"
+        },
+        {
+          "url": "https://oopqpzlbfleebwjtgnsp.supabase.co/storage/v1/object/public/school-media/events/1773013803999-jze39m.jpg",
+          "alt": "619394876_1336660255144849_5588784311678842367_n"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/school-logo-CWSmDCzK.png",
+          "alt": ""
+        }
+      ]
+    },
+    {
+      "url": "https://divineinternationalacademy.com/facilities",
+      "status": 404,
+      "images": [
+        {
+          "url": "https://divineinternationalacademy.com/assets/school-logo-De-GgQLt.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/campus-view-BB4971sW.avif",
+          "alt": "Facilities"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/smartboard-class.jpg",
+          "alt": "Smart Classrooms"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/biology-lab.avif",
+          "alt": "Science Labs"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/it-lab.avif",
+          "alt": "Computer Lab"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/students-library.jpg",
+          "alt": "Library"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/sports-volleyball.avif",
+          "alt": "Sports Complex"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/annual-day-performance.jpg",
+          "alt": "Music & Dance"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/campus-entrance.avif",
+          "alt": "Medical Room"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/campus-view.avif",
+          "alt": "Transport"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/school-logo-CWSmDCzK.png",
+          "alt": ""
+        }
+      ]
+    },
+    {
+      "url": "https://divineinternationalacademy.com/gallery",
+      "status": 404,
+      "images": [
+        {
+          "url": "https://divineinternationalacademy.com/assets/school-logo-De-GgQLt.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/campus-entrance-DiaJFwsW.avif",
+          "alt": "Gallery"
+        },
+        {
+          "url": "https://oopqpzlbfleebwjtgnsp.supabase.co/storage/v1/object/public/school-media/gallery/1772967052384.avif",
+          "alt": "Gallery photo"
+        },
+        {
+          "url": "https://oopqpzlbfleebwjtgnsp.supabase.co/storage/v1/object/public/school-media/gallery/1772967069462.avif",
+          "alt": "Gallery photo"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/campus-entrance.avif",
+          "alt": "Campus Entrance"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/campus-view.avif",
+          "alt": "Campus View"
+        },
+        {
+          "url": "https://oopqpzlbfleebwjtgnsp.supabase.co/storage/v1/object/public/school-media/gallery/1772989091379-oh2ehg.jpg",
+          "alt": "570418712_1258916859585856_6704849069545911414_n"
+        },
+        {
+          "url": "https://oopqpzlbfleebwjtgnsp.supabase.co/storage/v1/object/public/school-media/gallery/1772989091382-1synmf.jpg",
+          "alt": "571097012_1258906092920266_3658935528784130670_n"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/classroom-teaching.jpg",
+          "alt": "Classroom Teaching"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/classroom-wide.jpg",
+          "alt": "Classroom"
+        },
+        {
+          "url": "https://oopqpzlbfleebwjtgnsp.supabase.co/storage/v1/object/public/school-media/gallery/1772989091382-vv4yw5.jpg",
+          "alt": "571181508_1258903716253837_1578071106076389782_n"
+        },
+        {
+          "url": "https://oopqpzlbfleebwjtgnsp.supabase.co/storage/v1/object/public/school-media/gallery/1772989091382-61xn4l.jpg",
+          "alt": "571285595_1258905999586942_220835411281168160_n"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/smartboard-class.jpg",
+          "alt": "Smart Board Class"
+        },
+        {
+          "url": "https://oopqpzlbfleebwjtgnsp.supabase.co/storage/v1/object/public/school-media/gallery/1772989091382-va38qu.jpg",
+          "alt": "582431735_1279832530827622_2681688663449330_n"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/biology-lab.avif",
+          "alt": "Biology Lab"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/it-lab.avif",
+          "alt": "IT Lab"
+        },
+        {
+          "url": "https://oopqpzlbfleebwjtgnsp.supabase.co/storage/v1/object/public/school-media/gallery/1772989093005-rx4e9a.jpg",
+          "alt": "582647790_1279835247494017_8845751123463829299_n"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/student-exhibition.jpg",
+          "alt": "Student Exhibition"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/educational-workshop.jpg",
+          "alt": "Educational Workshop"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/sports-volleyball.avif",
+          "alt": "Volleyball"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/dpl-cricket.jpg",
+          "alt": "DPL Cricket"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/kr8ivity-league.jpg",
+          "alt": "Kr8ivity League"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/dandiya-dance.jpg",
+          "alt": "Dandiya Dance"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/dandiya-kids.jpg",
+          "alt": "Dandiya Kids"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/diwali-celebration.jpg",
+          "alt": "Diwali Celebration"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/diwali-rangoli.jpg",
+          "alt": "Diwali Rangoli"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/holi-celebration.jpg",
+          "alt": "Holi Celebration"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/holi-kids-group.jpg",
+          "alt": "Holi Kids Group"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/holi-selfie.jpg",
+          "alt": "Holi Selfie"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/basant-panchami-boys.jpg",
+          "alt": "Basant Panchami"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/basant-panchami-girls.jpg",
+          "alt": "Basant Panchami"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/republic-day-flag.jpg",
+          "alt": "Republic Day Flag Hoisting"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/republic-day-parade.jpg",
+          "alt": "Republic Day Parade"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/republic-day-assembly.jpg",
+          "alt": "Republic Day Assembly"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/republic-day-drama.jpg",
+          "alt": "Republic Day Drama"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/republic-day-singing.jpg",
+          "alt": "Republic Day Singing"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/republic-day-skit.jpg",
+          "alt": "Republic Day Skit"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/republic-day-speech.jpg",
+          "alt": "Republic Day Speech"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/annual-day-performance.jpg",
+          "alt": "Annual Day Performance"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/annual-day-winners.jpg",
+          "alt": "Annual Day Winners"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/award-ceremony.jpg",
+          "alt": "Award Ceremony"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/chief-guest.jpg",
+          "alt": "Chief Guest Visit"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/goenka-award.jpg",
+          "alt": "Goenka Award"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/goenka-award-closeup.jpg",
+          "alt": "Goenka Award Closeup"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/art-exhibition.jpg",
+          "alt": "Art Exhibition"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/divine-cafeteria.jpg",
+          "alt": "Divine Cafeteria"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/faculty-panel.jpg",
+          "alt": "Faculty Panel"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/faculty-workshop.jpg",
+          "alt": "Faculty Workshop"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/faculty-workshop-2.jpg",
+          "alt": "Faculty Workshop"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/balutsav-board.jpg",
+          "alt": "Balutsav Board"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/food-stall.jpg",
+          "alt": "Food Stall"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/food-stall-2.jpg",
+          "alt": "Food Stall"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/dayanand-house-stall.jpg",
+          "alt": "Dayanand House Stall"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/patties-stall.jpg",
+          "alt": "Patties Stall"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/news-organic-farming-1.jpg",
+          "alt": "Organic Farming"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/news-organic-farming-2.jpg",
+          "alt": "Organic Farming"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/news-organic-farming-3.jpg",
+          "alt": "Organic Farming"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/school-logo-CWSmDCzK.png",
+          "alt": ""
+        }
+      ]
+    },
+    {
+      "url": "https://divineinternationalacademy.com/student-life",
+      "status": 404,
+      "images": [
+        {
+          "url": "https://divineinternationalacademy.com/assets/school-logo-De-GgQLt.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/annual-day-performance-BGrA0t2k.jpg",
+          "alt": "Student Life"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/dandiya-dance-W1ZJlAoP.jpg",
+          "alt": "Music & Dance"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/sports-volleyball-C9XFHMDC.avif",
+          "alt": "Sports & Games"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/annual-day-performance-BGrA0t2k.jpg",
+          "alt": "Cultural Events"
+        },
+        {
+          "url": "https://divineinternationalacademy.com/assets/school-logo-CWSmDCzK.png",
+          "alt": ""
+        }
+      ]
+    }
+  ],
+  "unique_images": [
+    "https://divineinternationalacademy.com/assets/annual-day-performance-BGrA0t2k.jpg",
+    "https://divineinternationalacademy.com/assets/annual-day-performance.jpg",
+    "https://divineinternationalacademy.com/assets/annual-day-winners.jpg",
+    "https://divineinternationalacademy.com/assets/annual-day.jpg",
+    "https://divineinternationalacademy.com/assets/art-exhibition.jpg",
+    "https://divineinternationalacademy.com/assets/award-ceremony.jpg",
+    "https://divineinternationalacademy.com/assets/balutsav-board.jpg",
+    "https://divineinternationalacademy.com/assets/basant-panchami-boys.jpg",
+    "https://divineinternationalacademy.com/assets/basant-panchami-girls.jpg",
+    "https://divineinternationalacademy.com/assets/biology-lab-CXsSHf-3.avif",
+    "https://divineinternationalacademy.com/assets/biology-lab.avif",
+    "https://divineinternationalacademy.com/assets/campus-entrance-DiaJFwsW.avif",
+    "https://divineinternationalacademy.com/assets/campus-entrance.avif",
+    "https://divineinternationalacademy.com/assets/campus-view-BB4971sW.avif",
+    "https://divineinternationalacademy.com/assets/campus-view.avif",
+    "https://divineinternationalacademy.com/assets/chief-guest.jpg",
+    "https://divineinternationalacademy.com/assets/classroom-teaching.jpg",
+    "https://divineinternationalacademy.com/assets/classroom-wide.jpg",
+    "https://divineinternationalacademy.com/assets/dandiya-dance-W1ZJlAoP.jpg",
+    "https://divineinternationalacademy.com/assets/dandiya-dance.jpg",
+    "https://divineinternationalacademy.com/assets/dandiya-kids-DTsTZ54z.jpg",
+    "https://divineinternationalacademy.com/assets/dandiya-kids.jpg",
+    "https://divineinternationalacademy.com/assets/dayanand-house-stall.jpg",
+    "https://divineinternationalacademy.com/assets/divine-cafeteria.jpg",
+    "https://divineinternationalacademy.com/assets/diwali-celebration-Ywr-jBME.jpg",
+    "https://divineinternationalacademy.com/assets/diwali-celebration.jpg",
+    "https://divineinternationalacademy.com/assets/diwali-rangoli.jpg",
+    "https://divineinternationalacademy.com/assets/dpl-cricket-JvSpUaK3.jpg",
+    "https://divineinternationalacademy.com/assets/dpl-cricket.jpg",
+    "https://divineinternationalacademy.com/assets/educational-workshop.jpg",
+    "https://divineinternationalacademy.com/assets/faculty-panel.jpg",
+    "https://divineinternationalacademy.com/assets/faculty-workshop-2.jpg",
+    "https://divineinternationalacademy.com/assets/faculty-workshop.jpg",
+    "https://divineinternationalacademy.com/assets/food-stall-2.jpg",
+    "https://divineinternationalacademy.com/assets/food-stall.jpg",
+    "https://divineinternationalacademy.com/assets/goenka-award-closeup.jpg",
+    "https://divineinternationalacademy.com/assets/goenka-award.jpg",
+    "https://divineinternationalacademy.com/assets/hero-modern.jpg",
+    "https://divineinternationalacademy.com/assets/holi-celebration-BLIQAWpj.jpg",
+    "https://divineinternationalacademy.com/assets/holi-celebration.jpg",
+    "https://divineinternationalacademy.com/assets/holi-kids-group.jpg",
+    "https://divineinternationalacademy.com/assets/holi-selfie.jpg",
+    "https://divineinternationalacademy.com/assets/it-lab.avif",
+    "https://divineinternationalacademy.com/assets/kr8ivity-league-B_iSPrTc.jpg",
+    "https://divineinternationalacademy.com/assets/kr8ivity-league.jpg",
+    "https://divineinternationalacademy.com/assets/news-organic-farming-1-CZhlEyTR.jpg",
+    "https://divineinternationalacademy.com/assets/news-organic-farming-1.jpg",
+    "https://divineinternationalacademy.com/assets/news-organic-farming-2.jpg",
+    "https://divineinternationalacademy.com/assets/news-organic-farming-3.jpg",
+    "https://divineinternationalacademy.com/assets/patties-stall.jpg",
+    "https://divineinternationalacademy.com/assets/republic-day-assembly.jpg",
+    "https://divineinternationalacademy.com/assets/republic-day-drama.jpg",
+    "https://divineinternationalacademy.com/assets/republic-day-flag-Dypt4hYG.jpg",
+    "https://divineinternationalacademy.com/assets/republic-day-flag.jpg",
+    "https://divineinternationalacademy.com/assets/republic-day-parade.jpg",
+    "https://divineinternationalacademy.com/assets/republic-day-singing.jpg",
+    "https://divineinternationalacademy.com/assets/republic-day-skit.jpg",
+    "https://divineinternationalacademy.com/assets/republic-day-speech.jpg",
+    "https://divineinternationalacademy.com/assets/school-logo-CWSmDCzK.png",
+    "https://divineinternationalacademy.com/assets/school-logo-De-GgQLt.jpg",
+    "https://divineinternationalacademy.com/assets/smartboard-class-aVOxRM_D.jpg",
+    "https://divineinternationalacademy.com/assets/smartboard-class.jpg",
+    "https://divineinternationalacademy.com/assets/sports-volleyball-C9XFHMDC.avif",
+    "https://divineinternationalacademy.com/assets/sports-volleyball.avif",
+    "https://divineinternationalacademy.com/assets/student-exhibition.jpg",
+    "https://divineinternationalacademy.com/assets/students-library.jpg",
+    "https://oopqpzlbfleebwjtgnsp.supabase.co/storage/v1/object/public/school-media/events/1773013731023.jpg",
+    "https://oopqpzlbfleebwjtgnsp.supabase.co/storage/v1/object/public/school-media/events/1773013803999-jze39m.jpg",
+    "https://oopqpzlbfleebwjtgnsp.supabase.co/storage/v1/object/public/school-media/gallery/1772967052384.avif",
+    "https://oopqpzlbfleebwjtgnsp.supabase.co/storage/v1/object/public/school-media/gallery/1772967069462.avif",
+    "https://oopqpzlbfleebwjtgnsp.supabase.co/storage/v1/object/public/school-media/gallery/1772989091379-oh2ehg.jpg",
+    "https://oopqpzlbfleebwjtgnsp.supabase.co/storage/v1/object/public/school-media/gallery/1772989091382-1synmf.jpg",
+    "https://oopqpzlbfleebwjtgnsp.supabase.co/storage/v1/object/public/school-media/gallery/1772989091382-61xn4l.jpg",
+    "https://oopqpzlbfleebwjtgnsp.supabase.co/storage/v1/object/public/school-media/gallery/1772989091382-va38qu.jpg",
+    "https://oopqpzlbfleebwjtgnsp.supabase.co/storage/v1/object/public/school-media/gallery/1772989091382-vv4yw5.jpg",
+    "https://oopqpzlbfleebwjtgnsp.supabase.co/storage/v1/object/public/school-media/gallery/1772989093005-rx4e9a.jpg"
+  ],
+  "failures": [
+    {
+      "url": "https://divineinternationalacademy.com/about",
+      "reason": "HTTP 404 on direct fetch; images derived from public SPA data"
+    },
+    {
+      "url": "https://divineinternationalacademy.com/academics",
+      "reason": "HTTP 404 on direct fetch; images derived from public SPA data"
+    },
+    {
+      "url": "https://divineinternationalacademy.com/achievements",
+      "reason": "HTTP 404 on direct fetch; images derived from public SPA data"
+    },
+    {
+      "url": "https://divineinternationalacademy.com/admissions",
+      "reason": "HTTP 404 on direct fetch; images derived from public SPA data"
+    },
+    {
+      "url": "https://divineinternationalacademy.com/calendar",
+      "reason": "HTTP 404 on direct fetch; images derived from public SPA data"
+    },
+    {
+      "url": "https://divineinternationalacademy.com/careers",
+      "reason": "HTTP 404 on direct fetch; images derived from public SPA data"
+    },
+    {
+      "url": "https://divineinternationalacademy.com/contact",
+      "reason": "HTTP 404 on direct fetch; images derived from public SPA data"
+    },
+    {
+      "url": "https://divineinternationalacademy.com/downloads",
+      "reason": "HTTP 404 on direct fetch; images derived from public SPA data"
+    },
+    {
+      "url": "https://divineinternationalacademy.com/events",
+      "reason": "HTTP 404 on direct fetch; images derived from public SPA data"
+    },
+    {
+      "url": "https://divineinternationalacademy.com/events/dpl-6",
+      "reason": "HTTP 404 on direct fetch; images derived from public SPA data"
+    },
+    {
+      "url": "https://divineinternationalacademy.com/facilities",
+      "reason": "HTTP 404 on direct fetch; images derived from public SPA data"
+    },
+    {
+      "url": "https://divineinternationalacademy.com/gallery",
+      "reason": "HTTP 404 on direct fetch; images derived from public SPA data"
+    },
+    {
+      "url": "https://divineinternationalacademy.com/student-life",
+      "reason": "HTTP 404 on direct fetch; images derived from public SPA data"
+    }
+  ]
+}

@@ -1,171 +1,209 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import {
-  User,
-  ArrowRight,
-  Shield,
-  BookOpen,
-  GraduationCap,
-  Heart,
-} from "lucide-react";
+import { User, ArrowRight, Shield, BookOpen, CheckCircle } from "lucide-react";
 import Link from "next/link";
 import { MainLayout } from "@/components/layout/main-layout";
 
 const userRoles = [
   {
-    title: "Teachers",
-    icon: GraduationCap,
-    href: "/login/teacher",
-  },
-  {
     title: "Students",
     icon: BookOpen,
     href: "/login/student",
-  },
-  {
-    title: "Parents",
-    icon: Heart,
-    href: "/login/parent",
+    eyebrow: "Student Portal",
+    description:
+      "For registered students using school-issued credentials for portal access.",
+    points: [
+      "Use your registered school email",
+      "Keep your current password ready",
+      "Use forgot-password if access has changed",
+    ],
+    cardClass:
+      "border-amber-200/70 bg-[linear-gradient(180deg,#fffdf8_0%,#fff6df_100%)]",
+    iconClass: "bg-amber-100 text-amber-700",
+    buttonClass:
+      "bg-amber-500 text-white group-hover:bg-amber-600",
   },
   {
     title: "Admin",
     icon: Shield,
     href: "/login/admin",
+    eyebrow: "Admin Access",
+    description:
+      "For authorised school staff handling protected administrative access.",
+    points: [
+      "Use official admin email credentials",
+      "Access is intended for authorised staff only",
+      "Contact the school office if access has changed",
+    ],
+    cardClass:
+      "border-slate-200/80 bg-[linear-gradient(180deg,#f8fafc_0%,#eef2f7_100%)]",
+    iconClass: "bg-slate-900 text-white",
+    buttonClass:
+      "bg-slate-900 text-white group-hover:bg-slate-800",
   },
-];
+] as const;
+
+const accessChecks = [
+  "Student and admin access only on this page",
+  "Use the email registered with the school system",
+  "Recover access through the forgot-password flow or school office",
+] as const;
 
 export default function LoginPage() {
   return (
     <MainLayout>
-      <div className="min-h-screen bg-white">
-        {/* Hero Section - Harvard Theme */}
-        <section className="relative pt-24 pb-20 overflow-hidden">
-          {/* Background Pattern */}
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-white to-primary/3"></div>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(165,28,48,0.1),transparent_50%)]"></div>
+      <div className="min-h-screen bg-[linear-gradient(180deg,#fffaf7_0%,#ffffff_100%)]">
+        <section className="relative overflow-hidden pt-24 pb-20">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(165,28,48,0.1),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(245,158,11,0.08),transparent_28%)]" />
 
-          <div className="container mx-auto px-4 relative z-10">
+          <div className="container relative z-10 mx-auto px-4">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-center max-w-5xl mx-auto mb-16"
+              transition={{ duration: 0.7 }}
+              className="mx-auto max-w-3xl text-center"
             >
-              {/* Login Badge */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="flex justify-center mb-8"
-              >
-                <Badge className="bg-primary/10 text-primary border-primary/20 px-6 py-2 text-lg font-semibold rounded-full">
-                  <User className="w-4 h-4 mr-2" />
-                  Choose Your Portal
+              <div className="flex justify-center">
+                <Badge className="rounded-full border border-primary/15 bg-white/85 px-5 py-2 text-sm font-semibold text-primary shadow-sm backdrop-blur-sm">
+                  <User className="mr-2 h-4 w-4" />
+                  Portal Login
                 </Badge>
-              </motion.div>
+              </div>
 
-              {/* Main Heading */}
-              <h1 className="text-4xl md:text-6xl font-bold font-heading mb-8 leading-tight">
-                <span className="bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-                  Access Your
-                </span>
-                <br />
-                <span className="text-gray-700">DIA Portal</span>
+              <h1 className="mt-6 text-4xl font-bold font-heading leading-tight text-slate-950 sm:text-5xl lg:text-[3.6rem]">
+                Student and admin access, without extra portal clutter
               </h1>
-
-              <p className="text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed max-w-3xl mx-auto font-medium">
-                Select your role to access personalized features with
-                <span className="text-primary font-semibold">
-                  {" "}
-                  secure login
-                </span>{" "}
-                and
-                <span className="text-primary font-semibold">
-                  {" "}
-                  tailored dashboard
-                </span>{" "}
-                for the Divine Academy community.
+              <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
+                This login page is now focused on the two access paths that
+                matter here: student portal access and authorised admin access.
+                Choose the correct route before entering credentials.
               </p>
             </motion.div>
 
-            {/* Role Cards Grid */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
-              {userRoles.map((role, index) => (
-                <motion.div
-                  key={role.title}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
-                  className="group"
-                >
-                  <Card className="h-full hover:shadow-2xl transition-all duration-300 border-0 shadow-lg hover:scale-105 cursor-pointer overflow-hidden">
-                    <Link href={role.href} className="block h-full">
-                      <CardContent className="p-8 text-center">
-                        {/* Icon */}
-                        <div className="w-20 h-20 mx-auto mb-6 rounded-full flex items-center justify-center bg-primary/10 group-hover:bg-primary group-hover:text-white text-primary transition-all duration-300 group-hover:scale-110">
-                          <role.icon className="h-10 w-10" />
-                        </div>
+            <div className="mt-12 grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_340px] lg:items-start">
+              <div className="grid gap-6 md:grid-cols-2">
+                {userRoles.map((role, index) => (
+                  <motion.div
+                    key={role.title}
+                    initial={{ opacity: 0, y: 24 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.55, delay: 0.2 + index * 0.12 }}
+                    className="group"
+                  >
+                    <Card
+                      className={`h-full overflow-hidden rounded-[30px] border shadow-[0_25px_70px_-48px_rgba(15,23,42,0.22)] transition-all duration-300 hover:-translate-y-1.5 ${role.cardClass}`}
+                    >
+                      <Link href={role.href} className="block h-full">
+                        <CardContent className="flex h-full flex-col p-6 sm:p-7">
+                          <div className="flex items-start justify-between gap-4">
+                            <div>
+                              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+                                {role.eyebrow}
+                              </p>
+                              <CardTitle className="mt-3 text-2xl font-bold font-heading text-slate-950">
+                                {role.title}
+                              </CardTitle>
+                            </div>
+                            <div
+                              className={`flex h-14 w-14 items-center justify-center rounded-2xl shadow-sm ${role.iconClass}`}
+                            >
+                              <role.icon className="h-7 w-7" />
+                            </div>
+                          </div>
 
-                        <CardTitle className="text-xl font-bold text-gray-900 mb-6">
-                          {role.title}
-                        </CardTitle>
+                          <p className="mt-5 text-sm leading-7 text-slate-600 sm:text-base">
+                            {role.description}
+                          </p>
 
-                        {/* CTA Button */}
-                        <Button className="w-full group-hover:scale-105 transition-all duration-300 bg-primary hover:bg-primary/90 text-white">
-                          Login as {role.title}
-                          <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
-                        </Button>
-                      </CardContent>
-                    </Link>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
+                          <ul className="mt-6 space-y-3">
+                            {role.points.map((point) => (
+                              <li
+                                key={point}
+                                className="flex items-start gap-3"
+                              >
+                                <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                                <span className="text-sm leading-6 text-slate-700">
+                                  {point}
+                                </span>
+                              </li>
+                            ))}
+                          </ul>
 
-            {/* Help Section */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.0 }}
-              className="text-center mt-16"
-            >
-              <Card className="max-w-2xl mx-auto border-0 shadow-md bg-gray-50/50">
-                <CardContent className="p-8">
-                  <div className="flex items-center justify-center mb-4">
-                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                      <Shield className="h-6 w-6 text-primary" />
+                          <div
+                            className={`mt-7 inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold transition-colors ${role.buttonClass}`}
+                          >
+                            <span>Open {role.title} Login</span>
+                            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                          </div>
+                        </CardContent>
+                      </Link>
+                    </Card>
+                  </motion.div>
+                ))}
+              </div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 28 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.35 }}
+              >
+                <Card className="overflow-hidden rounded-[30px] border-0 bg-slate-950 text-white shadow-[0_30px_90px_-50px_rgba(15,23,42,0.55)]">
+                  <div className="border-b border-white/10 bg-[linear-gradient(135deg,rgba(165,28,48,0.85)_0%,rgba(127,19,34,1)_100%)] px-6 py-6">
+                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/70">
+                      Access Checks
+                    </p>
+                    <h2 className="mt-3 text-2xl font-bold font-heading">
+                      Before you continue to login
+                    </h2>
+                  </div>
+                  <CardContent className="p-6">
+                    <ul className="space-y-4">
+                      {accessChecks.map((item) => (
+                        <li key={item} className="flex items-start gap-3">
+                          <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-amber-300" />
+                          <span className="text-sm leading-6 text-white/78">
+                            {item}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div className="mt-6 rounded-[24px] border border-white/10 bg-white/5 px-4 py-4">
+                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/60">
+                        Need Help?
+                      </p>
+                      <p className="mt-2 text-sm leading-6 text-white/75">
+                        If the registered email, password, or access level has
+                        changed, use the recovery flow or contact the school
+                        office before trying multiple times.
+                      </p>
                     </div>
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">
-                    Need Help Accessing Your Portal?
-                  </h3>
-                  <p className="text-gray-600 mb-6">
-                    If you're having trouble logging in or need assistance with
-                    your account, our support team is here to help.
-                  </p>
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Button
-                      variant="outline"
-                      className="border-primary text-primary hover:bg-primary hover:text-white"
-                      asChild
-                    >
-                      <Link href="/contact">Contact Support</Link>
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      className="text-primary hover:bg-primary/10"
-                      asChild
-                    >
-                      <Link href="/apply">New to DIA? Apply Here</Link>
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
+
+                    <div className="mt-6 flex flex-col gap-3">
+                      <Button
+                        asChild
+                        className="bg-white text-slate-950 hover:bg-white/90"
+                      >
+                        <Link href="/login/forgot-password">
+                          Recover Access
+                        </Link>
+                      </Button>
+                      <Button
+                        asChild
+                        variant="outline"
+                        className="border-white/20 bg-transparent text-white hover:bg-white hover:text-slate-950"
+                      >
+                        <Link href="/contact">Contact School Office</Link>
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </div>
           </div>
         </section>
       </div>

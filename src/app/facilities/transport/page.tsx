@@ -1,741 +1,399 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
 import {
+  ArrowRight,
   Bus,
+  Camera,
+  CheckCircle,
+  Clock,
+  GraduationCap,
   MapPin,
   Shield,
-  Clock,
-  Users,
-  Smartphone,
-  Camera,
-  Heart,
-  Route,
-  Fuel,
 } from "lucide-react";
-import Link from "next/link";
-import { MainLayout } from "@/components/layout/main-layout";
 
-const transportOverview = [
-  {
-    metric: "25",
-    label: "Modern Buses",
-    description: "Well-maintained fleet with regular servicing",
-    icon: <Bus className="w-8 h-8" />,
-    color: "bg-blue-600",
-  },
-  {
-    metric: "45",
-    label: "Routes Covered",
-    description: "Comprehensive coverage across the city",
-    icon: <Route className="w-8 h-8" />,
-    color: "bg-green-600",
-  },
-  {
-    metric: "800+",
-    label: "Students Daily",
-    description: "Safe transportation for students",
-    icon: <Users className="w-8 h-8" />,
-    color: "bg-purple-600",
-  },
-  {
-    metric: "100%",
-    label: "GPS Tracking",
-    description: "Real-time location monitoring",
-    icon: <MapPin className="w-8 h-8" />,
-    color: "bg-orange-600",
-  },
-];
+import { MainLayout } from "../../../components/layout/main-layout";
+import { Badge } from "../../../components/ui/badge";
+import { Button } from "../../../components/ui/button";
+import { Card, CardContent } from "../../../components/ui/card";
 
-const safetyFeatures = [
-  {
-    feature: "GPS Tracking System",
-    description: "Real-time bus location tracking with parent app integration",
-    benefits: [
-      "Live location updates",
-      "Estimated arrival times",
-      "Route optimization",
-      "Emergency alerts",
-    ],
-    icon: <MapPin className="w-6 h-6" />,
-    priority: "High",
-  },
-  {
-    feature: "CCTV Surveillance",
-    description: "Comprehensive video monitoring inside all buses",
-    benefits: [
-      "Continuous recording",
-      "Behavior monitoring",
-      "Incident investigation",
-      "Driver supervision",
-    ],
-    icon: <Camera className="w-6 h-6" />,
-    priority: "High",
-  },
-  {
-    feature: "Trained Drivers & Attendants",
-    description: "Professional staff with child safety training",
-    benefits: [
-      "Licensed drivers",
-      "Background verification",
-      "Regular training",
-      "Child psychology awareness",
-    ],
-    icon: <Shield className="w-6 h-6" />,
-    priority: "Critical",
-  },
-  {
-    feature: "Speed Monitoring",
-    description: "Automatic speed control and monitoring systems",
-    benefits: [
-      "Speed limit compliance",
-      "Safe driving alerts",
-      "Route timing optimization",
-      "Fuel efficiency",
-    ],
-    icon: <Fuel className="w-6 h-6" />,
-    priority: "High",
-  },
-  {
-    feature: "Emergency Systems",
-    description: "Comprehensive emergency response and safety protocols",
-    benefits: [
-      "Emergency contacts",
-      "First aid kits",
-      "Fire extinguishers",
-      "Emergency exits",
-    ],
-    icon: <Heart className="w-6 h-6" />,
-    priority: "Critical",
-  },
-  {
-    feature: "Parent Communication",
-    description: "Real-time updates and communication with parents",
-    benefits: [
-      "Mobile app alerts",
-      "Pickup/drop notifications",
-      "Route changes",
-      "Emergency updates",
-    ],
-    icon: <Smartphone className="w-6 h-6" />,
-    priority: "Medium",
-  },
-];
+const transportSignals = [
+  "GPS-tracked buses",
+  "CCTV-supported monitoring",
+  "Route confirmation through the school",
+  "Pickup and travel guidance for families",
+] as const;
 
-const routeZones = [
+const transportProfile = [
   {
-    zone: "North Zone",
-    areas: ["Sector 1-15", "Model Town", "Civil Lines", "Rajouri Garden"],
-    buses: 6,
-    students: 180,
-    avgTime: "45 mins",
-    routes: ["Route N1", "Route N2", "Route N3"],
+    label: "Daily commute",
+    value:
+      "Transport support helps students reach school with more routine, safety, and parent visibility.",
   },
   {
-    zone: "South Zone",
-    areas: ["Greater Kailash", "Nehru Place", "Lajpat Nagar", "Defence Colony"],
-    buses: 7,
-    students: 210,
-    avgTime: "50 mins",
-    routes: ["Route S1", "Route S2", "Route S3", "Route S4"],
+    label: "Monitoring support",
+    value:
+      "Buses are supported through GPS tracking and CCTV-based monitoring arrangements.",
   },
   {
-    zone: "East Zone",
-    areas: ["Mayur Vihar", "Laxmi Nagar", "Preet Vihar", "Nirman Vihar"],
-    buses: 5,
-    students: 150,
-    avgTime: "40 mins",
-    routes: ["Route E1", "Route E2", "Route E3"],
+    label: "Parent planning",
+    value:
+      "Families can confirm route coverage, travel timing, pickup points, and transport charges with the school office.",
   },
   {
-    zone: "West Zone",
-    areas: ["Janakpuri", "Vikaspuri", "Tilak Nagar", "Subhash Nagar"],
-    buses: 7,
-    students: 210,
-    avgTime: "55 mins",
-    routes: ["Route W1", "Route W2", "Route W3", "Route W4"],
+    label: "Admission relevance",
+    value:
+      "Transport clarity matters before admission confirmation, especially for families coming from nearby areas.",
   },
-];
+] as const;
 
-const busSpecifications = [
+const transportStats = [
   {
-    category: "Vehicle Standards",
-    specifications: [
-      { item: "Bus Capacity", value: "35-40 students" },
-      { item: "Engine Type", value: "BS-VI compliant diesel" },
-      { item: "Air Conditioning", value: "Full AC with temperature control" },
-      {
-        item: "Seating",
-        value: "Comfortable cushioned seats with safety belts",
-      },
-      { item: "Emergency Exits", value: "Multiple exits with clear markings" },
-      { item: "Fire Safety", value: "Extinguishers and smoke detectors" },
-    ],
+    value: "GPS",
+    label: "Tracking support",
+    detail: "Live route monitoring adds visibility to the daily commute.",
   },
   {
-    category: "Technology Features",
-    specifications: [
-      { item: "GPS Tracking", value: "Real-time location with mobile app" },
-      { item: "CCTV Cameras", value: "4-6 cameras with night vision" },
-      { item: "Speed Monitoring", value: "Automatic speed control system" },
-      { item: "Communication", value: "Two-way radio and mobile connectivity" },
-      { item: "Fuel Monitoring", value: "Digital fuel management system" },
-      { item: "Maintenance Alerts", value: "Automated service reminders" },
-    ],
+    value: "CCTV",
+    label: "Bus monitoring",
+    detail: "Transport supervision is supported through camera coverage.",
   },
   {
-    category: "Safety Equipment",
-    specifications: [
-      { item: "First Aid Kit", value: "Complete medical emergency kit" },
-      {
-        item: "Safety Belts",
-        value: "Individual seat belts for all passengers",
-      },
-      { item: "Emergency Hammer", value: "Glass breaking tools" },
-      { item: "Reflective Strips", value: "High-visibility markings" },
-      { item: "Stop Sign Arm", value: "Retractable stop sign for safety" },
-      { item: "Reverse Camera", value: "Parking and maneuvering assistance" },
-    ],
+    value: "Routes",
+    label: "Coverage by availability",
+    detail:
+      "Route support depends on area, demand, and current school planning.",
   },
-];
+  {
+    value: "Office",
+    label: "Route confirmation",
+    detail:
+      "Families should confirm pickup details and fees with the school directly.",
+  },
+] as const;
 
-const transportPolicies = [
+const transportSupport = [
   {
-    policy: "Pickup & Drop Timings",
-    details: [
-      "Morning pickup starts from 7:00 AM",
-      "School departure begins at 2:30 PM",
-      "Timings may vary by 10-15 minutes",
-      "Parents notified of any delays",
+    title: "Route and area confirmation",
+    description:
+      "Transport support begins with clarity on whether the school covers your area, where the pickup point will be, and how the route works during the academic session.",
+    points: [
+      "Route guidance by area",
+      "Pickup and drop-point confirmation",
+      "Travel timing discussion with the school",
     ],
+    icon: MapPin,
   },
   {
-    policy: "Student Behavior",
-    details: [
-      "Students must remain seated during transit",
-      "No eating or drinking in the bus",
-      "Respectful behavior towards driver and attendant",
-      "Immediate reporting of any issues",
+    title: "Monitoring and supervision",
+    description:
+      "Safer transport depends on visible monitoring and supervised student movement during boarding, travel, and drop-off.",
+    points: [
+      "GPS-tracked buses",
+      "CCTV-supported bus monitoring",
+      "Supervised student movement during travel",
     ],
+    icon: Shield,
   },
   {
-    policy: "Fee Structure",
-    details: [
-      "Annual transport fee: ₹18,000 - ₹26,000",
-      "Varies by distance and route",
-      "Quarterly payment options available",
-      "No refund for temporary non-usage",
+    title: "Parent planning before admission",
+    description:
+      "Families should review route practicality before they finalise admission, especially if commute time and daily routine are important factors.",
+    points: [
+      "Travel time and pickup planning",
+      "Transport-charge clarification",
+      "Support for daily routine planning",
     ],
+    icon: Clock,
   },
-  {
-    policy: "Emergency Procedures",
-    details: [
-      "Driver trained in emergency protocols",
-      "Direct communication with school and parents",
-      "Medical emergency response procedures",
-      "Breakdown and alternate transport arrangements",
-    ],
-  },
-];
+] as const;
 
-const parentApp = [
+const parentChecks = [
   {
-    feature: "Live Tracking",
-    description: "Real-time bus location and estimated arrival time",
-    benefits: [
-      "Know exact bus location",
-      "Plan pickup timing",
-      "Receive delay notifications",
-    ],
+    title: "Check route availability first",
+    description:
+      "Before admission, confirm whether the school currently serves your area and where the nearest pickup point is located.",
   },
   {
-    feature: "Notifications",
-    description: "Instant updates about pickup, drop, and any changes",
-    benefits: [
-      "Student boarding alerts",
-      "Drop-off confirmations",
-      "Route change notifications",
-    ],
+    title: "Understand the likely travel time",
+    description:
+      "Travel duration matters for younger students and for families planning the daily school routine.",
   },
   {
-    feature: "Communication",
-    description: "Direct communication with transport coordinator",
-    benefits: [
-      "Report issues directly",
-      "Request route changes",
-      "Emergency contact",
-    ],
+    title: "Ask about monitoring and supervision",
+    description:
+      "Parents should review how GPS tracking, camera support, and student supervision work during bus travel.",
   },
   {
-    feature: "History & Reports",
-    description: "Access to transport history and monthly reports",
-    benefits: ["Attendance tracking", "Journey history", "Performance reports"],
+    title: "Confirm transport charges separately",
+    description:
+      "Transport charges vary by route and should be confirmed directly with the school during the admission process.",
   },
-];
+] as const;
+
+export const metadata: Metadata = {
+  title: "Transport | Divine International Academy Sirsaganj",
+  description:
+    "Review transport support at Divine International Academy, Sirsaganj, including route guidance, GPS tracking, CCTV-supported monitoring, and parent transport planning before admission.",
+  keywords: [
+    "Divine International Academy transport",
+    "school bus Sirsaganj",
+    "CBSE school transport Firozabad",
+    "GPS school bus Sirsaganj",
+  ],
+};
 
 export default function TransportPage() {
   return (
     <MainLayout>
-      <div className="min-h-screen bg-white">
-        {/* Hero Section */}
-        <section className="relative pt-20 pb-16 overflow-hidden">
-          <div className="absolute inset-0 bg-blue-900/5"></div>
-          <div className="container mx-auto px-4 relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center max-w-4xl mx-auto"
-            >
-              <h1 className="text-4xl md:text-5xl font-bold text-blue-900 mb-6">
-                Safe & Reliable Transport
-              </h1>
-              <p className="text-xl text-gray-700 mb-8 leading-relaxed">
-                Modern, GPS-enabled bus fleet with comprehensive safety
-                features, trained drivers, and real-time parent communication
-                for secure daily commute.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button
-                  size="lg"
-                  asChild
-                  className="bg-blue-600 hover:bg-blue-700"
-                >
-                  <Link href="/facilities/campus">
-                    <Bus className="mr-2 h-5 w-5" />
-                    Campus Facilities
-                  </Link>
-                </Button>
-                <Button variant="outline" size="lg" asChild>
-                  <Link href="/contact">
-                    <MapPin className="mr-2 h-5 w-5" />
-                    Route Inquiry
-                  </Link>
-                </Button>
+      <section className="relative overflow-hidden bg-[linear-gradient(180deg,#fffdfb_0%,#fff7f1_46%,#ffffff_100%)] pt-16 pb-20 sm:pt-20 sm:pb-24">
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-primary/5 to-transparent" />
+
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
+              School Transport
+            </Badge>
+            <h1 className="mt-5 text-4xl font-bold font-heading leading-tight text-primary sm:text-5xl lg:text-[3.35rem]">
+              Transport support for safer and more manageable daily school
+              travel
+            </h1>
+            <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
+              Divine's transport support helps families plan daily commute with
+              route guidance, monitoring visibility, and school-level transport
+              confirmation before admission.
+            </p>
+          </div>
+
+          <div className="mt-10 overflow-hidden rounded-[32px] border border-slate-200/80 bg-white shadow-[0_28px_80px_-52px_rgba(15,23,42,0.25)]">
+            <div className="grid lg:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.92fr)] lg:items-stretch">
+              <div className="relative min-h-[320px] border-b border-slate-200/80 bg-slate-100 lg:min-h-full lg:border-b-0 lg:border-r lg:border-slate-200/80">
+                <Image
+                  src="/images/submenu/facilities.avif"
+                  alt="Transport support at Divine International Academy"
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 48vw, 100vw"
+                  priority
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.08)_0%,rgba(15,23,42,0.18)_38%,rgba(15,23,42,0.68)_100%)]" />
+                <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6 lg:p-8">
+                  <Badge className="border border-white/15 bg-white/12 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-white/12">
+                    Commute Planning
+                  </Badge>
+                  <h2 className="mt-4 max-w-2xl text-2xl font-bold font-heading leading-tight text-white sm:text-[2rem] lg:text-[2.45rem]">
+                    Route clarity, safer monitoring, and daily timing matter as
+                    much as the classroom for many families.
+                  </h2>
+                </div>
               </div>
-            </motion.div>
-          </div>
-        </section>
 
-        {/* Transport Overview */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-              {transportOverview.map((item, index) => (
-                <motion.div
-                  key={item.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  <Card className="text-center hover:shadow-lg transition-shadow duration-300">
-                    <CardContent className="p-6">
-                      <div
-                        className={`mx-auto p-3 ${item.color} rounded-full text-white w-fit mb-4`}
-                      >
-                        {item.icon}
-                      </div>
-                      <div className="text-3xl font-bold text-blue-900 mb-2">
-                        {item.metric}
-                      </div>
-                      <div className="font-semibold text-gray-800 mb-1">
+              <div className="p-6 sm:p-8 lg:p-10">
+                <p className="max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
+                  Parents can review route support, likely travel time, pickup
+                  details, transport charges, and daily commute practicality
+                  with the school office.
+                </p>
+
+                <div className="mt-5 flex flex-wrap gap-2.5">
+                  {transportSignals.map((signal) => (
+                    <div
+                      key={signal}
+                      className="rounded-full border border-primary/10 bg-primary/5 px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-primary"
+                    >
+                      {signal}
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                  {transportProfile.map((item) => (
+                    <div
+                      key={item.label}
+                      className="rounded-[24px] border border-slate-200 bg-slate-50 px-4 py-4"
+                    >
+                      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
                         {item.label}
-                      </div>
-                      <div className="text-sm text-gray-600">
-                        {item.description}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Safety Features */}
-        <section className="py-16 bg-white/50">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold text-blue-900 mb-4">
-                Comprehensive Safety Features
-              </h2>
-              <p className="text-gray-600">
-                Multi-layered safety systems ensuring secure transportation for
-                all students
-              </p>
-            </motion.div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-              {safetyFeatures.map((feature, index) => (
-                <motion.div
-                  key={feature.feature}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  <Card className="h-full hover:shadow-md transition-shadow duration-300">
-                    <CardHeader>
-                      <div className="flex items-center gap-3 mb-2">
-                        <div className="p-2 bg-blue-100 rounded-full text-blue-600">
-                          {feature.icon}
-                        </div>
-                        <div className="flex-grow">
-                          <CardTitle className="text-blue-900 text-lg">
-                            {feature.feature}
-                          </CardTitle>
-                          <Badge
-                            variant={
-                              feature.priority === "Critical"
-                                ? "destructive"
-                                : feature.priority === "High"
-                                ? "default"
-                                : "secondary"
-                            }
-                            className="text-xs"
-                          >
-                            {feature.priority}
-                          </Badge>
-                        </div>
-                      </div>
-                      <p className="text-gray-600 text-sm">
-                        {feature.description}
                       </p>
-                    </CardHeader>
-                    <CardContent>
-                      <ul className="space-y-2">
-                        {feature.benefits.map((benefit, idx) => (
-                          <li
-                            key={idx}
-                            className="flex items-center gap-2 text-sm"
-                          >
-                            <Shield className="w-3 h-3 text-green-600 flex-shrink-0" />
-                            {benefit}
-                          </li>
-                        ))}
-                      </ul>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
+                      <p className="mt-2 text-sm leading-6 text-slate-700">
+                        {item.value}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                  {transportStats.map((stat) => (
+                    <div
+                      key={stat.label}
+                      className="rounded-[24px] border border-primary/10 bg-primary/5 px-4 py-4"
+                    >
+                      <p className="text-2xl font-bold text-primary">
+                        {stat.value}
+                      </p>
+                      <p className="mt-1 text-sm font-semibold text-slate-900">
+                        {stat.label}
+                      </p>
+                      <p className="mt-1 text-sm leading-6 text-slate-600">
+                        {stat.detail}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                  <Button asChild size="lg" className="sm:flex-1">
+                    <Link href="/contact">
+                      Ask About Routes
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                  <Button
+                    asChild
+                    size="lg"
+                    variant="outline"
+                    className="border-primary text-primary hover:bg-primary hover:text-white sm:flex-1"
+                  >
+                    <Link href="/facilities">Back to Facilities</Link>
+                  </Button>
+                </div>
+              </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Route Zones */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold text-blue-900 mb-4">
-                Route Coverage
-              </h2>
-              <p className="text-gray-600">
-                Comprehensive coverage across all city zones with optimized
-                routes
-              </p>
-            </motion.div>
+      <section className="pb-20">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
+              Transport Support
+            </Badge>
+            <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
+              What families usually review before using school transport
+            </h2>
+          </div>
 
-            <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-              {routeZones.map((zone, index) => (
-                <motion.div
-                  key={zone.zone}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {transportSupport.map((item) => {
+              const Icon = item.icon;
+
+              return (
+                <Card
+                  key={item.title}
+                  className="rounded-[28px] border-slate-200/80 bg-white shadow-[0_20px_60px_-46px_rgba(15,23,42,0.24)]"
                 >
-                  <Card className="h-full">
-                    <CardHeader>
-                      <div className="flex items-center justify-between">
-                        <CardTitle className="text-blue-900">
-                          {zone.zone}
-                        </CardTitle>
-                        <div className="text-right text-sm text-gray-500">
-                          <div>{zone.buses} buses</div>
-                          <div>{zone.students} students</div>
-                        </div>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-4">
-                        <div>
-                          <h4 className="font-semibold text-gray-800 mb-2">
-                            Coverage Areas:
-                          </h4>
-                          <div className="flex flex-wrap gap-1">
-                            {zone.areas.map((area, idx) => (
-                              <Badge
-                                key={idx}
-                                variant="secondary"
-                                className="text-xs"
-                              >
-                                {area}
-                              </Badge>
-                            ))}
-                          </div>
-                        </div>
-
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <span className="text-sm text-gray-600">
-                              Average Journey Time:
-                            </span>
-                            <div className="font-semibold text-blue-900">
-                              {zone.avgTime}
-                            </div>
-                          </div>
-                          <div>
-                            <span className="text-sm text-gray-600">
-                              Active Routes:
-                            </span>
-                            <div className="font-semibold text-green-700">
-                              {zone.routes.length}
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="flex flex-wrap gap-1">
-                          {zone.routes.map((route, idx) => (
-                            <Badge
-                              key={idx}
-                              variant="outline"
-                              className="text-xs"
-                            >
-                              {route}
-                            </Badge>
-                          ))}
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
+                  <CardContent className="p-6">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <h3 className="mt-5 text-xl font-bold font-heading text-slate-950">
+                      {item.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-7 text-slate-600">
+                      {item.description}
+                    </p>
+                    <ul className="mt-5 space-y-3">
+                      {item.points.map((point) => (
+                        <li key={point} className="flex items-start gap-3">
+                          <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                          <span className="text-sm leading-6 text-slate-700">
+                            {point}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Bus Specifications */}
-        <section className="py-16 bg-white/50">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold text-blue-900 mb-4">
-                Bus Specifications
-              </h2>
-              <p className="text-gray-600">
-                Modern, well-equipped buses meeting international safety
-                standards
-              </p>
-            </motion.div>
+      <section className="bg-slate-50/80 py-20">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-white px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-white">
+              Parent Checklist
+            </Badge>
+            <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
+              Important transport questions before admission
+            </h2>
+          </div>
 
-            <div className="space-y-8 max-w-6xl mx-auto">
-              {busSpecifications.map((category, categoryIndex) => (
-                <motion.div
-                  key={category.category}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
+          <div className="mt-10 grid gap-6 lg:grid-cols-2">
+            {parentChecks.map((item) => (
+              <Card
+                key={item.title}
+                className="rounded-[28px] border-slate-200/80 bg-white"
+              >
+                <CardContent className="p-6 sm:p-7">
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                      <Camera className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold font-heading leading-7 text-slate-950">
+                        {item.title}
+                      </h3>
+                      <p className="mt-3 text-sm leading-7 text-slate-600">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="pb-24 pt-20">
+        <div className="container mx-auto px-4">
+          <div className="rounded-[32px] bg-primary px-6 py-8 text-white shadow-[0_28px_80px_-46px_rgba(127,29,29,0.45)] sm:px-8 sm:py-10 lg:px-12 lg:py-12">
+            <Badge className="border border-white/15 bg-white/12 px-3.5 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-white/12">
+              Transport Enquiry
+            </Badge>
+            <div className="mt-5 grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
+              <div className="max-w-3xl">
+                <h2 className="text-3xl font-bold font-heading leading-tight sm:text-4xl lg:text-[2.8rem]">
+                  Need route, pickup, or transport-charge guidance?
+                </h2>
+                <p className="mt-4 text-sm leading-7 text-white/85 sm:text-base">
+                  Parents can contact the school to confirm transport
+                  availability, commute planning, and admissions support before
+                  finalising the next step.
+                </p>
+              </div>
+
+              <div className="flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
+                <Button
+                  asChild
+                  size="lg"
+                  className="bg-white text-primary hover:bg-white/90"
                 >
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="text-blue-900">
-                        {category.category}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {category.specifications.map((spec, specIndex) => (
-                          <div
-                            key={spec.item}
-                            className="p-3 bg-gray-50 rounded-lg"
-                          >
-                            <div className="font-semibold text-sm text-gray-800 mb-1">
-                              {spec.item}
-                            </div>
-                            <div className="text-xs text-gray-600">
-                              {spec.value}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Transport Policies */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold text-blue-900 mb-4">
-                Transport Policies
-              </h2>
-              <p className="text-gray-600">
-                Clear guidelines ensuring smooth and safe transportation
-                experience
-              </p>
-            </motion.div>
-
-            <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-              {transportPolicies.map((policy, index) => (
-                <motion.div
-                  key={policy.policy}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  <Card className="h-full">
-                    <CardHeader>
-                      <CardTitle className="text-blue-900">
-                        {policy.policy}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <ul className="space-y-2">
-                        {policy.details.map((detail, idx) => (
-                          <li
-                            key={idx}
-                            className="flex items-center gap-2 text-sm"
-                          >
-                            <Clock className="w-3 h-3 text-blue-600 flex-shrink-0" />
-                            {detail}
-                          </li>
-                        ))}
-                      </ul>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Parent App */}
-        <section className="py-16 bg-white/50">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold text-blue-900 mb-4">
-                Parent Mobile App
-              </h2>
-              <p className="text-gray-600">
-                Stay connected with real-time updates and comprehensive
-                transport management
-              </p>
-            </motion.div>
-
-            <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-              {parentApp.map((app, index) => (
-                <motion.div
-                  key={app.feature}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  <Card className="h-full hover:shadow-md transition-shadow duration-300">
-                    <CardHeader>
-                      <CardTitle className="text-blue-900">
-                        {app.feature}
-                      </CardTitle>
-                      <p className="text-gray-600 text-sm">{app.description}</p>
-                    </CardHeader>
-                    <CardContent>
-                      <ul className="space-y-2">
-                        {app.benefits.map((benefit, idx) => (
-                          <li
-                            key={idx}
-                            className="flex items-center gap-2 text-sm"
-                          >
-                            <Smartphone className="w-3 h-3 text-green-600 flex-shrink-0" />
-                            {benefit}
-                          </li>
-                        ))}
-                      </ul>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="py-16 bg-primary">
-          <div className="container mx-auto px-4 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="max-w-3xl mx-auto"
-            >
-              <h2 className="text-3xl font-bold text-white mb-4">
-                Safe Journey Starts Here
-              </h2>
-              <p className="text-blue-100 mb-8 text-lg">
-                Ensure your child's safe and comfortable daily commute with our
-                modern transport services and comprehensive safety measures.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" variant="secondary" asChild>
                   <Link href="/contact">
-                    <MapPin className="mr-2 h-5 w-5" />
-                    Check Route Availability
+                    Contact the School
+                    <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
                 <Button
+                  asChild
                   size="lg"
                   variant="outline"
-                  className="bg-white text-blue-600 hover:bg-blue-50"
-                  asChild
+                  className="border-white/30 bg-transparent text-white hover:bg-white hover:text-primary"
                 >
-                  <Link href="/facilities/campus">
-                    <Shield className="mr-2 h-5 w-5" />
-                    Campus Safety
-                  </Link>
-                </Button>
-                <Button
-                  size="lg"
-                  variant="ghost"
-                  className="text-white hover:bg-blue-600"
-                  asChild
-                >
-                  <Link href="/apply">
-                    <Bus className="mr-2 h-5 w-5" />
-                    Apply Now
+                  <Link href="/admissions">
+                    Review Admissions
+                    <GraduationCap className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
               </div>
-            </motion.div>
+            </div>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
     </MainLayout>
   );
 }

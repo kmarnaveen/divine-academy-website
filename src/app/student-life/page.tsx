@@ -1,535 +1,413 @@
-import { MainLayout } from "@/components/layout/main-layout";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import {
-  Users,
-  Music,
-  Palette,
-  Theater,
-  Microscope,
-  Globe,
-  Trophy,
-  Calendar,
-  Camera,
-  Star,
-  Award,
-  Heart,
-  BookOpen,
   ArrowRight,
-  Clock,
-  MapPin,
+  CalendarDays,
+  Camera,
+  CheckCircle,
+  Music,
+  Trophy,
+  Users,
 } from "lucide-react";
 
-const clubs = [
+import { MainLayout } from "@/components/layout/main-layout";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+
+const lifeSignals = [
+  "Clubs, events, and guided participation",
+  "Sports, stage, and school celebrations",
+  "Student confidence beyond classroom work",
+] as const;
+
+const lifeAreas = [
   {
-    title: "Science Club",
+    title: "Clubs and guided activities",
     description:
-      "Explore the wonders of science through experiments and projects",
-    icon: Microscope,
-    color: "bg-accent-100 text-accent-600",
-    activities: [
-      "Science Fair",
-      "Lab Experiments",
-      "Innovation Projects",
-      "Science Olympiad",
+      "Students need opportunities to explore interests through science, arts, reading, music, service, and team-based activities within the school routine.",
+    points: [
+      "Age-appropriate club and activity exposure",
+      "Teacher-guided participation instead of loose free time",
+      "Confidence, teamwork, and interest discovery",
     ],
+    icon: Users,
   },
   {
-    title: "Arts & Crafts Club",
-    description: "Express creativity through various art forms and crafts",
-    icon: Palette,
-    color: "bg-purple-100 text-purple-600",
-    activities: [
-      "Painting",
-      "Clay Modeling",
-      "Craft Making",
-      "Art Exhibitions",
+    title: "Events across the school year",
+    description:
+      "School life becomes more visible when assemblies, academic showcases, celebrations, and stage programs are planned and meaningful.",
+    points: [
+      "School assemblies and observances",
+      "Academic exhibitions and presentations",
+      "Cultural programs and annual stage exposure",
     ],
+    icon: CalendarDays,
   },
   {
-    title: "Music & Dance",
-    description: "Develop musical and dance talents with professional guidance",
-    icon: Music,
-    color: "bg-emerald-100 text-emerald-600",
-    activities: ["Classical Music", "Western Dance", "Folk Dance", "Choir"],
-  },
-  {
-    title: "Drama Club",
-    description: "Build confidence through theater and dramatic performances",
-    icon: Theater,
-    color: "bg-orange-100 text-orange-600",
-    activities: ["Stage Plays", "Storytelling", "Mime", "Public Speaking"],
-  },
-  {
-    title: "Literary Society",
-    description: "Enhance language skills and creative writing abilities",
-    icon: BookOpen,
-    color: "bg-red-100 text-red-600",
-    activities: ["Creative Writing", "Debate", "Poetry", "Magazine"],
-  },
-  {
-    title: "Environment Club",
-    description: "Promote environmental awareness and sustainability",
-    icon: Globe,
-    color: "bg-green-100 text-green-600",
-    activities: [
-      "Tree Plantation",
-      "Recycling",
-      "Nature Walks",
-      "Eco Projects",
+    title: "Sports and physical participation",
+    description:
+      "Sports and games help students develop discipline, stamina, teamwork, and school spirit alongside academics.",
+    points: [
+      "Regular games and physical activity",
+      "Sports meets and team participation",
+      "Healthy competition and group responsibility",
     ],
-  },
-];
-
-const events = [
-  {
-    title: "Annual Sports Day",
-    date: "February 2025",
-    description: "Inter-house competitions and athletic events",
-    icon: Trophy,
-    image_placeholder:
-      "Sports Day celebrations with students participating in various events",
-  },
-  {
-    title: "Cultural Festival",
-    date: "December 2024",
-    description: "Showcase of student talents in arts, music, and dance",
-    icon: Star,
-    image_placeholder: "Students performing cultural programs on stage",
-  },
-  {
-    title: "Science Exhibition",
-    date: "March 2025",
-    description: "Student innovations and scientific project displays",
-    icon: Microscope,
-    image_placeholder: "Science projects and experiments displayed by students",
-  },
-  {
-    title: "Founders Day",
-    date: "April 2025",
-    description: "Celebrating the school's establishment and achievements",
-    icon: Award,
-    image_placeholder: "School anniversary celebrations with award ceremonies",
-  },
-];
-
-const galleryItems = [
-  {
-    category: "Academic Excellence",
-    description: "Students achieving success in various academic competitions",
-    icon: Award,
-  },
-  {
-    category: "Sports Achievements",
-    description: "Athletic victories and sports day celebrations",
     icon: Trophy,
   },
   {
-    category: "Cultural Programs",
-    description: "Annual functions and cultural festival moments",
-    icon: Star,
-  },
-  {
-    category: "Science Projects",
-    description: "Innovation and scientific experiments by students",
-    icon: Microscope,
-  },
-  {
-    category: "Community Service",
-    description: "Students participating in social service activities",
-    icon: Heart,
-  },
-  {
-    category: "Campus Life",
-    description: "Daily moments and memories from school life",
+    title: "School memories and visibility",
+    description:
+      "The gallery and event coverage help families understand how students participate in school life beyond classroom lessons.",
+    points: [
+      "Academic and event highlights",
+      "Sports and activity moments",
+      "Visual record of participation across the year",
+    ],
     icon: Camera,
   },
-];
+] as const;
+
+const stageExperience = [
+  {
+    stage: "Primary years",
+    description:
+      "Younger students begin with simple presentations, art, music, games, and guided participation that builds comfort with school routines.",
+    points: [
+      "Assembly participation and short presentations",
+      "Creative work, music, and games",
+      "Teacher support with confidence building",
+    ],
+  },
+  {
+    stage: "Middle years",
+    description:
+      "Students take on wider activity exposure through clubs, stage roles, sports, and academic showcases that strengthen communication and teamwork.",
+    points: [
+      "Clubs and co-curricular participation",
+      "Event preparation and stage practice",
+      "Better teamwork and school responsibility",
+    ],
+  },
+  {
+    stage: "Senior years",
+    description:
+      "Older students balance academics with leadership, event support, representation, and wider school responsibilities.",
+    points: [
+      "Event roles and student leadership",
+      "Sports, competitions, and public confidence",
+      "Participation with stronger self-management",
+    ],
+  },
+] as const;
+
+const parentNotes = [
+  "Participation is guided by age, class stage, and school schedule rather than random activity selection.",
+  "Events and activities are meant to support confidence and discipline, not distract from academics.",
+  "Parents usually understand school culture faster when they review clubs, event types, and gallery highlights together.",
+] as const;
+
+const studentLifeRoutes = [
+  {
+    title: "Explore clubs",
+    description:
+      "See how clubs support interests, creativity, teamwork, and student confidence.",
+    href: "/student-life/clubs",
+    cta: "Go to clubs",
+    icon: Users,
+  },
+  {
+    title: "Review events",
+    description:
+      "Check the types of school events, observances, and stage programs students usually take part in.",
+    href: "/student-life/events",
+    cta: "Go to events",
+    icon: CalendarDays,
+  },
+  {
+    title: "Open the gallery",
+    description:
+      "See how the school documents academics, sports, activities, and student participation.",
+    href: "/student-life/gallery",
+    cta: "Go to gallery",
+    icon: Camera,
+  },
+] as const;
+
+export const metadata: Metadata = {
+  title: "Student Life | Divine International Academy Sirsaganj",
+  description:
+    "See how student life works at Divine International Academy, Sirsaganj through clubs, events, sports, stage participation, and school activity routines.",
+  keywords: [
+    "student life Divine International Academy",
+    "school activities Sirsaganj",
+    "clubs and events Firozabad school",
+    "CBSE school student life",
+  ],
+};
 
 export default function StudentLifePage() {
   return (
     <MainLayout>
-      {/* Hero Section */}
-      <section className="py-20 bg-primary text-white">
+      <section className="relative overflow-hidden bg-[linear-gradient(180deg,#fffdfb_0%,#fff7f1_46%,#ffffff_100%)] pt-16 pb-20 sm:pt-20 sm:pb-24">
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-primary/5 to-transparent" />
+
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <Badge className="mb-6 bg-accent text-primary">
-              Beyond Academics
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
+              Student Life
             </Badge>
-            <h1 className="text-4xl md:text-5xl font-bold font-heading mb-6">
-              Vibrant Student Life
+            <h1 className="mt-5 text-4xl font-bold font-heading leading-tight text-primary sm:text-5xl lg:text-[3.35rem]">
+              Student life is where school culture becomes visible beyond the
+              classroom
             </h1>
-            <p className="text-xl text-primary-100 leading-relaxed">
-              At Divine International Academy, learning extends beyond
-              textbooks. We provide a rich ecosystem of clubs, events, and
-              activities that nurture creativity, leadership, and personal
-              growth.
+            <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
+              At Divine International Academy, student life includes clubs,
+              events, sports, assemblies, and school participation that help
+              students build confidence, discipline, teamwork, and expression
+              alongside academics.
             </p>
+          </div>
+
+          <div className="mt-10 overflow-hidden rounded-[32px] border border-slate-200/80 bg-white shadow-[0_28px_80px_-52px_rgba(15,23,42,0.24)]">
+            <div className="grid lg:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.92fr)] lg:items-stretch">
+              <div className="relative min-h-[320px] border-b border-slate-200/80 bg-slate-100 lg:min-h-full lg:border-b-0 lg:border-r lg:border-slate-200/80">
+                <Image
+                  src="/images/submenu/student-activities.jpg"
+                  alt="Student activities at Divine International Academy"
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 48vw, 100vw"
+                  priority
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.08)_0%,rgba(15,23,42,0.18)_38%,rgba(15,23,42,0.68)_100%)]" />
+                <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6 lg:p-8">
+                  <Badge className="border border-white/15 bg-white/12 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-white/12">
+                    School Culture
+                  </Badge>
+                  <h2 className="mt-4 max-w-2xl text-2xl font-bold font-heading leading-tight text-white sm:text-[2rem] lg:text-[2.45rem]">
+                    Parents often understand a school better when they see how
+                    students participate outside lessons.
+                  </h2>
+                </div>
+              </div>
+
+              <div className="p-6 sm:p-8 lg:p-10">
+                <p className="max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
+                  This section helps families understand how the school supports
+                  student participation through activities, events, sports, and
+                  school memories across the academic year.
+                </p>
+
+                <div className="mt-5 flex flex-wrap gap-2.5">
+                  {lifeSignals.map((signal) => (
+                    <div
+                      key={signal}
+                      className="rounded-full border border-primary/10 bg-primary/5 px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-primary"
+                    >
+                      {signal}
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-6 rounded-[24px] border border-slate-200 bg-slate-50 px-5 py-5">
+                  <p className="text-sm leading-7 text-slate-700 sm:text-base">
+                    Good student-life content should answer clear parent
+                    questions: What activities happen during the year, how
+                    students participate, how it supports growth, and where
+                    families can see evidence of that participation.
+                  </p>
+                </div>
+
+                <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                  <Button
+                    asChild
+                    size="lg"
+                    className="bg-primary text-white hover:bg-primary/90 sm:flex-1"
+                  >
+                    <Link href="/student-life/clubs">
+                      Explore Clubs
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                  <Button
+                    asChild
+                    size="lg"
+                    variant="outline"
+                    className="border-primary text-primary hover:bg-primary hover:text-white sm:flex-1"
+                  >
+                    <Link href="/student-life/events">Review Events</Link>
+                  </Button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Clubs & Activities */}
-      <section className="py-20 bg-white">
+      <section className="pb-20">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold font-heading text-primary mb-4">
-              Clubs & Societies
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
+              What Student Life Covers
+            </Badge>
+            <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
+              Student life should support confidence, teamwork, discipline, and
+              school belonging
             </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Join our diverse range of clubs and societies designed to explore
-              interests, develop talents, and build lasting friendships.
-            </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {clubs.map((club, index) => {
-              const Icon = club.icon;
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            {lifeAreas.map((item) => {
+              const Icon = item.icon;
+
               return (
                 <Card
-                  key={club.title}
-                  className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 group"
+                  key={item.title}
+                  className="rounded-[28px] border-slate-200/80 bg-white shadow-[0_20px_60px_-46px_rgba(15,23,42,0.24)]"
                 >
-                  <CardContent className="p-6">
-                    <div className="mb-6">
-                      <div
-                        className={`w-12 h-12 rounded-lg ${club.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}
-                      >
-                        <Icon className="h-6 w-6" />
-                      </div>
-                      <h3 className="text-xl font-semibold font-heading text-gray-900 mb-2">
-                        {club.title}
-                      </h3>
-                      <p className="text-gray-600 text-sm mb-4">
-                        {club.description}
-                      </p>
+                  <CardContent className="p-6 sm:p-7">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                      <Icon className="h-6 w-6" />
                     </div>
+                    <h3 className="mt-5 text-xl font-bold font-heading text-slate-950">
+                      {item.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-7 text-slate-600 sm:text-base">
+                      {item.description}
+                    </p>
 
-                    <div className="space-y-2">
-                      <h4 className="font-medium text-gray-800 text-sm">
-                        Activities:
-                      </h4>
-                      <div className="grid grid-cols-2 gap-1">
-                        {club.activities.map((activity) => (
-                          <div
-                            key={activity}
-                            className="flex items-center space-x-2"
-                          >
-                            <div className="w-1.5 h-1.5 bg-accent rounded-full"></div>
-                            <span className="text-gray-600 text-xs">
-                              {activity}
+                    <ul className="mt-5 space-y-3">
+                      {item.points.map((point) => (
+                        <li key={point} className="flex items-start gap-3">
+                          <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                          <span className="text-sm leading-6 text-slate-700">
+                            {point}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-slate-50/80 py-20">
+        <div className="container mx-auto px-4">
+          <div className="grid gap-8 xl:grid-cols-[minmax(0,1fr)_360px] xl:items-start">
+            <div>
+              <Badge className="border border-primary/10 bg-white px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-white">
+                Stage-Wise Participation
+              </Badge>
+              <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl">
+                Participation changes as students move from primary to senior
+                classes
+              </h2>
+
+              <div className="mt-8 grid gap-4">
+                {stageExperience.map((item) => (
+                  <Card
+                    key={item.stage}
+                    className="rounded-[24px] border-slate-200/80 bg-white"
+                  >
+                    <CardContent className="p-5 sm:p-6">
+                      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+                        {item.stage}
+                      </p>
+                      <p className="mt-3 text-sm leading-7 text-slate-700 sm:text-base">
+                        {item.description}
+                      </p>
+
+                      <ul className="mt-4 space-y-2">
+                        {item.points.map((point) => (
+                          <li key={point} className="flex items-start gap-3">
+                            <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                            <span className="text-sm leading-6 text-slate-700">
+                              {point}
                             </span>
-                          </div>
+                          </li>
                         ))}
-                      </div>
+                      </ul>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+
+            <Card className="rounded-[28px] border-slate-200/80 bg-white shadow-[0_20px_60px_-46px_rgba(15,23,42,0.22)]">
+              <CardContent className="p-6 sm:p-7">
+                <Badge className="border border-primary/10 bg-primary/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary hover:bg-primary/5">
+                  Parent Notes
+                </Badge>
+                <h3 className="mt-5 text-2xl font-bold font-heading text-slate-950">
+                  What families should understand about student participation
+                </h3>
+
+                <ul className="mt-6 space-y-4">
+                  {parentNotes.map((item) => (
+                    <li key={item} className="flex items-start gap-3">
+                      <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                      <span className="text-sm leading-6 text-slate-700">
+                        {item}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
+              Explore This Section
+            </Badge>
+            <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
+              Move deeper into clubs, events, or the school gallery
+            </h2>
+          </div>
+
+          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+            {studentLifeRoutes.map((item) => {
+              const Icon = item.icon;
+
+              return (
+                <Card
+                  key={item.title}
+                  className="rounded-[28px] border-slate-200/80 bg-white shadow-[0_20px_60px_-46px_rgba(15,23,42,0.24)]"
+                >
+                  <CardContent className="p-6 sm:p-7">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                      <Icon className="h-6 w-6" />
                     </div>
+                    <h3 className="mt-5 text-xl font-bold font-heading text-slate-950">
+                      {item.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-7 text-slate-600">
+                      {item.description}
+                    </p>
 
                     <Button
-                      variant="outline"
-                      className="w-full mt-4 border-primary text-primary hover:bg-primary hover:text-white"
+                      asChild
+                      size="lg"
+                      className="mt-6 w-full bg-primary text-white hover:bg-primary/90"
                     >
-                      Join Club
+                      <Link href={item.href}>
+                        {item.cta}
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
                     </Button>
                   </CardContent>
                 </Card>
               );
             })}
-          </div>
-        </div>
-      </section>
-
-      {/* Events & Celebrations */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold font-heading text-primary mb-4">
-              Annual Events & Celebrations
-            </h2>
-            <p className="text-lg text-gray-600">
-              Throughout the academic year, we organize various events that
-              bring our school community together and celebrate student
-              achievements.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {events.map((event, index) => {
-              const Icon = event.icon;
-              return (
-                <Card
-                  key={event.title}
-                  className="border-0 shadow-lg hover:shadow-xl transition-shadow"
-                >
-                  <CardContent className="p-0">
-                    {/* Event Image Placeholder */}
-                    <div className="aspect-video bg-gray-100 flex items-center justify-center">
-                      <div className="text-center text-gray-500">
-                        <Icon className="h-12 w-12 mx-auto mb-2" />
-                        <p className="text-sm px-4">
-                          {event.image_placeholder}
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="p-6">
-                      <div className="flex items-center justify-between mb-3">
-                        <Badge className="bg-accent/10 text-accent hover:bg-accent/10">
-                          {event.date}
-                        </Badge>
-                        <Icon className="h-5 w-5 text-primary" />
-                      </div>
-
-                      <h3 className="text-xl font-semibold font-heading text-primary mb-2">
-                        {event.title}
-                      </h3>
-                      <p className="text-gray-600 text-sm">
-                        {event.description}
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </div>
-
-          <div className="text-center mt-12">
-            <Button
-              asChild
-              variant="outline"
-              size="lg"
-              className="border-primary text-primary hover:bg-primary hover:text-white"
-            >
-              <Link href="/student-life/events">
-                View All Events <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Photo Gallery */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold font-heading text-primary mb-4">
-              Photo Gallery
-            </h2>
-            <p className="text-lg text-gray-600">
-              Capture memories and moments from our vibrant school life
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {galleryItems.map((item, index) => {
-              const Icon = item.icon;
-              return (
-                <Card
-                  key={item.category}
-                  className="border-0 shadow-md hover:shadow-lg transition-shadow group cursor-pointer"
-                >
-                  <CardContent className="p-0">
-                    <div className="aspect-square bg-gray-100 flex items-center justify-center group-hover:bg-primary/5 transition-all duration-300">
-                      <div className="text-center">
-                        <Icon className="h-12 w-12 text-gray-400 group-hover:text-primary mx-auto mb-3 transition-colors" />
-                        <h3 className="font-semibold text-gray-700 group-hover:text-primary transition-colors">
-                          {item.category}
-                        </h3>
-                      </div>
-                    </div>
-                    <div className="p-4">
-                      <p className="text-gray-600 text-sm">
-                        {item.description}
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </div>
-
-          <div className="text-center mt-12">
-            <Button asChild className="bg-primary hover:bg-primary/90">
-              <Link href="/student-life/gallery">
-                View Full Gallery <Camera className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Student Achievements */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold font-heading text-primary mb-4">
-              Student Achievements
-            </h2>
-            <p className="text-lg text-gray-600">
-              Celebrating the success stories and achievements of our talented
-              students
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="border-0 shadow-lg text-center">
-              <CardContent className="p-8">
-                <div className="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Trophy className="h-8 w-8 text-accent" />
-                </div>
-                <h3 className="text-3xl font-bold text-primary mb-2">50+</h3>
-                <p className="text-gray-600 font-medium">
-                  Awards & Recognitions
-                </p>
-                <p className="text-gray-500 text-sm mt-2">
-                  In academics, sports, and cultural activities
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 shadow-lg text-center">
-              <CardContent className="p-8">
-                <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Star className="h-8 w-8 text-primary" />
-                </div>
-                <h3 className="text-3xl font-bold text-primary mb-2">100%</h3>
-                <p className="text-gray-600 font-medium">Participation Rate</p>
-                <p className="text-gray-500 text-sm mt-2">
-                  Students actively involved in co-curricular activities
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 shadow-lg text-center">
-              <CardContent className="p-8">
-                <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Users className="h-8 w-8 text-emerald-600" />
-                </div>
-                <h3 className="text-3xl font-bold text-primary mb-2">15+</h3>
-                <p className="text-gray-600 font-medium">Active Clubs</p>
-                <p className="text-gray-500 text-sm mt-2">
-                  Diverse range of interest-based societies
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Upcoming Events */}
-      <section className="py-20 bg-primary text-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold font-heading mb-4">
-              Upcoming Events
-            </h2>
-            <p className="text-primary-100 text-lg">
-              Mark your calendars for these exciting upcoming events
-            </p>
-          </div>
-
-          <div className="max-w-4xl mx-auto space-y-6">
-            <Card className="bg-white/10 backdrop-blur-sm border-white/20 text-white">
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-accent rounded-lg flex items-center justify-center">
-                      <Calendar className="h-6 w-6 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold">Winter Carnival</h3>
-                      <p className="text-primary-100 text-sm">
-                        Fun-filled winter activities and competitions
-                      </p>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <div className="flex items-center space-x-2 text-accent">
-                      <Clock className="h-4 w-4" />
-                      <span className="font-medium">Dec 20, 2024</span>
-                    </div>
-                    <div className="flex items-center space-x-2 text-primary-100 text-sm">
-                      <MapPin className="h-4 w-4" />
-                      <span>School Campus</span>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white/10 backdrop-blur-sm border-white/20 text-white">
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-accent rounded-lg flex items-center justify-center">
-                      <Award className="h-6 w-6 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold">
-                        Annual Prize Distribution
-                      </h3>
-                      <p className="text-primary-100 text-sm">
-                        Celebrating academic and co-curricular achievements
-                      </p>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <div className="flex items-center space-x-2 text-accent">
-                      <Clock className="h-4 w-4" />
-                      <span className="font-medium">Jan 15, 2025</span>
-                    </div>
-                    <div className="flex items-center space-x-2 text-primary-100 text-sm">
-                      <MapPin className="h-4 w-4" />
-                      <span>School Auditorium</span>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          <div className="text-center mt-12">
-            <Button
-              asChild
-              variant="secondary"
-              size="lg"
-              className="bg-accent text-primary hover:bg-accent/90"
-            >
-              <Link href="/student-life/events">
-                View All Events <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold font-heading text-primary mb-4">
-            Be Part of Our Community
-          </h2>
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            Join Divine International Academy and experience a vibrant student
-            life filled with opportunities for growth, learning, and fun.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              asChild
-              size="lg"
-              className="bg-accent hover:bg-accent/90 text-primary"
-            >
-              <Link href="/apply">Apply for Admission</Link>
-            </Button>
-            <Button
-              asChild
-              variant="outline"
-              size="lg"
-              className="border-primary text-primary hover:bg-primary hover:text-white"
-            >
-              <Link href="/contact">Schedule Campus Visit</Link>
-            </Button>
           </div>
         </div>
       </section>

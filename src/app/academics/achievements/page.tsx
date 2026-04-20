@@ -1,858 +1,564 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Trophy,
-  Medal,
-  Award,
-  Star,
-  TrendingUp,
-  Users,
-  BookOpen,
-  Target,
-  Crown,
-  Zap,
-} from "lucide-react";
+import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-import { MainLayout } from "@/components/layout/main-layout";
+import {
+  ArrowRight,
+  Award,
+  BookOpen,
+  CheckCircle,
+  GraduationCap,
+  Microscope,
+  Shield,
+  Target,
+  Trophy,
+  Users,
+} from "lucide-react";
 
-const boardResults = [
-  {
-    year: "2023-24",
-    grade: "Class XII",
-    passPercentage: 98.5,
-    distinction: 85,
-    toppers: [
-      { name: "Arjun Sharma", percentage: 97.2, stream: "Science (PCM)" },
-      { name: "Priya Patel", percentage: 96.8, stream: "Science (PCB)" },
-      { name: "Rahul Gupta", percentage: 95.4, stream: "Commerce" },
-    ],
-    highlights: [
-      "15 students scored above 95%",
-      "45 students scored above 90%",
-      "100% pass rate in Mathematics",
-      "98% pass rate in Science subjects",
-    ],
-  },
-  {
-    year: "2023-24",
-    grade: "Class X",
-    passPercentage: 99.2,
-    distinction: 88,
-    toppers: [
-      { name: "Anjali Singh", percentage: 98.6, stream: "All Subjects" },
-      { name: "Vikram Kumar", percentage: 97.8, stream: "All Subjects" },
-      { name: "Sneha Jain", percentage: 97.2, stream: "All Subjects" },
-    ],
-    highlights: [
-      "25 students scored above 95%",
-      "62 students scored above 90%",
-      "Perfect scores in multiple subjects",
-      "Outstanding improvement from previous year",
-    ],
-  },
-];
+import { MainLayout } from "../../../components/layout/main-layout";
+import { Badge } from "../../../components/ui/badge";
+import { Button } from "../../../components/ui/button";
+import { Card, CardContent } from "../../../components/ui/card";
 
-const competitiveExams = [
-  {
-    category: "Engineering Entrance",
-    exams: [
-      {
-        name: "JEE Main 2024",
-        achievements: [
-          "15 students qualified",
-          "Top rank: AIR 2,847",
-          "Average percentile: 87.5",
-        ],
-        icon: <Trophy className="w-6 h-6" />,
-        color: "bg-yellow-500",
-      },
-      {
-        name: "JEE Advanced 2024",
-        achievements: [
-          "8 students qualified",
-          "Top rank: AIR 4,521",
-          "IIT admissions: 5",
-        ],
-        icon: <Crown className="w-6 h-6" />,
-        color: "bg-purple-500",
-      },
-      {
-        name: "State Engineering",
-        achievements: [
-          "45 students qualified",
-          "Top rank: State Rank 126",
-          "Government seat allotments: 28",
-        ],
-        icon: <Medal className="w-6 h-6" />,
-        color: "bg-primary",
-      },
-    ],
-  },
-  {
-    category: "Medical Entrance",
-    exams: [
-      {
-        name: "NEET 2024",
-        achievements: [
-          "22 students qualified",
-          "Top score: 685/720",
-          "AIIMS selections: 3",
-        ],
-        icon: <Trophy className="w-6 h-6" />,
-        color: "bg-green-500",
-      },
-      {
-        name: "State Medical",
-        achievements: [
-          "18 students qualified",
-          "Government medical seats: 12",
-          "Top state rank: 234",
-        ],
-        icon: <Medal className="w-6 h-6" />,
-        color: "bg-teal-500",
-      },
-    ],
-  },
-  {
-    category: "Other Competitive Exams",
-    exams: [
-      {
-        name: "CLAT 2024",
-        achievements: [
-          "5 students qualified",
-          "Top rank: AIR 1,247",
-          "NLU admissions: 3",
-        ],
-        icon: <Award className="w-6 h-6" />,
-        color: "bg-indigo-500",
-      },
-      {
-        name: "CA Foundation",
-        achievements: [
-          "12 students cleared",
-          "All India Rank 15",
-          "Pass percentage: 85%",
-        ],
-        icon: <Star className="w-6 h-6" />,
-        color: "bg-orange-500",
-      },
-    ],
-  },
-];
+const achievementSignals = [
+  "100% board results",
+  "Recognition across academics and activities",
+  "Parent-visible academic follow-up",
+] as const;
 
-const olympiads = [
+const achievementProfile = [
   {
-    subject: "Mathematics",
-    achievements: [
-      { level: "International", count: 2, awards: "Gold: 1, Silver: 1" },
-      { level: "National", count: 8, awards: "Gold: 3, Silver: 3, Bronze: 2" },
-      {
-        level: "Regional",
-        count: 25,
-        awards: "Gold: 10, Silver: 9, Bronze: 6",
-      },
-    ],
-    icon: <Trophy className="w-8 h-8" />,
-    color: "bg-primary",
+    label: "Strongest verified academic proof",
+    value: "100% board results in the senior years",
   },
   {
-    subject: "Science",
-    achievements: [
-      { level: "International", count: 1, awards: "Silver: 1" },
-      { level: "National", count: 12, awards: "Gold: 4, Silver: 5, Bronze: 3" },
-      {
-        level: "Regional",
-        count: 35,
-        awards: "Gold: 15, Silver: 12, Bronze: 8",
-      },
-    ],
-    icon: <Zap className="w-8 h-8" />,
-    color: "bg-primary",
+    label: "School scale",
+    value: "1200+ students supported by 50+ faculty members",
   },
   {
-    subject: "English",
-    achievements: [
-      { level: "National", count: 6, awards: "Gold: 2, Silver: 2, Bronze: 2" },
-      { level: "Regional", count: 18, awards: "Gold: 8, Silver: 6, Bronze: 4" },
-    ],
-    icon: <BookOpen className="w-8 h-8" />,
-    color: "bg-primary",
+    label: "Academic range",
+    value: "Pre-Primary to Class XII under the CBSE framework",
   },
-];
+  {
+    label: "What this page covers",
+    value:
+      "Board outcomes, recognition areas, and the systems behind student progress",
+  },
+] as const;
 
-const sportsAchievements = [
+const achievementStats = [
   {
-    sport: "Cricket",
-    achievements: [
-      "District Champions 2024",
-      "State Quarter-finalists 2023",
-      "Inter-school Tournament Winners",
-    ],
-    players: 15,
-    icon: "🏏",
+    value: "100%",
+    label: "Board results",
+    detail: "A visible academic outcome parents notice first.",
   },
   {
-    sport: "Basketball",
-    achievements: [
-      "Regional Champions 2024",
-      "State Semi-finalists 2024",
-      "Best Team Spirit Award",
-    ],
-    players: 12,
-    icon: "🏀",
+    value: "50+",
+    label: "Faculty members",
+    detail: "Subject support matters before results appear on paper.",
   },
   {
-    sport: "Athletics",
-    achievements: [
-      "State Gold Medalist - 100m Sprint",
-      "District Champions - Relay Race",
-      "Individual Excellence Awards: 8",
-    ],
-    players: 25,
-    icon: "🏃‍♂️",
+    value: "1200+",
+    label: "Students",
+    detail: "Achievement culture grows when systems scale with consistency.",
   },
   {
-    sport: "Chess",
-    achievements: [
-      "National Under-16 Champion",
-      "State Team Champions",
-      "International Tournament Participation",
-    ],
-    players: 8,
-    icon: "♟️",
+    value: "2131764",
+    label: "CBSE affiliation",
+    detail: "A clear school identifier parents often verify directly.",
   },
-];
+] as const;
 
-const culturalAchievements = [
+const achievementAreas = [
   {
-    activity: "Music & Dance",
-    achievements: [
-      "State Classical Music Competition - 1st Prize",
-      "Inter-school Dance Championship - Winners",
-      "Cultural Fest Best Performance Award",
+    title: "Board performance and exam readiness",
+    description:
+      "At Divine, achievement starts with consistent classroom teaching, regular tests, revision planning, and visible support through the board years.",
+    points: [
+      "Classwork, notebook review, and regular assessments",
+      "Board-focused revision and paper practice in senior classes",
+      "Academic follow-up that aims for stable performance, not last-minute rescue",
     ],
-    participants: 45,
+    icon: Trophy,
   },
   {
-    activity: "Debate & Oratory",
-    achievements: [
-      "National Debate Championship - Runners-up",
-      "Model UN Best Delegate Awards: 5",
-      "Public Speaking Competition Winners",
+    title: "Subject confidence beyond marks",
+    description:
+      "Students grow through presentations, projects, practical work, and stronger subject communication, not only through final scores.",
+    points: [
+      "Project work and presentation opportunities",
+      "Science practicals and applied classroom work",
+      "Reading, writing, and discussion-based subject development",
     ],
-    participants: 30,
+    icon: BookOpen,
   },
   {
-    activity: "Arts & Crafts",
-    achievements: [
-      "State Art Exhibition - Multiple Winners",
-      "Craft Competition District Champions",
-      "Creative Expression Awards: 12",
+    title: "Recognition through participation",
+    description:
+      "School achievement also includes how students represent themselves in assemblies, competitions, exhibitions, house activities, and stage events.",
+    points: [
+      "Debates, quizzes, exhibitions, and school presentations",
+      "Sports and co-curricular participation platforms",
+      "Confidence, discipline, and team responsibility built over time",
     ],
-    participants: 40,
+    icon: Award,
   },
-];
+  {
+    title: "Stream readiness after Class X",
+    description:
+      "Achievement in the senior years also depends on choosing the right stream and then receiving the right academic support for that path.",
+    points: [
+      "Science, Commerce, and Humanities guidance",
+      "Subject-fit discussion before stream confirmation",
+      "Board support aligned to the chosen academic direction",
+    ],
+    icon: GraduationCap,
+  },
+] as const;
 
-const yearlyProgress = [
+const systemsBehindResults = [
   {
-    year: "2021-22",
-    metrics: { passRate: 94.5, distinction: 75, avgScore: 82.3, olympiads: 45 },
+    title: "Smart classrooms and clearer lesson flow",
+    description:
+      "Digital teaching support helps teachers explain concepts, revise faster, and keep pace more consistent across sections.",
+    points: [
+      "40 smart classrooms",
+      "Visual explanation and recap support",
+      "Better continuity in daily teaching",
+    ],
+    icon: Target,
   },
   {
-    year: "2022-23",
-    metrics: { passRate: 96.8, distinction: 82, avgScore: 85.1, olympiads: 58 },
+    title: "Practical work and science support",
+    description:
+      "Achievement in science subjects depends on practical understanding, not theory alone.",
+    points: [
+      "25-student science lab batches",
+      "Supervised practical sessions",
+      "Practical record and submission follow-up",
+    ],
+    icon: Microscope,
   },
   {
-    year: "2023-24",
-    metrics: {
-      passRate: 98.8,
-      distinction: 86.5,
-      avgScore: 87.6,
-      olympiads: 67,
-    },
+    title: "Academic follow-up parents can ask about",
+    description:
+      "Parents should expect a school to explain how progress is tracked before the final exam cycle arrives.",
+    points: [
+      "Unit tests and term assessments",
+      "Project, notebook, and practical review",
+      "Parent visibility through school follow-up",
+    ],
+    icon: Shield,
   },
-];
+] as const;
+
+const recognitionBlocks = [
+  {
+    title: "Academic recognition",
+    description:
+      "Board results, subject progress, class performance, and steady exam-readiness remain the clearest academic indicators for families.",
+  },
+  {
+    title: "Competition and event participation",
+    description:
+      "Students benefit when schools create consistent opportunities for debates, quizzes, exhibitions, assemblies, and inter-school participation.",
+  },
+  {
+    title: "Sports and co-curricular exposure",
+    description:
+      "Participation in games, stage activities, and co-curricular platforms builds confidence, discipline, and school representation.",
+  },
+  {
+    title: "Senior-secondary direction",
+    description:
+      "The right stream choice, academic routine, and board preparation shape the next level of student achievement after Class X.",
+  },
+] as const;
+
+const parentChecks = [
+  {
+    title: "Ask for the latest verified result summary",
+    description:
+      "If a school highlights achievements, parents should be able to ask for the current board-result summary rather than depending only on decorative claims.",
+  },
+  {
+    title: "Check how the school tracks progress",
+    description:
+      "A reliable achievements page should connect outcomes to real academic systems such as tests, notebook review, practical work, and revision support.",
+  },
+  {
+    title: "Look beyond toppers alone",
+    description:
+      "Parents should understand whether the school supports overall class performance, not only a few exceptional cases.",
+  },
+  {
+    title: "Confirm the current year, not an old highlight",
+    description:
+      "Achievement records change every session. Families should ask for the latest verified updates during the admission process.",
+  },
+] as const;
+
+export const metadata: Metadata = {
+  title: "Achievements | Divine International Academy Sirsaganj",
+  description:
+    "Review academic outcomes and student recognition at Divine International Academy, Sirsaganj, including board results, achievement areas, and the systems that support progress.",
+  keywords: [
+    "Divine International Academy achievements",
+    "CBSE school results Sirsaganj",
+    "school achievements Firozabad",
+    "academic outcomes Divine International Academy",
+  ],
+};
 
 export default function AchievementsPage() {
   return (
     <MainLayout>
-      <div className="min-h-screen bg-white">
-        {/* Hero Section */}
-        <section className="relative pt-20 pb-16 overflow-hidden">
-          <div className="absolute inset-0 bg-primary-900/5"></div>
-          <div className="container mx-auto px-4 relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center max-w-4xl mx-auto"
-            >
-              <h1 className="text-4xl md:text-5xl font-bold text-primary-900 mb-6">
-                Academic Excellence
-              </h1>
-              <p className="text-xl text-gray-700 mb-8 leading-relaxed">
-                Celebrating outstanding achievements of our students across
-                academics, sports, and cultural activities. A testament to our
-                commitment to holistic education and excellence.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button
-                  size="lg"
-                  asChild
-                  className="bg-primary hover:bg-primary-700"
-                >
-                  <Link href="/academics/curriculum">
-                    <BookOpen className="mr-2 h-5 w-5" />
-                    Our Curriculum
-                  </Link>
-                </Button>
-                <Button variant="outline" size="lg" asChild>
-                  <Link href="/apply">
-                    <Target className="mr-2 h-5 w-5" />
-                    Join Us
-                  </Link>
-                </Button>
+      <section className="relative overflow-hidden bg-[linear-gradient(180deg,#fffdfb_0%,#fff7f1_46%,#ffffff_100%)] pt-16 pb-20 sm:pt-20 sm:pb-24">
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-primary/5 to-transparent" />
+
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
+              Academic Outcomes
+            </Badge>
+            <h1 className="mt-5 text-4xl font-bold font-heading leading-tight text-primary sm:text-5xl lg:text-[3.35rem]">
+              Student achievement parents can understand without inflated claims
+            </h1>
+            <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
+              A school achievements page should not read like a trophy wall with
+              unverified ranks. It should show what progress looks like, what is
+              actually visible in the board years, and what systems support
+              student performance at Divine.
+            </p>
+          </div>
+
+          <div className="mt-10 overflow-hidden rounded-[32px] border border-slate-200/80 bg-white shadow-[0_28px_80px_-52px_rgba(15,23,42,0.25)]">
+            <div className="grid lg:grid-cols-[minmax(0,1.06fr)_minmax(340px,0.94fr)] lg:items-stretch">
+              <div className="relative min-h-[320px] border-b border-slate-200/80 bg-slate-100 lg:min-h-full lg:border-b-0 lg:border-r lg:border-slate-200/80">
+                <Image
+                  src="/images/submenu/achievements.jpg"
+                  alt="Academic achievements at Divine International Academy"
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  priority
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.08)_0%,rgba(15,23,42,0.18)_38%,rgba(15,23,42,0.72)_100%)]" />
+                <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6 lg:p-8">
+                  <Badge className="border border-white/15 bg-white/12 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-white/12">
+                    Parent-First View
+                  </Badge>
+                  <h2 className="mt-4 max-w-2xl text-2xl font-bold font-heading leading-tight text-white sm:text-[2rem] lg:text-[2.45rem]">
+                    Results matter, but parents also need to see how a school
+                    builds those results across classrooms, assessments, and the
+                    senior years.
+                  </h2>
+                </div>
               </div>
-            </motion.div>
-          </div>
-        </section>
 
-        {/* Key Statistics */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <div className="grid md:grid-cols-4 gap-8 max-w-5xl mx-auto">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-              >
-                <Card className="text-center hover:shadow-lg transition-shadow duration-300">
-                  <CardContent className="p-6">
-                    <div className="text-4xl font-bold text-primary mb-2">
-                      98.8%
+              <div className="p-6 sm:p-8 lg:p-10">
+                <p className="max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
+                  Divine’s strongest public academic proof is its 100% board
+                  results. Around that, parents should also look at teacher
+                  support, assessment discipline, practical learning, stream
+                  guidance, and whether the school creates platforms for student
+                  participation and confidence.
+                </p>
+
+                <div className="mt-5 flex flex-wrap gap-2.5">
+                  {achievementSignals.map((signal) => (
+                    <div
+                      key={signal}
+                      className="rounded-full border border-primary/10 bg-primary/5 px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-primary"
+                    >
+                      {signal}
                     </div>
-                    <div className="text-sm text-gray-600">
-                      Board Pass Rate 2024
+                  ))}
+                </div>
+
+                <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                  {achievementProfile.map((item) => (
+                    <div
+                      key={item.label}
+                      className="rounded-[24px] border border-slate-200 bg-slate-50 px-4 py-4"
+                    >
+                      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+                        {item.label}
+                      </p>
+                      <p className="mt-2 text-sm leading-6 text-slate-700">
+                        {item.value}
+                      </p>
                     </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
+                  ))}
+                </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
-                <Card className="text-center hover:shadow-lg transition-shadow duration-300">
-                  <CardContent className="p-6">
-                    <div className="text-4xl font-bold text-green-600 mb-2">
-                      86%
+                <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                  {achievementStats.map((stat) => (
+                    <div
+                      key={stat.label}
+                      className="rounded-[24px] border border-primary/10 bg-primary/5 px-4 py-4"
+                    >
+                      <p className="text-2xl font-bold text-primary">
+                        {stat.value}
+                      </p>
+                      <p className="mt-1 text-sm font-semibold text-slate-900">
+                        {stat.label}
+                      </p>
+                      <p className="mt-1 text-sm leading-6 text-slate-600">
+                        {stat.detail}
+                      </p>
                     </div>
-                    <div className="text-sm text-gray-600">
-                      Students with Distinction
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
+                  ))}
+                </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-              >
-                <Card className="text-center hover:shadow-lg transition-shadow duration-300">
-                  <CardContent className="p-6">
-                    <div className="text-4xl font-bold text-purple-600 mb-2">
-                      67
-                    </div>
-                    <div className="text-sm text-gray-600">
-                      Olympiad Winners 2024
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-              >
-                <Card className="text-center hover:shadow-lg transition-shadow duration-300">
-                  <CardContent className="p-6">
-                    <div className="text-4xl font-bold text-orange-600 mb-2">
-                      37
-                    </div>
-                    <div className="text-sm text-gray-600">
-                      Competitive Exam Qualifiers
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            </div>
-          </div>
-        </section>
-
-        {/* Board Results */}
-        <section className="py-16 bg-white/50">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold text-primary-900 mb-4">
-                CBSE Board Results 2024
-              </h2>
-              <p className="text-gray-600">
-                Outstanding performance in Class X and XII board examinations
-              </p>
-            </motion.div>
-
-            <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-              {boardResults.map((result, index) => (
-                <motion.div
-                  key={`${result.grade}-${result.year}`}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  <Card className="h-full">
-                    <CardHeader>
-                      <div className="flex items-center justify-between">
-                        <CardTitle className="text-primary-900">
-                          {result.grade} Results
-                        </CardTitle>
-                        <Badge className="bg-green-600">{result.year}</Badge>
-                      </div>
-                      <div className="grid grid-cols-2 gap-4 mt-4">
-                        <div className="text-center p-3 bg-primary-50 rounded-lg">
-                          <div className="text-2xl font-bold text-primary">
-                            {result.passPercentage}%
-                          </div>
-                          <div className="text-sm text-gray-600">Pass Rate</div>
-                        </div>
-                        <div className="text-center p-3 bg-green-50 rounded-lg">
-                          <div className="text-2xl font-bold text-green-600">
-                            {result.distinction}%
-                          </div>
-                          <div className="text-sm text-gray-600">
-                            Distinction
-                          </div>
-                        </div>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-6">
-                        <div>
-                          <h4 className="font-semibold text-gray-800 mb-3">
-                            Top Performers
-                          </h4>
-                          <div className="space-y-2">
-                            {result.toppers.map((topper, idx) => (
-                              <div
-                                key={idx}
-                                className="flex items-center justify-between p-2 bg-yellow-50 rounded"
-                              >
-                                <div>
-                                  <span className="font-medium">
-                                    {topper.name}
-                                  </span>
-                                  <div className="text-sm text-gray-600">
-                                    {topper.stream}
-                                  </div>
-                                </div>
-                                <Badge variant="secondary">
-                                  {topper.percentage}%
-                                </Badge>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-
-                        <div>
-                          <h4 className="font-semibold text-gray-800 mb-3">
-                            Key Highlights
-                          </h4>
-                          <ul className="space-y-1">
-                            {result.highlights.map((highlight, idx) => (
-                              <li
-                                key={idx}
-                                className="flex items-center gap-2 text-sm"
-                              >
-                                <Star className="w-3 h-3 text-yellow-500" />
-                                {highlight}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Competitive Exams */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold text-primary-900 mb-4">
-                Competitive Exam Success
-              </h2>
-              <p className="text-gray-600">
-                Exceptional performance in national level entrance examinations
-              </p>
-            </motion.div>
-
-            <div className="space-y-8 max-w-6xl mx-auto">
-              {competitiveExams.map((category, categoryIndex) => (
-                <motion.div
-                  key={category.category}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
-                >
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="text-primary-900">
-                        {category.category}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="grid md:grid-cols-3 gap-6">
-                        {category.exams.map((exam, examIndex) => (
-                          <div key={exam.name} className="text-center">
-                            <div
-                              className={`mx-auto w-12 h-12 ${exam.color} rounded-full flex items-center justify-center text-white mb-3`}
-                            >
-                              {exam.icon}
-                            </div>
-                            <h4 className="font-semibold text-gray-800 mb-2">
-                              {exam.name}
-                            </h4>
-                            <ul className="space-y-1 text-sm text-gray-600">
-                              {exam.achievements.map((achievement, idx) => (
-                                <li key={idx}>• {achievement}</li>
-                              ))}
-                            </ul>
-                          </div>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Olympiads */}
-        <section className="py-16 bg-white/50">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold text-primary-900 mb-4">
-                Olympiad Achievements
-              </h2>
-              <p className="text-gray-600">
-                Recognition at international, national, and regional levels
-              </p>
-            </motion.div>
-
-            <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {olympiads.map((olympiad, index) => (
-                <motion.div
-                  key={olympiad.subject}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  <Card className="h-full">
-                    <CardHeader className="text-center">
-                      <div className="mx-auto p-4 rounded-full w-fit bg-primary text-white">
-                        {olympiad.icon}
-                      </div>
-                      <CardTitle className="text-primary-900">
-                        {olympiad.subject} Olympiad
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-4">
-                        {olympiad.achievements.map((achievement, idx) => (
-                          <div
-                            key={achievement.level}
-                            className="p-3 bg-gray-50 rounded-lg"
-                          >
-                            <div className="flex items-center justify-between mb-1">
-                              <span className="font-medium text-sm">
-                                {achievement.level}
-                              </span>
-                              <Badge variant="secondary">
-                                {achievement.count} Winners
-                              </Badge>
-                            </div>
-                            <p className="text-xs text-gray-600">
-                              {achievement.awards}
-                            </p>
-                          </div>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Sports & Cultural */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <div className="max-w-6xl mx-auto">
-              <Tabs defaultValue="sports" className="w-full">
-                <TabsList className="grid w-full grid-cols-2 mb-8">
-                  <TabsTrigger value="sports">Sports Achievements</TabsTrigger>
-                  <TabsTrigger value="cultural">
-                    Cultural Excellence
-                  </TabsTrigger>
-                </TabsList>
-
-                <TabsContent value="sports">
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    className="grid md:grid-cols-2 gap-6"
+                <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                  <Button asChild size="lg" className="sm:flex-1">
+                    <Link href="/academics/curriculum">
+                      Review Curriculum
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                  <Button
+                    asChild
+                    size="lg"
+                    variant="outline"
+                    className="border-primary text-primary hover:bg-primary hover:text-white sm:flex-1"
                   >
-                    {sportsAchievements.map((sport, index) => (
-                      <Card
-                        key={sport.sport}
-                        className="hover:shadow-md transition-shadow duration-300"
-                      >
-                        <CardHeader>
-                          <div className="flex items-center gap-3">
-                            <span className="text-2xl">{sport.icon}</span>
-                            <div>
-                              <CardTitle className="text-primary-900">
-                                {sport.sport}
-                              </CardTitle>
-                              <p className="text-sm text-gray-600">
-                                {sport.players} active players
-                              </p>
-                            </div>
-                          </div>
-                        </CardHeader>
-                        <CardContent>
-                          <ul className="space-y-2">
-                            {sport.achievements.map((achievement, idx) => (
-                              <li
-                                key={idx}
-                                className="flex items-center gap-2 text-sm"
-                              >
-                                <Medal className="w-4 h-4 text-yellow-500" />
-                                {achievement}
-                              </li>
-                            ))}
-                          </ul>
-                        </CardContent>
-                      </Card>
-                    ))}
-                  </motion.div>
-                </TabsContent>
-
-                <TabsContent value="cultural">
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    className="space-y-6"
-                  >
-                    {culturalAchievements.map((activity, index) => (
-                      <Card key={activity.activity}>
-                        <CardHeader>
-                          <div className="flex items-center justify-between">
-                            <CardTitle className="text-primary-900">
-                              {activity.activity}
-                            </CardTitle>
-                            <Badge variant="outline">
-                              {activity.participants} participants
-                            </Badge>
-                          </div>
-                        </CardHeader>
-                        <CardContent>
-                          <div className="grid md:grid-cols-3 gap-4">
-                            {activity.achievements.map((achievement, idx) => (
-                              <div
-                                key={idx}
-                                className="flex items-center gap-2 text-sm"
-                              >
-                                <Award className="w-4 h-4 text-purple-500" />
-                                {achievement}
-                              </div>
-                            ))}
-                          </div>
-                        </CardContent>
-                      </Card>
-                    ))}
-                  </motion.div>
-                </TabsContent>
-              </Tabs>
+                    <Link href="/contact">Ask for Current Details</Link>
+                  </Button>
+                </div>
+              </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Progress Trend */}
-        <section className="py-16 bg-white/50">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold text-primary-900 mb-4">
-                Consistent Growth
-              </h2>
-              <p className="text-gray-600">
-                Three-year performance trend showing continuous improvement
-              </p>
-            </motion.div>
+      <section className="pb-20">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
+              Achievement Areas
+            </Badge>
+            <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
+              Where student achievement becomes visible at Divine
+            </h2>
+            <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-base">
+              This page avoids invented topper lists and focuses on the kinds of
+              outcomes families can actually evaluate.
+            </p>
+          </div>
 
-            <div className="max-w-4xl mx-auto">
-              <Card>
+          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {achievementAreas.map((area) => {
+              const Icon = area.icon;
+
+              return (
+                <Card
+                  key={area.title}
+                  className="rounded-[28px] border-slate-200/80 bg-white shadow-[0_20px_60px_-46px_rgba(15,23,42,0.24)]"
+                >
+                  <CardContent className="p-6">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <h3 className="mt-5 text-xl font-bold font-heading text-slate-950">
+                      {area.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-7 text-slate-600">
+                      {area.description}
+                    </p>
+
+                    <ul className="mt-5 space-y-3">
+                      {area.points.map((point) => (
+                        <li key={point} className="flex items-start gap-3">
+                          <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                          <span className="text-sm leading-6 text-slate-700">
+                            {point}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-slate-50/80 py-20">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-white px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-white">
+              Systems Behind Results
+            </Badge>
+            <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
+              Outcomes are stronger when the school systems are visible
+            </h2>
+            <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-base">
+              Parents should connect any achievement claim to the systems that
+              produce it.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+            {systemsBehindResults.map((item) => {
+              const Icon = item.icon;
+
+              return (
+                <Card
+                  key={item.title}
+                  className="rounded-[28px] border-slate-200/80 bg-white"
+                >
+                  <CardContent className="p-6 sm:p-7">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <h3 className="mt-5 text-xl font-bold font-heading text-slate-950">
+                      {item.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-7 text-slate-600">
+                      {item.description}
+                    </p>
+
+                    <ul className="mt-5 space-y-3">
+                      {item.points.map((point) => (
+                        <li key={point} className="flex items-start gap-3">
+                          <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                          <span className="text-sm leading-6 text-slate-700">
+                            {point}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
+              Recognition Beyond Marks
+            </Badge>
+            <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
+              A stronger school profile shows more than just exam scores
+            </h2>
+          </div>
+
+          <div className="mt-10 grid gap-6 lg:grid-cols-2 xl:grid-cols-4">
+            {recognitionBlocks.map((item) => (
+              <Card
+                key={item.title}
+                className="rounded-[28px] border-slate-200/80 bg-white shadow-[0_20px_60px_-46px_rgba(15,23,42,0.2)]"
+              >
                 <CardContent className="p-6">
-                  <div className="overflow-x-auto">
-                    <table className="w-full">
-                      <thead className="bg-primary-50">
-                        <tr>
-                          <th className="px-4 py-3 text-left font-semibold text-primary-900">
-                            Year
-                          </th>
-                          <th className="px-4 py-3 text-center font-semibold text-primary-900">
-                            Pass Rate
-                          </th>
-                          <th className="px-4 py-3 text-center font-semibold text-primary-900">
-                            Distinction %
-                          </th>
-                          <th className="px-4 py-3 text-center font-semibold text-primary-900">
-                            Avg Score
-                          </th>
-                          <th className="px-4 py-3 text-center font-semibold text-primary-900">
-                            Olympiad Winners
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {yearlyProgress.map((year, index) => (
-                          <motion.tr
-                            key={year.year}
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.3, delay: index * 0.1 }}
-                            className={
-                              index % 2 === 0 ? "bg-gray-50" : "bg-white"
-                            }
-                          >
-                            <td className="px-4 py-3 font-medium text-primary-900">
-                              {year.year}
-                            </td>
-                            <td className="px-4 py-3 text-center">
-                              <Badge className="bg-green-600">
-                                {year.metrics.passRate}%
-                              </Badge>
-                            </td>
-                            <td className="px-4 py-3 text-center">
-                              <Badge variant="secondary">
-                                {year.metrics.distinction}%
-                              </Badge>
-                            </td>
-                            <td className="px-4 py-3 text-center font-semibold">
-                              {year.metrics.avgScore}%
-                            </td>
-                            <td className="px-4 py-3 text-center">
-                              <Badge className="bg-purple-600">
-                                {year.metrics.olympiads}
-                              </Badge>
-                            </td>
-                          </motion.tr>
-                        ))}
-                      </tbody>
-                    </table>
+                  <h3 className="text-xl font-bold font-heading text-slate-950">
+                    {item.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-7 text-slate-600">
+                    {item.description}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-slate-50/80 py-20">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-white px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-white">
+              Parent Checklist
+            </Badge>
+            <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
+              What parents should verify before trusting any achievements page
+            </h2>
+          </div>
+
+          <div className="mt-10 grid gap-6 lg:grid-cols-2">
+            {parentChecks.map((item) => (
+              <Card
+                key={item.title}
+                className="rounded-[28px] border-slate-200/80 bg-white"
+              >
+                <CardContent className="p-6 sm:p-7">
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                      <Users className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold font-heading leading-7 text-slate-950">
+                        {item.title}
+                      </h3>
+                      <p className="mt-3 text-sm leading-7 text-slate-600">
+                        {item.description}
+                      </p>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
-            </div>
+            ))}
           </div>
-        </section>
 
-        {/* CTA Section */}
-        <section className="py-16 bg-primary">
-          <div className="container mx-auto px-4 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="max-w-3xl mx-auto"
-            >
-              <h2 className="text-3xl font-bold text-white mb-4">
-                Be Part of Our Success Story
-              </h2>
-              <p className="text-primary-100 mb-8 text-lg">
-                Join Divine International Academy and unlock your potential for
-                excellence in academics, sports, and personal development. Your
-                success story starts here.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" variant="secondary" asChild>
-                  <Link href="/academics/streams">
-                    <Target className="mr-2 h-5 w-5" />
-                    Explore Programs
+          <div className="mx-auto mt-6 max-w-5xl rounded-[28px] border border-amber-200 bg-amber-50 px-5 py-5 text-sm leading-7 text-amber-900 sm:px-6">
+            For the latest board summary, stream-specific outcome details, or
+            current-year student recognitions, parents should contact the school
+            directly instead of relying on old website highlights alone.
+          </div>
+        </div>
+      </section>
+
+      <section className="pb-24 pt-20">
+        <div className="container mx-auto px-4">
+          <div className="rounded-[32px] bg-primary px-6 py-8 text-white shadow-[0_28px_80px_-46px_rgba(127,29,29,0.45)] sm:px-8 sm:py-10 lg:px-12 lg:py-12">
+            <Badge className="border border-white/15 bg-white/12 px-3.5 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-white/12">
+              Ask for the Latest Update
+            </Badge>
+            <div className="mt-5 grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
+              <div className="max-w-3xl">
+                <h2 className="text-3xl font-bold font-heading leading-tight sm:text-4xl lg:text-[2.8rem]">
+                  Need current academic results, stream-wise guidance, or the
+                  latest school achievement summary?
+                </h2>
+                <p className="mt-4 text-sm leading-7 text-white/85 sm:text-base">
+                  Families comparing the best CBSE school options in Sirsaganj
+                  or near Firozabad can contact Divine for the latest verified
+                  academic details before they make an admission decision.
+                </p>
+              </div>
+
+              <div className="flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
+                <Button
+                  asChild
+                  size="lg"
+                  className="bg-white text-primary hover:bg-white/90"
+                >
+                  <Link href="/contact">
+                    Contact the School
+                    <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
                 <Button
+                  asChild
                   size="lg"
                   variant="outline"
-                  className="bg-white text-primary hover:bg-primary-50"
-                  asChild
+                  className="border-white/30 bg-transparent text-white hover:bg-white hover:text-primary"
                 >
-                  <Link href="/admissions/process">
-                    <Users className="mr-2 h-5 w-5" />
-                    Admission Process
-                  </Link>
-                </Button>
-                <Button
-                  size="lg"
-                  variant="ghost"
-                  className="text-white hover:bg-primary-600"
-                  asChild
-                >
-                  <Link href="/apply">
-                    <Award className="mr-2 h-5 w-5" />
-                    Apply Now
+                  <Link href="/admissions">
+                    Review Admissions
+                    <GraduationCap className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
               </div>
-            </motion.div>
+            </div>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
     </MainLayout>
   );
 }

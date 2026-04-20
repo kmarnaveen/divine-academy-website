@@ -1,618 +1,429 @@
-'use client'
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import {
+  ArrowRight,
+  BookOpen,
+  CheckCircle,
+  Compass,
+  GraduationCap,
+  Monitor,
+  Shield,
+  Users,
+} from "lucide-react";
 
-import { motion } from 'framer-motion'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
-import { Target, Eye, Heart, Star, Users, BookOpen, Globe, Award, Lightbulb, Compass, TreePine, Handshake } from 'lucide-react'
-import Link from 'next/link'
-import { MainLayout } from '@/components/layout/main-layout'
+import { MainLayout } from "@/components/layout/main-layout";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 
-const visionMission = {
-  vision: {
-    title: "Our Vision",
+const visionSignals = [
+  "CBSE school vision linked to daily routines",
+  "Values, discipline, and academic consistency",
+  "Practical learning and future readiness",
+] as const;
+
+const visionBlocks = [
+  {
+    title: "Vision",
     description:
-      "To be a leading educational institution that nurtures global citizens with strong moral values, innovative thinking, and a lifelong passion for learning and service to humanity.",
-    icon: <Eye className="w-12 h-12" />,
-    color: "bg-primary",
-    details: [
-      "Becoming a globally recognized center of educational excellence",
-      "Developing future leaders with strong ethical foundations",
-      "Creating an inclusive learning environment for all students",
-      "Fostering innovation and critical thinking skills",
-      "Building a sustainable and environmentally conscious community",
+      "Build students with strong academic habits, clear communication, responsible conduct, and readiness for higher studies and life beyond school.",
+    points: [
+      "Strong foundational learning from the early years onward",
+      "Confident classroom, stage, and school participation",
+      "Discipline and values-led conduct across the school day",
     ],
   },
-  mission: {
-    title: "Our Mission",
+  {
+    title: "Mission",
     description:
-      "To provide holistic education that develops intellectual curiosity, character building, and practical skills while fostering creativity, collaboration, and compassionate leadership in a nurturing environment.",
-    icon: <Target className="w-12 h-12" />,
-    color: "bg-primary",
-    details: [
-      "Delivering quality education aligned with global standards",
-      "Cultivating critical thinking and problem-solving abilities",
-      "Promoting cultural diversity and global awareness",
-      "Encouraging active participation in community service",
-      "Supporting individual talents and interests of every student",
+      "Run a school day that combines structured teaching, practical exposure, reading support, sports, digital learning, and safe campus systems from Pre-Primary to Class XII.",
+    points: [
+      "Planned teaching and teacher follow-up across sections",
+      "Lab, library, activity, and sports exposure inside the timetable",
+      "Clear parent-facing support on academics, safety, and student growth",
     ],
   },
+] as const;
+
+const visionPillars = [
+  {
+    title: "Academic discipline",
+    description:
+      "Learning is expected to be regular, organised, and teacher-guided so students build steady academic habits instead of last-minute dependence.",
+    points: [
+      "Planned lessons and classroom continuity",
+      "Revision and subject follow-up",
+      "Board preparation support in senior classes",
+    ],
+    icon: BookOpen,
+  },
+  {
+    title: "Visible values and conduct",
+    description:
+      "Respect, responsibility, punctuality, and behaviour are reinforced through routines, supervision, and clear expectations on campus.",
+    points: [
+      "Morning routines and school discipline",
+      "Respectful student conduct and accountability",
+      "Daily supervision across classes and campus movement",
+    ],
+    icon: Shield,
+  },
+  {
+    title: "Learning beyond textbooks",
+    description:
+      "The school vision includes practical work, digital learning, reading culture, sports, and public participation so students develop confidence alongside academics.",
+    points: [
+      "Science and computer exposure",
+      "Library and reading routines",
+      "Assemblies, activities, and stage confidence",
+    ],
+    icon: Monitor,
+  },
+  {
+    title: "Readiness for the next stage",
+    description:
+      "Students are expected to progress with better communication, stronger habits, and greater independence as they move from foundational to senior secondary classes.",
+    points: [
+      "Age-appropriate responsibility",
+      "Communication and participation growth",
+      "Preparation for higher studies and future pathways",
+    ],
+    icon: GraduationCap,
+  },
+] as const;
+
+const valueBlocks = [
+  {
+    title: "Consistency",
+    description:
+      "Regular school routines, classroom expectations, and teacher follow-up help students progress with stability.",
+  },
+  {
+    title: "Respect",
+    description:
+      "Respect for teachers, classmates, campus rules, and shared spaces remains central to the school culture.",
+  },
+  {
+    title: "Participation",
+    description:
+      "Students are encouraged to take part in activities, events, sports, and presentations rather than stay limited to written work only.",
+  },
+  {
+    title: "Responsibility",
+    description:
+      "The school expects students to develop responsibility for learning, behaviour, teamwork, and preparation.",
+  },
+] as const;
+
+const nepFocus = [
+  "Foundational learning and literacy support",
+  "Experiential and practical exposure where relevant",
+  "Communication, participation, and wider student development",
+  "Digital familiarity, sports, arts, and reading alongside academics",
+] as const;
+
+const nextSteps = [
+  {
+    title: "See school leadership",
+    description:
+      "Understand how the principal office, academic coordination, and parent communication work across the school.",
+    href: "/about/leadership",
+    cta: "Go to leadership",
+    icon: Users,
+  },
+  {
+    title: "Read the principal's message",
+    description:
+      "See the academic priorities and school expectations shared from the principal's desk.",
+    href: "/about/principal",
+    cta: "Go to principal's message",
+    icon: Compass,
+  },
+  {
+    title: "Review admissions",
+    description:
+      "Check the admissions process, fees, and the next step for Nursery to Class XII.",
+    href: "/admissions",
+    cta: "Go to admissions",
+    icon: ArrowRight,
+  },
+] as const;
+
+export const metadata: Metadata = {
+  title: "Vision and Mission | Divine International Academy Sirsaganj",
+  description:
+    "Read the vision, mission, values, and NEP 2020 direction of Divine International Academy, Sirsaganj, and see how they translate into the school day.",
+  keywords: [
+    "Divine International Academy vision",
+    "school mission Sirsaganj",
+    "CBSE school values Firozabad",
+    "NEP 2020 school direction",
+  ],
 };
-
-const coreValues = [
-  {
-    value: "Excellence",
-    description: "Striving for the highest standards in all aspects of education and character development",
-    icon: <Star className="w-8 h-8" />,
-    color: "bg-yellow-500",
-    examples: ["Academic achievements", "Character building", "Professional development", "Continuous improvement"]
-  },
-  {
-    value: "Integrity",
-    description: "Upholding honesty, transparency, and moral principles in all our actions and decisions",
-    icon: <Heart className="w-8 h-8" />,
-    color: "bg-red-500",
-    examples: ["Truthfulness", "Ethical conduct", "Moral responsibility", "Authentic leadership"]
-  },
-  {
-    value: "Innovation",
-    description: "Embracing creativity, technology, and modern teaching methodologies for effective learning",
-    icon: <Lightbulb className="w-8 h-8" />,
-    color: "bg-purple-500",
-    examples: ["Creative thinking", "Technology integration", "Modern pedagogy", "Research orientation"]
-  },
-  {
-    value: "Inclusivity",
-    description: "Creating a welcoming environment that celebrates diversity and ensures equal opportunities",
-    icon: <Users className="w-8 h-8" />,
-    color: "bg-blue-500",
-    examples: ["Cultural diversity", "Equal opportunities", "Respect for all", "Collaborative learning"]
-  },
-  {
-    value: "Compassion",
-    description: "Fostering empathy, kindness, and social responsibility towards the community and environment",
-    icon: <Handshake className="w-8 h-8" />,
-    color: "bg-green-500",
-    examples: ["Community service", "Environmental care", "Social responsibility", "Helping others"]
-  },
-  {
-    value: "Growth",
-    description: "Promoting continuous learning, personal development, and adaptation to changing world needs",
-    icon: <TreePine className="w-8 h-8" />,
-    color: "bg-orange-500",
-    examples: ["Lifelong learning", "Personal development", "Skill enhancement", "Adaptability"]
-  }
-]
-
-const educationalPhilosophy = [
-  {
-    principle: "Student-Centered Learning",
-    description: "Every student is unique and learns differently. We adapt our teaching methods to meet individual learning styles and needs.",
-    icon: <Users className="w-6 h-6" />,
-    implementation: [
-      "Personalized learning plans",
-      "Multiple intelligence approach",
-      "Individual attention and support",
-      "Flexible assessment methods"
-    ]
-  },
-  {
-    principle: "Holistic Development",
-    description: "Education goes beyond academics to include physical, emotional, social, and spiritual development of each child.",
-    icon: <Globe className="w-6 h-6" />,
-    implementation: [
-      "Comprehensive curriculum design",
-      "Sports and physical activities",
-      "Arts and cultural programs",
-      "Character and values education"
-    ]
-  },
-  {
-    principle: "Critical Thinking",
-    description: "We encourage students to question, analyze, and think independently to become confident problem solvers.",
-    icon: <BookOpen className="w-6 h-6" />,
-    implementation: [
-      "Inquiry-based learning",
-      "Project-based assessments",
-      "Discussion and debate",
-      "Research and exploration"
-    ]
-  },
-  {
-    principle: "Global Perspective",
-    description: "Preparing students to be responsible global citizens who understand and respect cultural diversity.",
-    icon: <Compass className="w-6 h-6" />,
-    implementation: [
-      "International curriculum standards",
-      "Cultural exchange programs",
-      "Language learning",
-      "Global awareness initiatives"
-    ]
-  }
-]
-
-const futureGoals = [
-  {
-    goal: "Academic Excellence Enhancement",
-    description: "Achieve 100% pass rate with 90% distinction in board examinations",
-    timeline: "2024-2026",
-    status: "In Progress",
-    milestones: [
-      "Advanced teacher training programs",
-      "Upgraded laboratory facilities",
-      "Personalized learning systems",
-      "Regular assessment and feedback"
-    ]
-  },
-  {
-    goal: "Infrastructure Development",
-    description: "Expand campus facilities and upgrade technology infrastructure",
-    timeline: "2024-2027",
-    status: "Planned",
-    milestones: [
-      "New academic building construction",
-      "Smart classroom installation",
-      "Upgraded sports complex",
-      "Digital library expansion"
-    ]
-  },
-  {
-    goal: "International Recognition",
-    description: "Achieve international accreditation and establish global partnerships",
-    timeline: "2025-2028",
-    status: "Planning",
-    milestones: [
-      "International curriculum adoption",
-      "Global school partnerships",
-      "Student exchange programs",
-      "International teaching standards"
-    ]
-  },
-  {
-    goal: "Sustainability Initiative",
-    description: "Become a carbon-neutral, environmentally sustainable school",
-    timeline: "2024-2030",
-    status: "Ongoing",
-    milestones: [
-      "Solar energy installation",
-      "Waste management systems",
-      "Green building certification",
-      "Environmental education programs"
-    ]
-  }
-]
-
-const achievements = [
-  {
-    year: "2024",
-    achievement: "Recognized as 'Best School for Holistic Development' by Regional Education Board",
-    icon: <Award className="w-6 h-6" />
-  },
-  {
-    year: "2023",
-    achievement: "100% Pass Rate in Class XII Board Examinations with 85% Distinction",
-    icon: <Star className="w-6 h-6" />
-  },
-  {
-    year: "2023",
-    achievement: "Green School Certification for Environmental Sustainability",
-    icon: <TreePine className="w-6 h-6" />
-  },
-  {
-    year: "2022",
-    achievement: "Excellence Award for Innovation in Teaching Methodology",
-    icon: <Lightbulb className="w-6 h-6" />
-  }
-]
 
 export default function VisionPage() {
   return (
     <MainLayout>
-      <div className="min-h-screen bg-white">
-        {/* Hero Section */}
-        <section className="relative pt-20 pb-16 overflow-hidden">
-          <div className="absolute inset-0 bg-blue-900/5"></div>
-          <div className="container mx-auto px-4 relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center max-w-4xl mx-auto"
-            >
-              <h1 className="text-4xl md:text-5xl font-bold text-blue-900 mb-6">
-                Our Vision & Mission
-              </h1>
-              <p className="text-xl text-gray-700 mb-8 leading-relaxed">
-                Guided by our core values and educational philosophy, we are
-                committed to nurturing tomorrow's leaders with integrity,
-                innovation, and excellence.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button
-                  size="lg"
-                  asChild
-                  className="bg-blue-600 hover:bg-blue-700"
-                >
-                  <Link href="#vision-mission">
-                    <Target className="mr-2 h-5 w-5" />
-                    Our Purpose
-                  </Link>
-                </Button>
-                <Button variant="outline" size="lg" asChild>
-                  <Link href="/about/leadership">
-                    <Users className="mr-2 h-5 w-5" />
-                    Meet Leadership
-                  </Link>
-                </Button>
+      <section className="relative overflow-hidden bg-[linear-gradient(180deg,#fffdfb_0%,#fff7f1_46%,#ffffff_100%)] pt-16 pb-20 sm:pt-20 sm:pb-24">
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-primary/5 to-transparent" />
+
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
+              Vision and Mission
+            </Badge>
+            <h1 className="mt-5 text-4xl font-bold font-heading leading-tight text-primary sm:text-5xl lg:text-[3.35rem]">
+              A school vision that shows up in discipline, teaching, and daily
+              student life
+            </h1>
+            <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
+              At Divine International Academy, the school vision is not treated
+              as a ceremonial statement. It is visible in classroom structure,
+              supervision, student conduct, practical learning, and how students
+              are prepared for the next stage.
+            </p>
+          </div>
+
+          <div className="mt-10 overflow-hidden rounded-[32px] border border-slate-200/80 bg-white shadow-[0_28px_80px_-52px_rgba(15,23,42,0.24)]">
+            <div className="grid lg:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.92fr)] lg:items-stretch">
+              <div className="relative min-h-[320px] border-b border-slate-200/80 bg-slate-100 lg:min-h-full lg:border-b-0 lg:border-r lg:border-slate-200/80">
+                <Image
+                  src="/images/submenu/curriculum.jpg"
+                  alt="Learning environment at Divine International Academy"
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 48vw, 100vw"
+                  priority
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.08)_0%,rgba(15,23,42,0.18)_38%,rgba(15,23,42,0.68)_100%)]" />
+                <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6 lg:p-8">
+                  <Badge className="border border-white/15 bg-white/12 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-white/12">
+                    School Direction
+                  </Badge>
+                  <h2 className="mt-4 max-w-2xl text-2xl font-bold font-heading leading-tight text-white sm:text-[2rem] lg:text-[2.45rem]">
+                    Families should be able to see the vision in routines, not
+                    only in slogans.
+                  </h2>
+                </div>
               </div>
-            </motion.div>
-          </div>
-        </section>
 
-        {/* Vision & Mission */}
-        <section id="vision-mission" className="py-16">
-          <div className="container mx-auto px-4">
-            <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-              {Object.entries(visionMission).map(([key, content], index) => (
-                <motion.div
-                  key={key}
-                  initial={{ opacity: 0, x: index === 0 ? -20 : 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.2 }}
-                >
-                  <Card className="h-full">
-                    <CardHeader>
-                      <div className="mx-auto p-4 bg-primary rounded-full text-white w-fit mb-4">
-                        {content.icon}
-                      </div>
-                      <CardTitle className="text-2xl text-blue-900 text-center">
-                        {content.title}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-gray-700 text-center mb-6 leading-relaxed text-lg">
-                        {content.description}
+              <div className="p-6 sm:p-8 lg:p-10">
+                <p className="max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
+                  The school direction is built around strong teaching habits,
+                  responsible conduct, wider participation, and preparation for
+                  higher classes and future pathways.
+                </p>
+
+                <div className="mt-5 flex flex-wrap gap-2.5">
+                  {visionSignals.map((signal) => (
+                    <div
+                      key={signal}
+                      className="rounded-full border border-primary/10 bg-primary/5 px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-primary"
+                    >
+                      {signal}
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-6 space-y-4">
+                  {visionBlocks.map((block) => (
+                    <div
+                      key={block.title}
+                      className="rounded-[24px] border border-slate-200 bg-slate-50 px-5 py-5"
+                    >
+                      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+                        {block.title}
                       </p>
-                      <div className="space-y-3">
-                        <h4 className="font-semibold text-gray-800">
-                          Key Focus Areas:
-                        </h4>
-                        <ul className="space-y-2">
-                          {content.details.map((detail, idx) => (
-                            <li key={idx} className="flex items-start gap-2">
-                              <div className="w-2 h-2 bg-blue-600 rounded-full mt-2 flex-shrink-0"></div>
-                              <span className="text-gray-600 text-sm">
-                                {detail}
-                              </span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Core Values */}
-        <section className="py-16 bg-white/50">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold text-blue-900 mb-4">
-                Our Core Values
-              </h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                These fundamental principles guide every aspect of our
-                educational approach and shape the character of our school
-                community
-              </p>
-            </motion.div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-              {coreValues.map((value, index) => (
-                <motion.div
-                  key={value.value}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  <Card className="h-full hover:shadow-lg transition-shadow duration-300">
-                    <CardHeader>
-                      <div
-                        className={`mx-auto p-3 ${value.color} rounded-full text-white w-fit mb-3`}
-                      >
-                        {value.icon}
-                      </div>
-                      <CardTitle className="text-center text-blue-900">
-                        {value.value}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-gray-600 text-sm text-center mb-4">
-                        {value.description}
+                      <p className="mt-3 text-sm leading-7 text-slate-700 sm:text-base">
+                        {block.description}
                       </p>
-                      <div className="space-y-2">
-                        <h4 className="font-semibold text-gray-800 text-sm">
-                          Demonstrated Through:
-                        </h4>
-                        <div className="flex flex-wrap gap-1">
-                          {value.examples.map((example, idx) => (
-                            <Badge
-                              key={idx}
-                              variant="outline"
-                              className="text-xs"
-                            >
-                              {example}
-                            </Badge>
-                          ))}
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
+                    </div>
+                  ))}
+                </div>
 
-        {/* Educational Philosophy */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold text-blue-900 mb-4">
-                Our Educational Philosophy
-              </h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                Our teaching and learning approach is built on proven
-                educational principles that ensure comprehensive development of
-                every student
-              </p>
-            </motion.div>
-
-            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              {educationalPhilosophy.map((principle, index) => (
-                <motion.div
-                  key={principle.principle}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  <Card className="h-full">
-                    <CardHeader>
-                      <div className="flex items-center gap-3">
-                        <div className="p-2 bg-blue-100 rounded-full text-blue-600">
-                          {principle.icon}
-                        </div>
-                        <CardTitle className="text-blue-900">
-                          {principle.principle}
-                        </CardTitle>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-gray-700 mb-4">
-                        {principle.description}
-                      </p>
-                      <div className="space-y-2">
-                        <h4 className="font-semibold text-gray-800 text-sm">
-                          Implementation:
-                        </h4>
-                        <ul className="space-y-1">
-                          {principle.implementation.map((item, idx) => (
-                            <li
-                              key={idx}
-                              className="flex items-center gap-2 text-sm text-gray-600"
-                            >
-                              <div className="w-1.5 h-1.5 bg-blue-500 rounded-full"></div>
-                              {item}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Future Goals */}
-        <section className="py-16 bg-white/50">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold text-blue-900 mb-4">
-                Strategic Goals & Future Vision
-              </h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                Our roadmap for continuous improvement and excellence in
-                education
-              </p>
-            </motion.div>
-
-            <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-              {futureGoals.map((goal, index) => (
-                <motion.div
-                  key={goal.goal}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  <Card className="h-full">
-                    <CardHeader>
-                      <div className="flex items-start justify-between">
-                        <div className="flex-grow">
-                          <CardTitle className="text-blue-900 mb-2">
-                            {goal.goal}
-                          </CardTitle>
-                          <div className="flex items-center gap-2 mb-2">
-                            <Badge
-                              className={`text-xs ${
-                                goal.status === "In Progress"
-                                  ? "bg-blue-100 text-blue-800"
-                                  : goal.status === "Planned"
-                                  ? "bg-orange-100 text-orange-800"
-                                  : goal.status === "Planning"
-                                  ? "bg-purple-100 text-purple-800"
-                                  : "bg-green-100 text-green-800"
-                              }`}
-                            >
-                              {goal.status}
-                            </Badge>
-                            <Badge variant="outline" className="text-xs">
-                              {goal.timeline}
-                            </Badge>
-                          </div>
-                        </div>
-                      </div>
-                      <p className="text-gray-700">{goal.description}</p>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-3">
-                        <h4 className="font-semibold text-gray-800">
-                          Key Milestones:
-                        </h4>
-                        <div className="grid grid-cols-1 gap-2">
-                          {goal.milestones.map((milestone, idx) => (
-                            <div
-                              key={idx}
-                              className="flex items-center gap-2 p-2 bg-gray-50 rounded-lg"
-                            >
-                              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                              <span className="text-sm text-gray-700">
-                                {milestone}
-                              </span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Recent Achievements */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold text-blue-900 mb-4">
-                Recent Achievements
-              </h2>
-              <p className="text-gray-600">
-                Recognitions and milestones that reflect our commitment to
-                excellence
-              </p>
-            </motion.div>
-
-            <div className="max-w-4xl mx-auto">
-              <div className="space-y-6">
-                {achievements.map((achievement, index) => (
-                  <motion.div
-                    key={achievement.year + achievement.achievement}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                  <Button
+                    asChild
+                    size="lg"
+                    className="bg-primary text-white hover:bg-primary/90 sm:flex-1"
                   >
-                    <Card className="hover:shadow-md transition-shadow duration-300">
-                      <CardContent className="p-6">
-                        <div className="flex items-center gap-4">
-                          <div className="p-3 bg-yellow-100 rounded-full text-yellow-600">
-                            {achievement.icon}
-                          </div>
-                          <div className="flex-grow">
-                            <div className="flex items-center gap-3 mb-2">
-                              <Badge className="bg-blue-600 text-white">
-                                {achievement.year}
-                              </Badge>
-                            </div>
-                            <p className="text-gray-700">
-                              {achievement.achievement}
-                            </p>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
+                    <Link href="/about/leadership">
+                      Meet Leadership
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                  <Button
+                    asChild
+                    size="lg"
+                    variant="outline"
+                    className="border-primary text-primary hover:bg-primary hover:text-white sm:flex-1"
+                  >
+                    <Link href="/contact">Book a Campus Visit</Link>
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="pb-20">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
+              What It Means On Campus
+            </Badge>
+            <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
+              The school vision becomes real through how the campus operates
+              every day
+            </h2>
+          </div>
+
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            {visionPillars.map((pillar) => {
+              const Icon = pillar.icon;
+
+              return (
+                <Card
+                  key={pillar.title}
+                  className="rounded-[28px] border-slate-200/80 bg-white shadow-[0_20px_60px_-46px_rgba(15,23,42,0.24)]"
+                >
+                  <CardContent className="p-6 sm:p-7">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <h3 className="mt-5 text-xl font-bold font-heading text-slate-950">
+                      {pillar.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-7 text-slate-600 sm:text-base">
+                      {pillar.description}
+                    </p>
+
+                    <ul className="mt-5 space-y-3">
+                      {pillar.points.map((point) => (
+                        <li key={point} className="flex items-start gap-3">
+                          <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                          <span className="text-sm leading-6 text-slate-700">
+                            {point}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-slate-50/80 py-20">
+        <div className="container mx-auto px-4">
+          <div className="grid gap-8 xl:grid-cols-[minmax(0,0.98fr)_minmax(0,1.02fr)] xl:items-start">
+            <div>
+              <Badge className="border border-primary/10 bg-white px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-white">
+                Values In Practice
+              </Badge>
+              <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl">
+                The values page matters only if families can identify them in
+                daily school life
+              </h2>
+
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                {valueBlocks.map((item) => (
+                  <Card
+                    key={item.title}
+                    className="rounded-[24px] border-slate-200/80 bg-white"
+                  >
+                    <CardContent className="p-5">
+                      <h3 className="text-base font-bold text-slate-950">
+                        {item.title}
+                      </h3>
+                      <p className="mt-2 text-sm leading-6 text-slate-600">
+                        {item.description}
+                      </p>
+                    </CardContent>
+                  </Card>
                 ))}
               </div>
             </div>
-          </div>
-        </section>
 
-        {/* CTA Section */}
-        <section className="py-16 bg-primary">
-          <div className="container mx-auto px-4 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="max-w-3xl mx-auto"
-            >
-              <h2 className="text-3xl font-bold text-white mb-4">
-                Join Our Vision of Excellence
-              </h2>
-              <p className="text-blue-100 mb-8 text-lg">
-                Be part of a school community committed to nurturing future
-                leaders with strong values and academic excellence.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" variant="secondary" asChild>
-                  <Link href="/about/leadership">
-                    <Users className="mr-2 h-5 w-5" />
-                    Meet Our Team
-                  </Link>
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="bg-white text-blue-600 hover:bg-blue-50"
-                  asChild
-                >
-                  <Link href="/admissions">
-                    <BookOpen className="mr-2 h-5 w-5" />
-                    Admissions
-                  </Link>
-                </Button>
-                <Button
-                  size="lg"
-                  variant="ghost"
-                  className="text-white hover:bg-blue-600"
-                  asChild
-                >
-                  <Link href="/apply">
-                    <Target className="mr-2 h-5 w-5" />
-                    Apply Now
-                  </Link>
-                </Button>
-              </div>
-            </motion.div>
+            <Card className="rounded-[28px] border-slate-200/80 bg-white shadow-[0_20px_60px_-46px_rgba(15,23,42,0.22)]">
+              <CardContent className="p-6 sm:p-7">
+                <Badge className="border border-primary/10 bg-primary/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary hover:bg-primary/5">
+                  NEP 2020 Direction
+                </Badge>
+                <h3 className="mt-5 text-2xl font-bold font-heading text-slate-950">
+                  The school direction aligns best when teaching moves beyond
+                  rote-only routines
+                </h3>
+
+                <ul className="mt-6 space-y-4">
+                  {nepFocus.map((item) => (
+                    <li key={item} className="flex items-start gap-3">
+                      <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                      <span className="text-sm leading-6 text-slate-700">
+                        {item}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
+
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
+              Next Step
+            </Badge>
+            <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
+              Move from school values to leadership, principal guidance, or
+              admissions
+            </h2>
+          </div>
+
+          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+            {nextSteps.map((item) => {
+              const Icon = item.icon;
+
+              return (
+                <Card
+                  key={item.title}
+                  className="rounded-[28px] border-slate-200/80 bg-white shadow-[0_20px_60px_-46px_rgba(15,23,42,0.24)]"
+                >
+                  <CardContent className="p-6 sm:p-7">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <h3 className="mt-5 text-xl font-bold font-heading text-slate-950">
+                      {item.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-7 text-slate-600">
+                      {item.description}
+                    </p>
+
+                    <Button
+                      asChild
+                      size="lg"
+                      className="mt-6 w-full bg-primary text-white hover:bg-primary/90"
+                    >
+                      <Link href={item.href}>
+                        {item.cta}
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </Button>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </div>
+      </section>
     </MainLayout>
   );
 }

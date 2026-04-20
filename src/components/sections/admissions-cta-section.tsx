@@ -1,240 +1,360 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
 import Link from "next/link";
-import {
-  CalendarDays,
-  FileText,
-  Users,
-  CheckCircle,
-  ArrowRight,
-  Download,
-  Phone,
-  Clock,
-} from "lucide-react";
 import { motion } from "framer-motion";
+import type { LucideIcon } from "lucide-react";
+import {
+  ArrowRight,
+  CalendarDays,
+  CheckCircle,
+  Clock,
+  FileText,
+  Mail,
+  Phone,
+  Users,
+} from "lucide-react";
 
-const admissionSteps = [
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+
+type AdmissionStep = {
+  title: string;
+  description: string;
+  icon: LucideIcon;
+};
+
+const admissionCycle = "2026-27";
+
+const admissionSteps: AdmissionStep[] = [
   {
-    icon: FileText,
-    title: "Submit Application",
-    description: "Fill out our online application form with required documents",
-  },
-  {
-    icon: Users,
-    title: "Entrance Assessment",
+    title: "Share class and age details",
     description:
-      "Age-appropriate assessment to understand your child's learning level",
+      "Call or enquire online with your child’s current class, age, and target admission session.",
+    icon: FileText,
   },
   {
+    title: "Visit campus and review essentials",
+    description:
+      "Check classrooms, safety systems, facilities, fee details, and document requirements during the campus visit.",
+    icon: Users,
+  },
+  {
+    title: "Submit documents and confirm seat",
+    description:
+      "Submit the application and documents, then complete confirmation subject to review and class-wise availability.",
     icon: CheckCircle,
-    title: "Interview & Admission",
-    description: "Parent-student interview followed by admission confirmation",
   },
 ];
 
-const importantDates = [
-  { event: "Application Opens", date: "January 15, 2025" },
-  { event: "Entrance Test", date: "March 10, 2025" },
-  { event: "Results Declaration", date: "March 20, 2025" },
-  { event: "Admission Deadline", date: "April 15, 2025" },
+const admissionWindows = [
+  { event: "Enquiries and campus visits", date: "Open now" },
+  { event: "Document check and parent interaction", date: "Rolling" },
+  { event: "Seat confirmation", date: "As per availability" },
+];
+
+const admissionHighlights = [
+  "Admissions open from Nursery to Class XII.",
+  "Fee, document, and transport guidance is shared before confirmation.",
+  "Campus visits allow families to inspect classrooms, safety systems, and facilities.",
+  "Seat confirmation depends on document review and class-wise availability.",
+];
+
+const admissionSignals = [
+  "Nursery to Class XII",
+  "Campus visit booking",
+  "Fee and document guidance",
 ];
 
 export function AdmissionsCTASection() {
   return (
-    <section className="py-20 bg-primary text-white relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMSkiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-30" />
+    <section className="relative overflow-hidden bg-[linear-gradient(180deg,#fffdfb_0%,#fff8f3_46%,#ffffff_100%)] py-20 sm:py-24">
+      <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-primary/5 to-transparent" />
 
-      <div className="container mx-auto px-4 relative">
-        {/* Header */}
+      <div className="container relative mx-auto px-4">
         <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
+          className="mx-auto max-w-3xl text-center"
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
         >
-          <Badge className="mb-4 bg-accent text-white font-medium">
-            🎓 Admissions Open for 2025-26
+          <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
+            Admissions {admissionCycle}
           </Badge>
-          <h2 className="text-3xl md:text-4xl font-bold font-heading mb-4">
-            Secure Your Child's Future Today
+          <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-primary sm:text-4xl lg:text-[2.8rem]">
+            Admissions open for 2026-27 from Nursery to Class XII
           </h2>
-          <p className="text-xl text-blue-100 max-w-2xl mx-auto">
-            Join our community of learners and give your child the foundation
-            for lifelong success
+          <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
+            Check the 3-step process, current status, and direct admissions
+            contact details before you book a visit or submit documents.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Left Column - Admission Process */}
+        <div className="mt-12 grid gap-6 xl:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)] xl:items-start">
           <motion.div
-            className="space-y-8"
+            className="min-w-0"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
+            transition={{ duration: 0.7 }}
             viewport={{ once: true }}
           >
-            <div>
-              <h3 className="text-2xl font-bold font-heading mb-6">
-                Simple Admission Process
-              </h3>
-              <div className="space-y-6">
+            <div className="overflow-hidden rounded-[32px] border border-slate-200/80 bg-white shadow-[0_28px_80px_-52px_rgba(15,23,42,0.28)]">
+              <div className="relative aspect-[16/8] border-b border-slate-200/80 bg-slate-100">
+                <Image
+                  src="/images/submenu/admission-process.jpg"
+                  alt="Admissions guidance at Divine International Academy"
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1280px) 52vw, 100vw"
+                  priority
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.08)_0%,rgba(15,23,42,0.18)_32%,rgba(15,23,42,0.62)_100%)]" />
+
+                <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
+                  <Badge className="border border-white/15 bg-white/12 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-white/12">
+                    Admissions Office
+                  </Badge>
+
+                  <h3 className="mt-4 max-w-2xl text-2xl font-bold font-heading leading-tight text-white sm:text-[2rem] lg:text-[2.35rem]">
+                    Book a campus visit, check fees and documents, and confirm
+                    the next step with clarity.
+                  </h3>
+                </div>
+              </div>
+
+              <div className="grid gap-6 p-6 sm:p-8 lg:grid-cols-[minmax(0,1fr)_300px] lg:items-start">
+                <div className="min-w-0">
+                  <p className="max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
+                    Families receive guidance on entry class, required
+                    documents, transport, and class-wise seat availability
+                    before admission is confirmed.
+                  </p>
+
+                  <div className="mt-5 flex flex-wrap gap-2.5">
+                    {admissionSignals.map((signal) => (
+                      <div
+                        key={signal}
+                        className="rounded-full border border-primary/10 bg-primary/5 px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-primary"
+                      >
+                        {signal}
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                    <Button
+                      asChild
+                      size="lg"
+                      className="bg-primary text-white hover:bg-primary/90"
+                    >
+                      <Link
+                        href="/apply"
+                        className="flex items-center justify-center"
+                      >
+                        Apply Online
+                        <ArrowRight className="ml-2 h-5 w-5" />
+                      </Link>
+                    </Button>
+                    <Button
+                      asChild
+                      variant="outline"
+                      size="lg"
+                      className="border-primary/20 bg-white text-primary hover:bg-primary hover:text-white"
+                    >
+                      <Link
+                        href="/admissions/fees"
+                        className="flex items-center justify-center"
+                      >
+                        View Fee Details
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
+
+                <div className="rounded-[26px] border border-slate-200 bg-slate-50 p-5 sm:p-6">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/6 text-primary">
+                      <Phone className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-500">
+                        Admissions desk
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="mt-5 space-y-3.5 text-sm text-slate-700">
+                    <Link
+                      href="tel:+919876543211"
+                      className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-3 transition-colors hover:border-primary/20"
+                    >
+                      <Phone className="h-4 w-4 text-primary" />
+                      <span>+91 9876543211</span>
+                    </Link>
+                    <Link
+                      href="mailto:admissions@divineacademy.edu.in"
+                      className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-3 transition-colors hover:border-primary/20"
+                    >
+                      <Mail className="h-4 w-4 text-primary" />
+                      <span>admissions@divineacademy.edu.in</span>
+                    </Link>
+                    <div className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-3">
+                      <Clock className="h-4 w-4 text-primary" />
+                      <span>
+                        Monday to Friday, 8 AM to 4 PM | Saturday, 8 AM to 12 PM
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="space-y-5"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.15 }}
+            viewport={{ once: true }}
+          >
+            <div className="rounded-[30px] border border-slate-200/80 bg-white p-5 shadow-[0_24px_70px_-50px_rgba(15,23,42,0.22)] sm:p-6">
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/6 text-primary shadow-sm">
+                    <FileText className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold font-heading text-slate-950 sm:text-2xl">
+                      Admission in 3 steps
+                    </h3>
+                    <p className="mt-1 text-sm text-slate-600">
+                      A simple path from first enquiry to seat confirmation.
+                    </p>
+                  </div>
+                </div>
+                <div className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
+                  3 Steps
+                </div>
+              </div>
+
+              <div className="mt-6 space-y-3.5">
                 {admissionSteps.map((step, index) => {
-                  const Icon = step.icon;
                   return (
-                    <motion.div
+                    <motion.article
                       key={step.title}
-                      className="flex items-start space-x-4"
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                      className="rounded-[22px] border border-slate-200 bg-slate-50 px-4 py-4"
+                      initial={{ opacity: 0, y: 18 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.45, delay: 0.2 + index * 0.1 }}
                       viewport={{ once: true }}
                     >
-                      <div className="w-12 h-12 bg-accent rounded-full flex items-center justify-center flex-shrink-0">
-                        <Icon className="h-6 w-6 text-primary" />
+                      <div className="flex items-start gap-4">
+                        <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-primary text-white shadow-sm">
+                          <span className="text-sm font-bold">
+                            0{index + 1}
+                          </span>
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <h4 className="text-base font-semibold text-slate-950 sm:text-lg">
+                            {step.title}
+                          </h4>
+                          <p className="mt-2 text-sm leading-6 text-slate-600">
+                            {step.description}
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="text-lg font-semibold mb-2">
-                          {step.title}
-                        </h4>
-                        <p className="text-blue-100">{step.description}</p>
-                      </div>
-                    </motion.div>
+                    </motion.article>
                   );
                 })}
               </div>
             </div>
 
-            {/* CTAs */}
-            <motion.div
-              className="space-y-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  asChild
-                  size="lg"
-                  className="bg-white text-primary font-semibold flex-1"
-                >
-                  <Link
-                    href="/apply"
-                    className="flex items-center justify-center"
-                  >
-                    Apply Online Now <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
-                </Button>
-                <Button
-                  asChild
-                  variant="outline"
-                  size="lg"
-                  className="border-white text-primary hover:bg-white hover:text-primary flex-1"
-                >
-                  <Link
-                    href="/prospectus.pdf"
-                    className="flex items-center justify-center"
-                  >
-                    <Download className="mr-2 h-5 w-5" />
-                    Prospectus
-                  </Link>
-                </Button>
-              </div>
+            <div className="rounded-[30px] border border-slate-200/80 bg-white p-5 shadow-[0_24px_70px_-50px_rgba(15,23,42,0.22)] sm:p-6">
+              <div>
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-primary/6 text-primary shadow-sm">
+                    <CalendarDays className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-slate-950">
+                      Admission timeline
+                    </h4>
+                    <p className="mt-1 text-sm text-slate-600">
+                      Current status for enquiries, document checks, and seat
+                      confirmation.
+                    </p>
+                  </div>
+                </div>
 
-              <div className="flex flex-col sm:flex-row gap-4 text-sm">
-                <div className="flex items-center space-x-2">
-                  <Phone className="h-4 w-4 text-accent" />
-                  <span>Call: +91 9876543210</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Clock className="h-4 w-4 text-accent" />
-                  <span>Mon-Sat: 9 AM - 5 PM</span>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-
-          {/* Right Column - Important Dates & Info */}
-          <motion.div
-            className="space-y-8"
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.4 }}
-            viewport={{ once: true }}
-          >
-            {/* Important Dates */}
-            <Card className="bg-white/10 backdrop-blur-sm border-white/20">
-              <CardContent className="p-6">
-                <div className="flex items-center space-x-2 mb-4">
-                  <CalendarDays className="h-5 w-5 text-accent" />
-                  <h4 className="text-lg text-white font-semibold">
-                    Important Dates
-                  </h4>
-                </div>
-                <div className="space-y-3">
-                  {importantDates.map((item, index) => (
+                <div className="mt-5 space-y-3">
+                  {admissionWindows.map((item, index) => (
                     <motion.div
                       key={item.event}
-                      className="flex justify-between items-center py-2 border-b border-white/10 last:border-b-0"
-                      initial={{ opacity: 0, x: 20 }}
+                      className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5"
+                      initial={{ opacity: 0, x: 18 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.3, delay: 0.5 + index * 0.1 }}
+                      transition={{ duration: 0.35, delay: 0.3 + index * 0.08 }}
                       viewport={{ once: true }}
                     >
-                      <span className="text-blue-100">{item.event}</span>
-                      <span className="font-semibold text-white">
+                      <span className="text-sm leading-6 text-slate-700">
+                        {item.event}
+                      </span>
+                      <span className="rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-slate-900 shadow-sm ring-1 ring-slate-200">
                         {item.date}
                       </span>
                     </motion.div>
                   ))}
                 </div>
-              </CardContent>
-            </Card>
+              </div>
 
-            {/* Quick Info */}
-            <Card className="bg-white/10 backdrop-blur-sm border-white/20">
-              <CardContent className="p-6">
-                <h4 className="text-lg font-semibold mb-4 text-white">
-                  Admission Highlights
-                </h4>
-                <div className="space-y-3 text-sm text-white">
-                  <div className="flex items-center space-x-2">
-                    <CheckCircle className="h-4 w-4 text-accent" />
-                    <span>
-                      Classes: Nursery to XII (Science, Commerce, Arts)
-                    </span>
+              <div className="mt-6 border-t border-slate-200 pt-6">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-primary/6 text-primary shadow-sm">
+                    <CheckCircle className="h-5 w-5" />
                   </div>
-                  <div className="flex items-center space-x-2">
-                    <CheckCircle className="h-4 w-4 text-accent" />
-                    <span>CBSE Board Affiliation: 2131764</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <CheckCircle className="h-4 w-4 text-accent" />
-                    <span>Co-educational Institution</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <CheckCircle className="h-4 w-4 text-accent" />
-                    <span>Transportation Available</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <CheckCircle className="h-4 w-4 text-accent" />
-                    <span>Scholarships for Meritorious Students</span>
+                  <div>
+                    <h4 className="text-lg font-semibold text-slate-950">
+                      Before you confirm a seat
+                    </h4>
+                    <p className="mt-1 text-sm text-slate-600">
+                      Fees, documents, transport, and seat rules at a glance.
+                    </p>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
+
+                <div className="mt-5 space-y-3">
+                  {admissionHighlights.map((item, index) => (
+                    <motion.div
+                      key={item}
+                      className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5"
+                      initial={{ opacity: 0, y: 16 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{
+                        duration: 0.35,
+                        delay: 0.35 + index * 0.08,
+                      }}
+                      viewport={{ once: true }}
+                    >
+                      <div className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
+                        <CheckCircle className="h-3.5 w-3.5" />
+                      </div>
+                      <span className="text-sm leading-6 text-slate-700">
+                        {item}
+                      </span>
+                    </motion.div>
+                  ))}
+                </div>
+
+                <div className="mt-5 rounded-2xl border border-amber-200/70 bg-amber-50 px-4 py-3 text-sm leading-6 text-slate-700">
+                  Seats are confirmed only after document review and class-wise
+                  availability.
+                </div>
+              </div>
+            </div>
           </motion.div>
         </div>
       </div>
-
-      {/* Decorative Elements */}
-      <div className="absolute top-10 right-10 w-24 h-24 bg-accent/20 rounded-full blur-xl" />
-      <div className="absolute bottom-10 left-10 w-32 h-32 bg-white/10 rounded-full blur-xl" />
     </section>
   );
 }

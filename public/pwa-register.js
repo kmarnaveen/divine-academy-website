@@ -1,70 +1,134 @@
 // PWA Registration Script for Divine International Academy
 
+const PWA_CACHE_ENABLED = false;
+const CACHE_DISABLE_RELOAD_KEY = "dia-pwa-cache-disabled-reload";
+
+async function disablePWACaching() {
+  try {
+    const registrations = await navigator.serviceWorker.getRegistrations();
+    const unregisterResults = await Promise.all(
+      registrations.map((registration) => registration.unregister()),
+    );
+    const hadActiveRegistrations = unregisterResults.some(Boolean);
+
+    let clearedCacheCount = 0;
+    if ("caches" in window) {
+      const cacheNames = await caches.keys();
+      const divineAcademyCaches = cacheNames.filter((name) =>
+        name.startsWith("divine-academy-"),
+      );
+
+      const deletedCaches = await Promise.all(
+        divineAcademyCaches.map((name) => caches.delete(name)),
+      );
+
+      clearedCacheCount = deletedCaches.filter(Boolean).length;
+    }
+
+    console.log("PWA: Service worker caching disabled", {
+      registrationsRemoved: unregisterResults.filter(Boolean).length,
+      cachesCleared: clearedCacheCount,
+    });
+
+    if (
+      (hadActiveRegistrations || clearedCacheCount > 0) &&
+      !sessionStorage.getItem(CACHE_DISABLE_RELOAD_KEY)
+    ) {
+      sessionStorage.setItem(CACHE_DISABLE_RELOAD_KEY, "true");
+      window.location.reload();
+      return;
+    }
+
+    sessionStorage.removeItem(CACHE_DISABLE_RELOAD_KEY);
+  } catch (error) {
+    console.error("PWA: Failed to disable service worker caching:", error);
+  }
+}
+
+function initializeServiceWorker() {
+  if (!PWA_CACHE_ENABLED) {
+    void disablePWACaching();
+    return;
+  }
+
+  void registerServiceWorker();
+}
+
+async function registerServiceWorker() {
+  try {
+    // Register service worker
+    const registration = await navigator.serviceWorker.register("/sw.js", {
+      scope: "/",
+    });
+
+    console.log("PWA: Service Worker registered successfully:", registration);
+
+    // Handle service worker updates
+    registration.addEventListener("updatefound", () => {
+      const newWorker = registration.installing;
+
+      if (newWorker) {
+        newWorker.addEventListener("statechange", () => {
+          if (newWorker.state === "installed") {
+            if (navigator.serviceWorker.controller) {
+              // New update available
+              showUpdateNotification();
+            } else {
+              // Content is cached for offline use
+              showOfflineReadyNotification();
+            }
+          }
+        });
+      }
+    });
+
+    // Handle controller changes
+    navigator.serviceWorker.addEventListener("controllerchange", () => {
+      window.location.reload();
+    });
+  } catch (error) {
+    console.error("PWA: Service Worker registration failed:", error);
+  }
+}
+
 // Check if service workers are supported
 if ("serviceWorker" in navigator) {
-  window.addEventListener("load", async () => {
-    try {
-      // Register service worker
-      const registration = await navigator.serviceWorker.register("/sw.js", {
-        scope: "/",
-      });
-
-      console.log("PWA: Service Worker registered successfully:", registration);
-
-      // Handle service worker updates
-      registration.addEventListener("updatefound", () => {
-        const newWorker = registration.installing;
-
-        if (newWorker) {
-          newWorker.addEventListener("statechange", () => {
-            if (newWorker.state === "installed") {
-              if (navigator.serviceWorker.controller) {
-                // New update available
-                showUpdateNotification();
-              } else {
-                // Content is cached for offline use
-                showOfflineReadyNotification();
-              }
-            }
-          });
-        }
-      });
-
-      // Handle controller changes
-      navigator.serviceWorker.addEventListener("controllerchange", () => {
-        window.location.reload();
-      });
-    } catch (error) {
-      console.error("PWA: Service Worker registration failed:", error);
-    }
-  });
+  if (document.readyState === "complete") {
+    initializeServiceWorker();
+  } else {
+    window.addEventListener("load", initializeServiceWorker, { once: true });
+  }
 }
 
 // Check for app install prompt
 let deferredPrompt;
-window.addEventListener("beforeinstallprompt", (event) => {
-  console.log("PWA: Install prompt triggered");
+if (PWA_CACHE_ENABLED) {
+  window.addEventListener("beforeinstallprompt", (event) => {
+    console.log("PWA: Install prompt triggered");
 
-  // Prevent the mini-infobar from appearing on mobile
-  event.preventDefault();
+    // Prevent the mini-infobar from appearing on mobile
+    event.preventDefault();
 
-  // Stash the event so it can be triggered later
-  deferredPrompt = event;
+    // Stash the event so it can be triggered later
+    deferredPrompt = event;
 
-  // Show custom install button
-  showInstallButton();
-});
+    // Show custom install button
+    showInstallButton();
+  };);
+}
 
 // Handle app installation
-window.addEventListener("appinstalled", (event) => {
-  console.log("PWA: App was installed successfully");
+if (PWA_CACHE_ENABLED) {
+  window.addEventListener("appinstalled", () => {
+    console.log("PWA: App was installed successfully");
 
-  // Hide install button
-  hideInstallButton();
+    // Hide install button
+    hideInstallButton();
 
-  // Track installation (analytics)
-  trackAppInstall();
-});
+    // Track installation (analytics)
+    trackAppInstall();
+  };);
+}
 
 // Show update notification
 function showUpdateNotification() {
@@ -156,7 +220,7 @@ function createInstallBanner() {
       justify-content: space-between;
       box-shadow: 0 4px 20px rgba(0,0,0,0.15);
       border-radius: 12px;
-      font-family: system-ui, -apple-system, sans-serif;
+      font-family: var(--font-nunito), system-ui, -apple-system, sans-serif;
       backdrop-filter: blur(10px);
     ">
       <div style="display: flex; align-items: center; gap: 12px;">
@@ -231,7 +295,7 @@ function showInAppUpdateBanner() {
       align-items: center;
       justify-content: space-between;
       box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-      font-family: system-ui, -apple-system, sans-serif;
+      font-family: var(--font-nunito), system-ui, -apple-system, sans-serif;
     ">
       <div>
         <div style="font-weight: 600; margin-bottom: 4px;">Update Available</div>
@@ -277,7 +341,7 @@ function showInAppMessage(message, type = "info") {
       padding: 12px 16px;
       border-radius: 8px;
       z-index: 9999;
-      font-family: system-ui, -apple-system, sans-serif;
+      font-family: var(--font-nunito), system-ui, -apple-system, sans-serif;
       font-size: 14px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
       max-width: 300px;
@@ -365,10 +429,12 @@ function initializePWA() {
 }
 
 // Initialize when DOM is loaded
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initializePWA);
-} else {
-  initializePWA();
+if (PWA_CACHE_ENABLED) {
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initializePWA);
+  } else {
+    initializePWA();
+  }
 }
 
 console.log("PWA: Registration script loaded");

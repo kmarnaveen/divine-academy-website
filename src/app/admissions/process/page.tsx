@@ -1,510 +1,602 @@
-"use client";
-
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
 import {
+  ArrowRight,
+  CalendarDays,
   CheckCircle,
   Clock,
   FileText,
-  Users,
-  CreditCard,
-  Calendar,
-  ArrowRight,
-  Phone,
-  Mail,
   GraduationCap,
-  Award,
-  Sparkles,
-  Target,
-  BookOpen,
+  Mail,
+  Phone,
+  Shield,
+  Users,
 } from "lucide-react";
-import Link from "next/link";
-import { MainLayout } from "@/components/layout/main-layout";
+
+import { MainLayout } from "../../../components/layout/main-layout";
+import { Badge } from "../../../components/ui/badge";
+import { Button } from "../../../components/ui/button";
+import { Card, CardContent } from "../../../components/ui/card";
+
+const admissionCycle = "2026-27";
+
+const processSignals = [
+  "Nursery to Class XII admissions",
+  "Campus visit and document review",
+  "Seat confirmation as per availability",
+] as const;
+
+const processStats = [
+  {
+    value: "3",
+    label: "Admission steps",
+    detail: "From enquiry to confirmation.",
+  },
+  {
+    value: "Open",
+    label: "Enquiries and visits",
+    detail: "Admissions guidance is available now.",
+  },
+  {
+    value: "31 Mar",
+    label: "Age cut-off reference",
+    detail: "Used for foundational-entry guidance.",
+  },
+  {
+    value: "2131764",
+    label: "CBSE affiliation",
+    detail: "Divine International Academy, Sirsaganj.",
+  },
+] as const;
 
 const processSteps = [
   {
-    step: 1,
-    title: "Initial Inquiry",
-    description: "Submit your inquiry or visit our campus",
-    duration: "Immediate",
-    actions: [
-      "Fill online inquiry form",
-      "Campus visit & tour",
-      "Meet our counselors",
-      "Collect prospectus",
+    step: "01",
+    title: "Share your enquiry",
+    description:
+      "Call, email, or visit the school with your child’s class, date of birth, and target admission session.",
+    points: [
+      "Class-entry and age guidance",
+      "Initial seat-availability discussion",
+      "Campus visit coordination with the admissions desk",
     ],
-    icon: <FileText className="w-6 h-6" />,
-    status: "active",
+    icon: Phone,
   },
   {
-    step: 2,
-    title: "Application Submission",
-    description: "Complete the admission application form",
-    duration: "1-2 days",
-    actions: [
-      "Fill detailed application form",
-      "Upload required documents",
-      "Pay application fee (₹500)",
-      "Submit birth certificate",
+    step: "02",
+    title: "Visit campus and review essentials",
+    description:
+      "Review classrooms, safety systems, fees, transport support, and the document checklist before you move to the next step.",
+    points: [
+      "Campus visit and parent interaction",
+      "Fee and transport clarification",
+      "Document and process explanation",
     ],
-    icon: <Users className="w-6 h-6" />,
-    status: "pending",
+    icon: CalendarDays,
   },
   {
-    step: 3,
-    title: "Assessment & Interview",
-    description: "Student assessment and parent interaction",
-    duration: "3-5 days",
-    actions: [
-      "Age-appropriate assessment",
-      "Parent-principal interaction",
-      "Student observation",
-      "Previous school verification",
+    step: "03",
+    title: "Submit documents and confirm the next step",
+    description:
+      "The admissions office reviews documents and confirms seat status or the next action according to class-wise availability.",
+    points: [
+      "Birth certificate and school records review",
+      "Photographs and address proof check",
+      "Seat confirmation guidance from the school office",
     ],
-    icon: <CheckCircle className="w-6 h-6" />,
-    status: "pending",
+    icon: FileText,
   },
-  {
-    step: 4,
-    title: "Admission Confirmation",
-    description: "Admission decision and seat confirmation",
-    duration: "Within 7 days",
-    actions: [
-      "Admission letter issued",
-      "Fee payment deadline",
-      "Seat confirmation",
-      "Welcome orientation",
-    ],
-    icon: <CreditCard className="w-6 h-6" />,
-    status: "pending",
-  },
-];
+] as const;
 
-const admissionTimeline = [
+const requiredDocuments = [
   {
-    phase: "Phase 1",
-    period: "November - December",
-    title: "Early Registration",
-    description: "Priority admission for existing families and referrals",
-    perks: [
-      "5% early bird discount",
-      "Guaranteed seat allocation",
-      "Priority class selection",
-    ],
+    title: "Birth certificate",
+    detail: "Required for age verification during the admissions process.",
   },
   {
-    phase: "Phase 2",
-    period: "January - February",
-    title: "General Admission",
-    description: "Open admission for all applicants",
-    perks: [
-      "Regular fee structure",
-      "Subject to seat availability",
-      "Standard process timeline",
-    ],
+    title: "Previous school records",
+    detail: "Transfer certificate and report card for Class I and above.",
   },
   {
-    phase: "Phase 3",
-    period: "March - April",
-    title: "Late Admission",
-    description: "Final admission window (subject to availability)",
-    perks: [
-      "Limited seats available",
-      "Expedited process",
-      "Immediate enrollment",
-    ],
+    title: "Passport-size photographs",
+    detail: "Recent colour photographs of the student.",
   },
-];
+  {
+    title: "Address proof",
+    detail: "Aadhaar card, passport, or utility bill of parent or guardian.",
+  },
+  {
+    title: "Medical certificate",
+    detail: "Basic health certificate if asked by the school during review.",
+  },
+  {
+    title: "Category certificate",
+    detail: "Applicable only where relevant during admissions review.",
+  },
+] as const;
 
-const ageRequirements = [
-  { grade: "Pre-KG", age: "2.5 - 3.5 years", cutoffDate: "31st March" },
-  { grade: "LKG", age: "3.5 - 4.5 years", cutoffDate: "31st March" },
-  { grade: "UKG", age: "4.5 - 5.5 years", cutoffDate: "31st March" },
-  { grade: "Class I", age: "5.5 - 6.5 years", cutoffDate: "31st March" },
-  { grade: "Class II+", age: "As per CBSE norms", cutoffDate: "31st March" },
-];
+const ageGuidance = [
+  { stage: "Pre-KG", age: "2.5 - 3.5 years" },
+  { stage: "LKG", age: "3.5 - 4.5 years" },
+  { stage: "UKG", age: "4.5 - 5.5 years" },
+  { stage: "Class I", age: "5.5 - 6.5 years" },
+] as const;
+
+const processNotes = [
+  {
+    title: "Start early when possible",
+    description:
+      "Families usually get better clarity on class entry, documents, and transport support when they begin the process before the last-minute rush.",
+    icon: Clock,
+  },
+  {
+    title: "Seat confirmation depends on availability",
+    description:
+      "An enquiry or campus visit does not automatically confirm admission. The school reviews documents and confirms the next step according to class-wise seat position.",
+    icon: Shield,
+  },
+  {
+    title: "Fees and transport are reviewed separately",
+    description:
+      "Families can discuss annual fees, admission charges, and route-based transport charges during the process before making a final decision.",
+    icon: GraduationCap,
+  },
+  {
+    title: "Keep contact details active",
+    description:
+      "The admissions office may use phone or email for follow-up, clarification, or confirmation after the initial review.",
+    icon: Users,
+  },
+] as const;
+
+const officeSupport = [
+  {
+    label: "Admissions desk",
+    value: "+91 9876543211",
+    detail: "Class entry, documents, fee guidance, and admission support",
+    href: "tel:+919876543211",
+    icon: Phone,
+  },
+  {
+    label: "Admissions email",
+    value: "admissions@divineacademy.edu.in",
+    detail: "Share class, age, and admission questions by email",
+    href: "mailto:admissions@divineacademy.edu.in?subject=Admissions%20Process%20Enquiry",
+    icon: Mail,
+  },
+  {
+    label: "Office hours",
+    value: "Monday to Friday, 8 AM to 4 PM",
+    detail: "Saturday, 8 AM to 12 PM",
+    icon: Clock,
+  },
+] as const;
+
+const parentQuestions = [
+  {
+    question: "Do parents need to carry all documents on the first visit?",
+    answer:
+      "Not always. It is still useful to keep the main documents ready so the admissions office can guide you properly during the process.",
+  },
+  {
+    question: "Is admission confirmed immediately after enquiry?",
+    answer:
+      "No. Seat confirmation depends on class-wise availability, document review, and the school’s admissions decision for that stage.",
+  },
+  {
+    question: "Can families discuss fees and transport during the same visit?",
+    answer:
+      "Yes. Parents can review fee bands, transport support, and route guidance during the campus visit or admissions interaction.",
+  },
+] as const;
+
+export const metadata: Metadata = {
+  title: "Admission Process | Divine International Academy Sirsaganj",
+  description:
+    "Check the 2026-27 admission process at Divine International Academy, Sirsaganj. Review steps, age guidance, required documents, and admissions office contact details.",
+  keywords: [
+    "Divine International Academy admission process",
+    "school admission steps Sirsaganj",
+    "CBSE admissions Firozabad",
+    "school admissions 2026-27",
+  ],
+};
 
 export default function AdmissionProcessPage() {
-  const [activeStep, setActiveStep] = useState(1);
-
   return (
     <MainLayout>
-      <div className="min-h-screen bg-white">
-        {/* Enhanced Hero Section - Harvard Theme */}
-        <section className="relative pt-24 pb-20 overflow-hidden">
-          {/* Background Pattern */}
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-white to-primary/3"></div>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(165,28,48,0.1),transparent_50%)]"></div>
+      <section className="relative overflow-hidden bg-[linear-gradient(180deg,#fffdfb_0%,#fff7f1_46%,#ffffff_100%)] pt-16 pb-20 sm:pt-20 sm:pb-24">
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-primary/5 to-transparent" />
 
-          <div className="container mx-auto px-4 relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-center max-w-5xl mx-auto"
-            >
-              {/* Admission Badge */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm border border-primary/20 rounded-full px-6 py-3 mb-8 shadow-lg"
-              >
-                <Award className="h-5 w-5 text-primary" />
-                <span className="font-semibold text-gray-900">
-                  Admissions Open 2025-26
-                </span>
-                <Sparkles className="h-4 w-4 text-primary animate-pulse" />
-              </motion.div>
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
+              Admission Process {admissionCycle}
+            </Badge>
+            <h1 className="mt-5 text-4xl font-bold font-heading leading-tight text-primary sm:text-5xl lg:text-[3.35rem]">
+              A clear 3-step admission process for Nursery to Class XII
+            </h1>
+            <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
+              Start with the enquiry, visit the campus, keep documents ready,
+              and confirm the next step with the admissions office according to
+              class-wise availability.
+            </p>
+          </div>
 
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold font-heading text-gray-900 mb-8 leading-tight">
-                <span className="bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-                  Admission
-                </span>
-                <br />
-                <span className="text-gray-700">Process</span>
-              </h1>
+          <div className="mt-10 overflow-hidden rounded-[32px] border border-slate-200/80 bg-white shadow-[0_28px_80px_-52px_rgba(15,23,42,0.25)]">
+            <div className="grid lg:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.92fr)] lg:items-stretch">
+              <div className="relative min-h-[320px] border-b border-slate-200/80 bg-slate-100 lg:min-h-full lg:border-b-0 lg:border-r lg:border-slate-200/80">
+                <Image
+                  src="/images/submenu/admission-process.jpg"
+                  alt="Admissions process guidance at Divine International Academy"
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 48vw, 100vw"
+                  priority
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.08)_0%,rgba(15,23,42,0.18)_38%,rgba(15,23,42,0.68)_100%)]" />
+                <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6 lg:p-8">
+                  <Badge className="border border-white/15 bg-white/12 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-white/12">
+                    {admissionCycle} Admissions
+                  </Badge>
+                  <h2 className="mt-4 max-w-2xl text-2xl font-bold font-heading leading-tight text-white sm:text-[2rem] lg:text-[2.45rem]">
+                    Keep the child’s class, date of birth, and key documents
+                    ready before the admissions interaction.
+                  </h2>
+                </div>
+              </div>
 
-              <p className="text-xl md:text-2xl text-gray-600 mb-12 leading-relaxed max-w-4xl mx-auto font-medium">
-                Join the Divine International Academy family through our
-                <span className="text-primary font-semibold"> simple</span>,
-                <span className="text-primary font-semibold"> transparent</span>{" "}
-                admission process. We're here to guide you every step of the
-                way.
+              <div className="p-6 sm:p-8 lg:p-10">
+                <p className="max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
+                  The admissions process is easier when families start with the
+                  right basics: class entry, age guidance, document readiness,
+                  campus review, and direct contact with the school office.
+                </p>
+
+                <div className="mt-5 flex flex-wrap gap-2.5">
+                  {processSignals.map((signal) => (
+                    <div
+                      key={signal}
+                      className="rounded-full border border-primary/10 bg-primary/5 px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-primary"
+                    >
+                      {signal}
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                  {processStats.map((stat) => (
+                    <div
+                      key={stat.label}
+                      className="rounded-[24px] border border-primary/10 bg-primary/5 px-4 py-4"
+                    >
+                      <p className="text-2xl font-bold text-primary">
+                        {stat.value}
+                      </p>
+                      <p className="mt-1 text-sm font-semibold text-slate-900">
+                        {stat.label}
+                      </p>
+                      <p className="mt-1 text-sm leading-6 text-slate-600">
+                        {stat.detail}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                  <Button asChild size="lg" className="sm:flex-1">
+                    <Link href="/contact">
+                      Talk to Admissions
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                  <Button
+                    asChild
+                    size="lg"
+                    variant="outline"
+                    className="border-primary text-primary hover:bg-primary hover:text-white sm:flex-1"
+                  >
+                    <Link href="/admissions/fees">Review Fees</Link>
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="pb-20">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
+              Admission Steps
+            </Badge>
+            <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
+              Start with enquiry, visit the school, and then submit documents
+            </h2>
+          </div>
+
+          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+            {processSteps.map((step) => {
+              const Icon = step.icon;
+
+              return (
+                <Card
+                  key={step.step}
+                  className="rounded-[28px] border-slate-200/80 bg-white shadow-[0_20px_60px_-46px_rgba(15,23,42,0.24)]"
+                >
+                  <CardContent className="p-6 sm:p-7">
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                        <Icon className="h-6 w-6" />
+                      </div>
+                      <div className="rounded-full bg-primary px-3 py-1 text-xs font-bold text-white">
+                        {step.step}
+                      </div>
+                    </div>
+
+                    <h3 className="mt-5 text-xl font-bold font-heading text-slate-950">
+                      {step.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-7 text-slate-600">
+                      {step.description}
+                    </p>
+
+                    <ul className="mt-5 space-y-3">
+                      {step.points.map((point) => (
+                        <li key={point} className="flex items-start gap-3">
+                          <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                          <span className="text-sm leading-6 text-slate-700">
+                            {point}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-slate-50/80 py-20">
+        <div className="container mx-auto px-4">
+          <div className="grid gap-8 xl:grid-cols-[minmax(0,1.1fr)_380px] xl:items-start">
+            <div>
+              <Badge className="border border-primary/10 bg-white px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-white">
+                Keep These Ready
+              </Badge>
+              <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl">
+                Documents usually reviewed during the process
+              </h2>
+
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                {requiredDocuments.map((item) => (
+                  <Card
+                    key={item.title}
+                    className="rounded-[24px] border-slate-200/80 bg-white"
+                  >
+                    <CardContent className="p-5">
+                      <h3 className="text-base font-bold text-slate-950">
+                        {item.title}
+                      </h3>
+                      <p className="mt-2 text-sm leading-6 text-slate-600">
+                        {item.detail}
+                      </p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+
+            <Card className="rounded-[28px] border-slate-200/80 bg-white shadow-[0_20px_60px_-46px_rgba(15,23,42,0.22)]">
+              <CardContent className="p-6 sm:p-7">
+                <Badge className="border border-primary/10 bg-primary/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary hover:bg-primary/5">
+                  Admissions Office
+                </Badge>
+                <h3 className="mt-5 text-2xl font-bold font-heading text-slate-950">
+                  Contact the admissions desk for process guidance
+                </h3>
+
+                <div className="mt-6 space-y-4">
+                  {officeSupport.map((item) => {
+                    const Icon = item.icon;
+
+                    return (
+                      <div
+                        key={item.label}
+                        className="rounded-[22px] border border-slate-200 bg-slate-50 px-4 py-4"
+                      >
+                        <div className="flex items-start gap-3">
+                          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                            <Icon className="h-5 w-5" />
+                          </div>
+                          <div>
+                            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+                              {item.label}
+                            </p>
+                            {"href" in item ? (
+                              <Link
+                                href={item.href}
+                                className="mt-1 block text-sm font-semibold text-primary hover:underline"
+                              >
+                                {item.value}
+                              </Link>
+                            ) : (
+                              <p className="mt-1 text-sm font-semibold text-slate-900">
+                                {item.value}
+                              </p>
+                            )}
+                            <p className="mt-1 text-sm leading-6 text-slate-600">
+                              {item.detail}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="grid gap-8 xl:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] xl:items-start">
+            <div>
+              <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
+                Foundational Entry Guidance
+              </Badge>
+              <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl">
+                Age guidance for Pre-KG to Class I
+              </h2>
+              <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-base">
+                Use these age bands as a reference before speaking with the
+                admissions office for the final class-entry discussion.
               </p>
 
-              {/* Enhanced Stats */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="grid grid-cols-3 gap-8 max-w-2xl mx-auto mb-12"
-              >
-                {[
-                  {
-                    number: "7",
-                    label: "Simple Steps",
-                    icon: <Target className="h-6 w-6" />,
-                  },
-                  {
-                    number: "48hrs",
-                    label: "Quick Process",
-                    icon: <Clock className="h-6 w-6" />,
-                  },
-                  {
-                    number: "100%",
-                    label: "Transparency",
-                    icon: <CheckCircle className="h-6 w-6" />,
-                  },
-                ].map((stat, idx) => (
-                  <div key={idx} className="text-center group">
-                    <div className="text-primary group-hover:scale-110 transition-transform duration-300 mb-2 flex justify-center">
-                      {stat.icon}
+              <div className="mt-6 overflow-hidden rounded-[28px] border border-slate-200/80 bg-white shadow-[0_20px_60px_-46px_rgba(15,23,42,0.2)]">
+                <div className="grid grid-cols-2 border-b border-slate-200 bg-slate-50 px-5 py-4 text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+                  <div>Stage</div>
+                  <div>Age guidance</div>
+                </div>
+                {ageGuidance.map((item) => (
+                  <div
+                    key={item.stage}
+                    className="grid grid-cols-2 border-b border-slate-200/70 px-5 py-4 last:border-b-0"
+                  >
+                    <div className="text-sm font-semibold text-slate-900">
+                      {item.stage}
                     </div>
-                    <div className="text-3xl font-bold text-gray-900 mb-1">
-                      {stat.number}
-                    </div>
-                    <div className="text-sm text-gray-600 font-medium">
-                      {stat.label}
-                    </div>
+                    <div className="text-sm text-slate-700">{item.age}</div>
                   </div>
                 ))}
-              </motion.div>
+              </div>
+            </div>
 
-              <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <div>
+              <Badge className="border border-primary/10 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-primary/5">
+                Important Notes
+              </Badge>
+              <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl">
+                What families should keep in mind during the process
+              </h2>
+
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                {processNotes.map((item) => {
+                  const Icon = item.icon;
+
+                  return (
+                    <Card
+                      key={item.title}
+                      className="rounded-[24px] border-slate-200/80 bg-white"
+                    >
+                      <CardContent className="p-5">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                          <Icon className="h-5 w-5" />
+                        </div>
+                        <h3 className="mt-4 text-base font-bold text-slate-950">
+                          {item.title}
+                        </h3>
+                        <p className="mt-2 text-sm leading-6 text-slate-600">
+                          {item.description}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-slate-50/80 py-20">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="border border-primary/10 bg-white px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary hover:bg-white">
+              Parent Questions
+            </Badge>
+            <h2 className="mt-5 text-3xl font-bold font-heading leading-tight text-slate-950 sm:text-4xl lg:text-[2.7rem]">
+              Common admissions-process questions
+            </h2>
+          </div>
+
+          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+            {parentQuestions.map((item) => (
+              <Card
+                key={item.question}
+                className="rounded-[28px] border-slate-200/80 bg-white"
+              >
+                <CardContent className="p-6 sm:p-7">
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                      <CheckCircle className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold font-heading leading-7 text-slate-950">
+                        {item.question}
+                      </h3>
+                      <p className="mt-3 text-sm leading-7 text-slate-600">
+                        {item.answer}
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="pb-24 pt-20">
+        <div className="container mx-auto px-4">
+          <div className="rounded-[32px] bg-primary px-6 py-8 text-white shadow-[0_28px_80px_-46px_rgba(127,29,29,0.45)] sm:px-8 sm:py-10 lg:px-12 lg:py-12">
+            <Badge className="border border-white/15 bg-white/12 px-3.5 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-white/12">
+              Admissions Help
+            </Badge>
+            <div className="mt-5 grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
+              <div className="max-w-3xl">
+                <h2 className="text-3xl font-bold font-heading leading-tight sm:text-4xl lg:text-[2.8rem]">
+                  Need help with class entry, documents, or seat availability?
+                </h2>
+                <p className="mt-4 text-sm leading-7 text-white/85 sm:text-base">
+                  Contact the admissions desk to review the next step, confirm
+                  what to bring, and plan a campus visit before you proceed.
+                </p>
+              </div>
+
+              <div className="flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
                 <Button
-                  size="lg"
                   asChild
-                  className="bg-primary hover:bg-primary/90 text-white font-semibold px-8 py-4 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+                  size="lg"
+                  className="bg-white text-primary hover:bg-white/90"
                 >
-                  <Link href="/apply" className="flex items-center">
-                    <GraduationCap className="mr-3 h-5 w-5" />
-                    Start Application
+                  <Link href="/contact">
+                    Contact the School
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
                 <Button
-                  variant="outline"
-                  size="lg"
                   asChild
-                  className="border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
-                >
-                  <Link href="/contact" className="flex items-center">
-                    <Phone className="mr-3 h-5 w-5" />
-                    Schedule Campus Visit
-                  </Link>
-                </Button>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Process Steps */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold text-blue-900 mb-4">
-                Simple 4-Step Admission Process
-              </h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                Our streamlined process ensures a smooth admission experience
-                for both students and parents
-              </p>
-            </motion.div>
-
-            <div className="grid gap-8 max-w-6xl mx-auto">
-              {processSteps.map((step, index) => (
-                <motion.div
-                  key={step.step}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  <Card
-                    className={`relative overflow-hidden ${
-                      step.step === activeStep
-                        ? "ring-2 ring-blue-500 shadow-lg"
-                        : "hover:shadow-md"
-                    } transition-all duration-300`}
-                  >
-                    <CardContent className="p-6">
-                      <div className="flex items-start gap-6">
-                        <div
-                          className={`flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center ${
-                            step.step === activeStep
-                              ? "bg-blue-600 text-white"
-                              : "bg-blue-100 text-blue-600"
-                          } transition-colors duration-300`}
-                        >
-                          {step.icon}
-                        </div>
-
-                        <div className="flex-grow">
-                          <div className="flex items-center gap-4 mb-3">
-                            <h3 className="text-xl font-bold text-blue-900">
-                              Step {step.step}: {step.title}
-                            </h3>
-                            <Badge
-                              variant="secondary"
-                              className="bg-yellow-100 text-yellow-800"
-                            >
-                              <Clock className="w-3 h-3 mr-1" />
-                              {step.duration}
-                            </Badge>
-                          </div>
-
-                          <p className="text-gray-600 mb-4">
-                            {step.description}
-                          </p>
-
-                          <div className="grid md:grid-cols-2 gap-2">
-                            {step.actions.map((action, idx) => (
-                              <div
-                                key={idx}
-                                className="flex items-center gap-2 text-sm text-gray-700"
-                              >
-                                <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0" />
-                                {action}
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-
-                        {step.step < processSteps.length && (
-                          <div className="hidden md:flex items-center">
-                            <ArrowRight className="w-6 h-6 text-gray-400" />
-                          </div>
-                        )}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Admission Timeline */}
-        <section className="py-16 bg-white/50">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold text-blue-900 mb-4">
-                Admission Timeline 2024-25
-              </h2>
-              <p className="text-gray-600">
-                Plan your admission journey with our structured timeline
-              </p>
-            </motion.div>
-
-            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              {admissionTimeline.map((phase, index) => (
-                <motion.div
-                  key={phase.phase}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  <Card className="h-full hover:shadow-lg transition-shadow duration-300">
-                    <CardHeader className="text-center">
-                      <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white font-bold text-lg mx-auto mb-3">
-                        {index + 1}
-                      </div>
-                      <CardTitle className="text-blue-900">
-                        {phase.title}
-                      </CardTitle>
-                      <Badge variant="outline" className="mx-auto">
-                        {phase.period}
-                      </Badge>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-gray-600 mb-4 text-center">
-                        {phase.description}
-                      </p>
-                      <ul className="space-y-2">
-                        {phase.perks.map((perk, idx) => (
-                          <li
-                            key={idx}
-                            className="flex items-center gap-2 text-sm"
-                          >
-                            <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0" />
-                            {perk}
-                          </li>
-                        ))}
-                      </ul>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Age Requirements */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold text-blue-900 mb-4">
-                Age Requirements
-              </h2>
-              <p className="text-gray-600">
-                Grade-wise age criteria as per CBSE guidelines
-              </p>
-            </motion.div>
-
-            <div className="max-w-4xl mx-auto">
-              <Card>
-                <CardContent className="p-0">
-                  <div className="overflow-x-auto">
-                    <table className="w-full">
-                      <thead className="bg-blue-50">
-                        <tr>
-                          <th className="px-6 py-4 text-left font-semibold text-blue-900">
-                            Grade
-                          </th>
-                          <th className="px-6 py-4 text-left font-semibold text-blue-900">
-                            Age Range
-                          </th>
-                          <th className="px-6 py-4 text-left font-semibold text-blue-900">
-                            Cut-off Date
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {ageRequirements.map((req, index) => (
-                          <tr
-                            key={req.grade}
-                            className={
-                              index % 2 === 0 ? "bg-gray-50" : "bg-white"
-                            }
-                          >
-                            <td className="px-6 py-4 font-medium text-blue-900">
-                              {req.grade}
-                            </td>
-                            <td className="px-6 py-4 text-gray-700">
-                              {req.age}
-                            </td>
-                            <td className="px-6 py-4 text-gray-700">
-                              {req.cutoffDate}
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="py-16 bg-primary">
-          <div className="container mx-auto px-4 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="max-w-3xl mx-auto"
-            >
-              <h2 className="text-3xl font-bold text-white mb-4">
-                Ready to Begin Your Child's Journey?
-              </h2>
-              <p className="text-blue-100 mb-8 text-lg">
-                Start the admission process today or contact us for personalized
-                guidance
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" variant="secondary" asChild>
-                  <Link href="/apply">
-                    <FileText className="mr-2 h-5 w-5" />
-                    Apply Online Now
-                  </Link>
-                </Button>
-                <Button
                   size="lg"
                   variant="outline"
-                  className="bg-white text-blue-600 hover:bg-blue-50"
-                  asChild
+                  className="border-white/30 bg-transparent text-white hover:bg-white hover:text-primary"
                 >
                   <Link href="/admissions/fees">
-                    <CreditCard className="mr-2 h-5 w-5" />
-                    View Fee Structure
-                  </Link>
-                </Button>
-                <Button
-                  size="lg"
-                  variant="ghost"
-                  className="text-white hover:bg-blue-600"
-                  asChild
-                >
-                  <Link href="/contact">
-                    <Phone className="mr-2 h-5 w-5" />
-                    Contact Admissions
+                    Review Fees
+                    <GraduationCap className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
               </div>
-            </motion.div>
+            </div>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
     </MainLayout>
   );
 }
