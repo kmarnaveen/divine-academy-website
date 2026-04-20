@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Nunito } from "next/font/google";
 import "./globals.css";
 
@@ -62,18 +62,6 @@ export const metadata: Metadata = {
       "CBSE education, admissions guidance, and school facilities from Nursery to Class 12 at Divine International Academy, Sirsaganj.",
     images: ["/images/logo.png"],
   },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 1,
-    userScalable: false,
-    viewportFit: "cover",
-  },
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#1E3A8A" },
-    { media: "(prefers-color-scheme: dark)", color: "#1E3A8A" },
-  ],
-  colorScheme: "light",
   robots: {
     index: true,
     follow: true,
@@ -101,6 +89,19 @@ export const metadata: Metadata = {
       },
     ],
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  viewportFit: "cover",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#1E3A8A" },
+    { media: "(prefers-color-scheme: dark)", color: "#1E3A8A" },
+  ],
+  colorScheme: "light",
 };
 
 export default function RootLayout({
